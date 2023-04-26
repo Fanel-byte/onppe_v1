@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignalementForm1Fragment">
+    tools:context=".SignalementForm2Fragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -24,7 +23,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="24dp"
             android:fontFamily="@font/montserrat_bold"
-            android:text=" يرجى تحديد سبب الخطر "
+            android:text=" يرجى ملء محتوى الإخطار"
             android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -36,7 +35,7 @@
             android:layout_height="4dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
-            android:src="@drawable/progressbar"
+            android:src="@drawable/progressbar2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -45,65 +44,14 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="70dp"
         android:layout_marginEnd="20dp"
         android:fontFamily="@font/montserrat"
-        android:text="سبب الخطر"
+        android:text="محتوى الإخطار"
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout2"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        android:layout_width="0dp"
-        android:layout_height="61dp"
-        android:layout_margin="16dp"
-        android:hint="اختار ..."
-        android:textAlignment="center"
-        app:hintTextAppearance="@style/TextAppearance.AppCompat.Display1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        tools:ignore="MissingConstraints">
-
-        <AutoCompleteTextView
-            android:id="@+id/cause"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:breakStrategy="simple"
-            android:inputType="none" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="20dp"
-        android:fontFamily="@font/montserrat"
-        android:text="تاريج الحادثة (بدا الخطر)"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="#BEB7B5"
-        android:drawableEnd="@drawable/ic_baseline_calendar_today_24"
-        android:drawablePadding="10dp"
-        android:ems="10"
-        android:hint="يوم / شهر / سنة"
-        android:inputType="textPersonName"
-        android:textAlignment="textStart"
-        app:layout_constraintEnd_toEndOf="@+id/textView3"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayout2"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <Button
         android:id="@+id/button2"
@@ -122,12 +70,11 @@
         android:id="@+id/button3"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginTop="144dp"
         android:layout_marginEnd="40dp"
         android:background="@drawable/next"
         android:foreground="@drawable/next"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        tools:layout_editor_absoluteY="505dp" />
 
     <TextView
         android:id="@+id/textView4"
@@ -154,5 +101,20 @@
         app:layout_constraintStart_toEndOf="@+id/button2"
         app:layout_constraintTop_toTopOf="@+id/button2" />
 
+    <EditText
+        android:id="@+id/editTextTextMultiLine"
+        android:layout_width="332dp"
+        android:layout_height="180dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/custom_edittext"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="محتوى الإخطار، مع شرح موجز..."
+        android:inputType="textMultiLine"
+        android:paddingRight="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.632"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
