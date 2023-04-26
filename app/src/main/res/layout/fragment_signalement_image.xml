@@ -61,7 +61,8 @@
         android:fontFamily="@font/montserratarabicregular"
         android:text=" يمكنك التبليغ عن الإخطار عن طريق صورة"
         android:textColor="#FFFFFF"
-        android:textSize="20sp"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
         app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/imageView6"
@@ -93,13 +94,16 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="69dp"
         android:fontFamily="@font/montserratarabicregular"
         android:text="أو"
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/imagecapture"
+        app:layout_constraintEnd_toStartOf="@+id/imagegalerie"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imagecapture"
         app:layout_constraintTop_toTopOf="@+id/imagecapture"
-        tools:layout_editor_absoluteX="198dp"
         tools:ignore="MissingConstraints" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -139,13 +143,14 @@
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/montserratarabicregular"
         android:text="قم بتحميل الصورة"
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/imagegalerie"
         app:layout_constraintStart_toStartOf="@+id/imagegalerie"
-        tools:layout_editor_absoluteY="262dp"
+        app:layout_constraintTop_toBottomOf="@+id/imagegalerie"
         tools:ignore="MissingConstraints" />
 
     <View
@@ -213,7 +218,7 @@
         android:text="مزيد من المعلومات  "
         android:textAlignment="textEnd"
         android:textColor="@color/orange"
-        android:textSize="12sp"
+        android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView11"
         tools:ignore="MissingConstraints" />

@@ -70,8 +70,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
 
                 android:id="@+id/frameLayout3"
-                android:layout_width="130dp"
-                android:layout_height="100dp"
+                android:layout_width="116dp"
+                android:layout_height="111dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="30dp"
                 android:background="@drawable/my_border_orange"
@@ -107,8 +107,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
 
                 android:id="@+id/frameLayout2"
-                android:layout_width="130dp"
-                android:layout_height="100dp"
+                android:layout_width="116dp"
+                android:layout_height="111dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="30dp"
                 android:background="@drawable/my_border_orange">
@@ -152,8 +152,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
 
                 android:id="@+id/frameLayout4"
-                android:layout_width="130dp"
-                android:layout_height="100dp"
+                android:layout_width="116dp"
+                android:layout_height="111dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="30dp"
                 android:background="@drawable/my_border_orange"
@@ -190,8 +190,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
 
                 android:id="@+id/frameLayout5"
-                android:layout_width="130dp"
-                android:layout_height="100dp"
+                android:layout_width="116dp"
+                android:layout_height="111dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="30dp"
                 android:background="@drawable/my_border_orange"
