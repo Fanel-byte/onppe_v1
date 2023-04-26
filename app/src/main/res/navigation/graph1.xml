@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/graph1"
+    app:startDestination="@id/signalementFragment">
+
+
+    <fragment
+        android:id="@+id/signalementFragment"
+        android:name="com.example.onppe_v1.SignalementFragment"
+        android:label="fragment_signalement"
+        tools:layout="@layout/fragment_signalement">
+        <action
+            android:id="@+id/action_signalementFragment_to_signalementImageFragment"
+            app:destination="@id/signalementImageFragment" />
+        <action
+            android:id="@+id/action_signalementFragment_to_signalementSonFragment"
+            app:destination="@id/signalementSonFragment" />
+        <action
+            android:id="@+id/action_signalementFragment_to_signalementVideoFragment"
+            app:destination="@id/signalementVideoFragment" />
+        <action
+            android:id="@+id/action_signalementFragment_to_signalementForm1Fragment"
+            app:destination="@id/signalementForm1Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/aideFragment"
+        android:name="com.example.onppe_v1.AideFragment"
+        android:label="fragment_aide"
+        tools:layout="@layout/fragment_aide" />
+    <fragment
+        android:id="@+id/signalementImageFragment"
+        android:name="com.example.onppe_v1.SignalementImageFragment"
+        android:label="fragment_signalement_image"
+        tools:layout="@layout/fragment_signalement_image" />
+    <fragment
+        android:id="@+id/signalementSonFragment"
+        android:name="com.example.onppe_v1.SignalementSonFragment"
+        android:label="fragment_signalement_son"
+        tools:layout="@layout/fragment_signalement_son" />
+    <fragment
+        android:id="@+id/signalementVideoFragment"
+        android:name="com.example.onppe_v1.SignalementVideoFragment"
+        android:label="fragment_signalement_video"
+        tools:layout="@layout/fragment_signalement_video" />
+    <fragment
+        android:id="@+id/signalementForm1Fragment"
+        android:name="com.example.onppe_v1.SignalementForm1Fragment"
+        android:label="fragment_signalement_form1"
+        tools:layout="@layout/fragment_signalement_form1" />
+</navigation>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/signalementFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_signal_green"
+
+        android:title="تبليغ"
+        android:fontFamily="@font/montserratarabicregular"
+        android:visible="true"
+
+     />
+    <item
+        android:id="@+id/placeholder"
+        android:title=""
+      />
+    <item
+        android:id="@+id/aideFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_help"
+        android:fontFamily="@font/montserratarabicregular"
+        android:title="مساعدة"
+
+        android:visible="true" />
+</menu>
