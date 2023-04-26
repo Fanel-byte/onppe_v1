@@ -68,7 +68,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/imagegalerie"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginTop="20dp"
@@ -80,7 +80,7 @@
         app:layout_constraintVertical_bias="0.656" />
 
     <ImageView
-        android:id="@+id/imageView8"
+        android:id="@+id/imagecapture"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="59dp"
@@ -97,8 +97,8 @@
         android:text="أو"
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView8"
-        app:layout_constraintTop_toTopOf="@+id/imageView8"
+        app:layout_constraintBottom_toBottomOf="@+id/imagecapture"
+        app:layout_constraintTop_toTopOf="@+id/imagecapture"
         tools:layout_editor_absoluteX="198dp"
         tools:ignore="MissingConstraints" />
 
@@ -118,9 +118,9 @@
         android:text="قم بالتقاط الصورة"
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/imageView8"
-        app:layout_constraintStart_toStartOf="@+id/imageView8"
-        app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+        app:layout_constraintEnd_toEndOf="@+id/imagecapture"
+        app:layout_constraintStart_toStartOf="@+id/imagecapture"
+        app:layout_constraintTop_toBottomOf="@+id/imagecapture" />
 
     <TextView
         android:id="@+id/textView9"
@@ -143,8 +143,8 @@
         android:text="قم بتحميل الصورة"
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/imageView7"
-        app:layout_constraintStart_toStartOf="@+id/imageView7"
+        app:layout_constraintEnd_toEndOf="@+id/imagegalerie"
+        app:layout_constraintStart_toStartOf="@+id/imagegalerie"
         tools:layout_editor_absoluteY="262dp"
         tools:ignore="MissingConstraints" />
 
@@ -160,7 +160,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <ImageView
-        android:id="@+id/imageView9"
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -177,7 +177,7 @@
         android:background="?android:attr/listDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView9" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <ImageView
         android:id="@+id/imageView11"
