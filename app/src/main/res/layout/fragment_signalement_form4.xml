@@ -43,7 +43,7 @@ tools:context=".SignalementForm5Fragment">
     app:layout_constraintTop_toTopOf="@+id/age">
 
     <AutoCompleteTextView
-        android:id="@+id/autoCompleteTextView"
+        android:id="@+id/sexe"
         android:layout_width="148dp"
         android:layout_height="48dp"
         android:breakStrategy="simple"
@@ -93,7 +93,7 @@ tools:context=".SignalementForm5Fragment">
         android:layout_height="4dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:src="@drawable/progressbar3"
+        android:src="@drawable/progressbar4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

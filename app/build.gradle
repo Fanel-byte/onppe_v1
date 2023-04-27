@@ -34,8 +34,6 @@ android {
 
     viewBinding {
         enabled = true
-
-
     }
 }
 

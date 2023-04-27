@@ -30,6 +30,5 @@ class SignalementForm1Fragment : Fragment() {
             "5")
         val adapter = ArrayAdapter(requireActivity(), R.layout.list_item, items1)
         binding.cause.setAdapter(adapter)
-
     }
 }
