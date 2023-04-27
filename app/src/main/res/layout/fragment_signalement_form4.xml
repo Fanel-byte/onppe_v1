@@ -43,7 +43,7 @@ tools:context=".SignalementForm5Fragment">
     app:layout_constraintTop_toTopOf="@+id/age">
 
     <AutoCompleteTextView
-        android:id="@+id/autoCompleteTextView"
+        android:id="@+id/sexe"
         android:layout_width="148dp"
         android:layout_height="48dp"
         android:breakStrategy="simple"
