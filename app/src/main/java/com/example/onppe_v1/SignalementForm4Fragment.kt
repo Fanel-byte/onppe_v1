@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.navigation.findNavController
 import com.example.onppe_v1.databinding.FragmentSignalementForm1Binding
 import com.example.onppe_v1.databinding.FragmentSignalementForm4Binding
 
@@ -30,13 +31,20 @@ class SignalementForm4Fragment : Fragment() {
             "M")
         val adapter = ArrayAdapter(requireActivity(), R.layout.list_item, items1)
         binding.sexe.setAdapter(adapter)
-
-
-        binding.button2.setOnClickListener {
-
+        binding.home.setOnClickListener {
+            view.findNavController().navigate(R.id.action_signalementForm4Fragment_to_signalementForm5Fragment)
         }
-        binding.button3.setOnClickListener {
-
+        binding.back.setOnClickListener {
+            view.findNavController().navigate(R.id.action_signalementForm4Fragment_to_signalementForm3Fragment)
+        }
+        binding.question.setOnClickListener {
+            view.findNavController().navigate(R.id.action_signalementForm4Fragment_to_signalementForm5Fragment)
+        }
+        binding.precedent.setOnClickListener {
+            view.findNavController().navigate(R.id.action_signalementForm4Fragment_to_signalementForm3Fragment)
+        }
+        binding.suivant.setOnClickListener {
+            view.findNavController().navigate(R.id.action_signalementForm4Fragment_to_signalementForm5Fragment)
         }
     }
 

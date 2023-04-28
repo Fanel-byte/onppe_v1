@@ -11,5 +11,6 @@
     <color name="green">#59C55E</color>
 
     <color name="orange">#F28123</color>
+    <color name="transparent">#00000000 </color>
 
 </resources>

@@ -2,4 +2,5 @@
     <string name="app_name">onppe_v1</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="finform">تم تسجيل إخطارك بنجاح. نشكركم على حسن تعاونكم.</string>
 </resources>
