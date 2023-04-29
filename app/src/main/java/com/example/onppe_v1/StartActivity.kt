@@ -21,7 +21,7 @@ class StartActivity : AppCompatActivity() {
 
 
         binding.getstarted.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, FonctionnalitiesActivity::class.java)
             this.startActivity(intent)
 
         }
