@@ -1,5 +1,6 @@
 package com.example.onppe_v1
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -33,6 +34,51 @@ class SignalementForm3Fragment : Fragment() {
             view.findNavController().navigate(R.id.action_signalementForm3Fragment_to_signalementForm4Fragment)
         }
 
+        binding.maried.setOnClickListener {
+            binding.maried.setBackgroundColor( Color.parseColor("#CCF28123") )
+            binding.maried.setTextColor(Color.WHITE)
+            binding.divorced.setBackgroundColor( Color.WHITE )
+            binding.divorced.setTextColor(Color.parseColor("#6B7280"))
+            binding.widower.setBackgroundColor( Color.WHITE )
+            binding.widower.setTextColor(Color.parseColor("#6B7280"))
+            binding.other.setBackgroundColor( Color.WHITE)
+            binding.other.setTextColor(Color.parseColor("#6B7280"))
+
+        }
+        binding.divorced.setOnClickListener {
+            binding.divorced.setBackgroundColor( Color.parseColor("#CCF28123") )
+            binding.divorced.setTextColor(Color.WHITE)
+            binding.maried.setBackgroundColor( Color.WHITE )
+            binding.maried.setTextColor(Color.parseColor("#6B7280"))
+            binding.widower.setBackgroundColor( Color.WHITE )
+            binding.widower.setTextColor(Color.parseColor("#6B7280"))
+            binding.other.setBackgroundColor( Color.WHITE)
+            binding.other.setTextColor(Color.parseColor("#6B7280"))
+        }
+
+        binding.widower.setOnClickListener {
+            binding.widower.setBackgroundColor( Color.parseColor("#CCF28123") )
+            binding.widower.setTextColor(Color.WHITE)
+            binding.divorced.setBackgroundColor( Color.WHITE )
+            binding.divorced.setTextColor(Color.parseColor("#6B7280"))
+            binding.maried.setBackgroundColor( Color.WHITE )
+            binding.maried.setTextColor(Color.parseColor("#6B7280"))
+            binding.other.setBackgroundColor( Color.WHITE)
+            binding.other.setTextColor(Color.parseColor("#6B7280"))
+        }
+
+        binding.other.setOnClickListener {
+            binding.other.setBackgroundColor( Color.parseColor("#CCF28123") )
+            binding.other.setTextColor(Color.WHITE)
+            binding.divorced.setBackgroundColor( Color.WHITE )
+            binding.divorced.setTextColor(Color.parseColor("#6B7280"))
+            binding.widower.setBackgroundColor( Color.WHITE )
+            binding.widower.setTextColor(Color.parseColor("#6B7280"))
+            binding.maried.setBackgroundColor( Color.WHITE)
+            binding.maried.setTextColor(Color.parseColor("#6B7280"))
+        }
     }
+
+
 
 }
