@@ -1,59 +1,151 @@
 package com.example.onppe_v1
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.media.MediaPlayer
+import android.media.MediaRecorder
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.*
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import com.example.onppe_v1.databinding.FragmentSignalementSonBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [SignalementSonFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class SignalementSonFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var output: String? = null
+    private var mediaRecorder: MediaRecorder? = null
+    private var state: Boolean = false
+    private lateinit var binding : FragmentSignalementSonBinding
+    private lateinit var voice_recorder : ImageView
+    private lateinit var check_record :ImageView
+    private lateinit var stop_record :ImageView
+    private lateinit var counter : TextView
+    private lateinit var progressBar: SeekBar
+
+    private var timeElapsed = 0L
+    private var handler: Handler? = null
+    private var timerRunnable: Runnable? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_signalement_son, container, false)
+        savedInstanceState: Bundle?
+    ): View {
+
+
+
+        binding = FragmentSignalementSonBinding.inflate(inflater, container,false)
+        val view = binding.root
+        check_record=binding.playrecord
+        voice_recorder = binding.voicerecorder
+        stop_record=binding.stoprecord
+        voice_recorder.setOnClickListener {
+            ActivityCompat.requestPermissions(requireActivity(),
+                arrayOf(Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.FOREGROUND_SERVICE), 0)
+            if (ContextCompat.checkSelfPermission(requireActivity(),
+                    Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission(requireActivity(),
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+
+                mediaRecorder = MediaRecorder()
+                output = requireContext().getExternalFilesDir(null)?.absolutePath + "/recording.mp3"
+                mediaRecorder?.setAudioSource(MediaRecorder.AudioSource.MIC)
+                mediaRecorder?.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
+                mediaRecorder?.setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
+                mediaRecorder?.setOutputFile(output)
+                startRecording()
+
+
+            }
+        }
+        stop_record.setOnClickListener {
+            stopRecording()
+        }
+
+        check_record.setOnClickListener {
+            val mediaPlayer = MediaPlayer()
+            try {
+                mediaPlayer.setDataSource(output)
+                mediaPlayer.prepare()
+                mediaPlayer.start()
+
+                updateProgressBar(mediaPlayer)
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+
+        counter = binding.counter
+        progressBar = binding.progressBar
+        progressBar.max = 100
+        progressBar.progress = 0
+
+        handler = Handler()
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SignalementSonFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SignalementSonFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    // function to start recording
+    private fun startRecording() {
+        try {
+            mediaRecorder?.prepare()
+            mediaRecorder?.start()
+            state = true
+            voice_recorder.setImageResource(R.drawable.ic_pause)
+            stop_record.setImageResource(R.drawable.ic_stop)
+
+            timeElapsed = 0L
+            timerRunnable = Runnable {
+                timeElapsed += 1000
+                val seconds = (timeElapsed / 1000) % 60
+                val minutes = (timeElapsed / 1000) / 60
+                counter.text = String.format("%02d:%02d", minutes, seconds)
+                handler?.postDelayed(timerRunnable!!, 1000)
             }
+            handler?.postDelayed(timerRunnable!!, 1000)
+            Toast.makeText(context, "Recording started!", Toast.LENGTH_SHORT).show()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
+
+    // function to stop recording
+    private fun stopRecording() {
+        if (state) {
+            mediaRecorder?.stop()
+            mediaRecorder?.release()
+            state = false
+            check_record.setVisibility(View.VISIBLE);
+            progressBar.setVisibility(View.VISIBLE);
+
+            voice_recorder.setImageResource(R.drawable.upload_sound)
+            stop_record.setImageResource(R.drawable.upload)
+
+            handler?.removeCallbacks(timerRunnable!!)
+            counter.text = ""
+            Toast.makeText(context, "Recording stopped!", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(context, "You are not recording right now!", Toast.LENGTH_SHORT).show()
+        }
+    }
+    private fun updateProgressBar(mediaPlayer: MediaPlayer) {
+        progressBar.max = mediaPlayer.duration
+        progressBar.progress = mediaPlayer.currentPosition
+
+        // Cancel previous callbacks before setting a new one
+        handler?.removeCallbacksAndMessages(null)
+
+        // Update progress bar every 100 milliseconds
+        handler?.postDelayed({
+            updateProgressBar(mediaPlayer)
+        }, 100)
+    }
+
 }
