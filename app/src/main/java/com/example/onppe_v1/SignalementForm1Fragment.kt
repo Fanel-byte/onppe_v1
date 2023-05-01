@@ -43,6 +43,7 @@ class SignalementForm1Fragment : Fragment() {
             "وقوع الطفل ضحية نزاعات مسلحة",)
         val adapter = ArrayAdapter(requireActivity(), R.layout.list_item, items1)
         binding.cause.setAdapter(adapter)
+
         binding.next.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_signalementForm1Fragment_to_signalementForm3Fragment)
         }
@@ -64,6 +65,7 @@ class SignalementForm1Fragment : Fragment() {
         binding.next.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_signalementForm1Fragment_to_signalementForm3Fragment)
         }
+
 
     }
 }
