@@ -31,20 +31,16 @@ class SignalementForm4Fragment : Fragment() {
             "M")
         val adapter = ArrayAdapter(requireActivity(), R.layout.list_item, items1)
         binding.sexe.setAdapter(adapter)
-        binding.home.setOnClickListener {
-            view.findNavController().navigate(R.id.action_signalementForm4Fragment_to_signalementForm5Fragment)
-        }
+
         binding.back.setOnClickListener {
-            view.findNavController().navigate(R.id.action_signalementForm4Fragment_to_signalementForm3Fragment)
+            view.findNavController().navigate(R.id.action_signalementForm4Fragment2_to_signalementForm3Fragment)
         }
-        binding.question.setOnClickListener {
-            view.findNavController().navigate(R.id.action_signalementForm4Fragment_to_signalementForm5Fragment)
-        }
+
         binding.precedent.setOnClickListener {
-            view.findNavController().navigate(R.id.action_signalementForm4Fragment_to_signalementForm3Fragment)
+            view.findNavController().navigate(R.id.action_signalementForm4Fragment2_to_signalementForm3Fragment)
         }
         binding.suivant.setOnClickListener {
-            view.findNavController().navigate(R.id.action_signalementForm4Fragment_to_signalementForm5Fragment)
+            view.findNavController().navigate(R.id.action_signalementForm4Fragment2_to_signalementForm5Fragment)
         }
     }
 

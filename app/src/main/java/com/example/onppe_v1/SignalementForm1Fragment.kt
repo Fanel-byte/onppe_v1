@@ -44,9 +44,7 @@ class SignalementForm1Fragment : Fragment() {
         val adapter = ArrayAdapter(requireActivity(), R.layout.list_item, items1)
         binding.cause.setAdapter(adapter)
 
-        binding.next.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_signalementForm1Fragment_to_signalementForm3Fragment)
-        }
+
 
         binding.date.setOnClickListener {
             val cal = Calendar.getInstance()
@@ -63,7 +61,7 @@ class SignalementForm1Fragment : Fragment() {
         }
 
         binding.next.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_signalementForm1Fragment_to_signalementForm3Fragment)
+            view.findNavController().navigate(R.id.action_signalementForm1Fragment_to_signalementForm2Fragment)
         }
 
 
