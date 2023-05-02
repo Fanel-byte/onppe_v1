@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/graph1"
-    app:startDestination="@id/signalementFragment">
+    app:startDestination="@id/suivisignalementdetailfragment">
 
 
     <fragment
@@ -77,4 +77,19 @@
         android:name="com.example.onppe_v1.SignalementForm4Fragment"
         android:label="fragment_signalement_form5"
         tools:layout="@layout/fragment_signalement_form5" />
+    <fragment
+        android:id="@+id/suivisignalementfragment"
+        android:name="com.example.onppe_v1.SuiviSignalementFragment"
+        android:label="fragment_suivi_signalement"
+        tools:layout="@layout/fragment_suivi_signalement"
+        >
+    <action
+        android:id="@+id/action_mainFragment_to_detailFragment"
+        app:destination="@id/suivisignalementdetailfragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/suivisignalementdetailfragment"
+        android:name="com.example.onppe_v1.SuiviSignalementDetailFragment"
+        android:label="fragment__suivi_signalement_detail"
+        tools:layout="@layout/fragment_suivi_signalement_detail" />
 </navigation>
