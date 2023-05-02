@@ -38,5 +38,8 @@ class SignalementFragment : Fragment() {
         binding.frameLayout5.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_signalementFragment_to_signalementSonFragment)
         }
+        binding.button.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementFragment_to_suivisignalementfragment)
+        }
     }
 }

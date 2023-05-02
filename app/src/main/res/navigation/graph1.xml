@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_signalementFragment_to_signalementForm1Fragment"
             app:destination="@id/signalementForm1Fragment" />
+        <action
+            android:id="@+id/action_signalementFragment_to_suivisignalementfragment"
+            app:destination="@id/suivisignalementfragment" />
     </fragment>
     <fragment
         android:id="@+id/aideFragment"
@@ -110,5 +113,20 @@
         android:name="com.example.onppe_v1.FinFormulaireFragment"
         android:label="fragment_fin_formulaire"
         tools:layout="@layout/fragment_fin_formulaire" />
+    <fragment
+        android:id="@+id/suivisignalementfragment"
+        android:name="com.example.onppe_v1.SuiviSignalementFragment"
+        android:label="fragment_suivi_signalement"
+        tools:layout="@layout/fragment_suivi_signalement"
+        >
+        <action
+            android:id="@+id/action_mainFragment_to_detailFragment"
+            app:destination="@id/suivisignalementdetailfragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/suivisignalementdetailfragment"
+        android:name="com.example.onppe_v1.SuiviSignalementDetailFragment"
+        android:label="fragment__suivi_signalement_detail"
+        tools:layout="@layout/fragment_suivi_signalement_detail" />
 
 </navigation>
