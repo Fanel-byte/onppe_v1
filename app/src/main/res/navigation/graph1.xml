@@ -36,7 +36,14 @@
         android:id="@+id/signalementImageFragment"
         android:name="com.example.onppe_v1.SignalementImageFragment"
         android:label="fragment_signalement_image"
-        tools:layout="@layout/fragment_signalement_image" />
+        tools:layout="@layout/fragment_signalement_image" >
+        <action
+            android:id="@+id/action_signalementImageFragment_to_finFormulaireFragment"
+            app:destination="@id/finFormulaireFragment" />
+        <action
+            android:id="@+id/action_signalementImageFragment_to_signalementForm1Fragment"
+            app:destination="@id/signalementForm1Fragment" />
+    </fragment>
     <fragment
         android:id="@+id/signalementSonFragment"
         android:name="com.example.onppe_v1.SignalementSonFragment"

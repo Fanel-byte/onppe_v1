@@ -1,3 +1,3 @@
 package com.example.onppe_v1
 
-const val url="https://5617-185-107-56-134.eu.ngrok.io/"
+const val url="https://0e30-105-101-150-3.ngrok-free.app"

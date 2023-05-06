@@ -127,7 +127,7 @@
 
 
     <EditText
-        android:id="@+id/editTextTextMultiLine"
+        android:id="@+id/Descriptionimage"
         android:layout_width="319dp"
         android:layout_height="176dp"
         android:layout_marginTop="12dp"
@@ -141,14 +141,14 @@
         android:paddingTop="10dp"
         android:textColor="#4D000000"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/plus_Info"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <androidx.appcompat.widget.AppCompatButton
 
-        android:id="@+id/button"
+        android:id="@+id/plus_Info"
         android:layout_width="143dp"
         android:layout_height="48dp"
         android:layout_marginTop="30dp"
@@ -160,13 +160,13 @@
         android:text="مزيد من المعلومات"
         android:textColor="@color/orange"
         android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextMultiLine"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine"
+        app:layout_constraintEnd_toEndOf="@+id/Descriptionimage"
+        app:layout_constraintTop_toBottomOf="@+id/Descriptionimage"
         tools:ignore="MissingConstraints" />
 
     <androidx.appcompat.widget.AppCompatButton
 
-        android:id="@+id/button3"
+        android:id="@+id/envoyer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -179,10 +179,10 @@
         android:textAlignment="textEnd"
         android:textColor="#FFFFFF"
         android:textSize="14sp"
-        app:layout_constraintEnd_toStartOf="@+id/button"
+        app:layout_constraintEnd_toStartOf="@+id/plus_Info"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextMultiLine"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine"
+        app:layout_constraintStart_toStartOf="@+id/Descriptionimage"
+        app:layout_constraintTop_toBottomOf="@+id/Descriptionimage"
         tools:ignore="MissingConstraints" />
 
     <ImageView
