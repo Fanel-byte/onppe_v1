@@ -15,6 +15,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import android.widget.Toast
+import androidx.navigation.findNavController
 
 
 class SuiviSignalementFragment : Fragment() {
@@ -47,11 +48,12 @@ class SuiviSignalementFragment : Fragment() {
             binding.recyclerView.addItemDecoration(itemDecor)}
     }
     private fun GetSignalements() {    CoroutineScope(Dispatchers.IO).launch {
-        val response = RetrofitService.endpoint.getsignalements()
+        val response = RetrofitService.endpoint.getsignalements(1)
         withContext(Dispatchers.Main){
 
             if(response.isSuccessful){
                 var signalements = response.body()
+
                 if (signalements != null) {
                     signalementModel.signalements = signalements
                     binding.recyclerView.layoutManager = LinearLayoutManager(requireActivity() ,
@@ -60,6 +62,7 @@ class SuiviSignalementFragment : Fragment() {
                     val itemDecor = DividerItemDecoration(requireActivity(),1)
                     binding.recyclerView.addItemDecoration(itemDecor)
                 }
+                else {view?.findNavController()?.navigate(R.id.action_mainFragment_to_nosuiviFragment)}
             }else{
                 Toast.makeText(requireActivity(), "ERREUR " +response.code().toString() , Toast.LENGTH_SHORT).show()
             }

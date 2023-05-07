@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.onppe_v1.databinding.FragmentSuiviSignalementDetailBinding
 
@@ -25,20 +26,22 @@ class SuiviSignalementDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        signalementModel = ViewModelProvider(requireActivity()).get(signalementModel::class.java)
+        signalementModel = ViewModelProvider(requireActivity()).get(SignalementModel::class.java)
         //declaration
+
         val position = arguments?.getInt("position")
         if (position != null) {
             // read only
             val signalement = signalementModel.signalements.get(position)
-            binding.reason.text = signalement.descriptif
-            binding.datesignalement2.text = signalement.datesignalement
-            binding.adresse1.text=signalement.adresseenfant
-            binding.wilaya1.text = signalement.wilaya
+            binding.reason.text = signalement.designationar
+            binding.adresse1.text=signalement.adresse
+            binding.wilaya1.text = signalement.namear
             binding.age1.text = signalement.age.toString()
-            binding.nomcomplet.text = signalement.nomenfant + signalement.prenomenfant
+            binding.nomcomplet.text = signalement.nom + " " +signalement.prenom
             binding.sexe1.text = signalement.sexe
             binding.situation.text = signalement.situationparent
+            binding.reason.text = signalement.descriptif
+            binding.number.text = (position+1).toString()
 
         }
     }

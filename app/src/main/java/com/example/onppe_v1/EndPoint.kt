@@ -5,8 +5,7 @@ import retrofit2.http.*
 
 interface EndPoint {
 
-
-    @GET("getsignalements")
-    suspend fun getsignalements():Response<List<Signalement>>
+    @GET("signalement/getSignalementByCitoyenId/{id}")
+    suspend fun getsignalements(@Path ("id")id:Int):Response<List<Signalement>>
 
 }

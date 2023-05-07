@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/graph1"
-    app:startDestination="@id/suivisignalementdetailfragment">
+    app:startDestination="@id/suivisignalementfragment">
 
 
     <fragment
@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_signalementFragment_to_signalementForm1Fragment"
             app:destination="@id/signalementForm1Fragment" />
+        <action
+            android:id="@+id/action_signalementFragment_to_suivisignalementfragment"
+            app:destination="@id/suivisignalementfragment" />
     </fragment>
     <fragment
         android:id="@+id/aideFragment"
@@ -83,13 +86,21 @@
         android:label="fragment_suivi_signalement"
         tools:layout="@layout/fragment_suivi_signalement"
         >
-    <action
-        android:id="@+id/action_mainFragment_to_detailFragment"
-        app:destination="@id/suivisignalementdetailfragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_detailFragment"
+            app:destination="@id/suivisignalementdetailfragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_nosuiviFragment"
+            app:destination="@id/nosuivisignalementfragment" />
     </fragment>
     <fragment
         android:id="@+id/suivisignalementdetailfragment"
         android:name="com.example.onppe_v1.SuiviSignalementDetailFragment"
         android:label="fragment__suivi_signalement_detail"
         tools:layout="@layout/fragment_suivi_signalement_detail" />
+    <fragment
+        android:id="@+id/nosuivisignalementfragment"
+        android:name="com.example.onppe_v1.NoSuiviSignalementFragment"
+        android:label="fragment__no_suivi_signalement"
+        tools:layout="@layout/fragment_no_suivi_signalement" />
 </navigation>
