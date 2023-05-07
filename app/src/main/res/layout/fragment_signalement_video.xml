@@ -137,7 +137,7 @@
 
 
     <EditText
-        android:id="@+id/editTextTextMultiLine"
+        android:id="@+id/Descriptionvideo"
         android:layout_width="319dp"
         android:layout_height="176dp"
         android:layout_marginTop="12dp"
@@ -153,6 +153,8 @@
         android:textColor="#4D000000"
         android:textCursorDrawable="@drawable/custom_cursor"
         android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/plusInfo"
+
         app:layout_constraintBottom_toTopOf="@+id/add"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -160,6 +162,7 @@
 
     <androidx.appcompat.widget.AppCompatButton
 
+        android:id="@+id/plusInfo"
         android:id="@+id/add"
         android:layout_width="143dp"
         android:layout_height="48dp"
@@ -172,12 +175,14 @@
         android:text="مزيد من المعلومات"
         android:textColor="@color/orange"
         android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextMultiLine"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine"
+        app:layout_constraintEnd_toEndOf="@+id/Descriptionvideo"
+        app:layout_constraintTop_toBottomOf="@+id/Descriptionvideo"
         tools:ignore="MissingConstraints" />
 
     <androidx.appcompat.widget.AppCompatButton
 
+
+        android:id="@+id/envoyer"
         android:id="@+id/envoie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -191,10 +196,12 @@
         android:textAlignment="textEnd"
         android:textColor="#FFFFFF"
         android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/plusInfo"
+
         app:layout_constraintEnd_toStartOf="@+id/add"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextMultiLine"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine"
+        app:layout_constraintStart_toStartOf="@+id/Descriptionvideo"
+        app:layout_constraintTop_toBottomOf="@+id/Descriptionvideo"
         tools:ignore="MissingConstraints" />
 
     <ImageView

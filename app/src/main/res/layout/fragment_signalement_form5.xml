@@ -120,7 +120,7 @@
         app:layout_constraintTop_toTopOf="@+id/next" />
 
     <EditText
-        android:id="@+id/editTextTextMultiLine"
+        android:id="@+id/description"
         android:layout_width="332dp"
         android:layout_height="300dp"
         android:layout_marginTop="15dp"
@@ -175,7 +175,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.166"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine"
+        app:layout_constraintTop_toBottomOf="@+id/description"
         app:strokeColor="#F28123"
         app:strokeWidth="2dp" />
 

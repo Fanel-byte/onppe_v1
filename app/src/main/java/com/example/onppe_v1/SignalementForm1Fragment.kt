@@ -8,11 +8,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import com.example.onppe_v1.databinding.FragmentSignalementForm1Binding
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.properties.Delegates
+
+lateinit var binding: FragmentSignalementForm1Binding
+var motifid =0
 
 
 class SignalementForm1Fragment : Fragment() {
@@ -43,8 +49,13 @@ class SignalementForm1Fragment : Fragment() {
             "الاستغلال الاقتصادي للطفل",
             "وقوع الطفل ضحية نزاعات مسلحة",)
         val adapter = ArrayAdapter(requireActivity(), R.layout.list_item, items1)
-        binding.cause.setAdapter(adapter)
+        binding.motif.setAdapter(adapter)
 
+        val signalementtransfert = arguments?.getSerializable("data") as? SignalementTransfert
+
+        binding.motif.setOnItemClickListener { parent, view, position, id ->
+            motifid=position+1
+        }
 
 
         binding.date.setOnClickListener {
@@ -83,7 +94,48 @@ class SignalementForm1Fragment : Fragment() {
             view.findNavController().navigate(R.id.action_signalementForm1Fragment_to_fonctionnalitiesActivity)
         }
         binding.next.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_signalementForm1Fragment_to_signalementForm2Fragment)
+                val date = binding.date.text.toString()
+            if (signalementtransfert!=null)
+            { signalementtransfert.motifid= motifid
+                signalementtransfert.dateincident=date
+                val data = bundleOf("data" to signalementtransfert)
+                view.findNavController().navigate(
+                    R.id.action_signalementForm1Fragment_to_signalementForm2Fragment,
+                    data
+                )
+               }
+            else {
+                val signalementtransfert2 = SignalementTransfert(
+                    null,
+                    null,
+                    null,
+                    null,
+                    motifid,
+                    date,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    false,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                )
+                val data = bundleOf("data" to signalementtransfert2)
+                view.findNavController().navigate(
+                    R.id.action_signalementForm1Fragment_to_signalementForm2Fragment,
+                    data
+                )
+            }
+
         }
         binding.next2.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_signalementForm1Fragment_to_signalementForm2Fragment)

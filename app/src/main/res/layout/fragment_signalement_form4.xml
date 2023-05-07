@@ -320,6 +320,7 @@
         android:ems="10"
         android:inputType="number"
         android:paddingRight="10dp"
+        android:maxLength="10"
         app:layout_constraintEnd_toEndOf="@+id/textView10"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/age2"

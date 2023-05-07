@@ -149,7 +149,7 @@
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/textView11"
-        app:layout_constraintTop_toBottomOf="@+id/age2" />
+        app:layout_constraintTop_toBottomOf="@+id/adresse" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/wilayas"
@@ -390,7 +390,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <EditText
-        android:id="@+id/age2"
+        android:id="@+id/adresse"
         android:layout_width="0dp"
         android:layout_height="56.5dp"
         android:layout_marginTop="8dp"

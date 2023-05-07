@@ -41,14 +41,16 @@
         android:label="fragment_signalement_image"
         tools:layout="@layout/fragment_signalement_image" >
         <action
-            android:id="@+id/action_signalementImageFragment_to_signalementFragment"
-            app:destination="@id/signalementFragment" />
+            android:id="@+id/action_signalementImageFragment_to_finFormulaireFragment"
+            app:destination="@id/finFormulaireFragment" />
         <action
             android:id="@+id/action_signalementImageFragment_to_signalementForm1Fragment"
             app:destination="@id/signalementForm1Fragment" />
-        <action
-            android:id="@+id/action_signalementImageFragment_to_finFormulaireFragment"
-            app:destination="@id/finFormulaireFragment" />
+
+            android:id="@+id/action_signalementImageFragment_to_signalementFragment"
+            app:destination="@id/signalementFragment" />
+       
+       
         <action
             android:id="@+id/action_signalementImageFragment_to_fonctionnalitiesActivity"
             app:destination="@id/fonctionnalitiesActivity" />
@@ -59,6 +61,7 @@
         android:label="fragment_signalement_son"
         tools:layout="@layout/fragment_signalement_son" >
         <action
+
             android:id="@+id/action_signalementSonFragment_to_signalementFragment"
             app:destination="@id/signalementFragment" />
         <action
@@ -77,6 +80,7 @@
         android:label="fragment_signalement_video"
         tools:layout="@layout/fragment_signalement_video" >
         <action
+
             android:id="@+id/action_signalementVideoFragment_to_signalementFragment"
             app:destination="@id/signalementFragment" />
         <action
@@ -88,6 +92,7 @@
         <action
             android:id="@+id/action_signalementVideoFragment_to_fonctionnalitiesActivity"
             app:destination="@id/fonctionnalitiesActivity" />
+
     </fragment>
     <fragment
         android:id="@+id/signalementForm1Fragment"

@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import android.widget.VideoView
@@ -22,18 +23,37 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.findNavController
 import com.example.onppe_v1.databinding.FragmentSignalementImageBinding
+import com.google.gson.Gson
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
 
 
 class SignalementImageFragment : Fragment() {
 
     private lateinit var binding: FragmentSignalementImageBinding
     private lateinit var image : ImageView
+    private var signalementId: Int? = null
     private lateinit var video: VideoView
     private lateinit var btn_upload_camera : ImageView
     private lateinit var btn_upload_gallery : ImageView
     private lateinit var btn_upload_video : ImageView
+    lateinit var image_body: MultipartBody.Part
+    lateinit var imageInfo: Image
+
     private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
     private lateinit var activityResultLauncher1: ActivityResultLauncher<Intent>
     private lateinit var activityResultLauncher2: ActivityResultLauncher<Intent>
@@ -62,7 +82,22 @@ class SignalementImageFragment : Fragment() {
             {
                 imageBitmap = intent.extras?.get("data") as Bitmap
                 image.setImageBitmap(imageBitmap)
+                //get image path
+
+                val filesDir = requireContext().getFilesDir()
+                val file = File(filesDir, "image" + ".png")
+                val bos = ByteArrayOutputStream()
+                imageBitmap.compress(Bitmap.CompressFormat.PNG, 0, bos)
+                val bitmapdata = bos.toByteArray()
+                val fos = FileOutputStream(file)
+                fos.write(bitmapdata)
+                fos.flush()
+                fos.close()
+                val reqFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
+                image_body = MultipartBody.Part.createFormData("path", file.getName(), reqFile)
+
                 binding.img.visibility=View.INVISIBLE
+
             }
         }
         // code to upload the image from the gallery
@@ -83,6 +118,19 @@ class SignalementImageFragment : Fragment() {
                 image.setImageBitmap(imageBitmap)
                 binding.img.visibility=View.INVISIBLE
                 image.visibility = View.VISIBLE
+                binding.icImg.visibility=View.INVISIBLE
+                //get image path
+                val filesDir = requireContext().getFilesDir()
+                val file = File(filesDir, "image" + ".png")
+                val bos = ByteArrayOutputStream()
+                imageBitmap.compress(Bitmap.CompressFormat.PNG, 0, bos)
+                val bitmapdata = bos.toByteArray()
+                val fos = FileOutputStream(file)
+                fos.write(bitmapdata)
+                fos.flush()
+                fos.close()
+                val reqFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
+                image_body = MultipartBody.Part.createFormData("path", file.getName(), reqFile)
 
 
             }
@@ -102,6 +150,49 @@ class SignalementImageFragment : Fragment() {
         btn_upload_gallery.setOnClickListener {
             imageChooser()
         }
+        
+        //cas 1 : envoyer un signalement avec Image et Descriptif
+        binding.envoyer.setOnClickListener {
+            addSignalement(Signalement(null,null,null,null,null,null,null,true,"")) { id ->
+                Toast.makeText(requireActivity(), "id value test $id", Toast.LENGTH_SHORT).show()
+                if (id != null) {
+                    imageInfo = Image(binding.Descriptionimage.text.toString(), id)
+                    val imageInfoMB = MultipartBody.Part.createFormData("image", Gson().toJson(imageInfo))
+                    addImg(imageInfoMB, image_body)
+                }
+            }
+        }
+
+
+        //cas 2 : envoyer un signalement avec plus d'information
+        binding.plusInfo.setOnClickListener{
+
+            val signalement = SignalementTransfert(image_body ,
+                binding.Descriptionimage.text.toString(),
+                "image",
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null ,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null)
+            val data = bundleOf("data" to signalement)
+            view.findNavController().navigate(R.id.action_signalementImageFragment_to_signalementForm1Fragment,data)
+        }
+
 
         binding.envoie.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_signalementImageFragment_to_finFormulaireFragment)
@@ -143,6 +234,36 @@ class SignalementImageFragment : Fragment() {
         intent.setType("image/*")
         intent.setAction(Intent.ACTION_GET_CONTENT)
         activityResultLauncher1.launch(intent)
+    }
+
+    private fun addSignalement(new: Signalement, callback: (Int?) -> Unit) {
+        CoroutineScope(Dispatchers.IO).launch {
+            val response = RetrofitService.endpoint.addSignalement(new)
+            withContext(Dispatchers.Main) {
+                if (response.isSuccessful) {
+                    val id = response.body()
+                    Toast.makeText(requireActivity(), "Signalement ajouté in bdd $id", Toast.LENGTH_SHORT).show()
+                    callback(id)
+                } else {
+                    Toast.makeText(requireActivity(), "erreur " + response.code().toString(), Toast.LENGTH_SHORT).show()
+                    callback(null)
+                }
+            }
+        }
+    }
+
+    private fun addImg(image :  MultipartBody.Part ,imageBody: MultipartBody.Part) {
+        CoroutineScope(Dispatchers.IO).launch {
+            val response =  RetrofitService.endpoint.addImg(image,imageBody)
+            withContext(Dispatchers.Main) {
+                if(response.isSuccessful) {
+                    Toast.makeText(requireActivity(),"Image ajouter a BDD",Toast.LENGTH_SHORT).show()
+                }
+                else {
+                    Toast.makeText(requireActivity(),"Une erreur s'est produite",Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 
 }
