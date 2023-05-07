@@ -14,8 +14,9 @@ import com.example.onppe_v1.databinding.FragmentSignalementForm1Binding
 import java.text.SimpleDateFormat
 import java.util.*
 
-lateinit var binding: FragmentSignalementForm1Binding
+
 class SignalementForm1Fragment : Fragment() {
+    lateinit var binding: FragmentSignalementForm1Binding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -53,17 +54,40 @@ class SignalementForm1Fragment : Fragment() {
                 cal.set(Calendar.MONTH,month)
                 cal.set(Calendar.DAY_OF_MONTH,day)
                 binding.date.setText(SimpleDateFormat("yyyy-MM-dd").format(cal.time))
+
             }
 
-            DatePickerDialog(requireActivity(),R.style.DatePickerStyle, picker, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH),cal.get(
+            DatePickerDialog(requireActivity(),R.style.MyDatePickerStyle, picker, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH),cal.get(
                 Calendar.DAY_OF_MONTH)).show()
 
         }
+        binding.agenda.setOnClickListener {
+            val cal = Calendar.getInstance()
+            val picker =  DatePickerDialog.OnDateSetListener { datePicker, year, month, day ->
+                cal.set(Calendar.YEAR, year)
+                cal.set(Calendar.MONTH,month)
+                cal.set(Calendar.DAY_OF_MONTH,day)
+                binding.date.setText(SimpleDateFormat("yyyy-MM-dd").format(cal.time))
 
+            }
+
+            DatePickerDialog(requireActivity(),R.style.MyDatePickerStyle, picker, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH),cal.get(
+                Calendar.DAY_OF_MONTH)).show()
+
+
+        }
+        binding.back.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementForm1Fragment_to_signalementFragment)
+        }
+        binding.home.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementForm1Fragment_to_fonctionnalitiesActivity)
+        }
         binding.next.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_signalementForm1Fragment_to_signalementForm2Fragment)
         }
-
+        binding.next2.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementForm1Fragment_to_signalementForm2Fragment)
+        }
 
     }
 }

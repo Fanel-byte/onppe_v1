@@ -27,8 +27,8 @@ class SignalementForm4Fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val items1 = listOf(
-            "F",
-            "M")
+            "أنثى",
+            "ذكر ")
         val adapter = ArrayAdapter(requireActivity(), R.layout.list_item, items1)
         binding.sexe.setAdapter(adapter)
 
@@ -36,12 +36,27 @@ class SignalementForm4Fragment : Fragment() {
             view.findNavController().navigate(R.id.action_signalementForm4Fragment2_to_signalementForm3Fragment)
         }
 
-        binding.precedent.setOnClickListener {
+        binding.back2.setOnClickListener {
             view.findNavController().navigate(R.id.action_signalementForm4Fragment2_to_signalementForm3Fragment)
         }
-        binding.suivant.setOnClickListener {
+        binding.back3.setOnClickListener {
+            view.findNavController().navigate(R.id.action_signalementForm4Fragment2_to_signalementForm3Fragment)
+        }
+
+        binding.next.setOnClickListener {
             view.findNavController().navigate(R.id.action_signalementForm4Fragment2_to_signalementForm5Fragment)
         }
+        binding.next2.setOnClickListener {
+            view.findNavController().navigate(R.id.action_signalementForm4Fragment2_to_signalementForm5Fragment)
+        }
+
+        binding.home.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementForm4Fragment_to_fonctionnalitiesActivity)
+        }
+
+
+
+
     }
 
 }

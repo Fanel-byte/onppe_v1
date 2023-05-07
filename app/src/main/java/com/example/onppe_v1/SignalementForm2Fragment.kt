@@ -32,12 +32,7 @@ class SignalementForm2Fragment : Fragment() {
             "ذكر ")
         val adapter = ArrayAdapter(requireActivity(), R.layout.list_item, items1)
         binding.sexe.setAdapter(adapter)
-        binding.next.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_signalementForm2Fragment_to_signalementForm3Fragment)
-        }
-        binding.back.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_signalementForm2Fragment_to_signalementForm1Fragment)
-        }
+
 
         binding.maried.setOnClickListener {
             binding.maried.setBackgroundColor( Color.parseColor("#CCF28123") )
@@ -82,5 +77,26 @@ class SignalementForm2Fragment : Fragment() {
             binding.maried.setBackgroundColor( Color.WHITE)
             binding.maried.setTextColor(Color.parseColor("#6B7280"))
         }
+        binding.back.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementForm2Fragment_to_signalementForm1Fragment)
+        }
+        binding.back2.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementForm2Fragment_to_signalementForm1Fragment)
+        }
+        binding.back3.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementForm2Fragment_to_signalementForm1Fragment)
+        }
+        binding.home.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementForm2Fragment_to_fonctionnalitiesActivity)
+        }
+        binding.next.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementForm2Fragment_to_signalementForm3Fragment)
+        }
+
+        binding.next2.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementForm2Fragment_to_signalementForm3Fragment)
+        }
     }
+
+
 }

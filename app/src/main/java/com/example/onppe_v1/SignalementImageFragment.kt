@@ -22,6 +22,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.navigation.findNavController
 import com.example.onppe_v1.databinding.FragmentSignalementImageBinding
 
 
@@ -61,6 +62,7 @@ class SignalementImageFragment : Fragment() {
             {
                 imageBitmap = intent.extras?.get("data") as Bitmap
                 image.setImageBitmap(imageBitmap)
+                binding.img.visibility=View.INVISIBLE
             }
         }
         // code to upload the image from the gallery
@@ -79,8 +81,10 @@ class SignalementImageFragment : Fragment() {
                     MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, selectedImageUri)
                 }
                 image.setImageBitmap(imageBitmap)
+                binding.img.visibility=View.INVISIBLE
                 image.visibility = View.VISIBLE
-                binding.icImg.visibility=View.INVISIBLE
+
+
             }
         }
 
@@ -99,7 +103,18 @@ class SignalementImageFragment : Fragment() {
             imageChooser()
         }
 
-
+        binding.envoie.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementImageFragment_to_finFormulaireFragment)
+        }
+        binding.add.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementImageFragment_to_signalementForm1Fragment)
+        }
+        binding.back.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementImageFragment_to_signalementFragment)
+        }
+        binding.home.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementImageFragment_to_fonctionnalitiesActivity)
+        }
 
         return view
     }

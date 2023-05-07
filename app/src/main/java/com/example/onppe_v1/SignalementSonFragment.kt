@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.navigation.findNavController
 import com.example.onppe_v1.databinding.FragmentSignalementSonBinding
 
 
@@ -88,7 +89,18 @@ class SignalementSonFragment : Fragment() {
         progressBar.progress = 0
 
         handler = Handler()
-
+        binding.envoie.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementSonFragment_to_finFormulaireFragment)
+        }
+        binding.add.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementSonFragment_to_signalementForm1Fragment)
+        }
+        binding.back.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementSonFragment_to_signalementFragment)
+        }
+        binding.home.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementSonFragment_to_fonctionnalitiesActivity)
+        }
         return view
     }
 

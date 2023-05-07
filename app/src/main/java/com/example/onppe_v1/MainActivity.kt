@@ -7,9 +7,11 @@ import android.graphics.PorterDuff
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.view.MenuItem
 import androidx.core.content.ContextCompat
 import androidx.core.view.forEach
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.NavController
 import androidx.navigation.ui.NavigationUI
@@ -20,6 +22,9 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     lateinit var navController: NavController
+    private val PHONE_MENU_DELAY = 4000L
+    private val phoneMenuHandler = Handler()
+    var isPhoneButtonVisible = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -31,25 +36,39 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager. findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         navController = navHostFragment.navController
         NavigationUI.setupWithNavController(binding.bottomNavigationView,navController)
+//cacher le menu phone
+        binding.root.setOnTouchListener { _, _ ->
+
+                hidePhoneMenu()
+                false
+
+        }
+
 
         binding.phone.setOnClickListener {
 
             if (click == 1) {
                 binding.phone.backgroundTintList =
-                    ColorStateList.valueOf(Color.BLACK) // Changer la couleur de fond du bouton en rouge
-                binding.phone.setImageResource(R.drawable.ic_close) // Changer l'image du bouton en rouge
+                    ColorStateList.valueOf(Color.BLACK)
+                binding.phone.setImageResource(R.drawable.ic_close)
                 binding.onppe.show()
                 binding.police.show()
                 binding.protectioncivile.show()
                 click = 0
+                isPhoneButtonVisible = true
+                phoneMenuHandler.removeCallbacksAndMessages(null)
+                phoneMenuHandler.postDelayed({ hidePhoneMenu() }, PHONE_MENU_DELAY)
+
+
             } else {
                 binding.phone.backgroundTintList =
-                    ColorStateList.valueOf(Color.parseColor("#59C55E")) // Changer la couleur de fond du bouton en rouge
-                binding.phone.setImageResource(R.drawable.ic_phone) // Changer l'image du bouton en rouge
+                    ColorStateList.valueOf(Color.parseColor("#59C55E"))
+                binding.phone.setImageResource(R.drawable.ic_phone)
                 binding.onppe.hide()
                 binding.police.hide()
                 binding.protectioncivile.hide()
                 click = 1
+                isPhoneButtonVisible = false
             }
 
         }
@@ -82,6 +101,7 @@ class MainActivity : AppCompatActivity() {
 
 
                     navController.popBackStack(R.id.signalementFragment, false)
+
                     true
                 }
                 R.id.placeholder -> {
@@ -100,6 +120,15 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    private fun hidePhoneMenu() {
+        binding.phone.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#59C55E"))
+        binding.phone.setImageResource(R.drawable.ic_phone)
+        binding.onppe.hide()
+        binding.police.hide()
+        binding.protectioncivile.hide()
+        isPhoneButtonVisible = false
+
+    }
 
 
 }
