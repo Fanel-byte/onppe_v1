@@ -20,7 +20,9 @@ import kotlin.properties.Delegates
 lateinit var binding: FragmentSignalementForm1Binding
 var motifid =0
 
+
 class SignalementForm1Fragment : Fragment() {
+    lateinit var binding: FragmentSignalementForm1Binding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -63,13 +65,34 @@ class SignalementForm1Fragment : Fragment() {
                 cal.set(Calendar.MONTH,month)
                 cal.set(Calendar.DAY_OF_MONTH,day)
                 binding.date.setText(SimpleDateFormat("yyyy-MM-dd").format(cal.time))
+
             }
 
-            DatePickerDialog(requireActivity(),R.style.DatePickerStyle, picker, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH),cal.get(
+            DatePickerDialog(requireActivity(),R.style.MyDatePickerStyle, picker, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH),cal.get(
                 Calendar.DAY_OF_MONTH)).show()
 
         }
+        binding.agenda.setOnClickListener {
+            val cal = Calendar.getInstance()
+            val picker =  DatePickerDialog.OnDateSetListener { datePicker, year, month, day ->
+                cal.set(Calendar.YEAR, year)
+                cal.set(Calendar.MONTH,month)
+                cal.set(Calendar.DAY_OF_MONTH,day)
+                binding.date.setText(SimpleDateFormat("yyyy-MM-dd").format(cal.time))
 
+            }
+
+            DatePickerDialog(requireActivity(),R.style.MyDatePickerStyle, picker, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH),cal.get(
+                Calendar.DAY_OF_MONTH)).show()
+
+
+        }
+        binding.back.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementForm1Fragment_to_signalementFragment)
+        }
+        binding.home.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementForm1Fragment_to_fonctionnalitiesActivity)
+        }
         binding.next.setOnClickListener { view: View ->
                 val date = binding.date.text.toString()
             if (signalementtransfert!=null)
@@ -114,7 +137,9 @@ class SignalementForm1Fragment : Fragment() {
             }
 
         }
-
+        binding.next2.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementForm1Fragment_to_signalementForm2Fragment)
+        }
 
     }
 }

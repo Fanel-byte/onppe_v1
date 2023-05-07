@@ -105,6 +105,7 @@ class SignalementSonFragment : Fragment() {
 
         handler = Handler()
 
+
         //cas 1 : envoyer un signalement avec Image et Descriptif
         binding.envoyer.setOnClickListener {
 
@@ -144,6 +145,20 @@ class SignalementSonFragment : Fragment() {
                 null)
             val data = bundleOf("data" to signalement)
             view.findNavController().navigate(R.id.action_signalementSonFragment_to_signalementForm1Fragment,data)
+        }
+
+
+        binding.envoie.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementSonFragment_to_finFormulaireFragment)
+        }
+        binding.add.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementSonFragment_to_signalementForm1Fragment)
+        }
+        binding.back.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementSonFragment_to_signalementFragment)
+        }
+        binding.home.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementSonFragment_to_fonctionnalitiesActivity)
         }
 
         return view

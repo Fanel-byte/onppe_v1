@@ -24,7 +24,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+
 import androidx.core.os.bundleOf
+
 import androidx.navigation.findNavController
 import com.example.onppe_v1.databinding.FragmentSignalementImageBinding
 import com.example.onppe_v1.databinding.FragmentSignalementVideoBinding
@@ -114,6 +116,7 @@ class SignalementVideoFragment : Fragment() {
             }
         }
 
+
         //cas 1 : envoyer un signalement avec Image et Descriptif
         binding.envoyer.setOnClickListener {
             addSignalement(Signalement(null,null,null,null,null,null,null,true,"")) { id ->
@@ -153,6 +156,20 @@ class SignalementVideoFragment : Fragment() {
             val data = bundleOf("data" to signalement)
             view.findNavController().navigate(R.id.action_signalementVideoFragment_to_signalementForm1Fragment,data)
         }
+
+        binding.envoie.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementVideoFragment_to_finFormulaireFragment)
+        }
+        binding.add.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementVideoFragment_to_signalementForm1Fragment)
+        }
+        binding.back.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementVideoFragment_to_signalementFragment)
+        }
+        binding.home.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementVideoFragment_to_fonctionnalitiesActivity)
+        }
+
         return view
     }
 

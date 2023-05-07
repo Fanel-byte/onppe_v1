@@ -26,6 +26,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.findNavController
 import com.example.onppe_v1.databinding.FragmentSignalementImageBinding
 import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
@@ -94,6 +95,9 @@ class SignalementImageFragment : Fragment() {
                 fos.close()
                 val reqFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
                 image_body = MultipartBody.Part.createFormData("path", file.getName(), reqFile)
+
+                binding.img.visibility=View.INVISIBLE
+
             }
         }
         // code to upload the image from the gallery
@@ -112,6 +116,7 @@ class SignalementImageFragment : Fragment() {
                     MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, selectedImageUri)
                 }
                 image.setImageBitmap(imageBitmap)
+                binding.img.visibility=View.INVISIBLE
                 image.visibility = View.VISIBLE
                 binding.icImg.visibility=View.INVISIBLE
                 //get image path
@@ -126,6 +131,8 @@ class SignalementImageFragment : Fragment() {
                 fos.close()
                 val reqFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
                 image_body = MultipartBody.Part.createFormData("path", file.getName(), reqFile)
+
+
             }
         }
 
@@ -186,6 +193,19 @@ class SignalementImageFragment : Fragment() {
             view.findNavController().navigate(R.id.action_signalementImageFragment_to_signalementForm1Fragment,data)
         }
 
+
+        binding.envoie.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementImageFragment_to_finFormulaireFragment)
+        }
+        binding.add.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementImageFragment_to_signalementForm1Fragment)
+        }
+        binding.back.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementImageFragment_to_signalementFragment)
+        }
+        binding.home.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementImageFragment_to_fonctionnalitiesActivity)
+        }
 
         return view
     }

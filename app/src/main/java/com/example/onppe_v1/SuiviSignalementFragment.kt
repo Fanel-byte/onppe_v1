@@ -15,6 +15,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import android.widget.Toast
+import androidx.navigation.findNavController
 
 
 class SuiviSignalementFragment : Fragment() {
@@ -44,7 +45,15 @@ class SuiviSignalementFragment : Fragment() {
             binding.recyclerView.adapter = SuiviSignalementAdapter(requireActivity(),signalementModel.signalements)
             val itemDecor = DividerItemDecoration(requireActivity(),1)
             binding.recyclerView.addItemDecoration(itemDecor)}
+
+        binding.home.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_suivisignalementfragment_to_fonctionnalitiesActivity)
+        }
+        binding.back.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_suivisignalementfragment_to_signalementFragment)
+        }
     }
+
 
 
     }

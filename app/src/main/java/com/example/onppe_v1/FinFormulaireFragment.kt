@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import com.example.onppe_v1.databinding.FragmentFinFormulaireBinding
 
 class FinFormulaireFragment : Fragment() {
@@ -23,7 +24,12 @@ class FinFormulaireFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding.home.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_finFormulaireFragment_to_fonctionnalitiesActivity)
+        }
+        binding.suivi.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_finFormulaireFragment_to_suivisignalementfragment)
+        }
     }
 
 

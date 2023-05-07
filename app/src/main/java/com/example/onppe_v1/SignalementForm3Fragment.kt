@@ -27,6 +27,7 @@ class SignalementForm3Fragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         var signalementtransfert = arguments?.getSerializable("data") as SignalementTransfert
 
         binding.enfant.setOnClickListener { view: View ->
@@ -48,6 +49,8 @@ class SignalementForm3Fragment : Fragment() {
             view.findNavController()
                 .navigate(R.id.action_signalementForm3Fragment_to_signalementForm4Fragment,data)
         }
+
+
         binding.nextanonym.setOnClickListener { view: View ->
             signalementtransfert.identitesecrete = true
             val data = bundleOf("data" to signalementtransfert)
@@ -58,6 +61,72 @@ class SignalementForm3Fragment : Fragment() {
         binding.back2.setOnClickListener { view: View ->
             view.findNavController()
                 .navigate(R.id.action_signalementForm3Fragment_to_signalementForm2Fragment)
+                .navigate(R.id.action_signalementForm3Fragment_to_signalementForm5Fragment)
+
+        }
+        binding.nextanonym2.setOnClickListener { view: View ->
+            view.findNavController()
+                .navigate(R.id.action_signalementForm3Fragment_to_signalementForm5Fragment)
+        }
+        binding.back.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementForm3Fragment_to_signalementForm2Fragment)
+        }
+        binding.back2.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementForm3Fragment_to_signalementForm2Fragment)
+        }
+        binding.back3.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementForm3Fragment_to_signalementForm2Fragment)
+        }
+        binding.home.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementForm3Fragment_to_fonctionnalitiesActivity)
+        }
+        binding.next.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementForm3Fragment_to_signalementForm4Fragment)
+        }
+
+        binding.next2.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementForm3Fragment_to_signalementForm4Fragment)
+        }
+        binding.enfant.setOnClickListener {
+            binding.enfant.setBackgroundColor( Color.parseColor("#CCF28123") )
+            binding.enfant.setTextColor(Color.WHITE)
+            binding.moral.setBackgroundColor( Color.parseColor("#F2FAF2") )
+            binding.moral.setTextColor(Color.parseColor("#1A811F"))
+            binding.personne.setBackgroundColor( Color.parseColor("#F2FAF2")  )
+            binding.personne.setTextColor(Color.parseColor("#1A811F"))
+            binding.representant.setBackgroundColor(Color.parseColor("#F2FAF2"))
+            binding.representant.setTextColor(Color.parseColor("#1A811F"))
+        }
+        binding.moral.setOnClickListener {
+            binding.moral.setBackgroundColor( Color.parseColor("#CCF28123") )
+            binding.moral.setTextColor(Color.WHITE)
+            binding.enfant.setBackgroundColor( Color.parseColor("#F2FAF2") )
+            binding.enfant.setTextColor(Color.parseColor("#1A811F"))
+            binding.personne.setBackgroundColor( Color.parseColor("#F2FAF2")  )
+            binding.personne.setTextColor(Color.parseColor("#1A811F"))
+            binding.representant.setBackgroundColor(Color.parseColor("#F2FAF2"))
+            binding.representant.setTextColor(Color.parseColor("#1A811F"))
+        }
+        binding.representant.setOnClickListener {
+            binding.representant.setBackgroundColor( Color.parseColor("#CCF28123") )
+            binding.representant.setTextColor(Color.WHITE)
+            binding.moral.setBackgroundColor( Color.parseColor("#F2FAF2") )
+            binding.moral.setTextColor(Color.parseColor("#1A811F"))
+            binding.personne.setBackgroundColor( Color.parseColor("#F2FAF2")  )
+            binding.personne.setTextColor(Color.parseColor("#1A811F"))
+            binding.enfant.setBackgroundColor(Color.parseColor("#F2FAF2"))
+            binding.enfant.setTextColor(Color.parseColor("#1A811F"))
+        }
+        binding.personne.setOnClickListener {
+            binding.personne.setBackgroundColor( Color.parseColor("#CCF28123") )
+            binding.personne.setTextColor(Color.WHITE)
+            binding.moral.setBackgroundColor( Color.parseColor("#F2FAF2") )
+            binding.moral.setTextColor(Color.parseColor("#1A811F"))
+            binding.enfant.setBackgroundColor( Color.parseColor("#F2FAF2")  )
+            binding.enfant.setTextColor(Color.parseColor("#1A811F"))
+            binding.representant.setBackgroundColor(Color.parseColor("#F2FAF2"))
+            binding.representant.setTextColor(Color.parseColor("#1A811F"))
+
         }
 
     }

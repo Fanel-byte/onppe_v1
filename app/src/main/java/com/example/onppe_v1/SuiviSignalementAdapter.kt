@@ -26,6 +26,7 @@ class SuiviSignalementAdapter(val context: Context, var data:List<Signalement_lo
             val data = bundleOf("position" to position)
             view.findNavController().navigate(R.id.action_mainFragment_to_detailFragment, data)
         }
+
     }
 
     override fun getItemCount(): Int {
