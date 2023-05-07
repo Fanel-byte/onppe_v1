@@ -21,6 +21,10 @@ interface Endpoint {
     @POST("vocaux/add")
     suspend fun addSon(@Part sonInfo : MultipartBody.Part,@Part son: MultipartBody.Part): Response<Int>
 
+    @POST("/enfants/create")
+    suspend fun createEnfant(@Body enfant: Enfant): Response<Int>
 
+    @POST("/citoyen/create")
+    suspend fun createCitoyen(@Body citoyen: Citoyen): Response<Int>
 
 }

@@ -162,6 +162,7 @@ class SignalementImageFragment : Fragment() {
 
             val signalement = SignalementTransfert(image_body ,
                 binding.Descriptionimage.text.toString(),
+                "image",
                 null,
                 null,
                 null,

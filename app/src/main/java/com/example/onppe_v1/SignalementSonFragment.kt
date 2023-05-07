@@ -122,6 +122,7 @@ class SignalementSonFragment : Fragment() {
 
             val signalement = SignalementTransfert(son_body ,
                 binding.Descriptionson.text.toString(),
+                "son",
                 null,
                 null,
                 null,
@@ -142,7 +143,7 @@ class SignalementSonFragment : Fragment() {
                 null,
                 null)
             val data = bundleOf("data" to signalement)
-            view.findNavController().navigate(R.id.action_signalementImageFragment_to_signalementForm1Fragment,data)
+            view.findNavController().navigate(R.id.action_signalementSonFragment_to_signalementForm1Fragment,data)
         }
 
         return view

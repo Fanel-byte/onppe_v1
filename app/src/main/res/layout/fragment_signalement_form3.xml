@@ -68,7 +68,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
-        android:id="@+id/button2"
+        android:id="@+id/representantlegitime"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:background="@drawable/button_background"
@@ -83,7 +83,7 @@
         app:layout_constraintTop_toTopOf="@+id/enfant" />
 
     <TextView
-        android:id="@+id/button3"
+        android:id="@+id/personnemorale"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:layout_marginTop="40dp"
@@ -93,13 +93,13 @@
         android:text="شخص معنوي"
         android:textColor="#1A811F"
         android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/button4"
+        app:layout_constraintEnd_toStartOf="@+id/personnephysique"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintTop_toBottomOf="@+id/representantlegitime" />
 
     <TextView
-        android:id="@+id/button4"
+        android:id="@+id/personnephysique"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:layout_marginTop="40dp"
@@ -111,7 +111,7 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button3"
+        app:layout_constraintStart_toEndOf="@+id/personnemorale"
         app:layout_constraintTop_toBottomOf="@+id/enfant" />
 
     <TextView
@@ -127,7 +127,7 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button2"
+        app:layout_constraintStart_toEndOf="@+id/representantlegitime"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <Button

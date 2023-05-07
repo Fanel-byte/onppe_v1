@@ -48,12 +48,20 @@
         android:id="@+id/signalementSonFragment"
         android:name="com.example.onppe_v1.SignalementSonFragment"
         android:label="fragment_signalement_son"
-        tools:layout="@layout/fragment_signalement_son" />
+        tools:layout="@layout/fragment_signalement_son" >
+        <action
+            android:id="@+id/action_signalementSonFragment_to_signalementForm1Fragment"
+            app:destination="@id/signalementForm1Fragment" />
+    </fragment>
     <fragment
         android:id="@+id/signalementVideoFragment"
         android:name="com.example.onppe_v1.SignalementVideoFragment"
         android:label="fragment_signalement_video"
-        tools:layout="@layout/fragment_signalement_video" />
+        tools:layout="@layout/fragment_signalement_video" >
+        <action
+            android:id="@+id/action_signalementVideoFragment_to_signalementForm1Fragment"
+            app:destination="@id/signalementForm1Fragment" />
+    </fragment>
     <fragment
         android:id="@+id/signalementForm1Fragment"
         android:name="com.example.onppe_v1.SignalementForm1Fragment"

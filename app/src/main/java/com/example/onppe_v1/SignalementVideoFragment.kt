@@ -130,6 +130,7 @@ class SignalementVideoFragment : Fragment() {
 
             val signalement = SignalementTransfert(video_body ,
                 binding.Descriptionvideo.text.toString(),
+                "video",
                 null,
                 null,
                 null,
@@ -150,7 +151,7 @@ class SignalementVideoFragment : Fragment() {
                 null,
                 null)
             val data = bundleOf("data" to signalement)
-            view.findNavController().navigate(R.id.action_signalementImageFragment_to_signalementForm1Fragment,data)
+            view.findNavController().navigate(R.id.action_signalementVideoFragment_to_signalementForm1Fragment,data)
         }
         return view
     }
