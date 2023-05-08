@@ -118,7 +118,7 @@ class SignalementImageFragment : Fragment() {
                 image.setImageBitmap(imageBitmap)
                 binding.img.visibility=View.INVISIBLE
                 image.visibility = View.VISIBLE
-                binding.icImg.visibility=View.INVISIBLE
+                binding.img.visibility=View.INVISIBLE
                 //get image path
                 val filesDir = requireContext().getFilesDir()
                 val file = File(filesDir, "image" + ".png")
@@ -152,20 +152,22 @@ class SignalementImageFragment : Fragment() {
         }
         
         //cas 1 : envoyer un signalement avec Image et Descriptif
-        binding.envoyer.setOnClickListener {
+        binding.envoie.setOnClickListener {
             addSignalement(Signalement(null,null,null,null,null,null,null,true,"")) { id ->
                 Toast.makeText(requireActivity(), "id value test $id", Toast.LENGTH_SHORT).show()
                 if (id != null) {
                     imageInfo = Image(binding.Descriptionimage.text.toString(), id)
                     val imageInfoMB = MultipartBody.Part.createFormData("image", Gson().toJson(imageInfo))
                     addImg(imageInfoMB, image_body)
+
+                    view.findNavController().navigate(R.id.action_signalementImageFragment_to_finFormulaireFragment)
                 }
             }
         }
 
 
         //cas 2 : envoyer un signalement avec plus d'information
-        binding.plusInfo.setOnClickListener{
+        binding.add.setOnClickListener{
 
             val signalement = SignalementTransfert(image_body ,
                 binding.Descriptionimage.text.toString(),
@@ -193,13 +195,6 @@ class SignalementImageFragment : Fragment() {
             view.findNavController().navigate(R.id.action_signalementImageFragment_to_signalementForm1Fragment,data)
         }
 
-
-        binding.envoie.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_signalementImageFragment_to_finFormulaireFragment)
-        }
-        binding.add.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_signalementImageFragment_to_signalementForm1Fragment)
-        }
         binding.back.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_signalementImageFragment_to_signalementFragment)
         }
@@ -242,7 +237,7 @@ class SignalementImageFragment : Fragment() {
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
                     val id = response.body()
-                    Toast.makeText(requireActivity(), "Signalement ajouté in bdd $id", Toast.LENGTH_SHORT).show()
+                   Toast.makeText(requireActivity(), "Signalement ajouté in bdd $id", Toast.LENGTH_SHORT).show()
                     callback(id)
                 } else {
                     Toast.makeText(requireActivity(), "erreur " + response.code().toString(), Toast.LENGTH_SHORT).show()

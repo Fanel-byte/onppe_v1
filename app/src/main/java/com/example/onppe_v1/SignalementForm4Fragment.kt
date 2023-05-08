@@ -49,7 +49,7 @@ class SignalementForm4Fragment : Fragment() {
             view.findNavController().navigate(R.id.action_signalementForm4Fragment2_to_signalementForm3Fragment)
         }
 
-        binding.suivant.setOnClickListener {
+        binding.next.setOnClickListener {
             signalementtransfert.nomCitoyen=binding.nom.text.toString()
             signalementtransfert.prenomCitoyen=binding.prenom.text.toString()
             signalementtransfert.ageCitoyen=binding.age.text.toString().toInt()
@@ -80,4 +80,4 @@ class SignalementForm4Fragment : Fragment() {
 
     }
 
-}
+}}

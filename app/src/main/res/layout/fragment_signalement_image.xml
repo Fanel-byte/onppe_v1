@@ -31,7 +31,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/home"
-        tools:ignore="NotSibling" />
+        tools:ignore="NotSibling,UnknownIdInLayout" />
 
     <ImageView
         android:id="@+id/imageView50"
@@ -151,7 +151,6 @@
         android:paddingRight="10dp"
         android:textColor="#4D000000"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/plus_Info"
 
         app:layout_constraintBottom_toTopOf="@+id/add"
 
@@ -161,7 +160,6 @@
 
     <androidx.appcompat.widget.AppCompatButton
 
-        android:id="@+id/plus_Info"
         android:id="@+id/add"
         android:layout_width="143dp"
         android:layout_height="48dp"
@@ -180,7 +178,6 @@
 
     <androidx.appcompat.widget.AppCompatButton
 
-        android:id="@+id/envoyer"
         android:id="@+id/envoie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -194,7 +191,6 @@
         android:textAlignment="textEnd"
         android:textColor="#FFFFFF"
         android:textSize="14sp"
-        app:layout_constraintEnd_toStartOf="@+id/plus_Info"
         app:layout_constraintEnd_toStartOf="@+id/add"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/Descriptionimage"

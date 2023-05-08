@@ -118,18 +118,20 @@ class SignalementVideoFragment : Fragment() {
 
 
         //cas 1 : envoyer un signalement avec Image et Descriptif
-        binding.envoyer.setOnClickListener {
+        binding.envoie.setOnClickListener {
             addSignalement(Signalement(null,null,null,null,null,null,null,true,"")) { id ->
                 Toast.makeText(requireActivity(), "id value test $id", Toast.LENGTH_SHORT).show()
                 if (id != null) {
                     videoInfo = Video(binding.Descriptionvideo.text.toString(), id)
                     val imageInfoMB = MultipartBody.Part.createFormData("video", Gson().toJson(videoInfo))
                     addVideo(imageInfoMB, video_body)
+                    view.findNavController().navigate(R.id.action_signalementVideoFragment_to_finFormulaireFragment)
+
                 }
             }
         }
         //cas 2 : envoyer un signalement avec plus d'information
-        binding.plusInfo.setOnClickListener{
+        binding.add.setOnClickListener{
 
             val signalement = SignalementTransfert(video_body ,
                 binding.Descriptionvideo.text.toString(),
@@ -157,12 +159,8 @@ class SignalementVideoFragment : Fragment() {
             view.findNavController().navigate(R.id.action_signalementVideoFragment_to_signalementForm1Fragment,data)
         }
 
-        binding.envoie.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_signalementVideoFragment_to_finFormulaireFragment)
-        }
-        binding.add.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_signalementVideoFragment_to_signalementForm1Fragment)
-        }
+
+
         binding.back.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_signalementVideoFragment_to_signalementFragment)
         }

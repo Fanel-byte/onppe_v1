@@ -107,7 +107,7 @@ class SignalementSonFragment : Fragment() {
 
 
         //cas 1 : envoyer un signalement avec Image et Descriptif
-        binding.envoyer.setOnClickListener {
+        binding.envoie.setOnClickListener {
 
             addSignalement(Signalement(null,null,null,null,null,null,null,true,"")) { id ->
                 Toast.makeText(requireActivity(), "id value test $id", Toast.LENGTH_SHORT).show()
@@ -115,11 +115,13 @@ class SignalementSonFragment : Fragment() {
                     sonInfo = Son(binding.Descriptionson.text.toString(), id)
                     val sonInfoMB = MultipartBody.Part.createFormData("vocal", Gson().toJson(sonInfo))
                     addSon(sonInfoMB, son_body)
+                    view.findNavController().navigate(R.id.action_signalementSonFragment_to_finFormulaireFragment)
+
                 }
             }
         }
         //cas 2 : envoyer un signalement avec plus d'information
-        binding.plusInfo.setOnClickListener{
+        binding.add.setOnClickListener{
 
             val signalement = SignalementTransfert(son_body ,
                 binding.Descriptionson.text.toString(),
@@ -148,12 +150,7 @@ class SignalementSonFragment : Fragment() {
         }
 
 
-        binding.envoie.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_signalementSonFragment_to_finFormulaireFragment)
-        }
-        binding.add.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_signalementSonFragment_to_signalementForm1Fragment)
-        }
+
         binding.back.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_signalementSonFragment_to_signalementFragment)
         }

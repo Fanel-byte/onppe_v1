@@ -61,7 +61,6 @@ class SignalementForm3Fragment : Fragment() {
         binding.back2.setOnClickListener { view: View ->
             view.findNavController()
                 .navigate(R.id.action_signalementForm3Fragment_to_signalementForm2Fragment)
-                .navigate(R.id.action_signalementForm3Fragment_to_signalementForm5Fragment)
 
         }
         binding.nextanonym2.setOnClickListener { view: View ->
