@@ -29,12 +29,23 @@ class SuiviSignalementFragment : Fragment() {
     ): View? {
         binding = FragmentSuiviSignalementBinding.inflate(inflater, container, false)
         val view = binding.root
+        
+        
+        binding.home.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_suivisignalementfragment_to_fonctionnalitiesActivity)
+        }
+        binding.back.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_suivisignalementfragment_to_signalementFragment)
+        }
+        
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         signalementModel = ViewModelProvider(requireActivity()).get(SignalementModel::class.java)
+        GetSignalements()
+
 
         if(signalementModel.signalements.isEmpty()) {
             // Get data from the server
@@ -45,15 +56,28 @@ class SuiviSignalementFragment : Fragment() {
             binding.recyclerView.adapter = SuiviSignalementAdapter(requireActivity(),signalementModel.signalements)
             val itemDecor = DividerItemDecoration(requireActivity(),1)
             binding.recyclerView.addItemDecoration(itemDecor)}
+    }
+    private fun GetSignalements() {    CoroutineScope(Dispatchers.IO).launch {
+        val response = RetrofitService.endpoint.getsignalements(1)
+        withContext(Dispatchers.Main){
 
-        binding.home.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_suivisignalementfragment_to_fonctionnalitiesActivity)
-        }
-        binding.back.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_suivisignalementfragment_to_signalementFragment)
+            if(response.isSuccessful){
+                var signalements = response.body()
+
+                if (signalements != null) {
+                    signalementModel.signalements = signalements
+                    binding.recyclerView.layoutManager = LinearLayoutManager(requireActivity() ,
+                        RecyclerView.VERTICAL,false)
+                    binding.recyclerView.adapter = SuiviSignalementAdapter(requireActivity(),signalements )
+                    val itemDecor = DividerItemDecoration(requireActivity(),1)
+                    binding.recyclerView.addItemDecoration(itemDecor)
+                }
+                else {view?.findNavController()?.navigate(R.id.action_mainFragment_to_nosuiviFragment)}
+            }else{
+                Toast.makeText(requireActivity(), "ERREUR " +response.code().toString() , Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
+    } }
 
-
-    }

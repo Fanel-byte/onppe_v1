@@ -18,6 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
+
         app:layout_constraintTop_toBottomOf="@+id/home"
         tools:ignore="MissingConstraints" />
 
@@ -106,6 +107,7 @@
                 android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="15dp"
                 android:text="الإخطار 01   "
@@ -160,6 +162,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="330dp"
+
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="24dp"
                 android:text=".فقدان الطفل لوالديه وبقائه دون سند عائلي"
@@ -443,6 +446,19 @@
                 app:layout_constraintHorizontal_bias="0.09"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/file" />
+
+            <TextView
+                android:id="@+id/number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="TextView"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/textView16"
+                app:layout_constraintEnd_toStartOf="@+id/textView12" />
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
