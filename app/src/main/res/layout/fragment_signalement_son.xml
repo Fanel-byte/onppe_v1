@@ -1,256 +1,257 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-tools:context=".SignalementSonFragment"
-tools:layout_editor_absoluteX="-32dp"
-tools:layout_editor_absoluteY="0dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:backgroundTint="#000000"
+    tools:context=".SignalementSonFragment"
+    tools:layout_editor_absoluteX="-32dp"
+    tools:layout_editor_absoluteY="0dp">
 
 
-<ImageView
-    android:id="@+id/imageView4"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="16dp"
-    android:layout_marginTop="16dp"
-    android:src="@drawable/informationicon"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/home"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/ic_home"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-<ImageView
-    android:id="@+id/imageView5"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="16dp"
-    android:layout_marginEnd="16dp"
-    android:src="@drawable/backicon"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/ic_back"
+        app:layout_constraintBottom_toBottomOf="@+id/home"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="@+id/home"
+        tools:ignore="NotSibling,UnknownIdInLayout" />
 
-<ImageView
-    android:id="@+id/imageView6"
-    android:layout_width="0dp"
-    android:layout_height="94dp"
-    android:layout_marginTop="10dp"
-    android:src="@drawable/rectangle_header"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+    <ImageView
+        android:id="@+id/imageView50"
+        android:layout_width="412dp"
+        android:layout_height="296dp"
+        android:layout_marginTop="10dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/rectangle_green_white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/home"
+        tools:ignore="MissingConstraints" />
 
-<TextView
-    android:id="@+id/textView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="4dp"
-    android:layout_marginEnd="5dp"
-    android:fontFamily="@font/montserratsemibold"
-    android:text="هنا"
-    android:textColor="#FFFFFF"
-    android:textSize="20sp"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.978"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="@+id/imageView6" />
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/montserratsemibold"
+        android:text="هنا"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/back"
+        app:layout_constraintTop_toTopOf="@+id/imageView50" />
 
-<TextView
-    android:id="@+id/textView5"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:fontFamily="@font/montserratarabicregular"
-    android:text=" يمكنك التبليغ عن الإخطار عن طريق تسجيل صوتي"
-    android:textColor="#FFFFFF"
-    android:textSize="18sp"
-    app:layout_constraintBottom_toBottomOf="@+id/imageView6"
-    app:layout_constraintEnd_toEndOf="@+id/textView"
-    app:layout_constraintHorizontal_bias="1.0"
-    app:layout_constraintStart_toStartOf="@+id/imageView6"
-    app:layout_constraintTop_toBottomOf="@+id/textView" />
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="356dp"
+        android:layout_height="27dp"
 
-<ImageView
-    android:id="@+id/imagegalerie"
-    android:layout_width="70dp"
-    android:layout_height="70dp"
-    android:layout_marginTop="20dp"
-    android:layout_marginEnd="59dp"
-    android:src="@drawable/upload"
-    app:layout_constraintBottom_toBottomOf="@+id/textView6"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toTopOf="@+id/textView6"
-    app:layout_constraintVertical_bias="0.656" />
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/montserratarabiclight"
+        android:text=" يمكنك التبليغ عن الإخطار عن طريق تسجيل صوتي"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="@+id/textView1"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView1" />
 
-<ImageView
-    android:id="@+id/imagecapture"
-    android:layout_width="70dp"
-    android:layout_height="70dp"
-    android:layout_marginStart="59dp"
-    android:layout_marginTop="20dp"
-    android:src="@drawable/upload_sound"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="110dp"
+        android:fontFamily="@font/montserratarabicregular"
+        android:text="التسجيل الصوتي"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView50"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView50" />
 
-<TextView
-    android:id="@+id/textView6"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="69dp"
-    android:fontFamily="@font/montserratarabicregular"
-    android:text="أو"
-    android:textColor="#000000"
-    android:textSize="16sp"
-    app:layout_constraintBottom_toBottomOf="@+id/imagecapture"
-    app:layout_constraintEnd_toStartOf="@+id/imagegalerie"
-    app:layout_constraintHorizontal_bias="0.0"
-    app:layout_constraintStart_toEndOf="@+id/imagecapture"
-    app:layout_constraintTop_toTopOf="@+id/imagecapture"
-    tools:ignore="MissingConstraints" />
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/montserratarabicregular"
+        android:text="شرح موجز للتسجيل الصوتي "
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/check_record" />
 
-<androidx.constraintlayout.widget.Guideline
-    android:id="@+id/guideline"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    app:layout_constraintGuide_begin="20dp" />
 
-<TextView
-    android:id="@+id/textView7"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="20dp"
-    android:fontFamily="@font/montserratarabicregular"
-    android:text="قم بتسجيل الصوت"
-    android:textColor="#000000"
-    android:textSize="16sp"
-    app:layout_constraintEnd_toEndOf="@+id/imagecapture"
-    app:layout_constraintStart_toStartOf="@+id/imagecapture"
-    app:layout_constraintTop_toBottomOf="@+id/imagecapture" />
+    <ImageView
+        android:id="@+id/check_record"
+        android:layout_width="319dp"
 
-<TextView
-    android:id="@+id/textView9"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="20dp"
-    android:fontFamily="@font/montserratarabicregular"
-    android:text="شرح موجز للإخطار "
-    android:textColor="#000000"
-    android:textSize="16sp"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/divider3" />
+        android:layout_height="176dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/rectangle_grey_full"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
 
-<TextView
-    android:id="@+id/textView8"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="20dp"
-    android:fontFamily="@font/montserratarabicregular"
-    android:text="قم بتحميل التسجيل"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-    android:textColor="#000000"
-    android:textSize="16sp"
-    app:layout_constraintEnd_toEndOf="@+id/imagegalerie"
-    app:layout_constraintStart_toStartOf="@+id/imagegalerie"
-    app:layout_constraintTop_toBottomOf="@+id/imagegalerie"
-    tools:ignore="MissingConstraints" />
 
-<View
-    android:id="@+id/divider"
-    android:layout_width="300dp"
-    android:layout_height="1dp"
-    android:layout_marginTop="88dp"
-    android:background="?android:attr/listDivider"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.495"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/textView6" />
+    <ImageView
+        android:id="@+id/stoprecord"
+        android:layout_width="36.84dp"
+        android:layout_height="36.84dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:src="@drawable/upload"
+        app:layout_constraintBottom_toBottomOf="@+id/check_record"
+        app:layout_constraintEnd_toEndOf="@+id/check_record" />
 
-<ImageView
-    android:id="@+id/imageView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="20dp"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/divider"
-    tools:src="@tools:sample/avatars" />
+    <ImageView
+        android:id="@+id/voicerecorder"
+        android:layout_width="36.84dp"
+        android:layout_height="36.84dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="5dp"
+        android:src="@drawable/upload_sound"
+        app:layout_constraintBottom_toBottomOf="@+id/check_record"
+        app:layout_constraintEnd_toStartOf="@+id/stoprecord" />
 
-<View
-    android:id="@+id/divider3"
-    android:layout_width="300dp"
-    android:layout_height="1dp"
-    android:layout_marginTop="20dp"
-    android:background="?android:attr/listDivider"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-<ImageView
-    android:id="@+id/imageView11"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="20dp"
-    android:src="@drawable/blankrectangle"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/textView9" />
+    <EditText
+        android:id="@+id/Descriptionson"
+        android:layout_width="319dp"
+        android:layout_height="176dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/custom_edittext"
+        android:ems="10"
+        android:textCursorDrawable="@drawable/custom_cursor"
+        android:gravity="start|top"
+        android:hint="اكتب هنا ..."
+        android:inputType="textMultiLine"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="10dp"
+        android:paddingRight="10dp"
+        android:textColor="#4D000000"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/add"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
-<TextView
-    android:id="@+id/textView10"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="اكتب هنا ,,,"
-    app:layout_constraintBottom_toBottomOf="@+id/imageView11"
-    app:layout_constraintEnd_toEndOf="@+id/imageView11"
-    app:layout_constraintHorizontal_bias="0.96"
-    app:layout_constraintStart_toStartOf="@+id/imageView11"
-    app:layout_constraintTop_toTopOf="@+id/imageView11"
-    app:layout_constraintVertical_bias="0.073" />
+    <androidx.appcompat.widget.AppCompatButton
 
-<androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/add"
+        android:layout_width="143dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/bouton_orange"
+        android:drawableRight="@drawable/ic_plus"
+        android:drawablePadding="2dp"
+        android:fontFamily="@font/montserratsemibold"
+        android:paddingRight="4dp"
+        android:text="مزيد من المعلومات"
+        android:textColor="@color/orange"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/Descriptionson"
+        app:layout_constraintTop_toBottomOf="@+id/Descriptionson"
+        tools:ignore="MissingConstraints" />
 
-    android:id="@+id/button"
-    android:layout_width="143dp"
-    android:layout_height="48dp"
-    android:layout_marginTop="20dp"
-    android:layout_marginEnd="44dp"
-    android:background="@drawable/bouton_orange"
-    android:fontFamily="@font/montserratsemibold"
-    android:text="مزيد من المعلومات  "
-    android:textAlignment="textEnd"
-    android:textColor="@color/orange"
-    android:textSize="10sp"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/imageView11"
-    tools:ignore="MissingConstraints" />
+    <androidx.appcompat.widget.AppCompatButton
 
-<androidx.appcompat.widget.AppCompatButton
 
-    android:id="@+id/button3"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="44dp"
-    android:layout_marginTop="20dp"
-    android:background="@drawable/bouton_orange_full"
-    android:fontFamily="@font/montserratsemibold"
-    android:text="إرسال "
-    android:textAlignment="textEnd"
-    android:textColor="#FFFFFF"
-    android:textSize="14sp"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/imageView11"
-    tools:ignore="MissingConstraints" />
+        android:id="@+id/envoie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/bouton_orange_full"
+        android:drawableRight="@drawable/ion_send_sharp"
+        android:drawablePadding="5dp"
+        android:fontFamily="@font/montserratsemibold"
+        android:paddingRight="10dp"
+        android:text="إرسال  "
+        android:textAlignment="textEnd"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/add"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/Descriptionson"
+        app:layout_constraintTop_toBottomOf="@+id/Descriptionson"
+        tools:ignore="MissingConstraints" />
 
-<ImageView
-    android:id="@+id/imageView15"
-    android:layout_width="14dp"
-    android:layout_height="15dp"
-    android:layout_marginEnd="5dp"
-    android:src="@drawable/plus_icon"
-    app:layout_constraintBottom_toBottomOf="@+id/button"
-    app:layout_constraintEnd_toEndOf="@+id/button"
-    app:layout_constraintTop_toTopOf="@+id/button" />
+    <ImageView
+        android:id="@+id/question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_question"
+        app:layout_constraintEnd_toEndOf="@+id/home"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/home"
+        app:layout_constraintTop_toTopOf="@+id/imageView50" />
+
+    <TextView
+        android:id="@+id/counter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="00:00"
+        android:textColor="#5C000000"
+        android:textSize="44dp"
+        app:layout_constraintBottom_toBottomOf="@+id/check_record"
+        app:layout_constraintEnd_toEndOf="@+id/check_record"
+        app:layout_constraintStart_toStartOf="@+id/check_record"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <ImageView
+        android:id="@+id/playrecord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/ic_play"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/check_record"
+        app:layout_constraintStart_toStartOf="@+id/check_record"
+        app:layout_constraintTop_toTopOf="@+id/check_record" />
+
+    <SeekBar
+        android:id="@+id/progressBar"
+        android:layout_width="0dp"
+        android:layout_height="5dp"
+        android:layout_marginBottom="50dp"
+        android:progressDrawable="@drawable/custom_progress_bar"
+        android:thumb="@drawable/custom_thumb"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/check_record"
+        app:layout_constraintEnd_toEndOf="@+id/check_record"
+        app:layout_constraintStart_toStartOf="@+id/check_record" />
 
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <!-- Style for the DatePickerDialog -->
+    <style name="MyDatePickerStyle" parent="ThemeOverlay.MaterialComponents.Dialog">
+        <item name="android:colorAccent">#59C55E</item>
+    </style>
+    <style name="MyDatePickerDialogStyle" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">#59C55E</item>
+    </style>
+</resources>

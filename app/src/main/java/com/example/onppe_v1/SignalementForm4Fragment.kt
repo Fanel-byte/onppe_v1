@@ -5,55 +5,79 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
+import com.example.onppe_v1.databinding.FragmentSignalementForm1Binding
+import com.example.onppe_v1.databinding.FragmentSignalementForm4Binding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [SignalementForm4Fragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class SignalementForm4Fragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
+    lateinit var binding: FragmentSignalementForm4Binding
+    lateinit var sexe:String
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_signalement_form4, container, false)
+        binding = FragmentSignalementForm4Binding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SignalementForm4Fragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SignalementForm4Fragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        var signalementtransfert = arguments?.getSerializable("data") as SignalementTransfert
+
+        val items1 = listOf(
+            "أنثى",
+            "ذكر ")
+        val adapter = ArrayAdapter(requireActivity(), R.layout.list_item, items1)
+        binding.sexe.setAdapter(adapter)
+        binding.sexe.setOnItemClickListener { parent, view, position, id ->
+            if (position==0){
+                sexe="F"
             }
+            else {sexe="M"}
+        }
+        binding.back.setOnClickListener {
+            view.findNavController().navigate(R.id.action_signalementForm4Fragment2_to_signalementForm3Fragment)
+        }
+
+        binding.back2.setOnClickListener {
+            view.findNavController().navigate(R.id.action_signalementForm4Fragment2_to_signalementForm3Fragment)
+        }
+
+        binding.next.setOnClickListener {
+            signalementtransfert.nomCitoyen=binding.nom.text.toString()
+            signalementtransfert.prenomCitoyen=binding.prenom.text.toString()
+            signalementtransfert.ageCitoyen=binding.age.text.toString().toInt()
+            signalementtransfert.sexeCitoyen=sexe
+            signalementtransfert.adresseCitoyen=binding.adresse.text.toString()
+            signalementtransfert.telCitoyen=binding.tel.text.toString()
+            val data = bundleOf("data" to signalementtransfert)
+            view.findNavController().navigate(R.id.action_signalementForm4Fragment2_to_signalementForm5Fragment,data)
+
+        binding.back3.setOnClickListener {
+            view.findNavController().navigate(R.id.action_signalementForm4Fragment2_to_signalementForm3Fragment)
+        }
+
+        binding.next.setOnClickListener {
+            view.findNavController().navigate(R.id.action_signalementForm4Fragment2_to_signalementForm5Fragment)
+
+        }
+        binding.next2.setOnClickListener {
+            view.findNavController().navigate(R.id.action_signalementForm4Fragment2_to_signalementForm5Fragment)
+        }
+
+        binding.home.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementForm4Fragment_to_fonctionnalitiesActivity)
+        }
+
+
+
+
     }
-}
+
+}}

@@ -6,7 +6,6 @@
         android:id="@+id/suivisignalementfragment"
         android:enabled="true"
         android:icon="@drawable/ic_signal_green"
-
         android:title="تبليغ"
         android:fontFamily="@font/montserratarabicregular"
         android:visible="true"

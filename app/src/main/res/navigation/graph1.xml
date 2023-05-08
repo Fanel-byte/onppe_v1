@@ -26,6 +26,9 @@
         <action
             android:id="@+id/action_signalementFragment_to_suivisignalementfragment"
             app:destination="@id/suivisignalementfragment" />
+        <action
+            android:id="@+id/action_signalementFragment_to_fonctionnalitiesActivity"
+            app:destination="@id/fonctionnalitiesActivity" />
     </fragment>
     <fragment
         android:id="@+id/aideFragment"
@@ -36,50 +39,171 @@
         android:id="@+id/signalementImageFragment"
         android:name="com.example.onppe_v1.SignalementImageFragment"
         android:label="fragment_signalement_image"
-        tools:layout="@layout/fragment_signalement_image" />
+        tools:layout="@layout/fragment_signalement_image" >
+        <action
+            android:id="@+id/action_signalementImageFragment_to_finFormulaireFragment"
+            app:destination="@id/finFormulaireFragment" />
+        <action
+            android:id="@+id/action_signalementImageFragment_to_signalementForm1Fragment"
+            app:destination="@id/signalementForm1Fragment" />
+
+            android:id="@+id/action_signalementImageFragment_to_signalementFragment"
+            app:destination="@id/signalementFragment" />
+       
+       
+        <action
+            android:id="@+id/action_signalementImageFragment_to_fonctionnalitiesActivity"
+            app:destination="@id/fonctionnalitiesActivity" />
+        <action
+            android:id="@+id/action_signalementImageFragment_to_signalementFragment"
+            app:destination="@id/signalementFragment" />
+    </fragment>
     <fragment
         android:id="@+id/signalementSonFragment"
         android:name="com.example.onppe_v1.SignalementSonFragment"
         android:label="fragment_signalement_son"
-        tools:layout="@layout/fragment_signalement_son" />
+        tools:layout="@layout/fragment_signalement_son" >
+        <action
+
+            android:id="@+id/action_signalementSonFragment_to_signalementFragment"
+            app:destination="@id/signalementFragment" />
+        <action
+            android:id="@+id/action_signalementSonFragment_to_finFormulaireFragment"
+            app:destination="@id/finFormulaireFragment" />
+        <action
+            android:id="@+id/action_signalementSonFragment_to_signalementForm1Fragment"
+            app:destination="@id/signalementForm1Fragment" />
+        <action
+            android:id="@+id/action_signalementSonFragment_to_fonctionnalitiesActivity"
+            app:destination="@id/fonctionnalitiesActivity" />
+    </fragment>
     <fragment
         android:id="@+id/signalementVideoFragment"
         android:name="com.example.onppe_v1.SignalementVideoFragment"
         android:label="fragment_signalement_video"
-        tools:layout="@layout/fragment_signalement_video" />
+        tools:layout="@layout/fragment_signalement_video" >
+        <action
+
+            android:id="@+id/action_signalementVideoFragment_to_signalementFragment"
+            app:destination="@id/signalementFragment" />
+        <action
+            android:id="@+id/action_signalementVideoFragment_to_finFormulaireFragment"
+            app:destination="@id/finFormulaireFragment" />
+        <action
+            android:id="@+id/action_signalementVideoFragment_to_signalementForm1Fragment"
+            app:destination="@id/signalementForm1Fragment" />
+        <action
+            android:id="@+id/action_signalementVideoFragment_to_fonctionnalitiesActivity"
+            app:destination="@id/fonctionnalitiesActivity" />
+
+    </fragment>
     <fragment
         android:id="@+id/signalementForm1Fragment"
         android:name="com.example.onppe_v1.SignalementForm1Fragment"
         android:label="fragment_signalement_form1"
         tools:layout="@layout/fragment_signalement_form1" >
         <action
-            android:id="@+id/action_signalementForm1Fragment_to_signalementForm3Fragment"
-            app:destination="@id/signalementForm3Fragment" />
+            android:id="@+id/action_signalementForm1Fragment_to_signalementForm2Fragment"
+            app:destination="@id/signalementForm2Fragment" />
+        <action
+            android:id="@+id/action_signalementForm1Fragment_to_finFormulaireFragment"
+            app:destination="@id/finFormulaireFragment" />
+        <action
+            android:id="@+id/action_signalementForm1Fragment_to_signalementFragment"
+            app:destination="@id/signalementFragment" />
+        <action
+            android:id="@+id/action_signalementForm1Fragment_to_fonctionnalitiesActivity"
+            app:destination="@id/fonctionnalitiesActivity" />
     </fragment>
+
     <fragment
         android:id="@+id/signalementForm3Fragment"
         android:name="com.example.onppe_v1.SignalementForm3Fragment"
         android:label="fragment_signalement_form3"
         tools:layout="@layout/fragment_signalement_form3" >
         <action
+            android:id="@+id/action_signalementForm3Fragment_to_signalementForm2Fragment"
+            app:destination="@id/signalementForm2Fragment" />
+        <action
             android:id="@+id/action_signalementForm3Fragment_to_signalementForm4Fragment"
             app:destination="@id/signalementForm4Fragment" />
+        <action
+            android:id="@+id/action_signalementForm3Fragment_to_signalementForm5Fragment"
+            app:destination="@id/signalementForm5Fragment" />
+        <action
+            android:id="@+id/action_signalementForm3Fragment_to_fonctionnalitiesActivity"
+            app:destination="@id/fonctionnalitiesActivity" />
     </fragment>
     <fragment
         android:id="@+id/signalementForm2Fragment"
         android:name="com.example.onppe_v1.SignalementForm2Fragment"
         android:label="fragment_signalement_form2"
-        tools:layout="@layout/fragment_signalement_form2" />
-    <fragment
-        android:id="@+id/signalementForm5Fragment"
-        android:name="com.example.onppe_v1.SignalementForm5Fragment"
-        android:label="fragment_signalement_form4"
-        tools:layout="@layout/fragment_signalement_form4" />
+        tools:layout="@layout/fragment_signalement_form2" >
+        <action
+            android:id="@+id/action_signalementForm2Fragment_to_signalementForm1Fragment"
+            app:destination="@id/signalementForm1Fragment" />
+        <action
+            android:id="@+id/action_signalementForm2Fragment_to_signalementForm3Fragment"
+            app:destination="@id/signalementForm3Fragment" />
+        <action
+            android:id="@+id/action_signalementForm2Fragment_to_fonctionnalitiesActivity"
+            app:destination="@id/fonctionnalitiesActivity" />
+        <action
+            android:id="@+id/action_signalementForm2Fragment_to_signalementFragment"
+            app:destination="@id/signalementFragment" />
+    </fragment>
     <fragment
         android:id="@+id/signalementForm4Fragment"
         android:name="com.example.onppe_v1.SignalementForm4Fragment"
+        android:label="fragment_signalement_form4"
+        tools:layout="@layout/fragment_signalement_form4" >
+        <action
+            android:id="@+id/action_signalementForm4Fragment2_to_signalementForm5Fragment"
+            app:destination="@id/signalementForm5Fragment" />
+        <action
+            android:id="@+id/action_signalementForm4Fragment2_to_signalementForm3Fragment"
+            app:destination="@id/signalementForm3Fragment" />
+        <action
+            android:id="@+id/action_signalementForm4Fragment2_to_fonctionnalitiesActivity"
+            app:destination="@id/fonctionnalitiesActivity" />
+        <action
+            android:id="@+id/action_signalementForm4Fragment2_self"
+            app:destination="@id/signalementForm4Fragment" />
+        <action
+            android:id="@+id/action_signalementForm4Fragment_to_fonctionnalitiesActivity"
+            app:destination="@id/fonctionnalitiesActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/signalementForm5Fragment"
+        android:name="com.example.onppe_v1.SignalementForm5Fragment"
         android:label="fragment_signalement_form5"
-        tools:layout="@layout/fragment_signalement_form5" />
+
+        tools:layout="@layout/fragment_signalement_form5" >
+        <action
+            android:id="@+id/action_signalementForm5Fragment_to_signalementForm4Fragment"
+            app:destination="@id/signalementForm4Fragment" />
+        <action
+            android:id="@+id/action_signalementForm5Fragment_to_finFormulaireFragment"
+            app:destination="@id/finFormulaireFragment" />
+        <action
+            android:id="@+id/action_signalementForm5Fragment_to_fonctionnalitiesActivity"
+            app:destination="@id/fonctionnalitiesActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/finFormulaireFragment"
+        android:name="com.example.onppe_v1.FinFormulaireFragment"
+        android:label="fragment_fin_formulaire"
+        tools:layout="@layout/fragment_fin_formulaire" >
+        <action
+            android:id="@+id/action_finFormulaireFragment_to_fonctionnalitiesActivity"
+            app:destination="@id/fonctionnalitiesActivity" />
+        <action
+            android:id="@+id/action_finFormulaireFragment_to_signalementFragment"
+            app:destination="@id/signalementFragment" />
+        <action
+            android:id="@+id/action_finFormulaireFragment_to_suivisignalementfragment"
+            app:destination="@id/suivisignalementfragment" />
+    </fragment>
     <fragment
         android:id="@+id/suivisignalementfragment"
         android:name="com.example.onppe_v1.SuiviSignalementFragment"
@@ -92,6 +216,12 @@
         <action
             android:id="@+id/action_mainFragment_to_nosuiviFragment"
             app:destination="@id/nosuivisignalementfragment" />
+        <action
+            android:id="@+id/action_suivisignalementfragment_to_fonctionnalitiesActivity"
+            app:destination="@id/fonctionnalitiesActivity" />
+        <action
+            android:id="@+id/action_suivisignalementfragment_to_signalementFragment"
+            app:destination="@id/signalementFragment" />
     </fragment>
     <fragment
         android:id="@+id/suivisignalementdetailfragment"
@@ -103,4 +233,11 @@
         android:name="com.example.onppe_v1.NoSuiviSignalementFragment"
         android:label="fragment__no_suivi_signalement"
         tools:layout="@layout/fragment_no_suivi_signalement" />
+
+    <activity
+        android:id="@+id/fonctionnalitiesActivity"
+        android:name="com.example.onppe_v1.FonctionnalitiesActivity"
+        android:label="activity_fonctionnalities"
+        tools:layout="@layout/activity_fonctionnalities" />
+
 </navigation>

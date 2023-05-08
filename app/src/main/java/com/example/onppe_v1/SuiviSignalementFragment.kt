@@ -29,6 +29,15 @@ class SuiviSignalementFragment : Fragment() {
     ): View? {
         binding = FragmentSuiviSignalementBinding.inflate(inflater, container, false)
         val view = binding.root
+        
+        
+        binding.home.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_suivisignalementfragment_to_fonctionnalitiesActivity)
+        }
+        binding.back.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_suivisignalementfragment_to_signalementFragment)
+        }
+        
         return view
     }
 
@@ -36,6 +45,7 @@ class SuiviSignalementFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         signalementModel = ViewModelProvider(requireActivity()).get(SignalementModel::class.java)
         GetSignalements()
+
 
         if(signalementModel.signalements.isEmpty()) {
             // Get data from the server
@@ -70,3 +80,4 @@ class SuiviSignalementFragment : Fragment() {
     }
 
     } }
+

@@ -28,6 +28,7 @@ class SignalementFragment : Fragment() {
 
         binding.frameLayout3.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_signalementFragment_to_signalementForm1Fragment)
+
         }
         binding.frameLayout2.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_signalementFragment_to_signalementImageFragment)
@@ -38,5 +39,9 @@ class SignalementFragment : Fragment() {
         binding.frameLayout5.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_signalementFragment_to_signalementSonFragment)
         }
+        binding.suivi.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementFragment_to_suivisignalementfragment)
+        }
     }
+
 }

@@ -1,15 +1,14 @@
 package com.example.onppe_v1
 
 data class Signalement(
-    var id: Int,
-    var descriptif: String,
-    var statut: String,
-    var designationar: String,
-    var nom: String,
-    var prenom: String,
-    var adresse: String,
-    var age: Int,
-    var sexe: String,
-    var situationparent: String,
-    var namear: String,
+
+    val id: Int?,
+    var citoyenid:Int?,
+    val motifid:Int?,
+    var enfantid:Int?,
+    val descriptif:String?,
+    val preuveid:Int?,
+    val typesignaleurid:Int?,
+    val identitesecrete:Boolean?,
+    val dateincident :String?
 )

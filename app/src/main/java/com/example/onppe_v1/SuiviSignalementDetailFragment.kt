@@ -29,6 +29,7 @@ class SuiviSignalementDetailFragment : Fragment() {
         signalementModel = ViewModelProvider(requireActivity()).get(SignalementModel::class.java)
         //declaration
 
+
         val position = arguments?.getInt("position")
         if (position != null) {
             // read only
@@ -42,6 +43,7 @@ class SuiviSignalementDetailFragment : Fragment() {
             binding.situation.text = signalement.situationparent
             binding.reason.text = signalement.descriptif
             binding.number.text = (position+1).toString()
+
 
         }
     }
