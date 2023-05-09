@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
 }
+apply plugin: 'kotlin-android'
 
 android {
     namespace 'com.example.onppe_v1'
@@ -70,3 +71,4 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:4.9.3'
 
 }
+

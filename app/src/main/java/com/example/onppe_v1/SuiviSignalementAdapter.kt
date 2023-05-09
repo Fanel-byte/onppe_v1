@@ -20,7 +20,7 @@ class SuiviSignalementAdapter(val context: Context, var data:List<Signalement_lo
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.apply {
 
-            holder.datesignalement.text = data[position].datesignalement
+           // holder.datesignalement.text = data[position].datesignalement
             holder.statut.text =  data[position].statut
             holder.numbersignalement.text = (position + 1).toString()
         }

@@ -85,68 +85,6 @@
         app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-    <TextView
-        android:id="@+id/representantlegitime"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:background="@drawable/button_background"
-        android:gravity="center"
-        android:shadowColor="#E6E0E0"
-        android:text="ممثله الشرعي"
-        android:textColor="#1A811F"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/enfant2"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/enfant2" />
-
-    <TextView
-        android:id="@+id/personnemorale"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/button_background"
-        android:gravity="center"
-        android:shadowColor="#E6E0E0"
-        android:text="شخص معنوي"
-        android:textColor="#1A811F"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/personnephysique"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/representantlegitime" />
-
-    <TextView
-        android:id="@+id/personnephysique"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/button_background"
-        android:gravity="center"
-        android:shadowColor="#E6E0E0"
-        android:text="شخص طبيعي"
-        android:textColor="#1A811F"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/personnemorale"
-        app:layout_constraintTop_toBottomOf="@+id/enfant2" />
-
-    <TextView
-        android:id="@+id/enfant"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:layout_marginTop="100dp"
-        android:background="@drawable/button_background"
-        android:gravity="center"
-        android:shadowColor="#E6E0E0"
-        android:text="الطفل"
-        android:textColor="#1A811F"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/representantlegitime"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <Button
         android:id="@+id/next"
@@ -239,7 +177,7 @@
         app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
     <Button
-        android:id="@+id/enfant2"
+        android:id="@+id/enfant"
         android:layout_width="140dp"
         android:layout_height="140dp"
         android:layout_marginTop="100dp"
@@ -265,7 +203,7 @@
         android:textColor="#1A811F"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enfant2" />
+        app:layout_constraintTop_toBottomOf="@+id/enfant" />
 
     <Button
         android:id="@+id/representant"
@@ -276,8 +214,8 @@
         android:text="ممثله الشرعي"
         android:textColor="#1A811F"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/enfant2"
+        app:layout_constraintBottom_toBottomOf="@+id/enfant"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/enfant2" />
+        app:layout_constraintTop_toTopOf="@+id/enfant" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

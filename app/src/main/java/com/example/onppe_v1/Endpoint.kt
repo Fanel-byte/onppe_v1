@@ -27,4 +27,8 @@ interface Endpoint {
     @POST("/citoyen/create")
     suspend fun createCitoyen(@Body citoyen: Citoyen): Response<Int>
 
+
+    @GET("signalement/getSignalementByCitoyenId/{id}")
+    suspend fun getsignalements(@Path ("id")id:Int):Response<List<Signalement_local>>
+
 }
