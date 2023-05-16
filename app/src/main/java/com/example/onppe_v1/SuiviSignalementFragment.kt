@@ -65,6 +65,7 @@ class SuiviSignalementFragment : Fragment() {
                 var signalements = response.body()
 
                 if (signalements != null) {
+                    Toast.makeText(requireActivity(), "HEEEEEEEEEEEERE " +response.code().toString() , Toast.LENGTH_SHORT).show()
                     signalementModel.signalements = signalements
                     binding.recyclerView.layoutManager = LinearLayoutManager(requireActivity() ,
                         RecyclerView.VERTICAL,false)

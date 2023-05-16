@@ -42,6 +42,13 @@ class SignalementFragment : Fragment() {
         binding.suivi.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_signalementFragment_to_suivisignalementfragment)
         }
+        binding.home.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementFragment_to_fonctionnalitiesActivity)
+        }
+        binding.back.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementFragment_to_fonctionnalitiesActivity)
+        }
+
     }
 
 }

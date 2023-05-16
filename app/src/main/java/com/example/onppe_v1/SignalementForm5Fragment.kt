@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.onppe_v1.databinding.FragmentSignalementForm5Binding
 import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
@@ -129,7 +130,7 @@ class SignalementForm5Fragment : Fragment() {
                     }
                 }
             }
-            view.findNavController().navigate(R.id.action_signalementForm5Fragment_to_finFormulaireFragment)
+          //  view.findNavController().navigate(R.id.action_signalementForm5Fragment_to_finFormulaireFragment)
         }
         binding.next2.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_signalementForm5Fragment_to_finFormulaireFragment)
@@ -164,7 +165,6 @@ class SignalementForm5Fragment : Fragment() {
     }
     private fun addCitoyen(citoyen: Citoyen,callback: (Int?) -> Unit) {
         CoroutineScope(Dispatchers.IO).launch {
-
             val response =RetrofitService.endpoint.createCitoyen(citoyen)
             withContext(Dispatchers.Main) {
                 // binding.progressBar.visibility= View.INVISIBLE
@@ -187,6 +187,7 @@ class SignalementForm5Fragment : Fragment() {
             withContext(Dispatchers.Main) {
                 // binding.progressBar.visibility= View.INVISIBLE
                 if (response.isSuccessful) {
+                    findNavController().navigate(R.id.action_signalementForm5Fragment_to_finFormulaireFragment)
                     Toast.makeText(requireActivity(),"Votre signalement est effectué avec succès", Toast.LENGTH_SHORT).show()}
 
                 else {
@@ -202,8 +203,8 @@ class SignalementForm5Fragment : Fragment() {
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
                     val id = response.body()
-                    Toast.makeText(requireActivity(),"Votre signalement est effectué avec succès", Toast.LENGTH_SHORT).show()
                     callback(id)
+                    Toast.makeText(requireActivity(),"Votre signalement est effectué avec succès", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(requireActivity(), "erreur " + response.code().toString(), Toast.LENGTH_SHORT).show()
                     callback(null)
@@ -216,6 +217,7 @@ class SignalementForm5Fragment : Fragment() {
             val response =  RetrofitService.endpoint.addImg(image,imageBody)
             withContext(Dispatchers.Main) {
                 if(response.isSuccessful) {
+                    findNavController().navigate(R.id.action_signalementForm5Fragment_to_finFormulaireFragment)
                 }
                 else {
                     Toast.makeText(requireActivity(),"Une erreur s'est produite",Toast.LENGTH_SHORT).show()
@@ -228,6 +230,7 @@ class SignalementForm5Fragment : Fragment() {
             val response =  RetrofitService.endpoint.addSon(son,sonBody)
             withContext(Dispatchers.Main) {
                 if(response.isSuccessful) {
+                    findNavController().navigate(R.id.action_signalementForm5Fragment_to_finFormulaireFragment)
                 }
                 else {
                     Toast.makeText(requireActivity(),"Une erreur s'est produite",Toast.LENGTH_SHORT).show()
@@ -240,6 +243,7 @@ class SignalementForm5Fragment : Fragment() {
             val response =  RetrofitService.endpoint.addVideo(video,videoBody)
             withContext(Dispatchers.Main) {
                 if(response.isSuccessful) {
+                    findNavController().navigate(R.id.action_signalementForm5Fragment_to_finFormulaireFragment)
                 }
                 else {
                     Toast.makeText(requireActivity(),"Une erreur s'est produite",Toast.LENGTH_SHORT).show()

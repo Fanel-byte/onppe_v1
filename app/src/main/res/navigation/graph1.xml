@@ -47,10 +47,10 @@
             android:id="@+id/action_signalementImageFragment_to_signalementForm1Fragment"
             app:destination="@id/signalementForm1Fragment" />
 
-            android:id="@+id/action_signalementImageFragment_to_signalementFragment"
-            app:destination="@id/signalementFragment" />
-       
-       
+        android:id="@+id/action_signalementImageFragment_to_signalementFragment"
+        app:destination="@id/signalementFragment" />
+
+
         <action
             android:id="@+id/action_signalementImageFragment_to_fonctionnalitiesActivity"
             app:destination="@id/fonctionnalitiesActivity" />
@@ -227,12 +227,26 @@
         android:id="@+id/suivisignalementdetailfragment"
         android:name="com.example.onppe_v1.SuiviSignalementDetailFragment"
         android:label="fragment__suivi_signalement_detail"
-        tools:layout="@layout/fragment_suivi_signalement_detail" />
+        tools:layout="@layout/fragment_suivi_signalement_detail" >
+        <action
+            android:id="@+id/action_suivisignalementdetailfragment_to_suivisignalementfragment"
+            app:destination="@id/suivisignalementfragment" />
+        <action
+            android:id="@+id/action_suivisignalementdetailfragment_to_fonctionnalitiesActivity"
+            app:destination="@id/fonctionnalitiesActivity" />
+    </fragment>
     <fragment
         android:id="@+id/nosuivisignalementfragment"
         android:name="com.example.onppe_v1.NoSuiviSignalementFragment"
         android:label="fragment__no_suivi_signalement"
-        tools:layout="@layout/fragment_no_suivi_signalement" />
+        tools:layout="@layout/fragment_no_suivi_signalement" >
+        <action
+            android:id="@+id/action_nosuivisignalementfragment_to_suivisignalementfragment"
+            app:destination="@id/suivisignalementfragment" />
+        <action
+            android:id="@+id/action_nosuivisignalementfragment_to_fonctionnalitiesActivity"
+            app:destination="@id/fonctionnalitiesActivity" />
+    </fragment>
 
     <activity
         android:id="@+id/fonctionnalitiesActivity"

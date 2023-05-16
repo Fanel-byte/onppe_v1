@@ -154,31 +154,53 @@ class SignalementForm2Fragment : Fragment() {
             signalementtransfert.situationparentEnfant="autre"
         }
         binding.next.setOnClickListener { view: View ->
-            signalementtransfert.prenomEnfant=binding.prenom.text.toString()
-            signalementtransfert.nomEnfant=binding.nom.text.toString()
-            signalementtransfert.sexeEnfant=sexe
-            signalementtransfert.ageEnfant=binding.age.text.toString().toInt()
-            signalementtransfert.adresseEnfant=binding.adresse.text.toString()
-            signalementtransfert.wilayacodeEnfant=wilayacode
-            val data = bundleOf("data" to signalementtransfert)
-            view.findNavController().navigate(R.id.action_signalementForm2Fragment_to_signalementForm3Fragment,data)
+            if (binding.prenom.text.toString().isEmpty()) {
+                binding.prenom.setError("يرجى إدخال اسم الطفل")
+            } else {
+                if (binding.nom.text.toString().isEmpty()) {
+                    binding.nom.setError("يرجى إدخال لقب الطفل")
+                } else {
+                    if (binding.age.text.toString().isEmpty()) {
+                        binding.age.setError("يرجى إدخال سن الطفل")
+                    } else {
+                        if (binding.wilaya.text.toString().isEmpty()) {
+                            binding.wilaya.setError("يرجى إختيار الولاية")
+                        } else {
+                            signalementtransfert.prenomEnfant = binding.prenom.text.toString()
+                            signalementtransfert.nomEnfant = binding.nom.text.toString()
+                            signalementtransfert.sexeEnfant = sexe
+                            signalementtransfert.ageEnfant = binding.age.text.toString().toInt()
+                            signalementtransfert.adresseEnfant = binding.adresse.text.toString()
+                            signalementtransfert.wilayacodeEnfant = wilayacode
+                            val data = bundleOf("data" to signalementtransfert)
+                            view.findNavController().navigate(
+                                R.id.action_signalementForm2Fragment_to_signalementForm3Fragment,
+                                data
+                            )
+                        }
+                    }
+                }
+            }
         }
-        binding.back.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_signalementForm2Fragment_to_signalementForm1Fragment)
-        }
-        binding.back2.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_signalementForm2Fragment_to_signalementForm1Fragment)
-        }
-        binding.back3.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_signalementForm2Fragment_to_signalementForm1Fragment)
-        }
-        binding.home.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_signalementForm2Fragment_to_fonctionnalitiesActivity)
-        }
+            binding.back.setOnClickListener { view: View ->
+                view.findNavController()
+                    .navigate(R.id.action_signalementForm2Fragment_to_signalementForm1Fragment)
+            }
+            binding.back2.setOnClickListener { view: View ->
+                view.findNavController()
+                    .navigate(R.id.action_signalementForm2Fragment_to_signalementForm1Fragment)
+            }
+            binding.back3.setOnClickListener { view: View ->
+                view.findNavController()
+                    .navigate(R.id.action_signalementForm2Fragment_to_signalementForm1Fragment)
+            }
+            binding.home.setOnClickListener { view: View ->
+                view.findNavController()
+                    .navigate(R.id.action_signalementForm2Fragment_to_fonctionnalitiesActivity)
+            }
 
 
-
+        }
     }
 
 
-}

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.example.onppe_v1.databinding.FragmentSuiviSignalementDetailBinding
 
 class SuiviSignalementDetailFragment : Fragment() {
@@ -45,6 +46,12 @@ class SuiviSignalementDetailFragment : Fragment() {
             binding.number.text = (position+1).toString()
 
 
+        }
+        binding.home.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_suivisignalementdetailfragment_to_fonctionnalitiesActivity)
+        }
+        binding.back.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_suivisignalementdetailfragment_to_suivisignalementfragment)
         }
     }
 }

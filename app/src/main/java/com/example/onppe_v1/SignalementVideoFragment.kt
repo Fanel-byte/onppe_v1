@@ -26,8 +26,10 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 
 import androidx.core.os.bundleOf
+import androidx.navigation.Navigation.findNavController
 
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.onppe_v1.databinding.FragmentSignalementImageBinding
 import com.example.onppe_v1.databinding.FragmentSignalementVideoBinding
 import com.google.gson.Gson
@@ -120,12 +122,10 @@ class SignalementVideoFragment : Fragment() {
         //cas 1 : envoyer un signalement avec Image et Descriptif
         binding.envoie.setOnClickListener {
             addSignalement(Signalement(null,null,null,null,null,null,null,true,"")) { id ->
-                Toast.makeText(requireActivity(), "id value test $id", Toast.LENGTH_SHORT).show()
                 if (id != null) {
                     videoInfo = Video(binding.Descriptionvideo.text.toString(), id)
                     val imageInfoMB = MultipartBody.Part.createFormData("video", Gson().toJson(videoInfo))
                     addVideo(imageInfoMB, video_body)
-                    view.findNavController().navigate(R.id.action_signalementVideoFragment_to_finFormulaireFragment)
 
                 }
             }
@@ -216,7 +216,6 @@ class SignalementVideoFragment : Fragment() {
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
                     val id = response.body()
-                    Toast.makeText(requireActivity(), "Signalement ajouté in bdd $id", Toast.LENGTH_SHORT).show()
                     callback(id)
                 } else {
                     Toast.makeText(requireActivity(), "erreur " + response.code().toString(), Toast.LENGTH_SHORT).show()
@@ -231,7 +230,7 @@ class SignalementVideoFragment : Fragment() {
             val response =  RetrofitService.endpoint.addVideo(video,videoBody)
             withContext(Dispatchers.Main) {
                 if(response.isSuccessful) {
-                    Toast.makeText(requireActivity(),"Video ajouter a BDD",Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.action_signalementVideoFragment_to_finFormulaireFragment)
                 }
                 else {
                     Toast.makeText(requireActivity(),"Une erreur s'est produite",Toast.LENGTH_SHORT).show()

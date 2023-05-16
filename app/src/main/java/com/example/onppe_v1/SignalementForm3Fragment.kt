@@ -41,7 +41,6 @@ class SignalementForm3Fragment : Fragment() {
         binding.nextanonym.setOnClickListener { view: View ->
             signalementtransfert.identitesecrete = true
             val data = bundleOf("data" to signalementtransfert)
-            Toast.makeText(requireActivity(),signalementtransfert.toString(), Toast.LENGTH_SHORT).show()
             view.findNavController()
                 .navigate(R.id.action_signalementForm3Fragment_to_signalementForm5Fragment, data)
         }

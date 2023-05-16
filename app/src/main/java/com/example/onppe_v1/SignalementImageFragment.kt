@@ -106,8 +106,6 @@ class SignalementImageFragment : Fragment() {
             if (result.resultCode == AppCompatActivity.RESULT_OK && intent != null) {
                 val selectedImageUri = intent.getData()
                 imageBitmap = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                    Toast.makeText(context, "teeest", Toast.LENGTH_SHORT).show();
-
                     val source = ImageDecoder.createSource(requireActivity().contentResolver, selectedImageUri!!)
                     ImageDecoder.decodeBitmap(source)
 
@@ -154,13 +152,10 @@ class SignalementImageFragment : Fragment() {
         //cas 1 : envoyer un signalement avec Image et Descriptif
         binding.envoie.setOnClickListener {
             addSignalement(Signalement(null,null,null,null,null,null,null,true,"")) { id ->
-                Toast.makeText(requireActivity(), "id value test $id", Toast.LENGTH_SHORT).show()
                 if (id != null) {
                     imageInfo = Image(binding.Descriptionimage.text.toString(), id)
                     val imageInfoMB = MultipartBody.Part.createFormData("image", Gson().toJson(imageInfo))
                     addImg(imageInfoMB, image_body)
-
-                    view.findNavController().navigate(R.id.action_signalementImageFragment_to_finFormulaireFragment)
                 }
             }
         }
@@ -237,7 +232,6 @@ class SignalementImageFragment : Fragment() {
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
                     val id = response.body()
-                   Toast.makeText(requireActivity(), "Signalement ajouté in bdd $id", Toast.LENGTH_SHORT).show()
                     callback(id)
                 } else {
                     Toast.makeText(requireActivity(), "erreur " + response.code().toString(), Toast.LENGTH_SHORT).show()
@@ -252,7 +246,7 @@ class SignalementImageFragment : Fragment() {
             val response =  RetrofitService.endpoint.addImg(image,imageBody)
             withContext(Dispatchers.Main) {
                 if(response.isSuccessful) {
-                    Toast.makeText(requireActivity(),"Image ajouter a BDD",Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.action_signalementImageFragment_to_finFormulaireFragment)
                 }
                 else {
                     Toast.makeText(requireActivity(),"Une erreur s'est produite",Toast.LENGTH_SHORT).show()

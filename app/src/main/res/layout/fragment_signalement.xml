@@ -164,7 +164,7 @@
                 tools:ignore="DuplicateIds">
 
                 <TextView
-                    android:id="@+id/back3"
+                    android:id="@+id/textvideo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserratarabicregular"
