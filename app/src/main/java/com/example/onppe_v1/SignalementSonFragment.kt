@@ -14,6 +14,7 @@ import android.widget.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.onppe_v1.databinding.FragmentSignalementSonBinding
 import com.google.gson.Gson
@@ -28,7 +29,7 @@ import java.io.File
 
 
 class SignalementSonFragment : Fragment() {
-
+    private lateinit var signalementModel: SignalementTransfertModel
     private var output: String? = null
     private var mediaRecorder: MediaRecorder? = null
     private var state: Boolean = false
@@ -48,11 +49,12 @@ class SignalementSonFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-
-
         binding = FragmentSignalementSonBinding.inflate(inflater, container,false)
         val view = binding.root
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         check_record=binding.playrecord
         voice_recorder = binding.voicerecorder
         stop_record=binding.stoprecord
@@ -74,7 +76,7 @@ class SignalementSonFragment : Fragment() {
                 startRecording()
                 val audioFile = File(output)
                 val audioRequestBody = RequestBody.create("vocaux/*".toMediaTypeOrNull(), audioFile)
-                 son_body = MultipartBody.Part.createFormData("path", audioFile.name, audioRequestBody)
+                son_body = MultipartBody.Part.createFormData("path", audioFile.name, audioRequestBody)
 
 
             }
@@ -82,7 +84,7 @@ class SignalementSonFragment : Fragment() {
         stop_record.setOnClickListener {
             stopRecording()
         }
-
+        signalementModel = ViewModelProvider(requireActivity()).get(SignalementTransfertModel::class.java)
         check_record.setOnClickListener {
             val mediaPlayer = MediaPlayer()
             try {
@@ -96,8 +98,6 @@ class SignalementSonFragment : Fragment() {
                 e.printStackTrace()
             }
         }
-
-
         counter = binding.counter
         progressBar = binding.progressBar
         progressBar.max = 100
@@ -122,31 +122,8 @@ class SignalementSonFragment : Fragment() {
         }
         //cas 2 : envoyer un signalement avec plus d'information
         binding.add.setOnClickListener{
-
-            val signalement = SignalementTransfert(son_body ,
-                binding.Descriptionson.text.toString(),
-                "son",
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null ,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null)
-            val data = bundleOf("data" to signalement)
-            view.findNavController().navigate(R.id.action_signalementSonFragment_to_signalementForm1Fragment,data)
+            signalementModel.DescriptifvideoImageSon = binding.Descriptionson.text.toString()
+            view.findNavController().navigate(R.id.action_signalementSonFragment_to_signalementForm1Fragment)
         }
 
 
@@ -158,7 +135,6 @@ class SignalementSonFragment : Fragment() {
             view.findNavController().navigate(R.id.action_signalementSonFragment_to_fonctionnalitiesActivity)
         }
 
-        return view
     }
 
     // function to start recording

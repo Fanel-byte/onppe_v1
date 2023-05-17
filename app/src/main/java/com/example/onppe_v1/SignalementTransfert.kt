@@ -1,13 +1,19 @@
 package com.example.onppe_v1
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import okhttp3.MultipartBody
 import java.io.Serializable
 
+@Entity(tableName ="signalements" )
 data class SignalementTransfert(
-    val videoImageSon: MultipartBody.Part?,
+    @PrimaryKey
+    val id: Int?,
+    val upload:Boolean,
+    //val videoImageSon: MultipartBody.Part?,
     val DescriptifvideoImageSon:String?,
     val typepreuve:String?,
-    val id: Int?,
+
     var motifid:Int?,
     var dateincident :String?,
     var nomEnfant:String?,

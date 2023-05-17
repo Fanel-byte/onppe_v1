@@ -26,6 +26,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 
 import androidx.core.os.bundleOf
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation.findNavController
 
 import androidx.navigation.findNavController
@@ -43,6 +44,7 @@ import okhttp3.RequestBody
 import java.io.File
 
 class SignalementVideoFragment : Fragment() {
+    private lateinit var signalementModel: SignalementTransfertModel
 
     private lateinit var binding: FragmentSignalementVideoBinding
     private lateinit var video: VideoView
@@ -66,6 +68,10 @@ class SignalementVideoFragment : Fragment() {
     ): View? {
         binding = FragmentSignalementVideoBinding.inflate(inflater, container, false)
         val view = binding.root
+        return view
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        signalementModel = ViewModelProvider(requireActivity()).get(SignalementTransfertModel::class.java)
         video=binding.videoView
         btn_Capture_video = binding.videocapture
         btn_upload_camera = binding.videogalerie
@@ -94,11 +100,6 @@ class SignalementVideoFragment : Fragment() {
                 video_body = MultipartBody.Part.createFormData("path", file.name, reqFile)
             }
         }
-
-
-
-
-
         btn_upload_camera.setOnClickListener {
             if (ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.CAMERA)== PackageManager.PERMISSION_GRANTED)  {
                 VideoChooser()
@@ -107,7 +108,6 @@ class SignalementVideoFragment : Fragment() {
                 checkPermission()
             }
         }
-
         // Code to upload the video from the camera
         btn_Capture_video.setOnClickListener {
             if (ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.CAMERA)== PackageManager.PERMISSION_GRANTED)  {
@@ -117,8 +117,6 @@ class SignalementVideoFragment : Fragment() {
                 checkPermission()
             }
         }
-
-
         //cas 1 : envoyer un signalement avec Image et Descriptif
         binding.envoie.setOnClickListener {
             addSignalement(Signalement(null,null,null,null,null,null,null,true,"")) { id ->
@@ -132,43 +130,15 @@ class SignalementVideoFragment : Fragment() {
         }
         //cas 2 : envoyer un signalement avec plus d'information
         binding.add.setOnClickListener{
-
-            val signalement = SignalementTransfert(video_body ,
-                binding.Descriptionvideo.text.toString(),
-                "video",
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null ,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null)
-            val data = bundleOf("data" to signalement)
-            view.findNavController().navigate(R.id.action_signalementVideoFragment_to_signalementForm1Fragment,data)
+            signalementModel.DescriptifvideoImageSon = binding.Descriptionvideo.text.toString()
+            view.findNavController().navigate(R.id.action_signalementVideoFragment_to_signalementForm1Fragment)
         }
-
-
-
         binding.back.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_signalementVideoFragment_to_signalementFragment)
         }
         binding.home.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_signalementVideoFragment_to_fonctionnalitiesActivity)
         }
-
-        return view
     }
 
     // Request permission

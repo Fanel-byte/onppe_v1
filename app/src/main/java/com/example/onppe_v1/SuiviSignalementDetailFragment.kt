@@ -43,7 +43,7 @@ class SuiviSignalementDetailFragment : Fragment() {
             binding.sexe1.text = signalement.sexe
             binding.situation.text = signalement.situationparent
             binding.reason.text = signalement.descriptif
-            binding.number.text = (position+1).toString()
+            //binding.number.text = (position+1).toString()
 
 
         }

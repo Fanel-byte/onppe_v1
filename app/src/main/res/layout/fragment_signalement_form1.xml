@@ -82,7 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginEnd="24dp"
         android:fontFamily="@font/montserrat"
         android:text="سبب الإخطار * "
         android:textColor="#000000"
@@ -106,7 +106,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:fontFamily="@font/montserrat_bold"
-        android:text=" يرجى تحديد سبب الخطر "
+        android:text=" يرجى تحديد معلومات الإخطار "
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/back"
@@ -121,43 +121,36 @@
         app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout2"
-        style="@style/CustomTextInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="0dp"
         android:layout_height="61dp"
-        android:layout_margin="16dp"
-
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
         android:hint="سبب الإخطار هنا"
         android:textAlignment="viewStart"
         app:boxStrokeColor="@color/green"
         app:boxStrokeWidth="1dp"
-        app:errorTextColor="#000000"
-        app:hintAnimationEnabled="true"
+        app:hintEnabled="false"
         app:hintTextAppearance="@style/TextAppearance.AppCompat.Body2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintEnd_toEndOf="@+id/textView13"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintTop_toBottomOf="@+id/textView13">
 
         <AutoCompleteTextView
             android:id="@+id/motif"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:breakStrategy="simple"
-            android:inputType="none"
-            android:textAlignment="viewEnd" />
+            android:inputType="none" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/montserrat"
         android:text="تاريخ الحادثة"
         android:textColor="#000000"

@@ -1,12 +1,16 @@
 package com.example.onppe_v1
 
 import android.app.DatePickerDialog
+import android.app.Dialog
+import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.DisplayMetrics
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -17,13 +21,14 @@ import java.text.SimpleDateFormat
 import java.util.*
 import java.util.Date
 import kotlin.properties.Delegates
+import androidx.lifecycle.ViewModelProvider
 
-lateinit var binding: FragmentSignalementForm1Binding
-var motifid =0
 
 
 class SignalementForm1Fragment : Fragment() {
     lateinit var binding: FragmentSignalementForm1Binding
+    private var motifid =0
+    private lateinit var signalementModel: SignalementTransfertModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -36,6 +41,20 @@ class SignalementForm1Fragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val dialogBinding = layoutInflater.inflate(R.layout.fragment_popup_window,null)
+        val myDialog = Dialog(requireActivity())
+        myDialog.setContentView(dialogBinding)
+        myDialog.setCancelable(true)
+        myDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        // Récupérer la taille de l'écran
+        val displayMetrics = DisplayMetrics()
+        requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics)
+        val width = (displayMetrics.widthPixels * 0.75).toInt()
+        val height =  WindowManager.LayoutParams.WRAP_CONTENT
+
+        // Définir la taille de la fenêtre du dialog
+        myDialog.window?.setLayout(width, height)
+        signalementModel = ViewModelProvider(requireActivity()).get(SignalementTransfertModel::class.java)
         val items1 = listOf(
             "فقدان الطفل لوالديه وبقائه دون سند عائلي",
             "تعريض الطفل للإهمال أو التشرد",
@@ -52,8 +71,8 @@ class SignalementForm1Fragment : Fragment() {
         val adapter = ArrayAdapter(requireActivity(), R.layout.list_item, items1)
         binding.motif.setAdapter(adapter)
         binding.date.setText(SimpleDateFormat("yyyy-MM-dd").format(Date()))
-        val signalementtransfert = arguments?.getSerializable("data") as? SignalementTransfert
-
+        // verifier si les champs sont deja enregistrer signalement model :
+        RemplirChamps(signalementModel)
         binding.motif.setOnItemClickListener { parent, view, position, id ->
             motifid=position+1
         }
@@ -96,57 +115,31 @@ class SignalementForm1Fragment : Fragment() {
         binding.home.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_signalementForm1Fragment_to_fonctionnalitiesActivity)
         }
+
+
         binding.next.setOnClickListener { view: View ->
             if (binding.motif.text.toString().isEmpty()) {
-                binding.motif.error = "Veuillez sélectionner un motif"
-            } else {
-                binding.motif.error = null
-
-                val date = binding.date.text.toString()
-                if (signalementtransfert != null) {
-                    signalementtransfert.motifid = motifid
-                    signalementtransfert.dateincident = date
-                    val data = bundleOf("data" to signalementtransfert)
-                    view.findNavController().navigate(
-                        R.id.action_signalementForm1Fragment_to_signalementForm2Fragment,
-                        data
-                    )
-                } else {
-                    val signalementtransfert2 = SignalementTransfert(
-                        null,
-                        null,
-                        null,
-                        null,
-                        motifid,
-                        date,
-                        null,
-                        null,
-                        null,
-                        null,
-                        null,
-                        null,
-                        null,
-                        null,
-                        false,
-                        null,
-                        null,
-                        null,
-                        null,
-                        null,
-                        null,
-                        null,
-                    )
-                    val data = bundleOf("data" to signalementtransfert2)
-                    view.findNavController().navigate(
-                        R.id.action_signalementForm1Fragment_to_signalementForm2Fragment,
-                        data
-                    )
-                }
+                //affichage du pop up
+                myDialog.show()
             }
+            else{
+            val date = binding.date.text.toString()
+            signalementModel.dateincident = date
+            signalementModel.motifid= motifid
+            view.findNavController().navigate(
+                R.id.action_signalementForm1Fragment_to_signalementForm2Fragment,
+            )
         }
-        binding.next2.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_signalementForm1Fragment_to_signalementForm2Fragment)
         }
 
+    }
+    private fun RemplirChamps(signalementModel : SignalementTransfertModel ){
+        if (signalementModel.dateincident != null){
+            binding.date.text = signalementModel.dateincident
+        }
+        if (signalementModel.motifid != null){
+            //binding.motif.setText(signalementModel.motifid!! - 1)
+
+        }
     }
 }

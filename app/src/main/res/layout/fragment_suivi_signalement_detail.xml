@@ -9,16 +9,15 @@
 
     <ImageView
         android:id="@+id/imageView50"
-        android:layout_width="421dp"
+        android:layout_width="0dp"
         android:layout_height="422dp"
         android:layout_marginTop="8dp"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
         android:src="@drawable/ic_rectangle_green_white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
 
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/home"
         tools:ignore="MissingConstraints" />
 
@@ -87,352 +86,297 @@
         app:layout_constraintStart_toStartOf="@+id/home"
         app:layout_constraintTop_toTopOf="@+id/imageView50" />
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="180dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imageView50"
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="25dp"
+        android:fontFamily="@font/montserrat"
+        android:text="سبب الإخطار:"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+    <TextView
+        android:id="@+id/reason"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="50dp"
+        android:fontFamily="@font/montserrat"
+        android:text="سبب الإخطار"
+        android:textColor="#6B7280"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="25dp"
+        android:fontFamily="@font/montserrat"
+        android:text="تاريخ الحادثة: "
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/datesignalement2"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/nomcomplet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="25dp"
+        android:fontFamily="@font/montserrat"
+        android:text="الإسم الكامل هنا"
+        android:textColor="#6B7280"
+        android:textSize="16dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView21"
+        app:layout_constraintEnd_toStartOf="@+id/textView21" />
+
+    <TextView
+        android:id="@+id/datesignalement2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/montserrat"
+        android:text="31/12/2022"
+        android:textColor="#6B7280"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/textView19"
+        app:layout_constraintTop_toBottomOf="@+id/reason" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="30dp"
+        android:fontFamily="@font/montserrat"
+        android:text="الإسم الكامل:"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="196dp"
+        android:fontFamily="@font/montserrat"
+        android:text="السن:"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/age1"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/sexe1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/montserrat"
+        android:text="الجنس"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView23"
+        app:layout_constraintEnd_toStartOf="@+id/textView24" />
+
+    <TextView
+        android:id="@+id/age1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="25dp"
+        android:fontFamily="@font/montserrat"
+        android:text="السن"
+        android:textColor="#6B7280"
+        app:layout_constraintEnd_toStartOf="@+id/textView23"
+        app:layout_constraintTop_toBottomOf="@+id/nomcomplet" />
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="30dp"
+        android:fontFamily="@font/montserrat"
+        android:text="الجنس:"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView21" />
+
+    <TextView
+        android:id="@+id/situation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="25dp"
+        android:fontFamily="@font/montserrat"
+        android:text="وضعية الوالدين"
+        android:textColor="#6B7280"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView28"
+        app:layout_constraintEnd_toStartOf="@+id/textView28" />
+
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="25dp"
+        android:fontFamily="@font/montserrat"
+        android:text="الوضعية العائلية للوالدين:  "
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView24" />
+
+    <TextView
+        android:id="@+id/textView30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="25dp"
+        android:fontFamily="@font/montserrat"
+        android:text="العنوان:"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView28" />
+
+    <TextView
+        android:id="@+id/adresse1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/montserrat"
+        android:text="العنوان"
+        android:textColor="#6B7280"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView30"
+        app:layout_constraintEnd_toStartOf="@+id/textView30" />
+
+    <TextView
+        android:id="@+id/textView32"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="25dp"
+        android:fontFamily="@font/montserrat"
+        android:text="الولاية:"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView30" />
+
+    <TextView
+        android:id="@+id/textView36"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="25dp"
+        android:fontFamily="@font/montserrat"
+        android:text="محتوى الإخطار:"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+    <TextView
+        android:id="@+id/contenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="@font/montserrat"
+        android:text="محتوى الإخطار"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView36" />
+
+    <TextView
+        android:id="@+id/textView38"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="@font/montserrat"
+        android:text=" الملفات المرفقة:"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contenu" />
+
+    <TextView
+        android:id="@+id/file"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat"
+        android:text="evidence.png"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView38"
+        app:layout_constraintEnd_toStartOf="@+id/textView38"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:backgroundTint="#F28123"
+        android:drawableLeft="@drawable/ion_send_sharp"
+        android:text="تأكيد عاجل"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/file" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:fontFamily="@font/montserrat"
+        android:text="معلومات الطفل في خطر"
+        android:textColor="#F28123"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView40">
+        app:layout_constraintTop_toBottomOf="@+id/textView40" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintlayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/montserrat"
+        android:text="معلومات الإخطار"
+        android:textColor="#F97316"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wilaya1" />
 
-            <TextView
-                android:id="@+id/textView12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+    <TextView
+        android:id="@+id/wilaya1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/montserrat"
+        android:text="الولاية"
+        android:textColor="#6B7280"
+        android:textSize="16dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView32"
+        app:layout_constraintEnd_toStartOf="@+id/textView32" />
 
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="15dp"
-                android:text="الإخطار"
-                android:textColor="@color/black"
-                android:textSize="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textView16"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                android:text="سبب الإخطار:"
-                android:textColor="@color/black"
-                android:textSize="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.932"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView12" />
-
-            <TextView
-                android:id="@+id/reason"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="330dp"
-
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="24dp"
-                android:text="سبب الإخطار"
-                android:textColor="#6B7280"
-                android:textSize="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView16" />
-
-            <TextView
-                android:id="@+id/textView19"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="330dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="24dp"
-                android:text="تاريخ الحادثة: "
-                android:textColor="@color/black"
-                android:textSize="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/reason" />
-
-            <TextView
-                android:id="@+id/nomcomplet"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="308dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="24dp"
-                android:text="مروشي محمد الأمين"
-                android:textColor="#6B7280"
-                android:textSize="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.933"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView21" />
-
-            <TextView
-                android:id="@+id/datesignalement2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="308dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="24dp"
-                android:text="31/12/2022"
-                android:textColor="#6B7280"
-                android:textSize="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView19" />
-
-            <View
-                android:id="@+id/view"
-                android:layout_width="200dp"
-                android:layout_height="1dp"
-                android:layout_marginTop="20dp"
-                android:background="#4D525252"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.492"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/datesignalement2" />
-
-            <View
-                android:id="@+id/view2"
-                android:layout_width="200dp"
-                android:layout_height="1dp"
-                android:layout_marginTop="20dp"
-                android:background="#4D525252"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/wilaya1" />
-
-            <TextView
-                android:id="@+id/textView21"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="333dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="24dp"
-                android:text="الإسم الكامل:"
-                android:textColor="@color/black"
-                android:textSize="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view" />
-
-            <TextView
-                android:id="@+id/textView23"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="152dp"
-                android:text="السن:"
-                android:textColor="@color/black"
-                android:textSize="16dp"
-                app:layout_constraintEnd_toStartOf="@+id/textView24"
-                app:layout_constraintTop_toBottomOf="@+id/nomcomplet" />
-
-            <TextView
-                android:id="@+id/textView24"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="24dp"
-                android:text="الجنس:"
-                android:textColor="@color/black"
-                android:textSize="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/nomcomplet" />
-
-            <TextView
-                android:id="@+id/sexe1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:text="TextView"
-                app:layout_constraintBaseline_toBaselineOf="@+id/textView24"
-                app:layout_constraintEnd_toStartOf="@+id/textView24" />
-
-            <TextView
-                android:id="@+id/age1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:text="TextView"
-                android:textColor="#6B7280"
-                app:layout_constraintBaseline_toBaselineOf="@+id/textView23"
-                app:layout_constraintEnd_toStartOf="@+id/textView23"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <TextView
-                android:id="@+id/textView28"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:text="الوضعية العائلية للوالدين:  "
-                android:textColor="@color/black"
-                android:textSize="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView24" />
-
-            <TextView
-                android:id="@+id/situation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:text="TextView"
-                android:textColor="#6B7280"
-                app:layout_constraintEnd_toStartOf="@+id/textView28"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView23" />
-
-            <TextView
-                android:id="@+id/textView30"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="24dp"
-                android:text="العنوان:"
-                android:textColor="@color/black"
-                android:textSize="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView28" />
-
-            <TextView
-                android:id="@+id/adresse1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="TextView"
-                android:textColor="#6B7280"
-                app:layout_constraintEnd_toStartOf="@+id/textView30"
-                app:layout_constraintHorizontal_bias="0.965"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView28" />
-
-            <TextView
-                android:id="@+id/textView32"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="24dp"
-                android:text="الولاية:"
-                android:textColor="@color/black"
-                android:textSize="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView30" />
-
-            <TextView
-                android:id="@+id/textView35"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="24dp"
-                android:text="الولاية:"
-                android:textColor="@color/black"
-                android:textSize="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView30" />
-
-            <TextView
-                android:id="@+id/wilaya1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="278dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:text="TextView"
-                android:textColor="#6B7280"
-                app:layout_constraintBottom_toBottomOf="@+id/textView32"
-                app:layout_constraintEnd_toStartOf="@+id/textView32"
-                app:layout_constraintHorizontal_bias="0.125"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/adresse1" />
-
-            <TextView
-                android:id="@+id/textView36"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="24dp"
-                android:text="محتوى الإخطار:"
-                android:textColor="@color/black"
-                android:textSize="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view2" />
-
-            <TextView
-                android:id="@+id/contenu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="24dp"
-                android:text="TextView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView36" />
-
-            <TextView
-                android:id="@+id/textView38"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="24dp"
-                android:text=" الملفات المرفقة:"
-                android:textColor="@color/black"
-                android:textSize="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/contenu" />
-
-            <TextView
-                android:id="@+id/file"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="evidence.png"
-                app:layout_constraintBaseline_toBaselineOf="@+id/textView38"
-                app:layout_constraintEnd_toStartOf="@+id/textView38"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <Button
-                android:id="@+id/button8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="7dp"
-                android:backgroundTint="#FFA500"
-                android:drawableLeft="@drawable/ion_send_sharp"
-                android:text="تأكيد عاجل"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.09"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/file" />
-
-            <TextView
-                android:id="@+id/number"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textColor="@color/black"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                app:layout_constraintBaseline_toBaselineOf="@+id/textView12"
-                app:layout_constraintEnd_toStartOf="@+id/textView12" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

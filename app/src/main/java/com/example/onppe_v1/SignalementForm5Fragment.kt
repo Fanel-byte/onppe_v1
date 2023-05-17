@@ -1,14 +1,23 @@
 package com.example.onppe_v1
 
+import android.app.Dialog
+import android.content.Context
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Bundle
+import android.util.DisplayMetrics
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.room.Room
 import com.example.onppe_v1.databinding.FragmentSignalementForm5Binding
 import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
@@ -16,12 +25,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okhttp3.MultipartBody
+import java.io.IOException
 
 
 class SignalementForm5Fragment : Fragment() {
-
-
     lateinit var binding: FragmentSignalementForm5Binding
+    private lateinit var signalementModel: SignalementTransfertModel
+    private var sexe=""
+    private var wilayacode=0
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,107 +45,132 @@ class SignalementForm5Fragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val instanceDB = AppDatabase.buildDatabase(requireContext())?.getSignalementDao()
 
-        var signalementtransfert = arguments?.getSerializable("data") as SignalementTransfert
-
-
+        signalementModel = ViewModelProvider(requireActivity()).get(SignalementTransfertModel::class.java)
         binding.next.setOnClickListener { view: View ->
+            CoroutineScope(Dispatchers.Main).launch {
+                try {
+                    if (isNetworkAvailable()) {
+                        var signalement = Signalement(
+                            null,
+                            null,
+                            signalementModel.motifid,
+                            null,
+                            signalementModel.descriptif,
+                            null,
+                            signalementModel.typesignaleurid,
+                            signalementModel.identitesecrete,
+                            signalementModel.dateincident
+                        )
 
-            signalementtransfert.descriptif=binding.description.text.toString()
+                        var enfant = Enfant(
+                            null,
+                            signalementModel.nomEnfant,
+                            signalementModel.prenomEnfant,
+                            signalementModel.ageEnfant,
+                            signalementModel.sexeEnfant,
+                            signalementModel.situationparentEnfant,
+                            signalementModel.adresseEnfant,
+                            signalementModel.wilayacodeEnfant
+                        )
 
-            var signalement = Signalement(
-                null,
-                null,
-                signalementtransfert.motifid,
-                null,
-                signalementtransfert.descriptif,
-                null,
-                signalementtransfert.typesignaleurid,
-                signalementtransfert.identitesecrete,
-                signalementtransfert.dateincident
-            )
+                        var citoyen = Citoyen(
+                            null,
+                            signalementModel.nomCitoyen,
+                            signalementModel.prenomCitoyen,
+                            signalementModel.sexeCitoyen,
+                            signalementModel.ageCitoyen,
+                            signalementModel.adresseCitoyen,
+                            signalementModel.telCitoyen
+                        )
 
-            var enfant = Enfant(
-                null,
-                signalementtransfert.nomEnfant,
-                signalementtransfert.prenomEnfant,
-                signalementtransfert.ageEnfant,
-                signalementtransfert.sexeEnfant,
-                signalementtransfert.situationparentEnfant,
-                signalementtransfert.adresseEnfant,
-                signalementtransfert.wilayacodeEnfant
-            )
-
-            var citoyen = Citoyen(
-                null,
-                signalementtransfert.nomCitoyen,
-                signalementtransfert.prenomCitoyen,
-                signalementtransfert.sexeCitoyen,
-                signalementtransfert.ageCitoyen,
-                signalementtransfert.adresseCitoyen,
-                signalementtransfert.telCitoyen
-            )
-
-            addEnfant(enfant){ id ->
-                if (id != null) {
-                    signalement.enfantid=id
-                    addCitoyen(citoyen){ id ->
-                        if (id != null) {
-                            signalement.citoyenid=id
-                            if(signalementtransfert.videoImageSon==null)
-                            {
-                            addSignalement(signalement)
-                            }
-                            else{
-                                if(signalementtransfert.typepreuve=="image")
-                                {
-                                    addSignalement_avecpreuve(signalement) { id ->
-                                        if (id != null) {
-                                            var imageInfo = Image(
-                                                signalementtransfert.DescriptifvideoImageSon,
-                                                id
-                                            )
-                                            val imageInfoMB = MultipartBody.Part.createFormData("image", Gson().toJson(imageInfo))
-                                            addImg(imageInfoMB,
-                                                signalementtransfert.videoImageSon!!
-                                            )
-                                        }
-                                    }
-                                }
-                                if (signalementtransfert.typepreuve=="son"){
-                                    addSignalement_avecpreuve(signalement) { id ->
-                                        if (id != null) {
-                                            var sonInfo = Son(
-                                                signalementtransfert.DescriptifvideoImageSon,
-                                                id
-                                            )
-                                            val sonInfoMB = MultipartBody.Part.createFormData("vocal", Gson().toJson(sonInfo))
-                                            addSon(sonInfoMB,signalementtransfert.videoImageSon!!)
-                                        }
-                                    }
-                                }
-                                if (signalementtransfert.typepreuve=="video"){
-                                    addSignalement_avecpreuve(signalement) { id ->
-                                        if (id != null) {
-                                            var videoInfo = Video(
-                                                signalementtransfert.DescriptifvideoImageSon,
-                                                id
-                                            )
-                                            val imageInfoMB = MultipartBody.Part.createFormData("video", Gson().toJson(videoInfo))
-                                            addVideo(imageInfoMB,signalementtransfert.videoImageSon!!)
+                        addEnfant(enfant) { id ->
+                            if (id != null) {
+                                signalement.enfantid = id
+                                addCitoyen(citoyen) { id ->
+                                    if (id != null) {
+                                        signalement.citoyenid = id
+                                        if (signalementModel.videoImageSon == null) {
+                                            addSignalement(signalement)
+                                        } else {
+                                            if (signalementModel.typepreuve == "image") {
+                                                addSignalement_avecpreuve(signalement) { id ->
+                                                    if (id != null) {
+                                                        var imageInfo = Image(
+                                                            signalementModel.DescriptifvideoImageSon,
+                                                            id
+                                                        )
+                                                        val imageInfoMB =
+                                                            MultipartBody.Part.createFormData(
+                                                                "image",
+                                                                Gson().toJson(imageInfo)
+                                                            )
+                                                        addImg(
+                                                            imageInfoMB,
+                                                            signalementModel.videoImageSon!!
+                                                        )
+                                                    }
+                                                }
+                                            }
+                                            if (signalementModel.typepreuve == "son") {
+                                                addSignalement_avecpreuve(signalement) { id ->
+                                                    if (id != null) {
+                                                        var sonInfo = Son(
+                                                            signalementModel.DescriptifvideoImageSon,
+                                                            id
+                                                        )
+                                                        val sonInfoMB =
+                                                            MultipartBody.Part.createFormData(
+                                                                "vocal",
+                                                                Gson().toJson(sonInfo)
+                                                            )
+                                                        addSon(
+                                                            sonInfoMB,
+                                                            signalementModel.videoImageSon!!
+                                                        )
+                                                    }
+                                                }
+                                            }
+                                            if (signalementModel.typepreuve == "video") {
+                                                addSignalement_avecpreuve(signalement) { id ->
+                                                    if (id != null) {
+                                                        var videoInfo = Video(
+                                                            signalementModel.DescriptifvideoImageSon,
+                                                            id
+                                                        )
+                                                        val imageInfoMB =
+                                                            MultipartBody.Part.createFormData(
+                                                                "video",
+                                                                Gson().toJson(videoInfo)
+                                                            )
+                                                        addVideo(
+                                                            imageInfoMB,
+                                                            signalementModel.videoImageSon!!
+                                                        )
+                                                    }
+                                                }
+                                            }
                                         }
                                     }
                                 }
                             }
                         }
                     }
+                    else {
+                        throw IOException("Erreur : Aucune connexion Internet.")
+                    }
                 }
+                catch (e: IOException) {
+                    if (instanceDB != null) {
+                        instanceDB.addSignalement(createSignalementTransfert(signalementModel,false))
+                     }
+                    Toast.makeText(requireActivity(), "Aucune connexion Internet", Toast.LENGTH_SHORT).show()}
+                catch (e: Exception) {
+                    Toast.makeText(requireActivity(), "Erreur Serveur", Toast.LENGTH_SHORT).show()}
             }
-          //  view.findNavController().navigate(R.id.action_signalementForm5Fragment_to_finFormulaireFragment)
         }
-        binding.next2.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_signalementForm5Fragment_to_finFormulaireFragment)
-        }
+
         binding.back.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_signalementForm5Fragment_to_signalementForm4Fragment)
         }
@@ -251,4 +287,43 @@ class SignalementForm5Fragment : Fragment() {
             }
         }
     }
+    private fun isNetworkAvailable(): Boolean {
+        val connectivityManager =
+            requireContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+        val networkCapabilities = connectivityManager.activeNetwork ?: return false
+
+        val activeNetwork = connectivityManager.getNetworkCapabilities(networkCapabilities) ?: return false
+
+        return activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) ||
+                activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)
+    }
+    private fun createSignalementTransfert(signalementTransfertModel: SignalementTransfertModel, Upload : Boolean): SignalementTransfert {
+        return SignalementTransfert(
+            upload = Upload,
+            //videoImageSon = signalementTransfertModel.videoImageSon,
+            DescriptifvideoImageSon = signalementTransfertModel.DescriptifvideoImageSon,
+            typepreuve = signalementTransfertModel.typepreuve,
+            id = signalementTransfertModel.id,
+            motifid = signalementTransfertModel.motifid,
+            dateincident = signalementTransfertModel.dateincident,
+            nomEnfant = signalementTransfertModel.nomEnfant,
+            prenomEnfant = signalementTransfertModel.prenomEnfant,
+            ageEnfant = signalementTransfertModel.ageEnfant,
+            sexeEnfant = signalementTransfertModel.sexeEnfant,
+            situationparentEnfant = signalementTransfertModel.situationparentEnfant,
+            adresseEnfant = signalementTransfertModel.adresseEnfant,
+            wilayacodeEnfant = signalementTransfertModel.wilayacodeEnfant,
+            typesignaleurid = signalementTransfertModel.typesignaleurid,
+            identitesecrete = signalementTransfertModel.identitesecrete,
+            nomCitoyen = signalementTransfertModel.nomCitoyen,
+            prenomCitoyen = signalementTransfertModel.prenomCitoyen,
+            sexeCitoyen = signalementTransfertModel.sexeCitoyen,
+            ageCitoyen = signalementTransfertModel.ageCitoyen,
+            adresseCitoyen = signalementTransfertModel.adresseCitoyen,
+            telCitoyen = signalementTransfertModel.telCitoyen,
+            descriptif = signalementTransfertModel.descriptif
+        )
+    }
+
 }

@@ -24,6 +24,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.findNavController
@@ -43,7 +44,7 @@ import java.io.IOException
 
 
 class SignalementImageFragment : Fragment() {
-
+    private lateinit var signalementModel: SignalementTransfertModel
     private lateinit var binding: FragmentSignalementImageBinding
     private lateinit var image : ImageView
     private var signalementId: Int? = null
@@ -70,6 +71,12 @@ class SignalementImageFragment : Fragment() {
     ): View? {
         binding = FragmentSignalementImageBinding.inflate(inflater, container, false)
         val view = binding.root
+        return view
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        signalementModel = ViewModelProvider(requireActivity()).get(SignalementTransfertModel::class.java)
         image = binding.ImageView
         btn_upload_camera = binding.imagecapture
         btn_upload_gallery = binding.imagegalerie
@@ -148,7 +155,7 @@ class SignalementImageFragment : Fragment() {
         btn_upload_gallery.setOnClickListener {
             imageChooser()
         }
-        
+
         //cas 1 : envoyer un signalement avec Image et Descriptif
         binding.envoie.setOnClickListener {
             addSignalement(Signalement(null,null,null,null,null,null,null,true,"")) { id ->
@@ -163,31 +170,8 @@ class SignalementImageFragment : Fragment() {
 
         //cas 2 : envoyer un signalement avec plus d'information
         binding.add.setOnClickListener{
-
-            val signalement = SignalementTransfert(image_body ,
-                binding.Descriptionimage.text.toString(),
-                "image",
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null ,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null)
-            val data = bundleOf("data" to signalement)
-            view.findNavController().navigate(R.id.action_signalementImageFragment_to_signalementForm1Fragment,data)
+           signalementModel.DescriptifvideoImageSon = binding.Descriptionimage.text.toString()
+            view.findNavController().navigate(R.id.action_signalementImageFragment_to_signalementForm1Fragment)
         }
 
         binding.back.setOnClickListener { view: View ->
@@ -196,8 +180,6 @@ class SignalementImageFragment : Fragment() {
         binding.home.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_signalementImageFragment_to_fonctionnalitiesActivity)
         }
-
-        return view
     }
 
     // Take a picture launching camera 1

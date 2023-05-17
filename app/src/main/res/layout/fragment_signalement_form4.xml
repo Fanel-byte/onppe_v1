@@ -82,10 +82,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat"
-        android:text="السن * "
+        android:text="السن "
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/prenom"
+        app:layout_constraintEnd_toEndOf="@+id/nom"
         app:layout_constraintTop_toTopOf="@+id/textView7" />
 
     <TextView
@@ -94,11 +94,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/montserrat"
-        android:text="الجنس"
+        android:text="الجنس "
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/nom" />
+        app:layout_constraintTop_toBottomOf="@+id/prenom" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/sexeenfant"
@@ -111,9 +111,9 @@
         android:textSize="12dp"
         app:hintAnimationEnabled="true"
         app:hintTextAppearance="@style/TextAppearance.AppCompat.Small"
-        app:layout_constraintEnd_toEndOf="@+id/nom"
+        app:layout_constraintEnd_toEndOf="@+id/prenom"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/nom"
+        app:layout_constraintStart_toStartOf="@+id/prenom"
         app:layout_constraintTop_toBottomOf="@+id/textView7">
 
         <AutoCompleteTextView
@@ -234,7 +234,7 @@
         app:layout_constraintTop_toTopOf="@+id/next" />
 
     <EditText
-        android:id="@+id/nom"
+        android:id="@+id/prenom"
         android:layout_width="148dp"
         android:layout_height="56.5dp"
         android:layout_marginTop="8dp"
@@ -248,7 +248,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
-        android:id="@+id/prenom"
+        android:id="@+id/nom"
         android:layout_width="148dp"
         android:layout_height="0dp"
         android:background="@drawable/custom_edittext2"
@@ -257,11 +257,11 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:textCursorDrawable="@drawable/custom_cursor"
-        app:layout_constraintBottom_toBottomOf="@+id/nom"
+        app:layout_constraintBottom_toBottomOf="@+id/prenom"
         app:layout_constraintEnd_toEndOf="@+id/textView4"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/nom"
+        app:layout_constraintTop_toTopOf="@+id/prenom"
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
@@ -271,7 +271,6 @@
         android:layout_marginTop="5dp"
         android:background="@drawable/custom_edittext2"
         android:ems="10"
-
         android:inputType="number"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
@@ -309,18 +308,20 @@
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/textView11"
-        app:layout_constraintTop_toBottomOf="@+id/imageView50" />
+        app:layout_constraintTop_toBottomOf="@+id/adresse" />
 
     <EditText
         android:id="@+id/tel"
-        android:layout_width="353dp"
-        android:layout_height="48dp"
+        android:layout_width="0dp"
+        android:layout_height="56.5dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/custom_edittext2"
         android:ems="10"
+        android:paddingLeft="10dp"
+        android:textCursorDrawable="@drawable/custom_cursor"
         android:inputType="number"
-        android:paddingRight="10dp"
         android:maxLength="10"
+        android:paddingRight="10dp"
         app:layout_constraintEnd_toEndOf="@+id/textView10"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/adresse"
