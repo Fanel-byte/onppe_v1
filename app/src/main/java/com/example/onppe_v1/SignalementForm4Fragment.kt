@@ -42,16 +42,20 @@ class SignalementForm4Fragment : Fragment() {
         // Récupérer la taille de l'écran
         val displayMetrics = DisplayMetrics()
         requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics)
-        val width = (displayMetrics.widthPixels * 0.75).toInt()
-        val height =  WindowManager.LayoutParams.WRAP_CONTENT
-
         signalementModel = ViewModelProvider(requireActivity()).get(SignalementTransfertModel::class.java)
         val items1 = listOf(
             "أنثى",
             "ذكر ")
         val adapter = ArrayAdapter(requireActivity(), R.layout.list_item, items1)
         binding.sexe.setAdapter(adapter)
-        RemplirChamps(signalementModel)
+
+        binding.sexe.threshold = Int.MAX_VALUE // Show all items in the dropdown
+
+        binding.sexe.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                binding.sexe.showDropDown() // Show dropdown when AutoCompleteTextView gains focus
+            }
+        }
 
         binding.sexe.setOnItemClickListener { parent, view, position, id ->
             if (position == 0) {
@@ -64,12 +68,10 @@ class SignalementForm4Fragment : Fragment() {
         }
 
         binding.back.setOnClickListener {
-            view.findNavController().navigate(R.id.action_signalementForm4Fragment_to_signalementForm3Fragment)
-        }
+            view.findNavController().popBackStack()        }
 
         binding.back2.setOnClickListener {
-            view.findNavController().navigate(R.id.action_signalementForm4Fragment_to_signalementForm3Fragment)
-        }
+            view.findNavController().popBackStack()        }
 
         binding.next.setOnClickListener {
             if ((binding.prenom.text.toString().isEmpty())||(binding.nom.text.toString().isEmpty())||(binding.tel.text.toString().isEmpty())){
@@ -77,16 +79,16 @@ class SignalementForm4Fragment : Fragment() {
             }else{
                 signalementModel.nomCitoyen=binding.nom.text.toString()
                 signalementModel.prenomCitoyen=binding.prenom.text.toString()
-                signalementModel.ageCitoyen=binding.age.text.toString().toInt()
+                signalementModel.ageCitoyen = if (binding.age.text.toString().isNotEmpty()) {
+                    binding.age.text.toString().toInt() }
+                else { null }
                 signalementModel.sexeCitoyen=sexe
                 signalementModel.adresseCitoyen=binding.adresse.text.toString()
                 signalementModel.telCitoyen=binding.tel.text.toString()
                 view.findNavController().navigate(R.id.action_signalementForm4Fragment_to_signalementForm5Fragment)
             }
         }
-        binding.back3.setOnClickListener {
-            view.findNavController().navigate(R.id.action_signalementForm4Fragment_to_signalementForm3Fragment)
-        }
+
         binding.next2.setOnClickListener {
             view.findNavController().navigate(R.id.action_signalementForm4Fragment_to_signalementForm5Fragment)
         }
@@ -95,7 +97,7 @@ class SignalementForm4Fragment : Fragment() {
         }
     }
 
-    private fun RemplirChamps(signalementModel : SignalementTransfertModel ) {
+    private fun RemplirChamps(signalementModel : SignalementTransfertModel) {
         if (signalementModel.nomCitoyen != null){
             binding.nom.setText(signalementModel.nomCitoyen)
         }
@@ -115,4 +117,5 @@ class SignalementForm4Fragment : Fragment() {
             //binding.sexe.setText(signalementModel.sexeCitoyen)
         }
     }
+
 }

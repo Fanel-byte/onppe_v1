@@ -26,7 +26,7 @@ class SignalementForm2Fragment : Fragment() {
     lateinit var binding: FragmentSignalementForm2Binding
     private lateinit var signalementModel: SignalementTransfertModel
     private var sexe=""
-    private var wilayacode by Delegates.notNull<Int>()
+    private var wilayacode = 0
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -109,10 +109,23 @@ class SignalementForm2Fragment : Fragment() {
         binding.sexe.setAdapter(adapter)
         val adapter2 = ArrayAdapter(requireActivity(), R.layout.list_item, wilayas)
         binding.wilaya.setAdapter(adapter2)
-        // recuperer les champs deja saisi :
-        RemplirChamps(signalementModel)
         binding.wilaya.setOnItemClickListener { parent, view, position, id ->
             wilayacode=position+1 }
+
+        binding.wilaya.threshold = Int.MAX_VALUE // Show all items in the dropdown
+
+        binding.wilaya.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                binding.wilaya.showDropDown() // Show dropdown when AutoCompleteTextView gains focus
+            }
+        }
+        binding.sexe.threshold = Int.MAX_VALUE // Show all items in the dropdown
+
+        binding.sexe.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                binding.sexe.showDropDown() // Show dropdown when AutoCompleteTextView gains focus
+            }
+        }
 
         binding.sexe.setOnItemClickListener { parent, view, position, id ->
             if (position == 0) {
@@ -186,14 +199,10 @@ class SignalementForm2Fragment : Fragment() {
             }
         }
         binding.back.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_signalementForm2Fragment_to_signalementForm1Fragment)
-        }
+            view.findNavController().popBackStack()        }
         binding.back2.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_signalementForm2Fragment_to_signalementForm1Fragment)
-        }
-        binding.back3.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_signalementForm2Fragment_to_signalementForm1Fragment)
-        }
+            view.findNavController().popBackStack()        }
+
         binding.home.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_signalementForm2Fragment_to_fonctionnalitiesActivity)
         }

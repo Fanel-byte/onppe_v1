@@ -72,6 +72,15 @@ class SignalementForm1Fragment : Fragment() {
         binding.motif.setAdapter(adapter)
         binding.date.setText(SimpleDateFormat("yyyy-MM-dd").format(Date()))
         // verifier si les champs sont deja enregistrer signalement model :
+
+        binding.motif.threshold = Int.MAX_VALUE // Show all items in the dropdown
+
+        binding.motif.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                binding.motif.showDropDown() // Show dropdown when AutoCompleteTextView gains focus
+            }
+        }
+
         RemplirChamps(signalementModel)
         binding.motif.setOnItemClickListener { parent, view, position, id ->
             motifid=position+1

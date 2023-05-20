@@ -35,7 +35,7 @@ class SignalementForm3Fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         signalementModel = ViewModelProvider(requireActivity()).get(SignalementTransfertModel::class.java)
-        RemplirChamps(signalementModel)
+
 
         binding.next.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_signalementForm3Fragment_to_signalementForm4Fragment)
@@ -45,12 +45,10 @@ class SignalementForm3Fragment : Fragment() {
             view.findNavController().navigate(R.id.action_signalementForm3Fragment_to_signalementForm5Fragment)
         }
         binding.back2.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_signalementForm3Fragment_to_signalementForm2Fragment)
-        }
+            view.findNavController().popBackStack()        }
 
         binding.back.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_signalementForm3Fragment_to_signalementForm2Fragment)
-        }
+            view.findNavController().popBackStack()        }
 
 
         binding.home.setOnClickListener { view: View ->

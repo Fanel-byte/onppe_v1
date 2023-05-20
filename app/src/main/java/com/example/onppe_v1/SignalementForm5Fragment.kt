@@ -1,23 +1,17 @@
 package com.example.onppe_v1
 
-import android.app.Dialog
 import android.content.Context
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Bundle
-import android.util.DisplayMetrics
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import androidx.room.Room
 import com.example.onppe_v1.databinding.FragmentSignalementForm5Binding
 import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
@@ -25,6 +19,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okhttp3.MultipartBody
+import okio.Buffer
 import java.io.IOException
 
 
@@ -33,6 +28,7 @@ class SignalementForm5Fragment : Fragment() {
     private lateinit var signalementModel: SignalementTransfertModel
     private var sexe=""
     private var wilayacode=0
+    private var send = false
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,6 +45,7 @@ class SignalementForm5Fragment : Fragment() {
 
         signalementModel = ViewModelProvider(requireActivity()).get(SignalementTransfertModel::class.java)
         binding.next.setOnClickListener { view: View ->
+            signalementModel.descriptif = binding.description.text.toString()
             CoroutineScope(Dispatchers.Main).launch {
                 try {
                     if (isNetworkAvailable()) {
@@ -162,24 +159,22 @@ class SignalementForm5Fragment : Fragment() {
                     }
                 }
                 catch (e: IOException) {
-                    if (instanceDB != null) {
-                        instanceDB.addSignalement(createSignalementTransfert(signalementModel,false))
-                     }
                     Toast.makeText(requireActivity(), "Aucune connexion Internet", Toast.LENGTH_SHORT).show()}
                 catch (e: Exception) {
                     Toast.makeText(requireActivity(), "Erreur Serveur", Toast.LENGTH_SHORT).show()}
+                finally {
+                    // Enregistrer en interne MySql Lite
+                    if (instanceDB != null) {
+                        instanceDB.addSignalement(createSignalementTransfert(signalementModel,send))
+                }
+                }
             }
         }
 
         binding.back.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_signalementForm5Fragment_to_signalementForm4Fragment)
-        }
+            view.findNavController().popBackStack()        }
         binding.back2.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_signalementForm5Fragment_to_signalementForm4Fragment)
-        }
-        binding.back3.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_signalementForm5Fragment_to_signalementForm4Fragment)
-        }
+            view.findNavController().popBackStack()        }
         binding.home.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_signalementForm5Fragment_to_fonctionnalitiesActivity)
         }
@@ -232,7 +227,6 @@ class SignalementForm5Fragment : Fragment() {
 
         }
     }
-
     private fun addSignalement_avecpreuve(new: Signalement, callback: (Int?) -> Unit) {
         CoroutineScope(Dispatchers.IO).launch {
             val response = RetrofitService.endpoint.addSignalement(new)
@@ -298,10 +292,15 @@ class SignalementForm5Fragment : Fragment() {
         return activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) ||
                 activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)
     }
+    fun partToByteArray(part: MultipartBody.Part?): ByteArray {
+        val sink = Buffer()
+        part?.body?.writeTo(sink)
+        return sink.readByteArray()
+    }
     private fun createSignalementTransfert(signalementTransfertModel: SignalementTransfertModel, Upload : Boolean): SignalementTransfert {
         return SignalementTransfert(
             upload = Upload,
-            //videoImageSon = signalementTransfertModel.videoImageSon,
+            videoImageSon = partToByteArray(signalementTransfertModel.videoImageSon),
             DescriptifvideoImageSon = signalementTransfertModel.DescriptifvideoImageSon,
             typepreuve = signalementTransfertModel.typepreuve,
             id = signalementTransfertModel.id,

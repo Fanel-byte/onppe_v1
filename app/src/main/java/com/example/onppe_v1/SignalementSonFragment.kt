@@ -34,9 +34,6 @@ class SignalementSonFragment : Fragment() {
     private var mediaRecorder: MediaRecorder? = null
     private var state: Boolean = false
     private lateinit var binding : FragmentSignalementSonBinding
-    private lateinit var voice_recorder : ImageView
-    private lateinit var check_record :ImageView
-    private lateinit var stop_record :ImageView
     private lateinit var counter : TextView
     private lateinit var progressBar: SeekBar
     lateinit var sonInfo: Son
@@ -55,10 +52,7 @@ class SignalementSonFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        check_record=binding.playrecord
-        voice_recorder = binding.voicerecorder
-        stop_record=binding.stoprecord
-        voice_recorder.setOnClickListener {
+        binding.voicerecorder.setOnClickListener {
             ActivityCompat.requestPermissions(requireActivity(),
                 arrayOf(Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE,
                     Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.FOREGROUND_SERVICE), 0)
@@ -81,11 +75,11 @@ class SignalementSonFragment : Fragment() {
 
             }
         }
-        stop_record.setOnClickListener {
+        binding.stoprecord.setOnClickListener {
             stopRecording()
         }
         signalementModel = ViewModelProvider(requireActivity()).get(SignalementTransfertModel::class.java)
-        check_record.setOnClickListener {
+        binding.playrecord.setOnClickListener {
             val mediaPlayer = MediaPlayer()
             try {
                 mediaPlayer.setDataSource(output)
@@ -143,8 +137,8 @@ class SignalementSonFragment : Fragment() {
             mediaRecorder?.prepare()
             mediaRecorder?.start()
             state = true
-            voice_recorder.setImageResource(R.drawable.ic_pause)
-            stop_record.setImageResource(R.drawable.ic_stop)
+            binding.voicerecorder.setImageResource(R.drawable.ic_pause)
+            binding.stoprecord.setImageResource(R.drawable.ic_stop)
 
             timeElapsed = 0L
             timerRunnable = Runnable {
@@ -167,11 +161,11 @@ class SignalementSonFragment : Fragment() {
             mediaRecorder?.stop()
             mediaRecorder?.release()
             state = false
-            check_record.setVisibility(View.VISIBLE);
+            binding.playrecord.setVisibility(View.VISIBLE);
             progressBar.setVisibility(View.VISIBLE);
 
-            voice_recorder.setImageResource(R.drawable.upload_sound)
-            stop_record.setImageResource(R.drawable.upload)
+            binding.voicerecorder.setImageResource(R.drawable.upload_sound)
+            binding.stoprecord.setImageResource(R.drawable.upload)
 
             handler?.removeCallbacks(timerRunnable!!)
             counter.text = ""
@@ -220,6 +214,13 @@ class SignalementSonFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun RemplirChamps(signalementModel : SignalementTransfertModel){
+        if (signalementModel.DescriptifvideoImageSon != null){
+            binding.Descriptionson.setText(signalementModel.DescriptifvideoImageSon)
+        }
+        //if (signalementModel.videoImageSon != null){ }
     }
 
 }

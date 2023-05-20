@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.ImageDecoder
 import android.os.Build
 import android.os.Bundle
@@ -40,30 +41,18 @@ import okhttp3.RequestBody
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
-import java.io.IOException
 
 
 class SignalementImageFragment : Fragment() {
     private lateinit var signalementModel: SignalementTransfertModel
     private lateinit var binding: FragmentSignalementImageBinding
-    private lateinit var image : ImageView
-    private var signalementId: Int? = null
-    private lateinit var video: VideoView
-    private lateinit var btn_upload_camera : ImageView
-    private lateinit var btn_upload_gallery : ImageView
-    private lateinit var btn_upload_video : ImageView
     lateinit var image_body: MultipartBody.Part
     lateinit var imageInfo: Image
 
     private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
     private lateinit var activityResultLauncher1: ActivityResultLauncher<Intent>
-    private lateinit var activityResultLauncher2: ActivityResultLauncher<Intent>
     lateinit var imageBitmap: Bitmap
     val requestCode = 400
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -77,10 +66,8 @@ class SignalementImageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         signalementModel = ViewModelProvider(requireActivity()).get(SignalementTransfertModel::class.java)
-        image = binding.ImageView
-        btn_upload_camera = binding.imagecapture
-        btn_upload_gallery = binding.imagegalerie
 
+        RemplirChamps(signalementModel)
 
         // code to uplaod the image from the camera
         activityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
@@ -88,7 +75,7 @@ class SignalementImageFragment : Fragment() {
             if (result.resultCode == AppCompatActivity.RESULT_OK && intent != null)
             {
                 imageBitmap = intent.extras?.get("data") as Bitmap
-                image.setImageBitmap(imageBitmap)
+                binding.ImageView.setImageBitmap(imageBitmap)
                 //get image path
 
                 val filesDir = requireContext().getFilesDir()
@@ -120,9 +107,9 @@ class SignalementImageFragment : Fragment() {
                     @Suppress("DEPRECATION")
                     MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, selectedImageUri)
                 }
-                image.setImageBitmap(imageBitmap)
+                binding.ImageView.setImageBitmap(imageBitmap)
                 binding.img.visibility=View.INVISIBLE
-                image.visibility = View.VISIBLE
+                binding.ImageView.visibility = View.VISIBLE
                 binding.img.visibility=View.INVISIBLE
                 //get image path
                 val filesDir = requireContext().getFilesDir()
@@ -143,7 +130,7 @@ class SignalementImageFragment : Fragment() {
 
 
         // by clicking this button we get the image from the camera
-        btn_upload_camera.setOnClickListener {
+        binding.imagecapture.setOnClickListener {
             if (ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.CAMERA)== PackageManager.PERMISSION_GRANTED)  {
                 openCameraIntent()
             }
@@ -152,7 +139,7 @@ class SignalementImageFragment : Fragment() {
             }
         }
         // by clicking this button we get the image from the gallery
-        btn_upload_gallery.setOnClickListener {
+        binding.imagegalerie.setOnClickListener {
             imageChooser()
         }
 
@@ -170,6 +157,7 @@ class SignalementImageFragment : Fragment() {
 
         //cas 2 : envoyer un signalement avec plus d'information
         binding.add.setOnClickListener{
+           signalementModel.videoImageSon =  image_body
            signalementModel.DescriptifvideoImageSon = binding.Descriptionimage.text.toString()
             view.findNavController().navigate(R.id.action_signalementImageFragment_to_signalementForm1Fragment)
         }
@@ -235,6 +223,13 @@ class SignalementImageFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun RemplirChamps(signalementModel : SignalementTransfertModel){
+        if (signalementModel.DescriptifvideoImageSon != null){
+            binding.Descriptionimage.setText(signalementModel.DescriptifvideoImageSon)
+        }
+        //if (signalementModel.videoImageSon != null){ }
     }
 
 }

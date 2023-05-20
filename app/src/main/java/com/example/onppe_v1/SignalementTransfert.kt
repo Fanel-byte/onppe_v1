@@ -7,10 +7,10 @@ import java.io.Serializable
 
 @Entity(tableName ="signalements" )
 data class SignalementTransfert(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     val id: Int?,
     val upload:Boolean,
-    //val videoImageSon: MultipartBody.Part?,
+    val videoImageSon: ByteArray,
     val DescriptifvideoImageSon:String?,
     val typepreuve:String?,
 

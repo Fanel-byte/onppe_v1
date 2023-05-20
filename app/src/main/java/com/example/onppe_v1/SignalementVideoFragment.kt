@@ -45,22 +45,12 @@ import java.io.File
 
 class SignalementVideoFragment : Fragment() {
     private lateinit var signalementModel: SignalementTransfertModel
-
     private lateinit var binding: FragmentSignalementVideoBinding
-    private lateinit var video: VideoView
-    private lateinit var btn_upload_camera : ImageView
-    private lateinit var btn_Capture_video : ImageView
     lateinit var videoInfo: Video
     lateinit var video_body: MultipartBody.Part
-
     private lateinit var activityResultLauncher2: ActivityResultLauncher<Intent>
     val requestCode = 400
     var intent_video: Uri? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -72,9 +62,7 @@ class SignalementVideoFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         signalementModel = ViewModelProvider(requireActivity()).get(SignalementTransfertModel::class.java)
-        video=binding.videoView
-        btn_Capture_video = binding.videocapture
-        btn_upload_camera = binding.videogalerie
+        RemplirChamps(signalementModel)
 
 
 // Code to upload the video from the gallery
@@ -82,11 +70,11 @@ class SignalementVideoFragment : Fragment() {
             val intent = result.data
             if (result.resultCode == AppCompatActivity.RESULT_OK && intent != null) {
                 val selectedVideoUri = intent.data
-                video.setVideoURI(selectedVideoUri)
+                binding.videoView.setVideoURI(selectedVideoUri)
                 intent_video = selectedVideoUri
-                video.requestFocus()
-                video.start()
-                video.visibility = View.VISIBLE
+                binding.videoView.requestFocus()
+                binding.videoView.start()
+                binding.videoView.visibility = View.VISIBLE
                 //add video in path
                 val path = getPathFromUri(selectedVideoUri!!)
                 val input = context?.contentResolver?.openInputStream(selectedVideoUri!!)
@@ -100,7 +88,7 @@ class SignalementVideoFragment : Fragment() {
                 video_body = MultipartBody.Part.createFormData("path", file.name, reqFile)
             }
         }
-        btn_upload_camera.setOnClickListener {
+        binding.videogalerie.setOnClickListener {
             if (ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.CAMERA)== PackageManager.PERMISSION_GRANTED)  {
                 VideoChooser()
             }
@@ -109,7 +97,7 @@ class SignalementVideoFragment : Fragment() {
             }
         }
         // Code to upload the video from the camera
-        btn_Capture_video.setOnClickListener {
+        binding.videocapture.setOnClickListener {
             if (ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.CAMERA)== PackageManager.PERMISSION_GRANTED)  {
                 openVideoCameraIntent()
             }
@@ -207,5 +195,12 @@ class SignalementVideoFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun RemplirChamps(signalementModel : SignalementTransfertModel){
+        if (signalementModel.DescriptifvideoImageSon != null){
+            binding.Descriptionvideo.setText(signalementModel.DescriptifvideoImageSon)
+        }
+        //if (signalementModel.videoImageSon != null){ }
     }
 }

@@ -22,7 +22,7 @@ class SuiviSignalementFragment : Fragment() {
 
     lateinit var binding: FragmentSuiviSignalementBinding
     lateinit var signalementModel: SignalementModel
-
+    val instanceDB = AppDatabase.buildDatabase(requireContext())?.getSignalementDao()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,6 +43,7 @@ class SuiviSignalementFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         signalementModel = ViewModelProvider(requireActivity()).get(SignalementModel::class.java)
         GetSignalements()
 
@@ -65,7 +66,6 @@ class SuiviSignalementFragment : Fragment() {
                 var signalements = response.body()
 
                 if (signalements != null) {
-                    Toast.makeText(requireActivity(), "HEEEEEEEEEEEERE " +response.code().toString() , Toast.LENGTH_SHORT).show()
                     signalementModel.signalements = signalements
                     binding.recyclerView.layoutManager = LinearLayoutManager(requireActivity() ,
                         RecyclerView.VERTICAL,false)
@@ -75,7 +75,7 @@ class SuiviSignalementFragment : Fragment() {
                 }
                 else {view?.findNavController()?.navigate(R.id.action_mainFragment_to_nosuiviFragment)}
             }else{
-                Toast.makeText(requireActivity(), "ERREUR " +response.code().toString() , Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireActivity(), "erreur lors de l'acces aux serveur : " +response.code().toString() , Toast.LENGTH_SHORT).show()
             }
         }
     }
