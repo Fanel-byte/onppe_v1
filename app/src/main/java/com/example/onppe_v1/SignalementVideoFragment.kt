@@ -77,7 +77,7 @@ class SignalementVideoFragment : Fragment() {
         CoroutineScope(Dispatchers.Main).launch {
             binding.progressBar.visibility = View.INVISIBLE
             // Ne pas affichre le toast peut poser probleme : not attached to an activity (mettre pop up)
-            //Toast.makeText(requireActivity(),"Une erreur s'est produite",Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireActivity(),"Une erreur lors de la connexion au serveur",Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -262,6 +262,7 @@ class SignalementVideoFragment : Fragment() {
             withContext(Dispatchers.Main) {
                 binding.progressBar.visibility = View.INVISIBLE
                 if(response.isSuccessful) {
+                    Toast.makeText(requireActivity(),"Signalement envoyé",Toast.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.action_signalementVideoFragment_to_finFormulaireFragment)
                 }
                 else {

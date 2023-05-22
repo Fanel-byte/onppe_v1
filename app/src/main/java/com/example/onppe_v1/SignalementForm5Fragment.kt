@@ -1,6 +1,7 @@
 package com.example.onppe_v1
 
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Bundle
@@ -23,6 +24,8 @@ import java.io.IOException
 class SignalementForm5Fragment : Fragment() {
     lateinit var binding: FragmentSignalementForm5Binding
     private lateinit var signalementModel: SignalementTransfertModel
+    private val PICK_FILE_REQUEST_CODE = 2
+    private val RESULT_OK = 1
 
     // Exception Handler for Coroutines
     val exceptionHandler = CoroutineExceptionHandler {    coroutineContext, throwable ->
@@ -160,6 +163,11 @@ class SignalementForm5Fragment : Fragment() {
             }
         }
 
+        binding.addpreuve.setOnClickListener{
+            val intent = Intent(Intent.ACTION_GET_CONTENT)
+            intent.type = "application/pdf,application/msword" // Filtrer les types de fichiers
+            startActivityForResult(intent, PICK_FILE_REQUEST_CODE)
+        }
         binding.back.setOnClickListener { view: View ->
             view.findNavController().popBackStack()        }
         binding.back2.setOnClickListener { view: View ->
@@ -169,6 +177,15 @@ class SignalementForm5Fragment : Fragment() {
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == PICK_FILE_REQUEST_CODE && resultCode == RESULT_OK) {
+            data?.data?.let { uri ->
+                // Recuperer le fichier et l'afficher sur l interface xml de mon app
+            }
+        }
+    }
     private fun addEnfant(enfant: Enfant,callback: (Int?) -> Unit) {
         CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
             val response = RetrofitService.endpoint.createEnfant(enfant)

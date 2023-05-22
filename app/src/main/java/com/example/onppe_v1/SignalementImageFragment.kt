@@ -56,7 +56,7 @@ class SignalementImageFragment : Fragment() {
         CoroutineScope(Dispatchers.Main).launch {
             binding.progressBar2.visibility = View.INVISIBLE
             // Ne pas affichre le toast peut poser probleme : not attached to an activity (mettre pop up)
-            //Toast.makeText(requireActivity(),"Une erreur s'est produite",Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireActivity(),"Une erreur lors de la connexion au serveur",Toast.LENGTH_SHORT).show()
         }
     }
 

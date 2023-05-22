@@ -55,14 +55,21 @@ class SignalementForm3Fragment : Fragment() {
             view.findNavController().navigate(R.id.action_signalementForm3Fragment_to_fonctionnalitiesActivity)
         }
 
-
-
         binding.enfant.setOnClickListener {
             signalementModel.typesignaleurid = 1
             binding.enfant.setBackgroundColor( Color.parseColor("#CCF28123") )
             binding.moral.setBackgroundColor( Color.parseColor("#F2FAF2") )
             binding.personne.setBackgroundColor( Color.parseColor("#F2FAF2")  )
             binding.representant.setBackgroundColor(Color.parseColor("#F2FAF2"))
+            binding.textenfant.setTextColor(Color.WHITE) // Changer la couleur du texte en blanc
+            binding.textrepresentant.setTextColor(Color.parseColor("#1A811F")) // Changer la couleur du texte en blanc
+            binding.textpersonne.setTextColor(Color.parseColor("#1A811F")) // Changer la couleur du texte en blanc
+            binding.textmoral.setTextColor(Color.parseColor("#1A811F")) // Changer la couleur du texte en blanc
+            binding.imageViewEnfant.setColorFilter(Color.WHITE)
+            binding.imageViewrepresentant.setColorFilter(Color.parseColor("#1A811F"))
+            binding.imageViewpersonne.setColorFilter(Color.parseColor("#1A811F"))
+            binding.imageViewmoral.setColorFilter(Color.parseColor("#1A811F"))
+
         }
         binding.representant.setOnClickListener {
             signalementModel.typesignaleurid = 2
@@ -70,6 +77,16 @@ class SignalementForm3Fragment : Fragment() {
             binding.moral.setBackgroundColor( Color.parseColor("#F2FAF2") )
             binding.personne.setBackgroundColor( Color.parseColor("#F2FAF2")  )
             binding.enfant.setBackgroundColor(Color.parseColor("#F2FAF2"))
+            binding.textrepresentant.setTextColor(Color.WHITE) // Changer la couleur du texte en blanc
+            binding.textenfant.setTextColor(Color.parseColor("#1A811F")) // Changer la couleur du texte en blanc
+            binding.textpersonne.setTextColor(Color.parseColor("#1A811F")) // Changer la couleur du texte en blanc
+            binding.textmoral.setTextColor(Color.parseColor("#1A811F")) // Changer la couleur du texte en blanc
+            binding.imageViewrepresentant.setColorFilter(Color.WHITE)
+            binding.imageViewEnfant.setColorFilter(Color.parseColor("#1A811F"))
+            binding.imageViewpersonne.setColorFilter(Color.parseColor("#1A811F"))
+            binding.imageViewmoral.setColorFilter(Color.parseColor("#1A811F"))
+
+
         }
         binding.personne.setOnClickListener {
             signalementModel.typesignaleurid = 3
@@ -77,6 +94,15 @@ class SignalementForm3Fragment : Fragment() {
             binding.moral.setBackgroundColor( Color.parseColor("#F2FAF2") )
             binding.enfant.setBackgroundColor( Color.parseColor("#F2FAF2")  )
             binding.representant.setBackgroundColor(Color.parseColor("#F2FAF2"))
+            binding.textpersonne.setTextColor(Color.WHITE) // Changer la couleur du texte en blanc
+            binding.textrepresentant.setTextColor(Color.parseColor("#1A811F")) // Changer la couleur du texte en blanc
+            binding.textenfant.setTextColor(Color.parseColor("#1A811F")) // Changer la couleur du texte en blanc
+            binding.textmoral.setTextColor(Color.parseColor("#1A811F")) // Changer la couleur du texte en blanc
+            binding.imageViewpersonne.setColorFilter(Color.WHITE)
+            binding.imageViewrepresentant.setColorFilter(Color.parseColor("#1A811F"))
+            binding.imageViewEnfant.setColorFilter(Color.parseColor("#1A811F"))
+            binding.imageViewmoral.setColorFilter(Color.parseColor("#1A811F"))
+
         }
         binding.moral.setOnClickListener {
             signalementModel.typesignaleurid = 4
@@ -84,7 +110,19 @@ class SignalementForm3Fragment : Fragment() {
             binding.enfant.setBackgroundColor( Color.parseColor("#F2FAF2") )
             binding.personne.setBackgroundColor( Color.parseColor("#F2FAF2")  )
             binding.representant.setBackgroundColor(Color.parseColor("#F2FAF2"))
+            binding.textmoral.setTextColor(Color.WHITE) // Changer la couleur du texte en blanc
+            binding.textrepresentant.setTextColor(Color.parseColor("#1A811F")) // Changer la couleur du texte en blanc
+            binding.textpersonne.setTextColor(Color.parseColor("#1A811F")) // Changer la couleur du texte en blanc
+            binding.textenfant.setTextColor(Color.parseColor("#1A811F")) // Changer la couleur du texte en blanc
+            binding.imageViewmoral.setColorFilter(Color.WHITE)
+            binding.imageViewrepresentant.setColorFilter(Color.parseColor("#1A811F"))
+            binding.imageViewpersonne.setColorFilter(Color.parseColor("#1A811F"))
+            binding.imageViewEnfant.setColorFilter(Color.parseColor("#1A811F"))
+
         }
+
+
+
     }
 
 
