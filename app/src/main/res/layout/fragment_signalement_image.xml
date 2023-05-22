@@ -141,7 +141,6 @@
         android:layout_marginTop="12dp"
         android:background="@drawable/custom_edittext"
         android:ems="10"
-        android:textCursorDrawable="@drawable/custom_cursor"
         android:gravity="start|top"
         android:hint="اكتب هنا ..."
         android:inputType="textMultiLine"
@@ -149,7 +148,8 @@
         android:paddingTop="10dp"
         android:paddingEnd="10dp"
         android:paddingRight="10dp"
-        android:textColor="#4D000000"
+        android:textColor="#000000"
+        android:textCursorDrawable="@drawable/custom_cursor"
         android:textSize="14sp"
 
         app:layout_constraintBottom_toTopOf="@+id/add"
@@ -217,7 +217,18 @@
         app:layout_constraintStart_toStartOf="@+id/ImageView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:progressTint="#000000"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
 

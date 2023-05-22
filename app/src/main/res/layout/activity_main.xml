@@ -109,8 +109,6 @@
                 android:background="@android:color/transparent"
                 android:textColorPrimary="#22282F"
                 app:backgroundTint="@android:color/transparent"
-                app:itemIconTint="#59C55E"
-                app:itemTextColor="#59C55E"
                 app:menu="@menu/bottom_menu">
 
             </com.google.android.material.bottomnavigation.BottomNavigationView>

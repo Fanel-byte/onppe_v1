@@ -43,9 +43,7 @@ class SignalementForm4Fragment : Fragment() {
         val displayMetrics = DisplayMetrics()
         requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics)
         signalementModel = ViewModelProvider(requireActivity()).get(SignalementTransfertModel::class.java)
-        val items1 = listOf(
-            "أنثى",
-            "ذكر ")
+        val items1 = resources.getStringArray(R.array.gender)
         val adapter = ArrayAdapter(requireActivity(), R.layout.list_item, items1)
         binding.sexe.setAdapter(adapter)
 

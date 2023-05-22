@@ -1,23 +1,23 @@
 package com.example.onppe_v1
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.onppe_v1.databinding.FragmentSuiviSignalementDetailBinding
 
 class SuiviSignalementDetailFragment : Fragment() {
     lateinit var binding: FragmentSuiviSignalementDetailBinding
-    lateinit var signalementModel: SignalementModel
+    lateinit var signalementsModel: SignalementsModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentSuiviSignalementDetailBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -25,26 +25,27 @@ class SuiviSignalementDetailFragment : Fragment() {
     }
 
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        signalementModel = ViewModelProvider(requireActivity()).get(SignalementModel::class.java)
-        //declaration
+        signalementsModel = ViewModelProvider(requireActivity()).get(SignalementsModel::class.java)
+
 
 
         val position = arguments?.getInt("position")
         if (position != null) {
-            // read only
-            val signalement = signalementModel.signalements.get(position)
-            binding.reason.text = signalement.designationar
-            binding.adresse1.text=signalement.adresse
-            binding.wilaya1.text = signalement.namear
-            binding.age1.text = signalement.age.toString()
-            binding.nomcomplet.text = signalement.nom + " " +signalement.prenom
-            binding.sexe1.text = signalement.sexe
-            binding.situation.text = signalement.situationparent
-            binding.reason.text = signalement.descriptif
-            //binding.number.text = (position+1).toString()
-
+            val signalement = signalementsModel.signalements.get(position)
+            if (signalement.motifid != null)
+                binding.reason.text = resources.getStringArray(R.array.motifs).toList()[signalement.motifid!!]
+            binding.adresse1.text=signalement.adresseEnfant
+            if (signalement.wilayacodeEnfant != null)
+                binding.wilaya1.text = resources.getStringArray(R.array.wilayas).toList()[signalement.wilayacodeEnfant!!]
+            binding.age1.text = signalement.ageEnfant.toString()
+            binding.nomcomplet.text = signalement.nomEnfant + " " +signalement.prenomEnfant
+            binding.sexe1.text = signalement.sexeEnfant
+            binding.situation.text = signalement.situationparentEnfant
+            binding.contenu.text = signalement.descriptif
+            binding.datesignalement2.text = signalement.dateincident
 
         }
         binding.home.setOnClickListener { view: View ->

@@ -30,7 +30,7 @@ class SignalementForm2Fragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentSignalementForm2Binding.inflate(inflater, container, false)
         val view = binding.root
@@ -53,58 +53,8 @@ class SignalementForm2Fragment : Fragment() {
         // Définir la taille de la fenêtre du dialog
         myDialog.window?.setLayout(width, height)
         signalementModel = ViewModelProvider(requireActivity()).get(SignalementTransfertModel::class.java)
-        val items1 = listOf(
-            "أنثى",
-            "ذكر ")
-        val wilayas = listOf(
-            "أدرار",
-            "الشلف",
-            "الأغواط",
-            "أم البواقي",
-            "باتنة",
-            "بجاية",
-            "بسكرة",
-            "بشار",
-            "البليدة",
-            "البويرة",
-            "تمنراست",
-            "تبسة",
-            "تلمسان",
-            "تيارت",
-            "تيزي وزو",
-            "الجزائر",
-            "الجلفة",
-            "جيجل",
-            "سطيف",
-            "سعيدة",
-            "سكيكدة",
-            "سيدي بلعباس",
-            "عنابة",
-            "قالمة",
-            "قسنطينة",
-            "المدية",
-            "مستغانم",
-            "المسيلة",
-            "معسكر",
-            "ورقلة",
-            "وهران",
-            "البيض",
-            "إليزي",
-            "برج بوعريريج",
-            "بومرداس",
-            "الطارف",
-            "تندوف",
-            "تيسمسيلت",
-            "الوادي",
-            "خنشلة",
-            "سوق أهراس",
-            "تيبازة",
-            "ميلة",
-            "عين الدفلى",
-            "النعامة",
-            "عين تموشنت",
-            "غرداية",
-            "غليزان")
+        val items1 = resources.getStringArray(R.array.gender)
+        val wilayas = resources.getStringArray(R.array.wilayas).toList()
         val adapter = ArrayAdapter(requireActivity(), R.layout.list_item, items1)
         binding.sexe.setAdapter(adapter)
         val adapter2 = ArrayAdapter(requireActivity(), R.layout.list_item, wilayas)
@@ -138,7 +88,7 @@ class SignalementForm2Fragment : Fragment() {
         }
 
         binding.back.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_signalementForm2Fragment_to_signalementForm1Fragment)
+            view.findNavController().popBackStack()
         }
         binding.maried.setOnClickListener {
             binding.maried.setBackgroundColor( Color.parseColor("#CCF28123") )

@@ -11,7 +11,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 
 
-class SuiviSignalementAdapter(val context: Context, var data:List<Signalement_local>): RecyclerView.Adapter<SuiviSignalementAdapter.MyViewHolder>()
+class SuiviSignalementAdapter(val context: Context, var data:List<SignalementTransfert>): RecyclerView.Adapter<SuiviSignalementAdapter.MyViewHolder>()
 {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(LayoutInflater.from(context).inflate(R.layout.signalement_layout, parent, false))

@@ -37,11 +37,10 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
         NavigationUI.setupWithNavController(binding.bottomNavigationView,navController)
 //cacher le menu phone
-        binding.root.setOnTouchListener { _, _ ->
-
-                hidePhoneMenu()
-                false
-
+        binding.fragmentContainerView.setOnTouchListener { _, _ ->
+            hidePhoneMenu()
+            click=1
+            true
         }
 
 
@@ -57,7 +56,11 @@ class MainActivity : AppCompatActivity() {
                 click = 0
                 isPhoneButtonVisible = true
                 phoneMenuHandler.removeCallbacksAndMessages(null)
-                phoneMenuHandler.postDelayed({ hidePhoneMenu() }, PHONE_MENU_DELAY)
+                //Desactiver le bouton appel apres 4 secondes
+                phoneMenuHandler.postDelayed({
+                    hidePhoneMenu()
+                    click = 1
+                }, PHONE_MENU_DELAY)
 
 
             } else {
@@ -132,5 +135,4 @@ class MainActivity : AppCompatActivity() {
 
 
 }
-
 

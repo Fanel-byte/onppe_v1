@@ -55,19 +55,7 @@ class SignalementForm1Fragment : Fragment() {
         // Définir la taille de la fenêtre du dialog
         myDialog.window?.setLayout(width, height)
         signalementModel = ViewModelProvider(requireActivity()).get(SignalementTransfertModel::class.java)
-        val items1 = listOf(
-            "فقدان الطفل لوالديه وبقائه دون سند عائلي",
-            "تعريض الطفل للإهمال أو التشرد",
-            "المساس بحقه في التعليم",
-            "التسول بالطفل أو تعريضه للتسول",
-            "عجز من يقوم برعاية الطفل عن التحكم في تصرفاته",
-            "التقصير البين والمتواصل في التربية والرعاية",
-            "سوء معاملة الطفل",
-            "الطفل ضحية جريمة من ممثله الشرعي",
-            "الطفل ضحية جريمة من أي شخص آخر",
-            "الاستغلال الجنسي للطفل بمختلف أشكاله",
-            "الاستغلال الاقتصادي للطفل",
-            "وقوع الطفل ضحية نزاعات مسلحة",)
+        val items1 = resources.getStringArray(R.array.motifs).toList()
         val adapter = ArrayAdapter(requireActivity(), R.layout.list_item, items1)
         binding.motif.setAdapter(adapter)
         binding.date.setText(SimpleDateFormat("yyyy-MM-dd").format(Date()))
@@ -119,7 +107,7 @@ class SignalementForm1Fragment : Fragment() {
 
 
         binding.back.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_signalementForm1Fragment_to_signalementFragment)
+            view.findNavController().popBackStack()
         }
         binding.home.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_signalementForm1Fragment_to_fonctionnalitiesActivity)

@@ -8,12 +8,11 @@ import java.io.Serializable
 @Entity(tableName ="signalements" )
 data class SignalementTransfert(
     @PrimaryKey(autoGenerate = true)
-    val id: Int?,
+    var id: Int?,
     val upload:Boolean,
     val videoImageSon: ByteArray,
     val DescriptifvideoImageSon:String?,
     val typepreuve:String?,
-
     var motifid:Int?,
     var dateincident :String?,
     var nomEnfant:String?,
@@ -32,4 +31,5 @@ data class SignalementTransfert(
     var adresseCitoyen:String?,
     var telCitoyen:String?,
     var descriptif:String?,
+    var statut : String = "en attente d envoi",
 ): Serializable

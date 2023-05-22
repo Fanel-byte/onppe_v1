@@ -8,7 +8,7 @@ class SignalementTransfertModel:ViewModel() {
     var videoImageSon: MultipartBody.Part? = null
     var DescriptifvideoImageSon:String?= null
     val typepreuve:String?= null
-    val id: Int?= null
+    var id: Int?= null
     var motifid:Int?= null
     var dateincident :String?= null
     var nomEnfant:String?= null

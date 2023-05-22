@@ -14,10 +14,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.onppe_v1.databinding.FragmentSignalementForm5Binding
 import com.google.gson.Gson
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import okhttp3.MultipartBody
 import okio.Buffer
 import java.io.IOException
@@ -26,13 +23,20 @@ import java.io.IOException
 class SignalementForm5Fragment : Fragment() {
     lateinit var binding: FragmentSignalementForm5Binding
     private lateinit var signalementModel: SignalementTransfertModel
-    private var sexe=""
-    private var wilayacode=0
-    private var send = false
+
+    // Exception Handler for Coroutines
+    val exceptionHandler = CoroutineExceptionHandler {    coroutineContext, throwable ->
+        CoroutineScope(Dispatchers.Main).launch {
+            val instanceDB = AppDatabase.buildDatabase(requireContext())?.getSignalementDao()
+            instanceDB?.addSignalement(createSignalementTransfert(signalementModel,false))
+            Toast.makeText(requireActivity(), "Le signalement sera envoyé une fois la connexion établi", Toast.LENGTH_SHORT).show()
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentSignalementForm5Binding.inflate(inflater, container, false)
         val view = binding.root
@@ -42,111 +46,109 @@ class SignalementForm5Fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val instanceDB = AppDatabase.buildDatabase(requireContext())?.getSignalementDao()
-
         signalementModel = ViewModelProvider(requireActivity()).get(SignalementTransfertModel::class.java)
         binding.next.setOnClickListener { view: View ->
             signalementModel.descriptif = binding.description.text.toString()
             CoroutineScope(Dispatchers.Main).launch {
-                try {
-                    if (isNetworkAvailable()) {
-                        var signalement = Signalement(
-                            null,
-                            null,
-                            signalementModel.motifid,
-                            null,
-                            signalementModel.descriptif,
-                            null,
-                            signalementModel.typesignaleurid,
-                            signalementModel.identitesecrete,
-                            signalementModel.dateincident
-                        )
+                val signalement = Signalement(
+                    null,
+                    null,
+                    signalementModel.motifid,
+                    null,
+                    signalementModel.descriptif,
+                    null,
+                    signalementModel.typesignaleurid,
+                    signalementModel.identitesecrete,
+                    signalementModel.dateincident
+                )
 
-                        var enfant = Enfant(
-                            null,
-                            signalementModel.nomEnfant,
-                            signalementModel.prenomEnfant,
-                            signalementModel.ageEnfant,
-                            signalementModel.sexeEnfant,
-                            signalementModel.situationparentEnfant,
-                            signalementModel.adresseEnfant,
-                            signalementModel.wilayacodeEnfant
-                        )
+                var enfant = Enfant(
+                    null,
+                    signalementModel.nomEnfant,
+                    signalementModel.prenomEnfant,
+                    signalementModel.ageEnfant,
+                    signalementModel.sexeEnfant,
+                    signalementModel.situationparentEnfant,
+                    signalementModel.adresseEnfant,
+                    signalementModel.wilayacodeEnfant
+                )
 
-                        var citoyen = Citoyen(
-                            null,
-                            signalementModel.nomCitoyen,
-                            signalementModel.prenomCitoyen,
-                            signalementModel.sexeCitoyen,
-                            signalementModel.ageCitoyen,
-                            signalementModel.adresseCitoyen,
-                            signalementModel.telCitoyen
-                        )
+                var citoyen = Citoyen(
+                    null,
+                    signalementModel.nomCitoyen,
+                    signalementModel.prenomCitoyen,
+                    signalementModel.sexeCitoyen,
+                    signalementModel.ageCitoyen,
+                    signalementModel.adresseCitoyen,
+                    signalementModel.telCitoyen
+                )
 
-                        addEnfant(enfant) { id ->
+                addEnfant(enfant) { id ->
+                    if (id != null) {
+                        signalement.enfantid = id
+                        addCitoyen(citoyen) { id ->
                             if (id != null) {
-                                signalement.enfantid = id
-                                addCitoyen(citoyen) { id ->
-                                    if (id != null) {
-                                        signalement.citoyenid = id
-                                        if (signalementModel.videoImageSon == null) {
-                                            addSignalement(signalement)
-                                        } else {
-                                            if (signalementModel.typepreuve == "image") {
-                                                addSignalement_avecpreuve(signalement) { id ->
-                                                    if (id != null) {
-                                                        var imageInfo = Image(
-                                                            signalementModel.DescriptifvideoImageSon,
-                                                            id
-                                                        )
-                                                        val imageInfoMB =
-                                                            MultipartBody.Part.createFormData(
-                                                                "image",
-                                                                Gson().toJson(imageInfo)
-                                                            )
-                                                        addImg(
-                                                            imageInfoMB,
-                                                            signalementModel.videoImageSon!!
-                                                        )
-                                                    }
-                                                }
+                                signalement.citoyenid = id
+                                if (signalementModel.videoImageSon == null) {
+                                    addSignalement(signalement,instanceDB)
+                                } else {
+                                    if (signalementModel.typepreuve == "image") {
+                                        addSignalement_avecpreuve(signalement) { id ->
+                                            if (id != null) {
+                                                var imageInfo = Image(
+                                                    signalementModel.DescriptifvideoImageSon,
+                                                    id
+                                                )
+                                                val imageInfoMB =
+                                                    MultipartBody.Part.createFormData(
+                                                        "image",
+                                                        Gson().toJson(imageInfo)
+                                                    )
+                                                addImg(
+                                                    imageInfoMB,
+                                                    signalementModel.videoImageSon!!,
+                                                    instanceDB
+                                                )
                                             }
-                                            if (signalementModel.typepreuve == "son") {
-                                                addSignalement_avecpreuve(signalement) { id ->
-                                                    if (id != null) {
-                                                        var sonInfo = Son(
-                                                            signalementModel.DescriptifvideoImageSon,
-                                                            id
-                                                        )
-                                                        val sonInfoMB =
-                                                            MultipartBody.Part.createFormData(
-                                                                "vocal",
-                                                                Gson().toJson(sonInfo)
-                                                            )
-                                                        addSon(
-                                                            sonInfoMB,
-                                                            signalementModel.videoImageSon!!
-                                                        )
-                                                    }
-                                                }
+                                        }
+                                    }
+                                    if (signalementModel.typepreuve == "son") {
+                                        addSignalement_avecpreuve(signalement) { id ->
+                                            if (id != null) {
+                                                var sonInfo = Son(
+                                                    signalementModel.DescriptifvideoImageSon,
+                                                    id
+                                                )
+                                                val sonInfoMB =
+                                                    MultipartBody.Part.createFormData(
+                                                        "vocal",
+                                                        Gson().toJson(sonInfo)
+                                                    )
+                                                addSon(
+                                                    sonInfoMB,
+                                                    signalementModel.videoImageSon!!,
+                                                    instanceDB
+                                                )
                                             }
-                                            if (signalementModel.typepreuve == "video") {
-                                                addSignalement_avecpreuve(signalement) { id ->
-                                                    if (id != null) {
-                                                        var videoInfo = Video(
-                                                            signalementModel.DescriptifvideoImageSon,
-                                                            id
-                                                        )
-                                                        val imageInfoMB =
-                                                            MultipartBody.Part.createFormData(
-                                                                "video",
-                                                                Gson().toJson(videoInfo)
-                                                            )
-                                                        addVideo(
-                                                            imageInfoMB,
-                                                            signalementModel.videoImageSon!!
-                                                        )
-                                                    }
-                                                }
+                                        }
+                                    }
+                                    if (signalementModel.typepreuve == "video") {
+                                        addSignalement_avecpreuve(signalement) { id ->
+                                            if (id != null) {
+                                                var videoInfo = Video(
+                                                    signalementModel.DescriptifvideoImageSon,
+                                                    id
+                                                )
+                                                val imageInfoMB =
+                                                    MultipartBody.Part.createFormData(
+                                                        "video",
+                                                        Gson().toJson(videoInfo)
+                                                    )
+                                                addVideo(
+                                                    imageInfoMB,
+                                                    signalementModel.videoImageSon!!,
+                                                    instanceDB
+                                                )
                                             }
                                         }
                                     }
@@ -154,19 +156,6 @@ class SignalementForm5Fragment : Fragment() {
                             }
                         }
                     }
-                    else {
-                        throw IOException("Erreur : Aucune connexion Internet.")
-                    }
-                }
-                catch (e: IOException) {
-                    Toast.makeText(requireActivity(), "Aucune connexion Internet", Toast.LENGTH_SHORT).show()}
-                catch (e: Exception) {
-                    Toast.makeText(requireActivity(), "Erreur Serveur", Toast.LENGTH_SHORT).show()}
-                finally {
-                    // Enregistrer en interne MySql Lite
-                    if (instanceDB != null) {
-                        instanceDB.addSignalement(createSignalementTransfert(signalementModel,send))
-                }
                 }
             }
         }
@@ -181,7 +170,7 @@ class SignalementForm5Fragment : Fragment() {
     }
 
     private fun addEnfant(enfant: Enfant,callback: (Int?) -> Unit) {
-        CoroutineScope(Dispatchers.IO).launch {
+        CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
             val response = RetrofitService.endpoint.createEnfant(enfant)
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
@@ -195,7 +184,7 @@ class SignalementForm5Fragment : Fragment() {
         }
     }
     private fun addCitoyen(citoyen: Citoyen,callback: (Int?) -> Unit) {
-        CoroutineScope(Dispatchers.IO).launch {
+        CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
             val response =RetrofitService.endpoint.createCitoyen(citoyen)
             withContext(Dispatchers.Main) {
                 // binding.progressBar.visibility= View.INVISIBLE
@@ -211,15 +200,15 @@ class SignalementForm5Fragment : Fragment() {
 
         }
     }
-    private fun addSignalement(signalement: Signalement) {
-        CoroutineScope(Dispatchers.IO).launch {
-
+    private fun addSignalement(signalement: Signalement, instanceDB: SignalementDao?) {
+        CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
             val response =RetrofitService.endpoint.addSignalement(signalement)
             withContext(Dispatchers.Main) {
                 // binding.progressBar.visibility= View.INVISIBLE
                 if (response.isSuccessful) {
-                    findNavController().navigate(R.id.action_signalementForm5Fragment_to_finFormulaireFragment)
-                    Toast.makeText(requireActivity(),"Votre signalement est effectué avec succès", Toast.LENGTH_SHORT).show()}
+                    instanceDB?.addSignalement(createSignalementTransfert(signalementModel,true))
+                    Toast.makeText(requireActivity(),"Votre signalement est effectué avec succès", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.action_signalementForm5Fragment_to_finFormulaireFragment)}
 
                 else {
                     Toast.makeText(requireActivity(),"une erreur", Toast.LENGTH_SHORT).show()}
@@ -228,7 +217,7 @@ class SignalementForm5Fragment : Fragment() {
         }
     }
     private fun addSignalement_avecpreuve(new: Signalement, callback: (Int?) -> Unit) {
-        CoroutineScope(Dispatchers.IO).launch {
+        CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
             val response = RetrofitService.endpoint.addSignalement(new)
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
@@ -242,11 +231,15 @@ class SignalementForm5Fragment : Fragment() {
             }
         }
     }
-    private fun addImg(image :  MultipartBody.Part ,imageBody: MultipartBody.Part) {
-        CoroutineScope(Dispatchers.IO).launch {
+    private fun addImg(
+        image:  MultipartBody.Part,
+        imageBody: MultipartBody.Part,
+        instanceDB: SignalementDao?) {
+        CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
             val response =  RetrofitService.endpoint.addImg(image,imageBody)
             withContext(Dispatchers.Main) {
                 if(response.isSuccessful) {
+                    instanceDB?.addSignalement(createSignalementTransfert(signalementModel,true))
                     findNavController().navigate(R.id.action_signalementForm5Fragment_to_finFormulaireFragment)
                 }
                 else {
@@ -255,11 +248,15 @@ class SignalementForm5Fragment : Fragment() {
             }
         }
     }
-    private fun addSon(son :  MultipartBody.Part ,sonBody: MultipartBody.Part) {
-        CoroutineScope(Dispatchers.IO).launch {
+    private fun addSon(
+        son:  MultipartBody.Part,
+        sonBody: MultipartBody.Part, instanceDB: SignalementDao?
+    ) {
+        CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
             val response =  RetrofitService.endpoint.addSon(son,sonBody)
             withContext(Dispatchers.Main) {
                 if(response.isSuccessful) {
+                    instanceDB?.addSignalement(createSignalementTransfert(signalementModel,true))
                     findNavController().navigate(R.id.action_signalementForm5Fragment_to_finFormulaireFragment)
                 }
                 else {
@@ -268,11 +265,16 @@ class SignalementForm5Fragment : Fragment() {
             }
         }
     }
-    private fun addVideo(video :  MultipartBody.Part ,videoBody: MultipartBody.Part) {
-        CoroutineScope(Dispatchers.IO).launch {
+    private fun addVideo(
+        video:  MultipartBody.Part,
+        videoBody: MultipartBody.Part, instanceDB: SignalementDao?
+    ) {
+        CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
             val response =  RetrofitService.endpoint.addVideo(video,videoBody)
             withContext(Dispatchers.Main) {
                 if(response.isSuccessful) {
+
+                    instanceDB?.addSignalement(createSignalementTransfert(signalementModel,true))
                     findNavController().navigate(R.id.action_signalementForm5Fragment_to_finFormulaireFragment)
                 }
                 else {
@@ -297,6 +299,8 @@ class SignalementForm5Fragment : Fragment() {
         part?.body?.writeTo(sink)
         return sink.readByteArray()
     }
+
+    // Convertir signalementModel to signalement data class:
     private fun createSignalementTransfert(signalementTransfertModel: SignalementTransfertModel, Upload : Boolean): SignalementTransfert {
         return SignalementTransfert(
             upload = Upload,
@@ -321,7 +325,9 @@ class SignalementForm5Fragment : Fragment() {
             ageCitoyen = signalementTransfertModel.ageCitoyen,
             adresseCitoyen = signalementTransfertModel.adresseCitoyen,
             telCitoyen = signalementTransfertModel.telCitoyen,
-            descriptif = signalementTransfertModel.descriptif
+            descriptif = signalementTransfertModel.descriptif,
+            statut = if (Upload) "envoyé en attente de réponse" else "en attente d envoi"
+
         )
     }
 

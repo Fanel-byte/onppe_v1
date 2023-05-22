@@ -18,14 +18,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.onppe_v1.databinding.FragmentSignalementSonBinding
 import com.google.gson.Gson
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.File
+import java.lang.Runnable
 
 
 class SignalementSonFragment : Fragment() {
@@ -37,10 +35,21 @@ class SignalementSonFragment : Fragment() {
     private lateinit var counter : TextView
     private lateinit var progressBar: SeekBar
     lateinit var sonInfo: Son
-    lateinit var son_body: MultipartBody.Part
+    var son_body: MultipartBody.Part? = null
     private var timeElapsed = 0L
     private var handler: Handler? = null
     private var timerRunnable: Runnable? = null
+    private val MAX_RECORDING_DURATION = 30 * 1000 // 30 secondes en millisecondes
+
+
+    // Exception Handler for Coroutines
+    val exceptionHandler = CoroutineExceptionHandler {    coroutineContext, throwable ->
+        CoroutineScope(Dispatchers.Main).launch {
+            binding.progressBar.visibility = View.INVISIBLE
+            // Ne pas affichre le toast peut poser probleme : not attached to an activity (mettre pop up)
+            //Toast.makeText(requireActivity(),"Une erreur s'est produite",Toast.LENGTH_SHORT).show()
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -100,31 +109,41 @@ class SignalementSonFragment : Fragment() {
         handler = Handler()
 
 
-        //cas 1 : envoyer un signalement avec Image et Descriptif
+        //cas 1 : envoyer un signalement avec Son et Descriptif
         binding.envoie.setOnClickListener {
-
-            addSignalement(Signalement(null,null,null,null,null,null,null,true,"")) { id ->
-                Toast.makeText(requireActivity(), "id value test $id", Toast.LENGTH_SHORT).show()
-                if (id != null) {
-                    sonInfo = Son(binding.Descriptionson.text.toString(), id)
-                    val sonInfoMB = MultipartBody.Part.createFormData("vocal", Gson().toJson(sonInfo))
-                    addSon(sonInfoMB, son_body)
-                    view.findNavController().navigate(R.id.action_signalementSonFragment_to_finFormulaireFragment)
-
+            if ( son_body  == null){
+                Toast.makeText(requireActivity(), "veillez faire entrer le son d'abord", Toast.LENGTH_SHORT).show()
+            }else
+            {
+                addSignalement(Signalement(null,null,null,null,null,null,null,true,"")) { id ->
+                    Toast.makeText(requireActivity(), "id value test $id", Toast.LENGTH_SHORT).show()
+                    if (id != null) {
+                        sonInfo = Son(binding.Descriptionson.text.toString(), id)
+                        val sonInfoMB = MultipartBody.Part.createFormData("vocal", Gson().toJson(sonInfo))
+                        signalementModel.id = id
+                        signalementModel.videoImageSon = son_body
+                        signalementModel.DescriptifvideoImageSon = binding.Descriptionson.text.toString()
+                        addSon(sonInfoMB, son_body!!)
+                    }
                 }
             }
         }
         //cas 2 : envoyer un signalement avec plus d'information
         binding.add.setOnClickListener{
             signalementModel.DescriptifvideoImageSon = binding.Descriptionson.text.toString()
-            view.findNavController().navigate(R.id.action_signalementSonFragment_to_signalementForm1Fragment)
+            signalementModel.videoImageSon = son_body
+            if (son_body == null){
+                Toast.makeText(requireActivity(), "veillez faire entrer le son d'abord", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                view.findNavController().navigate(R.id.action_signalementSonFragment_to_signalementForm1Fragment)
+            }
         }
 
 
 
         binding.back.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_signalementSonFragment_to_signalementFragment)
-        }
+            view.findNavController().popBackStack()         }
         binding.home.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_signalementSonFragment_to_fonctionnalitiesActivity)
         }
@@ -146,7 +165,11 @@ class SignalementSonFragment : Fragment() {
                 val seconds = (timeElapsed / 1000) % 60
                 val minutes = (timeElapsed / 1000) / 60
                 counter.text = String.format("%02d:%02d", minutes, seconds)
-                handler?.postDelayed(timerRunnable!!, 1000)
+                if (timeElapsed >= MAX_RECORDING_DURATION) {
+                    stopRecording()
+                } else {
+                    handler?.postDelayed(timerRunnable!!, 1000)
+                }
             }
             handler?.postDelayed(timerRunnable!!, 1000)
             Toast.makeText(context, "Recording started!", Toast.LENGTH_SHORT).show()
@@ -187,7 +210,7 @@ class SignalementSonFragment : Fragment() {
         }, 100)
     }
     private fun addSignalement(new: Signalement, callback: (Int?) -> Unit) {
-        CoroutineScope(Dispatchers.IO).launch {
+        CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
             val response = RetrofitService.endpoint.addSignalement(new)
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
@@ -203,7 +226,7 @@ class SignalementSonFragment : Fragment() {
     }
 
     private fun addSon(son :  MultipartBody.Part ,sonBody: MultipartBody.Part) {
-        CoroutineScope(Dispatchers.IO).launch {
+        CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
             val response =  RetrofitService.endpoint.addSon(son,sonBody)
             withContext(Dispatchers.Main) {
                 if(response.isSuccessful) {

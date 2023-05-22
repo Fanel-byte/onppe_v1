@@ -1,6 +1,76 @@
 <resources>
     <string name="app_name">onppe_v1</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="finform">تم تسجيل إخطارك بنجاح. نشكركم على حسن تعاونكم.</string>
+    <string-array name="motifs">
+        <item>فقدان الطفل لوالديه وبقائه دون سند عائلي</item>
+        <item>تعريض الطفل للإهمال أو التشرد</item>
+        <item>المساس بحقه في التعليم</item>
+        <item>التسول بالطفل أو تعريضه للتسول</item>
+        <item>عجز من يقوم برعاية الطفل عن التحكم في تصرفاته</item>
+        <item>التقصير البين والمتواصل في التربية والرعاية</item>
+        <item>سوء معاملة الطفل</item>
+        <item>الطفل ضحية جريمة من ممثله الشرعي</item>
+        <item>الطفل ضحية جريمة من أي شخص آخر</item>
+        <item>الاستغلال الجنسي للطفل بمختلف أشكاله</item>
+        <item>الاستغلال الاقتصادي للطفل</item>
+        <item>وقوع الطفل ضحية نزاعات مسلحة</item>
+    </string-array>
+    <string-array name="wilayas">
+        <item>أدرار</item>
+        <item>الشلف</item>
+        <item>الأغواط</item>
+        <item>أم البواقي</item>
+        <item>باتنة</item>
+        <item>بجاية</item>
+        <item>بسكرة</item>
+        <item>بشار</item>
+        <item>البليدة</item>
+        <item>البويرة</item>
+        <item>تمنراست</item>
+        <item>تبسة</item>
+        <item>تلمسان</item>
+        <item>تيارت</item>
+        <item>تيزي وزو</item>
+        <item>الجزائر</item>
+        <item>الجلفة</item>
+        <item>جيجل</item>
+        <item>سطيف</item>
+        <item>سعيدة</item>
+        <item>سكيكدة</item>
+        <item>سيدي بلعباس</item>
+        <item>عنابة</item>
+        <item>قالمة</item>
+        <item>قسنطينة</item>
+        <item>المدية</item>
+        <item>مستغانم</item>
+        <item>المسيلة</item>
+        <item>معسكر</item>
+        <item>ورقلة</item>
+        <item>وهران</item>
+        <item>البيض</item>
+        <item>إليزي</item>
+        <item>برج بوعريريج</item>
+        <item>بومرداس</item>
+        <item>الطارف</item>
+        <item>تندوف</item>
+        <item>تيسمسيلت</item>
+        <item>الوادي</item>
+        <item>خنشلة</item>
+        <item>سوق أهراس</item>
+        <item>تيبازة</item>
+        <item>ميلة</item>
+        <item>عين الدفلى</item>
+        <item>النعامة</item>
+        <item>عين تموشنت</item>
+        <item>غرداية</item>
+        <item>غليزان</item>
+    </string-array>
+    <string-array name="gender">
+        <item>أنثى</item>
+        <item>ذكر</item>
+    </string-array>
+
+
+
 </resources>

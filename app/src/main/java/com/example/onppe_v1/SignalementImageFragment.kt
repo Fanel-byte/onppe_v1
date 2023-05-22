@@ -31,10 +31,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.findNavController
 import com.example.onppe_v1.databinding.FragmentSignalementImageBinding
 import com.google.gson.Gson
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -46,13 +43,22 @@ import java.io.FileOutputStream
 class SignalementImageFragment : Fragment() {
     private lateinit var signalementModel: SignalementTransfertModel
     private lateinit var binding: FragmentSignalementImageBinding
-    lateinit var image_body: MultipartBody.Part
-    lateinit var imageInfo: Image
-
+    var image_body: MultipartBody.Part? = null
+    var imageInfo: Image? = null
+    private var targetFileSize = 500 * 1024 // Taille souhaitée en octets (500 ko)
     private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
     private lateinit var activityResultLauncher1: ActivityResultLauncher<Intent>
-    lateinit var imageBitmap: Bitmap
+    var imageBitmap: Bitmap? = null
     val requestCode = 400
+
+    // Exception Handler for Coroutines
+    val exceptionHandler = CoroutineExceptionHandler {    coroutineContext, throwable ->
+        CoroutineScope(Dispatchers.Main).launch {
+            binding.progressBar2.visibility = View.INVISIBLE
+            // Ne pas affichre le toast peut poser probleme : not attached to an activity (mettre pop up)
+            //Toast.makeText(requireActivity(),"Une erreur s'est produite",Toast.LENGTH_SHORT).show()
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,15 +79,27 @@ class SignalementImageFragment : Fragment() {
         activityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             val intent = result.data
             if (result.resultCode == AppCompatActivity.RESULT_OK && intent != null)
-            {
+            {// Lors de la capture de l'image depuis la caméra
                 imageBitmap = intent.extras?.get("data") as Bitmap
+
+
                 binding.ImageView.setImageBitmap(imageBitmap)
                 //get image path
 
                 val filesDir = requireContext().getFilesDir()
                 val file = File(filesDir, "image" + ".png")
                 val bos = ByteArrayOutputStream()
-                imageBitmap.compress(Bitmap.CompressFormat.PNG, 0, bos)
+
+                var quality = 100
+                //compresser la photo a 500 KO
+                imageBitmap!!.compress(Bitmap.CompressFormat.PNG, quality, bos)
+
+                while (bos.toByteArray().size > targetFileSize) {
+                    bos.reset()
+                    quality -= 10
+                    imageBitmap!!.compress(Bitmap.CompressFormat.JPEG, quality, bos)
+                }
+
                 val bitmapdata = bos.toByteArray()
                 val fos = FileOutputStream(file)
                 fos.write(bitmapdata)
@@ -107,6 +125,9 @@ class SignalementImageFragment : Fragment() {
                     @Suppress("DEPRECATION")
                     MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, selectedImageUri)
                 }
+
+
+
                 binding.ImageView.setImageBitmap(imageBitmap)
                 binding.img.visibility=View.INVISIBLE
                 binding.ImageView.visibility = View.VISIBLE
@@ -115,7 +136,14 @@ class SignalementImageFragment : Fragment() {
                 val filesDir = requireContext().getFilesDir()
                 val file = File(filesDir, "image" + ".png")
                 val bos = ByteArrayOutputStream()
-                imageBitmap.compress(Bitmap.CompressFormat.PNG, 0, bos)
+                var quality = 100
+                //compresser la photo a 500 KO
+                imageBitmap?.compress(Bitmap.CompressFormat.JPEG, quality, bos)
+                while (bos.toByteArray().size > targetFileSize) {
+                    bos.reset()
+                    quality -= 10
+                    imageBitmap?.compress(Bitmap.CompressFormat.JPEG, quality, bos)
+                }
                 val bitmapdata = bos.toByteArray()
                 val fos = FileOutputStream(file)
                 fos.write(bitmapdata)
@@ -145,25 +173,40 @@ class SignalementImageFragment : Fragment() {
 
         //cas 1 : envoyer un signalement avec Image et Descriptif
         binding.envoie.setOnClickListener {
-            addSignalement(Signalement(null,null,null,null,null,null,null,true,"")) { id ->
-                if (id != null) {
-                    imageInfo = Image(binding.Descriptionimage.text.toString(), id)
-                    val imageInfoMB = MultipartBody.Part.createFormData("image", Gson().toJson(imageInfo))
-                    addImg(imageInfoMB, image_body)
+            if (imageBitmap == null){
+                Toast.makeText(requireActivity(), "veillez faire entrer une image d'abord", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                addSignalement(Signalement(null,null,null,null,null,null,null,true,"")) { id ->
+                    if (id != null) {
+                        signalementModel.id = id
+                        signalementModel.videoImageSon = image_body
+                        signalementModel.DescriptifvideoImageSon = binding.Descriptionimage.text.toString()
+                        imageInfo = Image(binding.Descriptionimage.text.toString(), id)
+                        val imageInfoMB = MultipartBody.Part.createFormData("image", Gson().toJson(imageInfo))
+                        binding.progressBar2.visibility = View.VISIBLE
+                        addImg(imageInfoMB, image_body!!)
+                    }
                 }
             }
+
         }
 
 
         //cas 2 : envoyer un signalement avec plus d'information
         binding.add.setOnClickListener{
-           signalementModel.videoImageSon =  image_body
-           signalementModel.DescriptifvideoImageSon = binding.Descriptionimage.text.toString()
-            view.findNavController().navigate(R.id.action_signalementImageFragment_to_signalementForm1Fragment)
+            signalementModel.videoImageSon =  image_body
+            signalementModel.DescriptifvideoImageSon = binding.Descriptionimage.text.toString()
+            if (signalementModel.videoImageSon == null){
+                Toast.makeText(requireActivity(), "veillez faire entrer une image d'abord", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                view.findNavController().navigate(R.id.action_signalementImageFragment_to_signalementForm1Fragment)
+            }
         }
 
         binding.back.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_signalementImageFragment_to_signalementFragment)
+            view.findNavController().popBackStack()
         }
         binding.home.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_signalementImageFragment_to_fonctionnalitiesActivity)
@@ -172,7 +215,9 @@ class SignalementImageFragment : Fragment() {
 
     // Take a picture launching camera 1
     fun openCameraIntent() {
+
         val pictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        pictureIntent.putExtra(MediaStore.EXTRA_SIZE_LIMIT, "1080x1920")
         activityResultLauncher.launch(pictureIntent)
     }
     // Request permission
@@ -197,7 +242,7 @@ class SignalementImageFragment : Fragment() {
     }
 
     private fun addSignalement(new: Signalement, callback: (Int?) -> Unit) {
-        CoroutineScope(Dispatchers.IO).launch {
+        CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
             val response = RetrofitService.endpoint.addSignalement(new)
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
@@ -212,7 +257,7 @@ class SignalementImageFragment : Fragment() {
     }
 
     private fun addImg(image :  MultipartBody.Part ,imageBody: MultipartBody.Part) {
-        CoroutineScope(Dispatchers.IO).launch {
+        CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
             val response =  RetrofitService.endpoint.addImg(image,imageBody)
             withContext(Dispatchers.Main) {
                 if(response.isSuccessful) {
@@ -231,5 +276,8 @@ class SignalementImageFragment : Fragment() {
         }
         //if (signalementModel.videoImageSon != null){ }
     }
+
+
+
 
 }
