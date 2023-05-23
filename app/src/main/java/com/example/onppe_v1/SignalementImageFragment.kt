@@ -197,6 +197,7 @@ class SignalementImageFragment : Fragment() {
         binding.add.setOnClickListener{
             signalementModel.videoImageSon =  image_body
             signalementModel.DescriptifvideoImageSon = binding.Descriptionimage.text.toString()
+            signalementModel.typepreuve = "image"
             if (signalementModel.videoImageSon == null){
                 Toast.makeText(requireActivity(), "veillez faire entrer une image d'abord", Toast.LENGTH_SHORT).show()
             }

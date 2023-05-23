@@ -2,7 +2,7 @@ package com.example.onppe_v1
 
 data class Signalement(
     val id: Int?,
-    var citoyenid:Int?,
+    var citoyenid:String?,
     val motifid:Int?,
     var enfantid:Int?,
     val descriptif:String?,

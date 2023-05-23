@@ -38,6 +38,7 @@ class SignalementForm3Fragment : Fragment() {
 
 
         binding.next.setOnClickListener { view: View ->
+            signalementModel.identitesecrete = false
             view.findNavController().navigate(R.id.action_signalementForm3Fragment_to_signalementForm4Fragment)
         }
         binding.nextanonym.setOnClickListener { view: View ->

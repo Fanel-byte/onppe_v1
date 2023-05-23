@@ -186,6 +186,7 @@ class SignalementVideoFragment : Fragment() {
         binding.add.setOnClickListener{
             signalementModel.DescriptifvideoImageSon = binding.Descriptionvideo.text.toString()
             signalementModel.videoImageSon = video_body
+            signalementModel.typepreuve = "video"
             if (video_body==null){
                 Toast.makeText(requireActivity(), "veillez faire entrer la video d'abord", Toast.LENGTH_SHORT).show()
             }else {

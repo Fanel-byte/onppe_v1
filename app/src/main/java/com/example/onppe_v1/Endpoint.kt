@@ -21,14 +21,18 @@ interface Endpoint {
     @POST("vocaux/add")
     suspend fun addSon(@Part sonInfo : MultipartBody.Part,@Part son: MultipartBody.Part): Response<Int>
 
-    @POST("/enfants/create")
+    @POST("enfants/create")
     suspend fun createEnfant(@Body enfant: Enfant): Response<Int>
 
-    @POST("/citoyen/create")
+
+    @POST("citoyen/create")
     suspend fun createCitoyen(@Body citoyen: Citoyen): Response<Int>
 
 
     @GET("signalement/getSignalementByCitoyenId/{id}")
     suspend fun getsignalements(@Path ("id")id:Int):Response<List<Signalement_local>>
 
+    @GET("citoyen/verifieridCitoyen/{id}")
+    suspend fun verifieridCitoyen(@Path ("id")id:String):Response<String>
 }
+

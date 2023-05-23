@@ -18,7 +18,7 @@ import com.google.gson.Gson
 import kotlinx.coroutines.*
 import okhttp3.MultipartBody
 import okio.Buffer
-import java.io.IOException
+import android.provider.Settings
 
 
 class SignalementForm5Fragment : Fragment() {
@@ -50,9 +50,10 @@ class SignalementForm5Fragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val instanceDB = AppDatabase.buildDatabase(requireContext())?.getSignalementDao()
         signalementModel = ViewModelProvider(requireActivity()).get(SignalementTransfertModel::class.java)
+        val deviceId: String = Settings.Secure.getString(requireContext().contentResolver, Settings.Secure.ANDROID_ID)
         binding.next.setOnClickListener { view: View ->
             signalementModel.descriptif = binding.description.text.toString()
-            CoroutineScope(Dispatchers.Main).launch {
+            CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
                 val signalement = Signalement(
                     null,
                     null,
@@ -76,84 +77,71 @@ class SignalementForm5Fragment : Fragment() {
                     signalementModel.wilayacodeEnfant
                 )
 
-                var citoyen = Citoyen(
-                    null,
-                    signalementModel.nomCitoyen,
-                    signalementModel.prenomCitoyen,
-                    signalementModel.sexeCitoyen,
-                    signalementModel.ageCitoyen,
-                    signalementModel.adresseCitoyen,
-                    signalementModel.telCitoyen
-                )
 
                 addEnfant(enfant) { id ->
                     if (id != null) {
                         signalement.enfantid = id
-                        addCitoyen(citoyen) { id ->
-                            if (id != null) {
-                                signalement.citoyenid = id
-                                if (signalementModel.videoImageSon == null) {
-                                    addSignalement(signalement,instanceDB)
-                                } else {
+                        if (signalementModel.identitesecrete == false) {
+                            verifieridcitoyen(deviceId)
+                            signalement.citoyenid = deviceId
+                        }
+                        if (signalementModel.videoImageSon == null) {
+                            addSignalement(signalement,instanceDB) { id ->
+                                if (id != null) {
+                                    Toast.makeText(requireActivity(),"Votre signalement est effectué avec succès", Toast.LENGTH_SHORT).show()
+                                    view.findNavController().navigate(R.id.action_signalementForm5Fragment_to_finFormulaireFragment)
+                                }
+                            }
+                        } else {
+                            addSignalement(signalement,instanceDB) { id ->
+                                if (id != null) {
                                     if (signalementModel.typepreuve == "image") {
-                                        addSignalement_avecpreuve(signalement) { id ->
-                                            if (id != null) {
-                                                var imageInfo = Image(
-                                                    signalementModel.DescriptifvideoImageSon,
-                                                    id
-                                                )
-                                                val imageInfoMB =
-                                                    MultipartBody.Part.createFormData(
-                                                        "image",
-                                                        Gson().toJson(imageInfo)
-                                                    )
-                                                addImg(
-                                                    imageInfoMB,
-                                                    signalementModel.videoImageSon!!,
-                                                    instanceDB
-                                                )
-                                            }
-                                        }
+                                        var imageInfo = Image(
+                                            signalementModel.DescriptifvideoImageSon,
+                                            id
+                                        )
+                                        val imageInfoMB =
+                                            MultipartBody.Part.createFormData(
+                                                "image",
+                                                Gson().toJson(imageInfo)
+                                            )
+                                        addImg(
+                                            imageInfoMB,
+                                            signalementModel.videoImageSon!!,instanceDB
+                                        )
                                     }
+
                                     if (signalementModel.typepreuve == "son") {
-                                        addSignalement_avecpreuve(signalement) { id ->
-                                            if (id != null) {
-                                                var sonInfo = Son(
-                                                    signalementModel.DescriptifvideoImageSon,
-                                                    id
-                                                )
-                                                val sonInfoMB =
-                                                    MultipartBody.Part.createFormData(
-                                                        "vocal",
-                                                        Gson().toJson(sonInfo)
-                                                    )
-                                                addSon(
-                                                    sonInfoMB,
-                                                    signalementModel.videoImageSon!!,
-                                                    instanceDB
-                                                )
-                                            }
-                                        }
+                                        var sonInfo = Son(
+                                            signalementModel.DescriptifvideoImageSon,
+                                            id
+                                        )
+                                        val sonInfoMB =
+                                            MultipartBody.Part.createFormData(
+                                                "vocal",
+                                                Gson().toJson(sonInfo)
+                                            )
+                                        addSon(
+                                            sonInfoMB,
+                                            signalementModel.videoImageSon!!,
+                                            instanceDB
+                                        )
                                     }
                                     if (signalementModel.typepreuve == "video") {
-                                        addSignalement_avecpreuve(signalement) { id ->
-                                            if (id != null) {
-                                                var videoInfo = Video(
-                                                    signalementModel.DescriptifvideoImageSon,
-                                                    id
-                                                )
-                                                val imageInfoMB =
-                                                    MultipartBody.Part.createFormData(
-                                                        "video",
-                                                        Gson().toJson(videoInfo)
-                                                    )
-                                                addVideo(
-                                                    imageInfoMB,
-                                                    signalementModel.videoImageSon!!,
-                                                    instanceDB
-                                                )
-                                            }
-                                        }
+                                        var videoInfo = Video(
+                                            signalementModel.DescriptifvideoImageSon,
+                                            id
+                                        )
+                                        val imageInfoMB =
+                                            MultipartBody.Part.createFormData(
+                                                "video",
+                                                Gson().toJson(videoInfo)
+                                            )
+                                        addVideo(
+                                            imageInfoMB,
+                                            signalementModel.videoImageSon!!,
+                                            instanceDB
+                                        )
                                     }
                                 }
                             }
@@ -200,54 +188,68 @@ class SignalementForm5Fragment : Fragment() {
             }
         }
     }
-    private fun addCitoyen(citoyen: Citoyen,callback: (Int?) -> Unit) {
-        CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
-            val response =RetrofitService.endpoint.createCitoyen(citoyen)
-            withContext(Dispatchers.Main) {
-                // binding.progressBar.visibility= View.INVISIBLE
-                if (response.isSuccessful) {
-                    val id = response.body()
-                    callback(id)
-                }
-                else {
-                    Toast.makeText(requireActivity(),"une erreur", Toast.LENGTH_SHORT).show()
-                    callback(null)
-                }
-            }
-
-        }
-    }
-    private fun addSignalement(signalement: Signalement, instanceDB: SignalementDao?) {
-        CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
-            val response =RetrofitService.endpoint.addSignalement(signalement)
-            withContext(Dispatchers.Main) {
-                // binding.progressBar.visibility= View.INVISIBLE
-                if (response.isSuccessful) {
-                    instanceDB?.addSignalement(createSignalementTransfert(signalementModel,true))
-                    Toast.makeText(requireActivity(),"Votre signalement est effectué avec succès", Toast.LENGTH_SHORT).show()
-                    findNavController().navigate(R.id.action_signalementForm5Fragment_to_finFormulaireFragment)}
-
-                else {
-                    Toast.makeText(requireActivity(),"une erreur", Toast.LENGTH_SHORT).show()}
-            }
-
-        }
-    }
-    private fun addSignalement_avecpreuve(new: Signalement, callback: (Int?) -> Unit) {
-        CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
-            val response = RetrofitService.endpoint.addSignalement(new)
-            withContext(Dispatchers.Main) {
-                if (response.isSuccessful) {
-                    val id = response.body()
-                    callback(id)
-                    Toast.makeText(requireActivity(),"Votre signalement est effectué avec succès", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(requireActivity(), "erreur " + response.code().toString(), Toast.LENGTH_SHORT).show()
-                    callback(null)
+private fun verifieridcitoyen(deviceId: String) {
+    CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
+        val response = RetrofitService.endpoint.verifieridCitoyen(deviceId)
+        withContext(Dispatchers.Main) {
+            // binding.progressBar.visibility= View.INVISIBLE
+            if (response.isSuccessful) {
+                if (response.body() == "0") {
+                    var citoyen = Citoyen(
+                        deviceId,
+                        signalementModel.nomCitoyen,
+                        signalementModel.prenomCitoyen,
+                        signalementModel.sexeCitoyen,
+                        signalementModel.ageCitoyen,
+                        signalementModel.adresseCitoyen,
+                        signalementModel.telCitoyen
+                    )
+                    addCitoyen(citoyen)
                 }
             }
+            else {
+                Toast.makeText(requireActivity(), "une erreur", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
+
+    }
+}
+private fun addCitoyen(citoyen: Citoyen) {
+    CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
+        val response = RetrofitService.endpoint.createCitoyen(citoyen)
+        withContext(Dispatchers.Main) {
+            // binding.progressBar.visibility= View.INVISIBLE
+            if (response.isSuccessful) {
+            }
+            else {
+                Toast.makeText(
+                    requireActivity(),
+                    "erreur " + response.code().toString(),
+                    Toast.LENGTH_SHORT
+                ).show()
+
+            }
+        }
+
+    }
+}
+
+private fun addSignalement(new: Signalement,instanceDB: SignalementDao?, callback: (Int?) -> Unit) {
+    CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
+        val response = RetrofitService.endpoint.addSignalement(new)
+        withContext(Dispatchers.Main) {
+            if (response.isSuccessful) {
+                instanceDB?.addSignalement(createSignalementTransfert(signalementModel,true))
+                val id = response.body()
+                callback(id)
+            } else {
+                Toast.makeText(requireActivity(), "erreur " + response.code().toString(), Toast.LENGTH_SHORT).show()
+                callback(null)
+            }
         }
     }
+}
     private fun addImg(
         image:  MultipartBody.Part,
         imageBody: MultipartBody.Part,
@@ -257,6 +259,7 @@ class SignalementForm5Fragment : Fragment() {
             withContext(Dispatchers.Main) {
                 if(response.isSuccessful) {
                     instanceDB?.addSignalement(createSignalementTransfert(signalementModel,true))
+                    Toast.makeText(requireActivity(),"Votre signalement est effectué avec succès", Toast.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.action_signalementForm5Fragment_to_finFormulaireFragment)
                 }
                 else {
@@ -274,6 +277,7 @@ class SignalementForm5Fragment : Fragment() {
             withContext(Dispatchers.Main) {
                 if(response.isSuccessful) {
                     instanceDB?.addSignalement(createSignalementTransfert(signalementModel,true))
+                    Toast.makeText(requireActivity(),"Votre signalement est effectué avec succès", Toast.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.action_signalementForm5Fragment_to_finFormulaireFragment)
                 }
                 else {
@@ -290,8 +294,9 @@ class SignalementForm5Fragment : Fragment() {
             val response =  RetrofitService.endpoint.addVideo(video,videoBody)
             withContext(Dispatchers.Main) {
                 if(response.isSuccessful) {
-
                     instanceDB?.addSignalement(createSignalementTransfert(signalementModel,true))
+                    Toast.makeText(requireActivity(),"Votre signalement est effectué avec succès", Toast.LENGTH_SHORT).show()
+
                     findNavController().navigate(R.id.action_signalementForm5Fragment_to_finFormulaireFragment)
                 }
                 else {

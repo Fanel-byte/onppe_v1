@@ -7,7 +7,7 @@ import okhttp3.MultipartBody
 class SignalementTransfertModel:ViewModel() {
     var videoImageSon: MultipartBody.Part? = null
     var DescriptifvideoImageSon:String?= null
-    val typepreuve:String?= null
+    var typepreuve:String?= null
     var id: Int?= null
     var motifid:Int?= null
     var dateincident :String?= null
