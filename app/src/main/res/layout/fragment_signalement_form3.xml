@@ -38,10 +38,10 @@
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="0dp"
-        android:layout_height="425dp"
+        android:layout_height="150dp"
         android:layout_marginTop="12dp"
         android:scaleType="fitXY"
-        android:src="@drawable/rectangle_green_white"
+        android:src="@drawable/rectangle_green"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -164,12 +164,13 @@
         android:layout_height="270dp"
         android:layout_gravity="center_horizontal"
         android:layout_margin="20dp"
+        android:layout_marginTop="-14dp"
         android:orientation="vertical"
         android:scrollbars="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/nextanonym2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
         tools:ignore="MissingConstraints">
 
 

@@ -75,9 +75,11 @@ class SignalementVideoFragment : Fragment() {
     // Exception Handler for Coroutines
     val exceptionHandler = CoroutineExceptionHandler {    coroutineContext, throwable ->
         CoroutineScope(Dispatchers.Main).launch {
+            if (isAdded) {
             binding.progressBar.visibility = View.INVISIBLE
             // Ne pas affichre le toast peut poser probleme : not attached to an activity (mettre pop up)
             Toast.makeText(requireActivity(),"Une erreur lors de la connexion au serveur",Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

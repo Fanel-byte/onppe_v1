@@ -10,11 +10,11 @@
     <ImageView
         android:id="@+id/imageView50"
         android:layout_width="0dp"
-        android:layout_height="422dp"
+        android:layout_height="150dp"
         android:layout_marginTop="8dp"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
-        android:src="@drawable/ic_rectangle_green_white"
+        android:src="@drawable/rectangle_green"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -340,7 +340,7 @@
         android:id="@+id/textView17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="5dp"
         android:fontFamily="@font/montserrat"
         android:text="معلومات الطفل في خطر"
         android:textColor="#F28123"
@@ -349,7 +349,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView40" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView50" />
 
     <TextView
         android:id="@+id/textView18"

@@ -15,11 +15,11 @@
         <ImageView
             android:id="@+id/imageView50"
             android:layout_width="0dp"
-            android:layout_height="425dp"
+            android:layout_height="150dp"
             android:layout_marginTop="10dp"
             android:adjustViewBounds="true"
             android:scaleType="fitXY"
-            android:src="@drawable/rectangle_green_white"
+            android:src="@drawable/rectangle_green"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/home"
@@ -108,12 +108,12 @@
             android:id="@+id/imageView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="50dp"
             android:src="@drawable/confirmation_box"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageView7" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView50" />
 
         <TextView
             android:id="@+id/textView15"

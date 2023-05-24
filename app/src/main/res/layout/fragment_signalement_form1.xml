@@ -19,8 +19,8 @@
         app:iconTintMode="add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView12"
-        app:layout_constraintVertical_bias="0.988"
+        app:layout_constraintTop_toBottomOf="@+id/divider2"
+        app:layout_constraintVertical_bias="0.973"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageView
@@ -65,30 +65,27 @@
     <ImageView
         android:id="@+id/imageView12"
         android:layout_width="0dp"
-        android:layout_height="425dp"
+        android:layout_height="150dp"
         android:layout_marginTop="12dp"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
-        android:src="@drawable/rectangle_green_white"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:src="@drawable/rectangle_green"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/home" />
 
     <TextView
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
         android:layout_marginEnd="24dp"
         android:fontFamily="@font/montserrat"
         android:text="سبب الإخطار * "
         android:textColor="#000000"
         android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView12" />
 
     <ImageView
         android:id="@+id/question3"

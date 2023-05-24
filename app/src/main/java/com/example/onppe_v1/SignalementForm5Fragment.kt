@@ -30,6 +30,7 @@ class SignalementForm5Fragment : Fragment() {
     // Exception Handler for Coroutines
     val exceptionHandler = CoroutineExceptionHandler {    coroutineContext, throwable ->
         CoroutineScope(Dispatchers.Main).launch {
+            // verify that the fragment is contained in an activity
             if (isAdded) {
                 val instanceDB = AppDatabase.buildDatabase(requireContext())?.getSignalementDao()
                 instanceDB?.addSignalement(createSignalementTransfert(signalementModel,false))
