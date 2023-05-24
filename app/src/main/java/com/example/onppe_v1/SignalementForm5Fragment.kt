@@ -30,11 +30,14 @@ class SignalementForm5Fragment : Fragment() {
     // Exception Handler for Coroutines
     val exceptionHandler = CoroutineExceptionHandler {    coroutineContext, throwable ->
         CoroutineScope(Dispatchers.Main).launch {
-            val instanceDB = AppDatabase.buildDatabase(requireContext())?.getSignalementDao()
-            instanceDB?.addSignalement(createSignalementTransfert(signalementModel,false))
-            Toast.makeText(requireActivity(), "Le signalement sera envoyé une fois la connexion établi", Toast.LENGTH_SHORT).show()
+            if (isAdded) {
+                val instanceDB = AppDatabase.buildDatabase(requireContext())?.getSignalementDao()
+                instanceDB?.addSignalement(createSignalementTransfert(signalementModel,false))
+                Toast.makeText(requireActivity(), "Le signalement sera envoyé une fois la connexion établi", Toast.LENGTH_SHORT).show()
+            }
         }
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
