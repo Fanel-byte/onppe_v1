@@ -1,11 +1,9 @@
 package com.example.onppe_v1
 
 import android.Manifest
-import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.ImageDecoder
 import android.os.Build
 import android.os.Bundle
@@ -14,21 +12,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.ImageView
 import android.widget.Toast
-import android.widget.VideoView
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.findNavController
 import com.example.onppe_v1.databinding.FragmentSignalementImageBinding
 import com.google.gson.Gson
 import kotlinx.coroutines.*
@@ -205,7 +198,7 @@ class SignalementImageFragment : Fragment() {
                 Toast.makeText(requireActivity(), "veillez faire entrer une image d'abord", Toast.LENGTH_SHORT).show()
             }
             else {
-                view.findNavController().navigate(R.id.action_signalementImageFragment_to_signalementForm1Fragment)
+                view.findNavController().navigate(R.id.action_signalementImageFragment_to_signalementFormSignaleurFragment)
             }
         }
 

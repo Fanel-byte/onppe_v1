@@ -27,7 +27,7 @@ class SignalementFragment : Fragment() {
 
 
         binding.frameLayout3.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_signalementFragment_to_signalementForm1Fragment)
+            view.findNavController().navigate(R.id.action_signalementFragment_to_signalementFormSignaleurFragment)
 
         }
         binding.frameLayout2.setOnClickListener { view: View ->

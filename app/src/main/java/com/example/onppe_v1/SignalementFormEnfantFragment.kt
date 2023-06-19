@@ -17,13 +17,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.onppe_v1.databinding.FragmentSignalementForm2Binding
 import com.example.onppe_v1.databinding.FragmentSignalementForm3Binding
+import com.example.onppe_v1.databinding.FragmentSignalementFormEnfantBinding
 import kotlinx.coroutines.NonDisposableHandle.parent
 import kotlin.properties.Delegates
 
 
-class SignalementForm2Fragment : Fragment() {
+class SignalementFormEnfantFragment : Fragment() {
 
-    lateinit var binding: FragmentSignalementForm2Binding
+    lateinit var binding: FragmentSignalementFormEnfantBinding
     private lateinit var signalementModel: SignalementTransfertModel
     private var sexe=""
     private var wilayacode = 0
@@ -32,14 +33,17 @@ class SignalementForm2Fragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentSignalementForm2Binding.inflate(inflater, container, false)
+        binding = FragmentSignalementFormEnfantBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //pour les champs obligatoires
         val dialogBinding = layoutInflater.inflate(R.layout.fragment_popup_window,null)
+        //pour l'age<18ans
+        val dialogBinding2 = layoutInflater.inflate(R.layout.popup_window_age,null)
         val myDialog = Dialog(requireActivity())
         myDialog.setContentView(dialogBinding)
         myDialog.setCancelable(true)
@@ -134,26 +138,43 @@ class SignalementForm2Fragment : Fragment() {
             binding.maried.setTextColor(Color.parseColor("#6B7280"))
             signalementModel.situationparentEnfant="autre"
         }
-        binding.next.setOnClickListener { view: View ->
-            if ((binding.sexe.text.toString().isEmpty())||(binding.age.text.toString().isEmpty())) {
-                //affichage du pop up
+       /* binding.next.setOnClickListener { view: View ->
+            if ((binding.age.text.toString().isNotEmpty()) && (binding.age.text.toString().toInt() > 17))
+            {
+                myDialog.setContentView(dialogBinding2)
                 myDialog.show()
-            } else {
-                signalementModel.prenomEnfant=binding.prenom.text.toString()
-                signalementModel.nomEnfant=binding.nom.text.toString()
-                signalementModel.sexeEnfant=sexe
-                signalementModel.ageEnfant=binding.age.text.toString().toInt()
-                signalementModel.adresseEnfant=binding.adresse.text.toString()
-                signalementModel.wilayacodeEnfant=wilayacode
-
             }
+            else {
+                if ((binding.sexe.text.toString().isEmpty())||(binding.age.text.toString().isEmpty())) {
+                    //affichage du pop up
+                    myDialog.setContentView(dialogBinding)
+                    myDialog.show()
+                } else {
+                    signalementModel.prenomEnfant=binding.prenom.text.toString()
+                    signalementModel.nomEnfant=binding.nom.text.toString()
+                    signalementModel.sexeEnfant=sexe
+                    signalementModel.ageEnfant=binding.age.text.toString().toInt()
+                    signalementModel.adresseEnfant=binding.adresse.text.toString()
+                    signalementModel.wilayacodeEnfant=wilayacode
+                    view.findNavController().navigate(R.id.action_signalementFormEnfantFragment_to_signalementFormInfosFragment)
+                }
+            }
+
+        }*/
+
+        binding.next.setOnClickListener { view: View ->
+
+            view.findNavController().navigate(R.id.action_signalementFormEnfantFragment_to_signalementFormInfosFragment)
+
         }
         binding.back.setOnClickListener { view: View ->
             view.findNavController().popBackStack()        }
         binding.back2.setOnClickListener { view: View ->
             view.findNavController().popBackStack()        }
 
-     
+        binding.home.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_signalementFormEnfantFragment_to_fonctionnalitiesActivity)
+        }
 
     }
 
@@ -192,8 +213,8 @@ class SignalementForm2Fragment : Fragment() {
             }
         }
         when (signalementModel.sexeEnfant) {
-           // "F" -> binding.sexe.setText(0)
-           // "M" -> binding.sexe.setText(1)
+            // "F" -> binding.sexe.setText(0)
+            // "M" -> binding.sexe.setText(1)
 
         }
     }

@@ -1,18 +1,14 @@
 package com.example.onppe_v1
 
 import android.Manifest
-import android.app.Activity
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
 import android.graphics.Color
-import android.graphics.ImageDecoder
 import android.graphics.drawable.ColorDrawable
 import android.media.MediaMetadataRetriever
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.DisplayMetrics
@@ -21,23 +17,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.MediaController
 import android.widget.Toast
-import android.widget.VideoView
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 
-import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation.findNavController
 
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import com.example.onppe_v1.databinding.FragmentSignalementImageBinding
 import com.example.onppe_v1.databinding.FragmentSignalementVideoBinding
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.SimpleExoPlayer
@@ -48,12 +38,6 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.File
-import com.google.android.exoplayer2.source.ProgressiveMediaSource
-
-import com.google.android.exoplayer2.source.MediaSource
-
-import com.google.android.exoplayer2.util.Util
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory as DefaultDataSourceFactory1
 
 
 class SignalementVideoFragment : Fragment() {
@@ -192,7 +176,7 @@ class SignalementVideoFragment : Fragment() {
             if (video_body==null){
                 Toast.makeText(requireActivity(), "veillez faire entrer la video d'abord", Toast.LENGTH_SHORT).show()
             }else {
-                view.findNavController().navigate(R.id.action_signalementVideoFragment_to_signalementForm1Fragment)
+                view.findNavController().navigate(R.id.action_signalementVideoFragment_to_signalementFormSignaleurFragment)
             }
         }
         binding.back.setOnClickListener { view: View ->

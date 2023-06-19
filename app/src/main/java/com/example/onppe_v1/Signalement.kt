@@ -7,7 +7,7 @@ data class Signalement(
     var enfantid:Int?,
     val descriptif:String?,
     val preuveid:Int?,
-    val typesignaleurid:Int?,
+    val typesignaleurid: Int?,
     val identitesecrete:Boolean?,
-    val dateincident :String?
+    val dateincident:String?
 )

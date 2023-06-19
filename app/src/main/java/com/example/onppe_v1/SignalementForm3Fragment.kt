@@ -39,11 +39,11 @@ class SignalementForm3Fragment : Fragment() {
 
         binding.next.setOnClickListener { view: View ->
             signalementModel.identitesecrete = false
-            view.findNavController().navigate(R.id.action_signalementForm3Fragment_to_signalementForm4Fragment)
+           // view.findNavController().navigate(R.id.action_signalementForm3Fragment_to_signalementForm4Fragment)
         }
         binding.nextanonym.setOnClickListener { view: View ->
             signalementModel.identitesecrete = true
-            view.findNavController().navigate(R.id.action_signalementForm3Fragment_to_signalementForm5Fragment)
+           // view.findNavController().navigate(R.id.action_signalementForm3Fragment_to_signalementForm5Fragment)
         }
         binding.back2.setOnClickListener { view: View ->
             view.findNavController().popBackStack()        }
@@ -53,11 +53,11 @@ class SignalementForm3Fragment : Fragment() {
 
 
         binding.home.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_signalementForm3Fragment_to_fonctionnalitiesActivity)
+           // view.findNavController().navigate(R.id.action_signalementForm3Fragment_to_fonctionnalitiesActivity)
         }
 
         binding.enfant.setOnClickListener {
-            signalementModel.typesignaleurid = 1
+           // signalementModel.typesignaleur = 1
             binding.enfant.setBackgroundColor( Color.parseColor("#CCF28123") )
             binding.moral.setBackgroundColor( Color.parseColor("#F2FAF2") )
             binding.personne.setBackgroundColor( Color.parseColor("#F2FAF2")  )
@@ -73,7 +73,7 @@ class SignalementForm3Fragment : Fragment() {
 
         }
         binding.representant.setOnClickListener {
-            signalementModel.typesignaleurid = 2
+            //signalementModel.typesignaleurid = 2
             binding.representant.setBackgroundColor( Color.parseColor("#CCF28123") )
             binding.moral.setBackgroundColor( Color.parseColor("#F2FAF2") )
             binding.personne.setBackgroundColor( Color.parseColor("#F2FAF2")  )
@@ -90,7 +90,7 @@ class SignalementForm3Fragment : Fragment() {
 
         }
         binding.personne.setOnClickListener {
-            signalementModel.typesignaleurid = 3
+           // signalementModel.typesignaleurid = 3
             binding.personne.setBackgroundColor( Color.parseColor("#CCF28123") )
             binding.moral.setBackgroundColor( Color.parseColor("#F2FAF2") )
             binding.enfant.setBackgroundColor( Color.parseColor("#F2FAF2")  )
@@ -106,7 +106,7 @@ class SignalementForm3Fragment : Fragment() {
 
         }
         binding.moral.setOnClickListener {
-            signalementModel.typesignaleurid = 4
+           // signalementModel.typesignaleurid = 4
             binding.moral.setBackgroundColor( Color.parseColor("#CCF28123") )
             binding.enfant.setBackgroundColor( Color.parseColor("#F2FAF2") )
             binding.personne.setBackgroundColor( Color.parseColor("#F2FAF2")  )
@@ -127,13 +127,13 @@ class SignalementForm3Fragment : Fragment() {
     }
 
 
-    private fun RemplirChamps(signalementModel : SignalementTransfertModel ) {
+   /* private fun RemplirChamps(signalementModel : SignalementTransfertModel ) {
         when (signalementModel.typesignaleurid) {
             1 -> binding.enfant.setBackgroundColor( Color.parseColor("#CCF28123") )
             2 -> binding.representant.setBackgroundColor( Color.parseColor("#CCF28123") )
             3 -> binding.personne.setBackgroundColor( Color.parseColor("#CCF28123") )
             4 -> binding.moral.setBackgroundColor( Color.parseColor("#CCF28123") )
         }
-    }
+    }*/
 
 }

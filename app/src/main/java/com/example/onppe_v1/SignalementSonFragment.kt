@@ -13,7 +13,6 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.onppe_v1.databinding.FragmentSignalementSonBinding
@@ -139,7 +138,7 @@ class SignalementSonFragment : Fragment() {
                 Toast.makeText(requireActivity(), "veillez faire entrer le son d'abord", Toast.LENGTH_SHORT).show()
             }
             else {
-                view.findNavController().navigate(R.id.action_signalementSonFragment_to_signalementForm1Fragment)
+                view.findNavController().navigate(R.id.action_signalementSonFragment_to_signalementFormSignaleurFragment)
             }
         }
 

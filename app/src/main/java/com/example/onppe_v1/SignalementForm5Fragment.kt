@@ -65,7 +65,7 @@ class SignalementForm5Fragment : Fragment() {
                     null,
                     signalementModel.descriptif,
                     null,
-                    signalementModel.typesignaleurid,
+                    3,
                     signalementModel.identitesecrete,
                     signalementModel.dateincident
                 )

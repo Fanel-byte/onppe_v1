@@ -12,15 +12,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.ArrayAdapter
-import android.widget.Toast
-import androidx.core.content.ContextCompat
-import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import com.example.onppe_v1.databinding.FragmentSignalementForm1Binding
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.Date
-import kotlin.properties.Delegates
 import androidx.lifecycle.ViewModelProvider
 
 
@@ -109,9 +105,7 @@ class SignalementForm1Fragment : Fragment() {
         binding.back.setOnClickListener { view: View ->
             view.findNavController().popBackStack()
         }
-        binding.home.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_signalementForm1Fragment_to_fonctionnalitiesActivity)
-        }
+
 
 
         binding.next.setOnClickListener { view: View ->
@@ -123,9 +117,7 @@ class SignalementForm1Fragment : Fragment() {
             val date = binding.date.text.toString()
             signalementModel.dateincident = date
             signalementModel.motifid= motifid
-            view.findNavController().navigate(
-                R.id.action_signalementForm1Fragment_to_signalementForm2Fragment,
-            )
+
         }
         }
 
