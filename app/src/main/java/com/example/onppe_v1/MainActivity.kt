@@ -18,6 +18,14 @@ import androidx.navigation.ui.NavigationUI
 import com.example.onppe_v1.databinding.ActivityMainBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.util.*
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.IntentFilter
+import android.net.ConnectivityManager
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
@@ -36,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager. findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         navController = navHostFragment.navController
         NavigationUI.setupWithNavController(binding.bottomNavigationView,navController)
-//cacher le menu phone
+        //cacher le menu phone
         binding.fragmentContainerView.setOnTouchListener { _, _ ->
             hidePhoneMenu()
             click=1
@@ -122,6 +130,37 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
+    private val coroutineScope = CoroutineScope(Dispatchers.Main)
+
+    private val networkStateReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+            val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            val activeNetwork = connectivityManager.activeNetworkInfo
+            val isConnected = activeNetwork?.isConnected == true
+
+            if (isConnected) {
+                coroutineScope.launch {
+                    functionX()
+                }
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        registerReceiver(networkStateReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
+    }
+
+    override fun onPause() {
+        super.onPause()
+        unregisterReceiver(networkStateReceiver)
+    }
+
+    private suspend fun functionX() {
+        // Send to the server
+        println("Function X called after connection established ...............")
+    }
 
     private fun hidePhoneMenu() {
         binding.phone.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#59C55E"))
