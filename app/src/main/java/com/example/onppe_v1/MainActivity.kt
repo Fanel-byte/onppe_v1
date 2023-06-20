@@ -22,6 +22,9 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.IntentFilter
 import android.net.ConnectivityManager
+import android.view.Menu
+import android.view.MenuInflater
+import androidx.navigation.ui.setupActionBarWithNavController
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -33,6 +36,7 @@ class MainActivity : AppCompatActivity() {
     private val PHONE_MENU_DELAY = 4000L
     private val phoneMenuHandler = Handler()
     var isPhoneButtonVisible = false
+    var SYNCH = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -43,7 +47,9 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigationView.menu.getItem(1).isEnabled = false
         val navHostFragment = supportFragmentManager. findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         navController = navHostFragment.navController
-        NavigationUI.setupWithNavController(binding.bottomNavigationView,navController)
+        //NavigationUI.setupWithNavController(binding.bottomNavigationView,navController)
+        setupActionBarWithNavController(navController)
+        SYNCH = SYNCH+1
         //cacher le menu phone
         binding.fragmentContainerView.setOnTouchListener { _, _ ->
             hidePhoneMenu()
@@ -131,6 +137,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+   /*
     private val coroutineScope = CoroutineScope(Dispatchers.Main)
 
     private val networkStateReceiver = object : BroadcastReceiver() {
@@ -138,9 +145,10 @@ class MainActivity : AppCompatActivity() {
             val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
             val activeNetwork = connectivityManager.activeNetworkInfo
             val isConnected = activeNetwork?.isConnected == true
-
+            SYNCH = SYNCH+1
             if (isConnected) {
                 coroutineScope.launch {
+                    SYNCH = SYNCH+1
                     functionX()
                 }
             }
@@ -161,6 +169,7 @@ class MainActivity : AppCompatActivity() {
         // Send to the server
         println("Function X called after connection established ...............")
     }
+    */
 
     private fun hidePhoneMenu() {
         binding.phone.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#59C55E"))
@@ -172,6 +181,31 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+
+    // Overflow Menu
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.overflow_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when (item.itemId) {
+
+            R.id.home-> {
+                finish()
+            }
+
+        }
+        return super.onOptionsItemSelected(item)
+
+    }
+
+
+    // Back Button
+    override fun onSupportNavigateUp() = navController.navigateUp() || super.onSupportNavigateUp()
 
 }
 

@@ -3,6 +3,7 @@ package com.example.onppe_v1
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import com.example.onppe_v1.databinding.ActivityStartBinding
 
 
@@ -25,5 +26,9 @@ class StartActivity : AppCompatActivity() {
             this.startActivity(intent)
 
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        return false
     }
 }

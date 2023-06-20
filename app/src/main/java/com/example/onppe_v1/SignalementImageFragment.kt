@@ -167,29 +167,8 @@ class SignalementImageFragment : Fragment() {
             imageChooser()
         }
 
-        //cas 1 : envoyer un signalement avec Image et Descriptif
-        binding.envoie.setOnClickListener {
-            if (imageBitmap == null){
-                Toast.makeText(requireActivity(), "veillez faire entrer une image d'abord", Toast.LENGTH_SHORT).show()
-            }
-            else {
-                addSignalement(Signalement(null,null,null,null,null,null,null,true,"")) { id ->
-                    if (id != null) {
-                        signalementModel.id = id
-                        signalementModel.videoImageSon = image_body
-                        signalementModel.DescriptifvideoImageSon = binding.Descriptionimage.text.toString()
-                        imageInfo = Image(binding.Descriptionimage.text.toString(), id)
-                        val imageInfoMB = MultipartBody.Part.createFormData("image", Gson().toJson(imageInfo))
-                        binding.progressBar2.visibility = View.VISIBLE
-                        addImg(imageInfoMB, image_body!!)
-                    }
-                }
-            }
 
-        }
-
-
-        //cas 2 : envoyer un signalement avec plus d'information
+        // envoyer un signalement avec plus d'information
         binding.add.setOnClickListener{
             signalementModel.videoImageSon =  image_body
             signalementModel.DescriptifvideoImageSon = binding.Descriptionimage.text.toString()

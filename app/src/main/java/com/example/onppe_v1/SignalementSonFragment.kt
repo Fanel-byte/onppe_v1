@@ -110,26 +110,7 @@ class SignalementSonFragment : Fragment() {
         handler = Handler()
 
 
-        //cas 1 : envoyer un signalement avec Son et Descriptif
-        binding.envoie.setOnClickListener {
-            if ( son_body  == null){
-                Toast.makeText(requireActivity(), "veillez faire entrer le son d'abord", Toast.LENGTH_SHORT).show()
-            }else
-            {
-                addSignalement(Signalement(null,null,null,null,null,null,null,true,"")) { id ->
-                    Toast.makeText(requireActivity(), "id value test $id", Toast.LENGTH_SHORT).show()
-                    if (id != null) {
-                        sonInfo = Son(binding.Descriptionson.text.toString(), id)
-                        val sonInfoMB = MultipartBody.Part.createFormData("vocal", Gson().toJson(sonInfo))
-                        signalementModel.id = id
-                        signalementModel.videoImageSon = son_body
-                        signalementModel.DescriptifvideoImageSon = binding.Descriptionson.text.toString()
-                        addSon(sonInfoMB, son_body!!)
-                    }
-                }
-            }
-        }
-        //cas 2 : envoyer un signalement avec plus d'information
+        //  envoyer un signalement avec plus d'information
         binding.add.setOnClickListener{
             signalementModel.DescriptifvideoImageSon = binding.Descriptionson.text.toString()
             signalementModel.videoImageSon = son_body

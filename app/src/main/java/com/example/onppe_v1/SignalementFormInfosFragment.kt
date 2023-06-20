@@ -56,6 +56,8 @@ class SignalementFormInfosFragment : Fragment() {
                 val instanceDB = AppDatabase.buildDatabase(requireContext())?.getSignalementDao()
                 instanceDB?.addSignalement(createSignalementTransfert(signalementModel,false))
                 Toast.makeText(requireActivity(), "Le signalement sera envoyé une fois la connexion établi", Toast.LENGTH_SHORT).show()
+                view?.findNavController()?.navigate(R.id.action_signalementFormInfosFragment_to_finFormulaireSansCnxFragment)
+
             }
         }
     }

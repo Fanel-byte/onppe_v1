@@ -150,25 +150,7 @@ class SignalementVideoFragment : Fragment() {
                 checkPermission()
             }
         }
-        //cas 1 : envoyer un signalement avec video et Descriptif
-        binding.envoie.setOnClickListener {
-            if (video_body==null){
-                Toast.makeText(requireActivity(), "veillez faire entrer la video d'abord", Toast.LENGTH_SHORT).show()
-            }
-            else {
-            addSignalement(Signalement(null,null,null,null,null,null,null,true,"")) { id ->
-                if (id != null) {
-                    signalementModel.DescriptifvideoImageSon = binding.Descriptionvideo.text.toString()
-                    signalementModel.id = id
-                    videoInfo = Video(binding.Descriptionvideo.text.toString(), id)
-                    val videoInfoMB = MultipartBody.Part.createFormData("video", Gson().toJson(videoInfo))
-                    signalementModel.videoImageSon = video_body
-                    addVideo(videoInfoMB, video_body!!)
-                }
-            }
-        }
-        }
-        //cas 2 : envoyer un signalement avec plus d'information
+        // envoyer un signalement avec plus d'information
         binding.add.setOnClickListener{
             signalementModel.DescriptifvideoImageSon = binding.Descriptionvideo.text.toString()
             signalementModel.videoImageSon = video_body

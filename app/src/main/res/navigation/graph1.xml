@@ -207,6 +207,18 @@
         <action
             android:id="@+id/action_signalementFormInfosFragment_to_fonctionnalitiesActivity"
             app:destination="@id/fonctionnalitiesActivity" />
+        <action
+            android:id="@+id/action_signalementFormInfosFragment_to_finFormulaireSansCnxFragment"
+            app:destination="@id/finFormulaireSansCnxFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/finFormulaireSansCnxFragment"
+        android:name="com.example.onppe_v1.FinFormulaireSansCnxFragment"
+        android:label="fragment_fin_formulaire_sans_cnx"
+        tools:layout="@layout/fragment_fin_formulaire_sans_cnx" >
+        <action
+            android:id="@+id/action_finFormulaireSansCnxFragment_to_suivisignalementfragment"
+            app:destination="@id/suivisignalementfragment" />
     </fragment>
 
 
