@@ -34,5 +34,8 @@ interface Endpoint {
 
     @GET("citoyen/verifieridCitoyen/{id}")
     suspend fun verifieridCitoyen(@Path ("id")id:String):Response<String>
-}
+
+    @Multipart
+    @POST("preuves/add")
+    suspend fun addPreuve(@Part preuve : MultipartBody.Part,@Part signalementid: MultipartBody.Part): Response<Int>}
 

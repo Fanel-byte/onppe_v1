@@ -1,5 +1,6 @@
 package com.example.onppe_v1
 
+import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.content.Context
@@ -8,6 +9,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import android.util.DisplayMetrics
@@ -31,8 +33,11 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import okio.Buffer
+import java.io.InputStream
 
 
 class SignalementFormInfosFragment : Fragment() {
@@ -40,6 +45,7 @@ class SignalementFormInfosFragment : Fragment() {
     private var motifid =0
     private lateinit var signalementModel: SignalementTransfertModel
     private val PICK_FILE_REQUEST_CODE = 2
+    private var preuve = false
     private val RESULT_OK = 1
 
     // Exception Handler for Coroutines
@@ -132,7 +138,7 @@ class SignalementFormInfosFragment : Fragment() {
         }
 
 
-        binding.back.setOnClickListener { view: View ->
+        binding.back2.setOnClickListener { view: View ->
             view.findNavController().popBackStack()
         }
         binding.home.setOnClickListener { view: View ->
@@ -184,8 +190,20 @@ class SignalementFormInfosFragment : Fragment() {
                             if (signalementModel.videoImageSon == null) {
                                 addSignalement(signalement,instanceDB) { id ->
                                     if (id != null) {
-                                        Toast.makeText(requireActivity(),"Votre signalement est effectué avec succès", Toast.LENGTH_SHORT).show()
-                                        view.findNavController().navigate(R.id.action_signalementFormInfosFragment_to_finFormulaireFragment)
+                                        if (preuve){
+                                            val signalementIdMB =
+                                                MultipartBody.Part.createFormData(
+                                                    "signalementid",
+                                                    Gson().toJson(id)
+                                                )
+                                            if (signalementModel.multipartBodyPreuve != null){
+                                                addPreuve(signalementModel.multipartBodyPreuve!!, signalementIdMB , instanceDB)
+                                            }
+                                        }
+                                        else {
+                                            Toast.makeText(requireActivity(),"Votre signalement est effectué avec succès", Toast.LENGTH_SHORT).show()
+                                            view.findNavController().navigate(R.id.action_signalementFormInfosFragment_to_finFormulaireFragment)
+                                        }
                                     }
                                 }
                             } else {
@@ -257,11 +275,30 @@ class SignalementFormInfosFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == PICK_FILE_REQUEST_CODE && resultCode == RESULT_OK) {
-            data?.data?.let { uri ->
-                // Recuperer le fichier et l'afficher sur l interface xml de mon app
+        if (requestCode == PICK_FILE_REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null) {
+            val fileUri = data.data
+            if (fileUri != null) {
+                val pdfBytes = readBytesFromUri(fileUri)
+                if (pdfBytes != null) {
+                    val requestBody = pdfBytes.toRequestBody("application/pdf".toMediaTypeOrNull())
+                    signalementModel.multipartBodyPreuve = MultipartBody.Part.createFormData("path", "file.pdf", requestBody)
+                    preuve = true
+                }
             }
         }
+    }
+
+    private fun readBytesFromUri(uri: Uri): ByteArray? {
+        var inputStream: InputStream? = null
+        try {
+            inputStream = requireActivity().contentResolver.openInputStream(uri)
+            return inputStream?.readBytes()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        } finally {
+            inputStream?.close()
+        }
+        return null
     }
     private fun addEnfant(enfant: Enfant,callback: (Int?) -> Unit) {
         CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
@@ -375,6 +412,23 @@ class SignalementFormInfosFragment : Fragment() {
             }
         }
     }
+
+    private fun addPreuve(preuve:  MultipartBody.Part, signalementid: MultipartBody.Part , instanceDB: SignalementDao?) {
+        CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
+            val response =  RetrofitService.endpoint.addPreuve(preuve , signalementid)
+            withContext(Dispatchers.Main) {
+                if(response.isSuccessful) {
+                    instanceDB?.addSignalement(createSignalementTransfert(signalementModel,true))
+                    Toast.makeText(requireActivity(),"Votre signalement est effectué avec succès", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.action_signalementFormInfosFragment_to_finFormulaireFragment)
+                }
+                else {
+                    Toast.makeText(requireActivity(),"Une erreur s'est produite",Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
     private fun addVideo(
         video:  MultipartBody.Part,
         videoBody: MultipartBody.Part, instanceDB: SignalementDao?

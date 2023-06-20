@@ -70,7 +70,7 @@ class SignalementFormSignaleurFragment : Fragment() {
         }
 
 
-        binding.back2.setOnClickListener {
+        binding.back.setOnClickListener {
             view.findNavController().popBackStack()        }
 
        /* binding.next.setOnClickListener {

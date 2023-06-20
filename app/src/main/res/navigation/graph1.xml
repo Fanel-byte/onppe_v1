@@ -95,39 +95,6 @@
     </fragment>
 
 
-
-    <fragment
-        android:id="@+id/signalementForm4Fragment"
-        android:name="com.example.onppe_v1.SignalementForm4Fragment"
-        android:label="fragment_signalement_form4"
-        tools:layout="@layout/fragment_signalement_form4" >
-
-        <action
-            android:id="@+id/action_signalementForm4Fragment_to_fonctionnalitiesActivity"
-            app:destination="@id/fonctionnalitiesActivity" />
-        <action
-            android:id="@+id/action_signalementForm4Fragment_to_signalementForm5Fragment"
-            app:destination="@id/signalementForm5Fragment" />
-        <action
-            android:id="@+id/action_signalementForm4Fragment_to_signalementFormInfosFragment"
-            app:destination="@id/signalementFormInfosFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/signalementForm5Fragment"
-        android:name="com.example.onppe_v1.SignalementForm5Fragment"
-        android:label="fragment_signalement_form5"
-
-        tools:layout="@layout/fragment_signalement_form5" >
-        <action
-            android:id="@+id/action_signalementForm5Fragment_to_signalementForm4Fragment"
-            app:destination="@id/signalementForm4Fragment" />
-        <action
-            android:id="@+id/action_signalementForm5Fragment_to_finFormulaireFragment"
-            app:destination="@id/finFormulaireFragment" />
-        <action
-            android:id="@+id/action_signalementForm5Fragment_to_fonctionnalitiesActivity"
-            app:destination="@id/fonctionnalitiesActivity" />
-    </fragment>
     <fragment
         android:id="@+id/finFormulaireFragment"
         android:name="com.example.onppe_v1.FinFormulaireFragment"

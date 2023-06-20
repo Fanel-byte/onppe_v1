@@ -15,8 +15,6 @@ import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import com.example.onppe_v1.databinding.FragmentSignalementForm2Binding
-import com.example.onppe_v1.databinding.FragmentSignalementForm3Binding
 import com.example.onppe_v1.databinding.FragmentSignalementFormEnfantBinding
 import kotlinx.coroutines.NonDisposableHandle.parent
 import kotlin.properties.Delegates
