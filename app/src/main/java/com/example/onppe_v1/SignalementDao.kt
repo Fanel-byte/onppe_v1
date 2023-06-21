@@ -19,4 +19,7 @@ interface SignalementDao {
 
     @Update
     fun updateSignalements(team: List<SignalementTransfert>?)
+
+    @Update
+    fun updateSynchronize(sign: SignalementTransfert)
 }

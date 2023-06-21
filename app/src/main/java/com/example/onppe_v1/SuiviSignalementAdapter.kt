@@ -22,6 +22,9 @@ class SuiviSignalementAdapter(val context: Context, var data:List<SignalementTra
 
            // holder.datesignalement.text = data[position].datesignalement
             holder.statut.text =  data[position].statut
+            if (data[position].upload == 1) data[position].statut = "envoye"
+            holder.statut.text =  data[position].statut
+
             holder.numbersignalement.text = (position + 1).toString()
         }
 

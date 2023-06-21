@@ -8,7 +8,7 @@ import java.io.Serializable
 data class SignalementTransfert(
     @PrimaryKey(autoGenerate = true)
     var id: Int?,
-    val upload: Int,
+    var upload: Int,
     val videoImageSon: ByteArray,
     val DescriptifvideoImageSon:String?,
     val typepreuve:String?,

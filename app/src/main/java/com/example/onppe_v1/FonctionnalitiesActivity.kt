@@ -30,12 +30,13 @@ class FonctionnalitiesActivity : AppCompatActivity() {
             val constraints = Constraints.Builder()
                 .setRequiredNetworkType(
                     NetworkType.CONNECTED).build()
-                // Planification du service
+            // Planification du service
             val req = OneTimeWorkRequest.Builder(SynchroWorker::class.java)
                 .setConstraints(constraints).build()
-                // Lancement du service
+            // Lancement du service
             val workManager = WorkManager.getInstance(this)
             workManager.enqueueUniqueWork("work", ExistingWorkPolicy.KEEP,req)
+
 
             // aller a main activity
             val intent = Intent(this, MainActivity::class.java)
