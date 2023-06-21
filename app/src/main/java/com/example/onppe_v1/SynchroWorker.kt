@@ -9,16 +9,6 @@ class SynchroWorker (val context: Context, val params: WorkerParameters): Corout
         val signalements = AppDatabase.buildDatabase(context)?.getSignalementDao()
             ?.getSignalementToSynchronize()
 
-
-        val response = RetrofitService.endpoint.insertSignalements(signalements!!)
-
-        if(response.isSuccessful) {
-            val newSignalements = signalements?.map { it.copy(upload = 1) }
-            AppDatabase.buildDatabase(context)?.getSignalementDao()?.updateSignalements(newSignalements)
-            return  Result.success()
-        }
-        else {
-            return Result.retry()
-        }
+return Result.success()
     }
 }

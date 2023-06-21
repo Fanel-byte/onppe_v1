@@ -5,10 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import com.example.onppe_v1.databinding.ActivityStartBinding
-
+import android.content.SharedPreferences
 
 class StartActivity : AppCompatActivity() {
     lateinit var binding: ActivityStartBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -16,19 +17,29 @@ class StartActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        val isFirstLaunch = getSharedPreferences("MyPrefs", MODE_PRIVATE)
+            .getBoolean("isFirstLaunch", true)
 
-
-
-
+        if (!isFirstLaunch) {
+            launchFonctionnalitiesActivity()
+            return
+        }
 
         binding.getstarted.setOnClickListener {
-            val intent = Intent(this, FonctionnalitiesActivity::class.java)
-            this.startActivity(intent)
-
+            launchFonctionnalitiesActivity()
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        return false
+    private fun launchFonctionnalitiesActivity() {
+        val intent = Intent(this, FonctionnalitiesActivity::class.java)
+        startActivity(intent)
+
+        // Enregistre l'indicateur d'installation dans les préférences partagées
+        getSharedPreferences("MyPrefs", MODE_PRIVATE)
+            .edit()
+            .putBoolean("isFirstLaunch", false)
+            .apply()
+
+        finish()
     }
 }

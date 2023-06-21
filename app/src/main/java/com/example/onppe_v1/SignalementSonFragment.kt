@@ -113,9 +113,13 @@ class SignalementSonFragment : Fragment() {
                 Toast.makeText(requireActivity(), "Veuillez d'abord effectuer un enregistrement", Toast.LENGTH_SHORT).show()
 
             }
-            else {
-                waveRecorder.stopRecording()
+            if  (Record==true) {
+                Toast.makeText(requireActivity(), "votre enregistrement a été effectuer ", Toast.LENGTH_SHORT).show()
+
             }
+
+                waveRecorder.stopRecording()
+
         }
 
 
