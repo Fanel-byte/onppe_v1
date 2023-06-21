@@ -90,52 +90,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView50" />
 
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/montserratarabicregular"
-        android:text="شرح موجز للتسجيل الصوتي "
-        android:textColor="#000000"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/check_record" />
 
 
-    <ImageView
-        android:id="@+id/check_record"
-        android:layout_width="319dp"
-
-        android:layout_height="176dp"
-        android:layout_marginTop="15dp"
-        android:src="@drawable/rectangle_grey_full"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-
-    <ImageView
-        android:id="@+id/stoprecord"
-        android:layout_width="36.84dp"
-        android:layout_height="36.84dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="5dp"
-        android:src="@drawable/upload"
-        app:layout_constraintBottom_toBottomOf="@+id/check_record"
-        app:layout_constraintEnd_toEndOf="@+id/check_record" />
-
-    <ImageView
-        android:id="@+id/voicerecorder"
-        android:layout_width="36.84dp"
-        android:layout_height="36.84dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="5dp"
-        android:src="@drawable/upload_sound"
-        app:layout_constraintBottom_toBottomOf="@+id/check_record"
-        app:layout_constraintEnd_toStartOf="@+id/stoprecord" />
 
 
     <EditText
@@ -160,6 +116,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/montserratarabicregular"
+        android:text="شرح موجز للتسجيل الصوتي "
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/Descriptionson"
+        app:layout_constraintStart_toStartOf="@+id/Descriptionson"
+        app:layout_constraintTop_toBottomOf="@+id/stoprecord" />
     <androidx.appcompat.widget.AppCompatButton
 
         android:id="@+id/add"
@@ -180,7 +149,27 @@
         app:layout_constraintTop_toBottomOf="@+id/Descriptionson"
         tools:ignore="MissingConstraints" />
 
+    <androidx.appcompat.widget.AppCompatButton
 
+
+        android:id="@+id/envoie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bouton_orange_full"
+        android:drawableRight="@drawable/ion_send_sharp"
+        android:drawablePadding="5dp"
+        android:fontFamily="@font/montserratsemibold"
+        android:paddingRight="10dp"
+        android:text="إرسال  "
+        android:textAlignment="textEnd"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/add"
+        app:layout_constraintEnd_toStartOf="@+id/add"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/Descriptionson"
+        app:layout_constraintTop_toTopOf="@+id/add"
+        tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/question"
@@ -194,44 +183,63 @@
         app:layout_constraintStart_toStartOf="@+id/home"
         app:layout_constraintTop_toTopOf="@+id/imageView50" />
 
+
+
+    <com.google.android.exoplayer2.ui.PlayerView
+        android:id="@+id/audio"
+        android:layout_width="0dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:resize_mode="fixed_width">
+
+    </com.google.android.exoplayer2.ui.PlayerView>
+
+
+    <ImageView
+        android:id="@+id/stoprecord"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_stop"
+        android:visibility="visible"
+        app:layout_constraintEnd_toStartOf="@+id/voicerecorder"
+        app:layout_constraintStart_toStartOf="@+id/audio"
+        app:layout_constraintTop_toBottomOf="@+id/audio" />
+
+    <ImageView
+        android:id="@+id/voicerecorder"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/upload_sound"
+        app:layout_constraintEnd_toEndOf="@+id/audio"
+        app:layout_constraintStart_toEndOf="@+id/stoprecord"
+        app:layout_constraintTop_toTopOf="@+id/stoprecord" />
+
+
+
+
+
+
+
     <TextView
         android:id="@+id/counter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:fontFamily="sans-serif-medium"
         android:text="00:00"
-        android:textColor="#5C000000"
+        android:textColor="#FFFFFF"
         android:textSize="44dp"
-        app:layout_constraintBottom_toBottomOf="@+id/check_record"
-        app:layout_constraintEnd_toEndOf="@+id/check_record"
-        app:layout_constraintStart_toStartOf="@+id/check_record"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <ImageView
-        android:id="@+id/playrecord"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/ic_play"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="@+id/check_record"
-        app:layout_constraintStart_toStartOf="@+id/check_record"
-        app:layout_constraintTop_toTopOf="@+id/check_record" />
-
-    <SeekBar
-        android:id="@+id/progressBar"
-        android:layout_width="0dp"
-        android:layout_height="5dp"
-        android:layout_marginBottom="50dp"
-        android:progressDrawable="@drawable/custom_progress_bar"
-        android:thumb="@drawable/custom_thumb"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/check_record"
-        app:layout_constraintEnd_toEndOf="@+id/check_record"
-        app:layout_constraintStart_toStartOf="@+id/check_record" />
+        app:layout_constraintBottom_toBottomOf="@+id/audio"
+        app:layout_constraintEnd_toEndOf="@+id/audio"
+        app:layout_constraintStart_toStartOf="@+id/audio"
+        app:layout_constraintTop_toTopOf="@+id/audio" />
 
 
 

@@ -1,5 +1,6 @@
 package com.example.onppe_v1
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
@@ -9,9 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.MenuItem
-import androidx.core.content.ContextCompat
-import androidx.core.view.forEach
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.NavController
 import androidx.navigation.ui.NavigationUI
@@ -36,7 +34,7 @@ class MainActivity : AppCompatActivity() {
     private val PHONE_MENU_DELAY = 4000L
     private val phoneMenuHandler = Handler()
     var isPhoneButtonVisible = false
-    var SYNCH = 0
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -49,7 +47,6 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
         //NavigationUI.setupWithNavController(binding.bottomNavigationView,navController)
         setupActionBarWithNavController(navController)
-        SYNCH = SYNCH+1
         //cacher le menu phone
         binding.fragmentContainerView.setOnTouchListener { _, _ ->
             hidePhoneMenu()
@@ -137,39 +134,6 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-   /*
-    private val coroutineScope = CoroutineScope(Dispatchers.Main)
-
-    private val networkStateReceiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent) {
-            val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-            val activeNetwork = connectivityManager.activeNetworkInfo
-            val isConnected = activeNetwork?.isConnected == true
-            SYNCH = SYNCH+1
-            if (isConnected) {
-                coroutineScope.launch {
-                    SYNCH = SYNCH+1
-                    functionX()
-                }
-            }
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        registerReceiver(networkStateReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
-    }
-
-    override fun onPause() {
-        super.onPause()
-        unregisterReceiver(networkStateReceiver)
-    }
-
-    private suspend fun functionX() {
-        // Send to the server
-        println("Function X called after connection established ...............")
-    }
-    */
 
     private fun hidePhoneMenu() {
         binding.phone.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#59C55E"))

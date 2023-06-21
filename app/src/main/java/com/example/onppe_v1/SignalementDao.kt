@@ -4,7 +4,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import androidx.room.Delete
 
 @Dao
 interface SignalementDao {
@@ -14,4 +13,10 @@ interface SignalementDao {
 
     @Query("select * from signalements")
     fun getSignalement():List<SignalementTransfert>
+
+    @Query("select * from signalements where upload=0")
+    fun getSignalementToSynchronize():List<SignalementTransfert>
+
+    @Update
+    fun updateSignalements(team: List<SignalementTransfert>?)
 }

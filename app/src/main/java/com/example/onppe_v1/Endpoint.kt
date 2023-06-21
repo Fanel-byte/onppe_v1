@@ -37,5 +37,11 @@ interface Endpoint {
 
     @Multipart
     @POST("preuves/add")
-    suspend fun addPreuve(@Part preuve : MultipartBody.Part,@Part signalementid: MultipartBody.Part): Response<Int>}
+    suspend fun addPreuve(@Part preuve : MultipartBody.Part,@Part signalementid: MultipartBody.Part): Response<Int>
+
+    @POST("addteams")
+    suspend fun insertSignalements(@Body teams: List<SignalementTransfert>): Response<String>
+
+
+}
 

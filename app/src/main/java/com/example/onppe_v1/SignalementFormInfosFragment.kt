@@ -54,7 +54,7 @@ class SignalementFormInfosFragment : Fragment() {
             // verify that the fragment is contained in an activity
             if (isAdded) {
                 val instanceDB = AppDatabase.buildDatabase(requireContext())?.getSignalementDao()
-                instanceDB?.addSignalement(createSignalementTransfert(signalementModel,false))
+                instanceDB?.addSignalement(createSignalementTransfert(signalementModel,0))
                 Toast.makeText(requireActivity(), "Le signalement sera envoyé une fois la connexion établi", Toast.LENGTH_SHORT).show()
                 view?.findNavController()?.navigate(R.id.action_signalementFormInfosFragment_to_finFormulaireSansCnxFragment)
 
@@ -368,7 +368,7 @@ class SignalementFormInfosFragment : Fragment() {
             val response = RetrofitService.endpoint.addSignalement(new)
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
-                    instanceDB?.addSignalement(createSignalementTransfert(signalementModel,true))
+                    instanceDB?.addSignalement(createSignalementTransfert(signalementModel,1))
                     val id = response.body()
                     callback(id)
                 } else {
@@ -386,7 +386,7 @@ class SignalementFormInfosFragment : Fragment() {
             val response =  RetrofitService.endpoint.addImg(image,imageBody)
             withContext(Dispatchers.Main) {
                 if(response.isSuccessful) {
-                    instanceDB?.addSignalement(createSignalementTransfert(signalementModel,true))
+                    instanceDB?.addSignalement(createSignalementTransfert(signalementModel,1))
                     Toast.makeText(requireActivity(),"Votre signalement est effectué avec succès", Toast.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.action_signalementFormInfosFragment_to_finFormulaireFragment)
                 }
@@ -404,7 +404,7 @@ class SignalementFormInfosFragment : Fragment() {
             val response =  RetrofitService.endpoint.addSon(son,sonBody)
             withContext(Dispatchers.Main) {
                 if(response.isSuccessful) {
-                    instanceDB?.addSignalement(createSignalementTransfert(signalementModel,true))
+                    instanceDB?.addSignalement(createSignalementTransfert(signalementModel,1))
                     Toast.makeText(requireActivity(),"Votre signalement est effectué avec succès", Toast.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.action_signalementFormInfosFragment_to_finFormulaireFragment)
                 }
@@ -420,7 +420,7 @@ class SignalementFormInfosFragment : Fragment() {
             val response =  RetrofitService.endpoint.addPreuve(preuve , signalementid)
             withContext(Dispatchers.Main) {
                 if(response.isSuccessful) {
-                    instanceDB?.addSignalement(createSignalementTransfert(signalementModel,true))
+                    instanceDB?.addSignalement(createSignalementTransfert(signalementModel,1))
                     Toast.makeText(requireActivity(),"Votre signalement est effectué avec succès", Toast.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.action_signalementFormInfosFragment_to_finFormulaireFragment)
                 }
@@ -439,7 +439,7 @@ class SignalementFormInfosFragment : Fragment() {
             val response =  RetrofitService.endpoint.addVideo(video,videoBody)
             withContext(Dispatchers.Main) {
                 if(response.isSuccessful) {
-                    instanceDB?.addSignalement(createSignalementTransfert(signalementModel,true))
+                    instanceDB?.addSignalement(createSignalementTransfert(signalementModel,1))
                     Toast.makeText(requireActivity(),"Votre signalement est effectué avec succès", Toast.LENGTH_SHORT).show()
 
                     findNavController().navigate(R.id.action_signalementFormInfosFragment_to_finFormulaireFragment)
@@ -468,7 +468,7 @@ class SignalementFormInfosFragment : Fragment() {
     }
 
     // Convertir signalementModel to signalement data class:
-    private fun createSignalementTransfert(signalementTransfertModel: SignalementTransfertModel, Upload : Boolean): SignalementTransfert {
+    private fun createSignalementTransfert(signalementTransfertModel: SignalementTransfertModel, Upload : Int): SignalementTransfert {
         return SignalementTransfert(
             upload = Upload,
             videoImageSon = partToByteArray(signalementTransfertModel.videoImageSon),
@@ -493,7 +493,7 @@ class SignalementFormInfosFragment : Fragment() {
             adresseCitoyen = signalementTransfertModel.adresseCitoyen,
             telCitoyen = signalementTransfertModel.telCitoyen,
             descriptif = signalementTransfertModel.descriptif,
-            statut = if (Upload) "envoyé en attente de réponse" else "en attente d envoi"
+            statut = if (Upload ==1) "envoyé en attente de réponse" else "en attente d envoi"
 
         )
     }
