@@ -1,9 +1,12 @@
 package com.example.onppe_v1
 
 import android.app.Dialog
+import android.content.Context
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.provider.Settings
 import android.util.DisplayMetrics
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -44,6 +47,15 @@ class SignalementFormSignaleurFragment : Fragment() {
         val width = (displayMetrics.widthPixels * 0.75).toInt()
         val height =  WindowManager.LayoutParams.WRAP_CONTENT
 
+        val sharedPreferences = requireActivity().getSharedPreferences("signaleur_infos", Context.MODE_PRIVATE)
+        if (! RemplirChamps(sharedPreferences)) {
+            // La premiere fois :
+            val editor = sharedPreferences.edit()
+            val deviceId = Settings.Secure.getString(requireContext().contentResolver, Settings.Secure.ANDROID_ID)
+            editor.putString("deviceId", deviceId)
+            editor.apply()
+        }
+
         // Définir la taille de la fenêtre du dialog
         myDialog.window?.setLayout(width, height)
         signalementModel = ViewModelProvider(requireActivity()).get(SignalementTransfertModel::class.java)
@@ -73,7 +85,7 @@ class SignalementFormSignaleurFragment : Fragment() {
         binding.back.setOnClickListener {
             view.findNavController().popBackStack()        }
 
-       /* binding.next.setOnClickListener {
+        binding.next.setOnClickListener {
             if ((binding.prenom.text.toString().isEmpty())||(binding.nom.text.toString().isEmpty())||(binding.tel.text.toString().isEmpty())||(binding.sexe.text.toString().isEmpty())||(binding.age.text.toString().isEmpty())||(binding.adresse.text.toString().isEmpty())){
                 myDialog.show()
             }else{
@@ -85,35 +97,38 @@ class SignalementFormSignaleurFragment : Fragment() {
                 signalementModel.sexeCitoyen=sexe
                 signalementModel.adresseCitoyen=binding.adresse.text.toString()
                 signalementModel.telCitoyen=binding.tel.text.toString()
+
+                val editor = sharedPreferences.edit()
+                editor.putString("nomCitoyen", signalementModel.nomCitoyen)
+                editor.putString("prenomCitoyen", signalementModel.prenomCitoyen)
+                editor.putString("ageCitoyen", signalementModel.ageCitoyen.toString())
+                editor.putString("adresseCitoyen", signalementModel.adresseCitoyen)
+                editor.putString("telCitoyen", signalementModel.telCitoyen)
+                editor.apply()
                 view.findNavController().navigate(R.id.action_signalementFormSignaleurFragment_to_signalementFormEnfantFragment)
             }
-        }*/
-        binding.next.setOnClickListener {
-            view.findNavController().navigate(R.id.action_signalementFormSignaleurFragment_to_signalementFormEnfantFragment)
         }
+
         binding.home.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_signalementFormSignaleurFragment_to_fonctionnalitiesActivity)
         }
     }
 
-    private fun RemplirChamps(signalementModel : SignalementTransfertModel) {
-        if (signalementModel.nomCitoyen != null){
-            binding.nom.setText(signalementModel.nomCitoyen)
-        }
-        if (signalementModel.prenomCitoyen != null){
-            binding.prenom.setText(signalementModel.prenomCitoyen)
-        }
-        if (signalementModel.ageCitoyen != null){
-            binding.age.setText(signalementModel.ageCitoyen.toString())
-        }
-        if (signalementModel.adresseCitoyen != null){
-            binding.adresse.setText(signalementModel.adresseCitoyen)
-        }
-        if (signalementModel.telCitoyen != null){
-            binding.tel.setText(signalementModel.telCitoyen)
-        }
-        if (signalementModel.sexeCitoyen != null){
-            //binding.sexe.setText(signalementModel.sexeCitoyen)
+    private fun  RemplirChamps(sharedPreferences : SharedPreferences) : Boolean{
+        val nomCitoyen = sharedPreferences.getString("nomCitoyen", "")
+        if (nomCitoyen == ""){
+            return false
+        }else {
+            val prenomCitoyen = sharedPreferences.getString("prenomCitoyen", "")
+            val ageCitoyen = sharedPreferences.getString("ageCitoyen", "")
+            val adresseCitoyen = sharedPreferences.getString("adresseCitoyen", "")
+            val telCitoyen = sharedPreferences.getString("telCitoyen", "")
+            binding.nom.setText(nomCitoyen)
+            binding.prenom.setText(prenomCitoyen)
+            binding.age.setText(ageCitoyen)
+            binding.adresse.setText(adresseCitoyen)
+            binding.tel.setText(telCitoyen)
+            return true
         }
     }
 
