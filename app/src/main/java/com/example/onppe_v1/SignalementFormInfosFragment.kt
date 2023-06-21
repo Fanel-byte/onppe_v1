@@ -55,7 +55,6 @@ class SignalementFormInfosFragment : Fragment() {
             if (isAdded) {
                 val instanceDB = AppDatabase.buildDatabase(requireContext())?.getSignalementDao()
                 instanceDB?.addSignalement(createSignalementTransfert(signalementModel,0))
-                Toast.makeText(requireActivity(), "Le signalement sera envoyé une fois la connexion établi", Toast.LENGTH_SHORT).show()
                 view?.findNavController()?.navigate(R.id.action_signalementFormInfosFragment_to_finFormulaireSansCnxFragment)
 
             }
@@ -203,7 +202,6 @@ class SignalementFormInfosFragment : Fragment() {
                                             }
                                         }
                                         else {
-                                            Toast.makeText(requireActivity(),"Votre signalement est effectué avec succès", Toast.LENGTH_SHORT).show()
                                             view.findNavController().navigate(R.id.action_signalementFormInfosFragment_to_finFormulaireFragment)
                                         }
                                     }
@@ -310,7 +308,6 @@ class SignalementFormInfosFragment : Fragment() {
                     val id = response.body()
                     callback(id)
                 } else {
-                    Toast.makeText(requireActivity(), "erreur " + response.code().toString(), Toast.LENGTH_SHORT).show()
                     callback(null)
                 }
             }
@@ -387,7 +384,6 @@ class SignalementFormInfosFragment : Fragment() {
             withContext(Dispatchers.Main) {
                 if(response.isSuccessful) {
                     instanceDB?.addSignalement(createSignalementTransfert(signalementModel,1))
-                    Toast.makeText(requireActivity(),"Votre signalement est effectué avec succès", Toast.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.action_signalementFormInfosFragment_to_finFormulaireFragment)
                 }
                 else {
@@ -405,7 +401,6 @@ class SignalementFormInfosFragment : Fragment() {
             withContext(Dispatchers.Main) {
                 if(response.isSuccessful) {
                     instanceDB?.addSignalement(createSignalementTransfert(signalementModel,1))
-                    Toast.makeText(requireActivity(),"Votre signalement est effectué avec succès", Toast.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.action_signalementFormInfosFragment_to_finFormulaireFragment)
                 }
                 else {
@@ -421,7 +416,6 @@ class SignalementFormInfosFragment : Fragment() {
             withContext(Dispatchers.Main) {
                 if(response.isSuccessful) {
                     instanceDB?.addSignalement(createSignalementTransfert(signalementModel,1))
-                    Toast.makeText(requireActivity(),"Votre signalement est effectué avec succès", Toast.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.action_signalementFormInfosFragment_to_finFormulaireFragment)
                 }
                 else {
@@ -440,8 +434,6 @@ class SignalementFormInfosFragment : Fragment() {
             withContext(Dispatchers.Main) {
                 if(response.isSuccessful) {
                     instanceDB?.addSignalement(createSignalementTransfert(signalementModel,1))
-                    Toast.makeText(requireActivity(),"Votre signalement est effectué avec succès", Toast.LENGTH_SHORT).show()
-
                     findNavController().navigate(R.id.action_signalementFormInfosFragment_to_finFormulaireFragment)
                 }
                 else {
@@ -493,7 +485,7 @@ class SignalementFormInfosFragment : Fragment() {
             adresseCitoyen = signalementTransfertModel.adresseCitoyen,
             telCitoyen = signalementTransfertModel.telCitoyen,
             descriptif = signalementTransfertModel.descriptif,
-            statut = if (Upload ==1) "envoyé en attente de réponse" else "en attente d envoi"
+            statut = if (Upload ==1) "أرسلت في انتظار الرد" else "في انتظار الإرسال"
 
         )
     }

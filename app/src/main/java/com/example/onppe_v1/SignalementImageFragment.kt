@@ -44,17 +44,6 @@ class SignalementImageFragment : Fragment() {
     var imageBitmap: Bitmap? = null
     val requestCode = 400
 
-    // Exception Handler for Coroutines
-    val exceptionHandler = CoroutineExceptionHandler {    coroutineContext, throwable ->
-        CoroutineScope(Dispatchers.Main).launch {
-            // verify that the fragment is contained in an activity
-            if (isAdded) {
-            binding.progressBar2.visibility = View.INVISIBLE
-            // Ne pas affichre le toast peut poser probleme : not attached to an activity (mettre pop up)
-            Toast.makeText(requireActivity(),"Une erreur lors de la connexion au serveur",Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -174,7 +163,7 @@ class SignalementImageFragment : Fragment() {
             signalementModel.DescriptifvideoImageSon = binding.Descriptionimage.text.toString()
             signalementModel.typepreuve = "image"
             if (signalementModel.videoImageSon == null){
-                Toast.makeText(requireActivity(), "veillez faire entrer une image d'abord", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireActivity(), "الرجاء إدخال صورة أولا", Toast.LENGTH_SHORT).show()
             }
             else {
                 view.findNavController().navigate(R.id.action_signalementImageFragment_to_signalementFormSignaleurFragment)
@@ -215,35 +204,6 @@ class SignalementImageFragment : Fragment() {
         intent.setType("image/*")
         intent.setAction(Intent.ACTION_GET_CONTENT)
         activityResultLauncher1.launch(intent)
-    }
-
-    private fun addSignalement(new: Signalement, callback: (Int?) -> Unit) {
-        CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
-            val response = RetrofitService.endpoint.addSignalement(new)
-            withContext(Dispatchers.Main) {
-                if (response.isSuccessful) {
-                    val id = response.body()
-                    callback(id)
-                } else {
-                    Toast.makeText(requireActivity(), "erreur " + response.code().toString(), Toast.LENGTH_SHORT).show()
-                    callback(null)
-                }
-            }
-        }
-    }
-
-    private fun addImg(image :  MultipartBody.Part ,imageBody: MultipartBody.Part) {
-        CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
-            val response =  RetrofitService.endpoint.addImg(image,imageBody)
-            withContext(Dispatchers.Main) {
-                if(response.isSuccessful) {
-                    findNavController().navigate(R.id.action_signalementImageFragment_to_finFormulaireFragment)
-                }
-                else {
-                    Toast.makeText(requireActivity(),"Une erreur s'est produite",Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
     }
 
     private fun RemplirChamps(signalementModel : SignalementTransfertModel){

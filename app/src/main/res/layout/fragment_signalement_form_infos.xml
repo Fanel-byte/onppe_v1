@@ -227,7 +227,7 @@
         android:textSize="16sp"
         app:backgroundTint="#FFFFFF"
         app:cornerRadius="10dp"
-        app:layout_constraintStart_toStartOf="@+id/description"
+        app:layout_constraintEnd_toEndOf="@+id/description"
         app:layout_constraintTop_toBottomOf="@+id/description"
         app:strokeColor="#F28123"
         app:strokeWidth="2dp" />

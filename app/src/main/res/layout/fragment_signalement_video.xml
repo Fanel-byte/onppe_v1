@@ -187,6 +187,7 @@
             android:textColor="@color/orange"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@+id/Descriptionvideo"
+            app:layout_constraintStart_toStartOf="@+id/Descriptionvideo"
             app:layout_constraintTop_toBottomOf="@+id/Descriptionvideo"
             tools:ignore="MissingConstraints" />
 

@@ -30,5 +30,5 @@ data class SignalementTransfert(
     var adresseCitoyen:String?,
     var telCitoyen:String?,
     var descriptif:String?,
-    var statut: String = "en attente d envoi",
+    var statut: String = "في انتظار الإرسال",
 ): Serializable

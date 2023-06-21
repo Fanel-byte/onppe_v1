@@ -45,16 +45,6 @@ class SignalementSonFragment : Fragment() {
     private var Record = false
     private var isPaused = false
 
-    // Exception Handler for Coroutines
-    val exceptionHandler = CoroutineExceptionHandler {    coroutineContext, throwable ->
-        CoroutineScope(Dispatchers.Main).launch {
-            if (isAdded) {
-                //binding.progressBar.visibility = View.INVISIBLE
-                // Ne pas affiche le toast peut poser probleme : not attached to an activity (mettre pop up)
-                Toast.makeText(requireActivity(),throwable.message.toString(),Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -110,12 +100,11 @@ class SignalementSonFragment : Fragment() {
 
         binding.stoprecord.setOnClickListener {
             if (isRecording==false && Record==false) {
-                Toast.makeText(requireActivity(), "Veuillez d'abord effectuer un enregistrement", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireActivity(), "الرجاء ادخال تسجيل صوتي أولا", Toast.LENGTH_SHORT).show()
 
             }
             if  (Record==true) {
-                Toast.makeText(requireActivity(), "votre enregistrement a été effectuer ", Toast.LENGTH_SHORT).show()
-
+                Toast.makeText(requireActivity(), "تم التسجيل بنجاح", Toast.LENGTH_SHORT).show()
             }
 
                 waveRecorder.stopRecording()
@@ -124,24 +113,13 @@ class SignalementSonFragment : Fragment() {
 
 
 
-
-
-        //cas 1 : envoyer un signalement avec Son et Descriptif
-        binding.envoie.setOnClickListener {
-            if ( son_body  == null){
-                Toast.makeText(requireActivity(), "veuillez faire entrer le son d'abord", Toast.LENGTH_SHORT).show()
-            }else
-            {
-                addSignalement(Signalement(null,null,null,null,null,null,null,true,""))
-            }
-        }
-        //cas 2 : envoyer un signalement avec plus d'information
+        // envoyer un signalement avec plus d'information
         binding.add.setOnClickListener{
             signalementModel.DescriptifvideoImageSon = binding.Descriptionson.text.toString()
             signalementModel.videoImageSon = son_body
             signalementModel.typepreuve = "son"
             if (son_body == null){
-                Toast.makeText(requireActivity(), "veuillez faire entrer le son d'abord", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireActivity(), "الرجاء ادخال تسجيل صوتي أولا", Toast.LENGTH_SHORT).show()
             }
             else {
                 view.findNavController().navigate(R.id.action_signalementSonFragment_to_signalementFormSignaleurFragment)
@@ -203,49 +181,7 @@ class SignalementSonFragment : Fragment() {
     // end recordings method
 
 
-    private fun addSignalement(new: Signalement) {
-        CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
-            val response = RetrofitService.endpoint.addSignalement(new)
-            withContext(Dispatchers.Main) {
-                if (response.isSuccessful) {
-                    val id = response.body()
-                    Toast.makeText(requireActivity(), "Signalement ajouté in bdd $id", Toast.LENGTH_SHORT).show()
-                    if (id != null) {
-                        sonInfo = Son(binding.Descriptionson.text.toString(), id)
-                        val sonInfoMB = MultipartBody.Part.createFormData("vocal", Gson().toJson(sonInfo))
-                        signalementModel.id = id
-                        signalementModel.videoImageSon = son_body
-                        signalementModel.DescriptifvideoImageSon = binding.Descriptionson.text.toString()
-                        addSon(sonInfoMB, son_body!!)
-                    }
-                } else {
-                    Toast.makeText(requireActivity(), "erreur " + response.code().toString(), Toast.LENGTH_SHORT).show()
-                    //callback(null)
-                }
-            }
-        }
-    }
 
-    private fun addSon(son :  MultipartBody.Part ,sonBody: MultipartBody.Part) {
-        CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
-            val response =  RetrofitService.endpoint.addSon(son,sonBody)
-            withContext(Dispatchers.Main) {
-                if(response.isSuccessful) {
-                    view?.findNavController()?.navigate(R.id.action_signalementSonFragment_to_finFormulaireFragment)
-                }
-                else {
-                    Toast.makeText(requireActivity(),"Une erreur s'est produite",Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
-    }
-
-    private fun RemplirChamps(signalementModel : SignalementTransfertModel){
-        if (signalementModel.DescriptifvideoImageSon != null){
-            binding.Descriptionson.setText(signalementModel.DescriptifvideoImageSon)
-        }
-        //if (signalementModel.videoImageSon != null){ }
-    }
 
 
 

@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         var click = 1
         val view = binding.root
+        hideTitle() // Appel de la méthode pour masquer le titre
         setContentView(view)
         binding.bottomNavigationView.background = null
         binding.bottomNavigationView.menu.getItem(1).isEnabled = false
@@ -171,5 +172,11 @@ class MainActivity : AppCompatActivity() {
     // Back Button
     override fun onSupportNavigateUp() = navController.navigateUp() || super.onSupportNavigateUp()
 
-}
 
+    private fun hideTitle() {
+        supportActionBar?.apply {
+            setDisplayShowTitleEnabled(false)
+        }
+    }
+
+}

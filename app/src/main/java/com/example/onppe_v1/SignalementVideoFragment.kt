@@ -56,16 +56,6 @@ class SignalementVideoFragment : Fragment() {
     val requestCode = 400
     var intent_video: Uri? = null
 
-    // Exception Handler for Coroutines
-    val exceptionHandler = CoroutineExceptionHandler {    coroutineContext, throwable ->
-        CoroutineScope(Dispatchers.Main).launch {
-            if (isAdded) {
-            binding.progressBar.visibility = View.INVISIBLE
-            // Ne pas affichre le toast peut poser probleme : not attached to an activity (mettre pop up)
-            Toast.makeText(requireActivity(),"Une erreur lors de la connexion au serveur",Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -128,7 +118,6 @@ class SignalementVideoFragment : Fragment() {
                 } else {
                     // La vidéo sélectionnée dépasse la durée maximale de 30 secondes
                     myDialog.show()
-                    //   Toast.makeText(requireActivity(), "يجب أن يكون الفيديو المحدد أقل من أو يساوي 30 ثانية", Toast.LENGTH_SHORT).show()
                 }
             }
 
@@ -156,7 +145,7 @@ class SignalementVideoFragment : Fragment() {
             signalementModel.videoImageSon = video_body
             signalementModel.typepreuve = "video"
             if (video_body==null){
-                Toast.makeText(requireActivity(), "veillez faire entrer la video d'abord", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireActivity(), "الرجاء تحميل الفيديو أولا", Toast.LENGTH_SHORT).show()
             }else {
                 view.findNavController().navigate(R.id.action_signalementVideoFragment_to_signalementFormSignaleurFragment)
             }
@@ -204,41 +193,6 @@ class SignalementVideoFragment : Fragment() {
         videoIntent.putExtra(MediaStore.EXTRA_DURATION_LIMIT, 30)
 
         activityResultLauncher2.launch(videoIntent)
-    }
-
-    private fun addSignalement(new: Signalement, callback: (Int?) -> Unit) {
-        binding.progressBar.visibility = View.VISIBLE
-
-        CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
-            val response = RetrofitService.endpoint.addSignalement(new)
-            withContext(Dispatchers.Main) {
-                binding.progressBar.visibility = View.INVISIBLE
-                if (response.isSuccessful) {
-                    val id = response.body()
-                    callback(id)
-                } else {
-                    Toast.makeText(requireActivity(), "erreur " + response.code().toString(), Toast.LENGTH_SHORT).show()
-                    callback(null)
-                }
-            }
-        }
-    }
-
-    private fun addVideo(video :  MultipartBody.Part ,videoBody: MultipartBody.Part) {
-        binding.progressBar.visibility = View.VISIBLE
-        CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
-            val response =  RetrofitService.endpoint.addVideo(video,videoBody)
-            withContext(Dispatchers.Main) {
-                binding.progressBar.visibility = View.INVISIBLE
-                if(response.isSuccessful) {
-                    Toast.makeText(requireActivity(),"Signalement envoyé",Toast.LENGTH_SHORT).show()
-                    findNavController().navigate(R.id.action_signalementVideoFragment_to_finFormulaireFragment)
-                }
-                else {
-                    Toast.makeText(requireActivity(),"Une erreur s'est produite",Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
     }
 
 
