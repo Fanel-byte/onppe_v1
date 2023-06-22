@@ -26,7 +26,7 @@ interface Endpoint {
 
 
     @POST("citoyen/create")
-    suspend fun createCitoyen(@Body citoyen: Citoyen): Response<Int>
+    suspend fun createCitoyen(@Body citoyen: Citoyen ): Response<Int>
 
 
     @GET("signalement/getSignalementByCitoyenId/{id}")
@@ -39,6 +39,9 @@ interface Endpoint {
     @POST("preuves/add")
     suspend fun addPreuve(@Part preuve : MultipartBody.Part,@Part signalementid: MultipartBody.Part): Response<Int>
 
+    @FormUrlEncoded
+    @POST("citoyen/addtoken")
+    suspend fun addToken(@FieldMap data:Map<String,String>):Response<String>
 
 
 

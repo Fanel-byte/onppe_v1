@@ -14,5 +14,15 @@ dependencyResolutionManagement {
         maven{url "https://jitpack.io"}
     }
 }
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.google.gms:google-services:4.3.8'
+    }
+}
+
 rootProject.name = "onppe_v1"
 include ':app'

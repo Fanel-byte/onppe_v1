@@ -8,5 +8,6 @@ data class Enfant(
     val sexe: String?,
     val situationparent:String?,
     val adresse:String? ,
-    val wilayacode:Int?
+    val wilayacode:Int?,
+    //val tooken:String
 )

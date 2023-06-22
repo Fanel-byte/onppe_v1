@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'com.google.gms.google-services'
 }
 apply plugin: 'kotlin-android'
 
@@ -83,6 +84,9 @@ dependencies {
 
     //Recorder
      implementation 'com.github.squti:Android-Wave-Recorder:1.7.0'
+
+    // FCM
+    implementation 'com.google.firebase:firebase-messaging-ktx:23.0.3'
 
 }
 

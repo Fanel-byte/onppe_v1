@@ -39,7 +39,9 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import okio.Buffer
 import java.io.InputStream
 import android.provider.OpenableColumns
-
+import androidx.core.content.edit
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 
 
 class SignalementFormInfosFragment : Fragment() {
@@ -49,6 +51,8 @@ class SignalementFormInfosFragment : Fragment() {
     private val PICK_FILE_REQUEST_CODE = 2
     private var preuve = false
     private val RESULT_OK = 1
+    var token:String = ""
+
 
     // Exception Handler for Coroutines
     val exceptionHandler = CoroutineExceptionHandler {    coroutineContext, throwable ->
@@ -187,6 +191,11 @@ class SignalementFormInfosFragment : Fragment() {
                     addEnfant(enfant) { id ->
                         if (id != null) {
                             signalement.enfantid = id
+                            // generate token if it does't exist
+                            val pref = requireActivity().getSharedPreferences("token_db", Context.MODE_PRIVATE)
+                            if (pref.getString("token",null)==null) {
+                                generateToken(deviceId)
+                            }
                             verifieridcitoyen(deviceId)
                             signalement.citoyenid = deviceId
 
@@ -274,6 +283,45 @@ class SignalementFormInfosFragment : Fragment() {
         }
 
     }
+
+    private fun generateToken(deviceId: String) {
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                return@OnCompleteListener
+            }
+            token =  task.result
+            val data = HashMap<String,String>()
+            // Change this to device ID
+            data.put("deviceId",deviceId)
+            data.put("token",token)
+            addToken(data)
+
+        })
+    }
+
+    private fun addToken(data: HashMap<String, String>) {
+        val  exceptionHandler =   CoroutineExceptionHandler { coroutineContext, throwable ->
+            CoroutineScope(Dispatchers.Main).launch {
+                Toast.makeText(requireContext(), "Une erreur s'est produite", Toast.LENGTH_SHORT).show()
+            }
+        }
+        CoroutineScope(Dispatchers.IO+exceptionHandler).launch {
+            val result = RetrofitService.endpoint.addToken(data)
+            withContext(Dispatchers.Main) {
+                if(result.isSuccessful) {
+                    val pref = requireActivity().getSharedPreferences("token_db", Context.MODE_PRIVATE)
+                    pref.edit {
+                        putString("token",token)
+                    }
+                    Toast.makeText(requireContext(),"Token ajouté",Toast.LENGTH_SHORT).show()
+                }
+                else {
+                    Toast.makeText(requireContext(),"Une erreur s'est produite",Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -282,9 +330,10 @@ class SignalementFormInfosFragment : Fragment() {
             if (fileUri != null) {
                 val pdfBytes = readBytesFromUri(fileUri)
                 if (pdfBytes != null) {
-                    binding.fileName.setText(getFileName(fileUri))
+                    val name = getFileName(fileUri)
+                    binding.fileName.setText(name)
                     val requestBody = pdfBytes.toRequestBody("application/pdf".toMediaTypeOrNull())
-                    signalementModel.multipartBodyPreuve = MultipartBody.Part.createFormData("path", "file.pdf", requestBody)
+                    signalementModel.multipartBodyPreuve = MultipartBody.Part.createFormData("path", name, requestBody)
                     preuve = true
                 }
             }
