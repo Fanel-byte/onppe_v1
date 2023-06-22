@@ -38,6 +38,8 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import okio.Buffer
 import java.io.InputStream
+import android.provider.OpenableColumns
+
 
 
 class SignalementFormInfosFragment : Fragment() {
@@ -280,12 +282,38 @@ class SignalementFormInfosFragment : Fragment() {
             if (fileUri != null) {
                 val pdfBytes = readBytesFromUri(fileUri)
                 if (pdfBytes != null) {
+                    binding.fileName.setText(getFileName(fileUri))
                     val requestBody = pdfBytes.toRequestBody("application/pdf".toMediaTypeOrNull())
                     signalementModel.multipartBodyPreuve = MultipartBody.Part.createFormData("path", "file.pdf", requestBody)
                     preuve = true
                 }
             }
         }
+    }
+
+    fun getFileName(uri: Uri): String? {
+        var result: String? = null
+        if (uri.scheme == "content") {
+            val cursor = requireActivity().contentResolver.query(uri, null, null, null, null)
+            try {
+                if (cursor != null && cursor.moveToFirst()) {
+                    val displayNameColumnIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)
+                    if (displayNameColumnIndex >= 0) {
+                        result = cursor.getString(displayNameColumnIndex)
+                    }
+                }
+            } finally {
+                cursor?.close()
+            }
+        }
+        if (result == null) {
+            result = uri.path
+            val cut = result?.lastIndexOf('/')
+            if (cut != -1) {
+                result = result?.substring(cut!! + 1)
+            }
+        }
+        return result
     }
 
     private fun readBytesFromUri(uri: Uri): ByteArray? {

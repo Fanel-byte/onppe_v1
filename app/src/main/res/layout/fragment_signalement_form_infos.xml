@@ -12,6 +12,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/back"
         android:checkable="false"
@@ -200,7 +201,7 @@
     <EditText
         android:id="@+id/description"
         android:layout_width="0dp"
-        android:layout_height="180dp"
+        android:layout_height="175dp"
         android:layout_marginTop="15dp"
         android:background="@drawable/custom_edittext"
         android:ems="10"
@@ -219,7 +220,7 @@
         android:id="@+id/addpreuve"
         android:layout_width="141dp"
         android:layout_height="55dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:drawableRight="@drawable/ic_add"
         android:fontFamily="@font/montserrat_semibold"
         android:text="إرفاق ملف"
@@ -257,6 +258,16 @@
         app:layout_constraintEnd_toStartOf="@+id/back2"
         app:layout_constraintTop_toTopOf="@+id/next2" />
 
+    <TextView
+        android:id="@+id/fileName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="25dp"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="@+id/addpreuve"
+        app:layout_constraintEnd_toStartOf="@+id/addpreuve"
+        app:layout_constraintStart_toStartOf="@+id/description"
+        app:layout_constraintTop_toTopOf="@+id/addpreuve" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
