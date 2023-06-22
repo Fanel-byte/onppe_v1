@@ -28,4 +28,7 @@ class SignalementTransfertModel:ViewModel() {
     var adresseCitoyen:String?= null
     var telCitoyen:String?= null
     var descriptif:String?= null
+    var lieudanger:String?= null
+    var longitudesignaleur:Double?= null
+    var latitudesignaleur:Double?= null
 }

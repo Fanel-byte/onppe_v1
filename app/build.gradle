@@ -84,5 +84,8 @@ dependencies {
     //Recorder
      implementation 'com.github.squti:Android-Wave-Recorder:1.7.0'
 
+    //location
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
+
 }
 

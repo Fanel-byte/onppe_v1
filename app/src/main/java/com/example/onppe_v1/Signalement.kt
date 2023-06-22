@@ -9,5 +9,8 @@ data class Signalement(
     val preuveid:Int?,
     val typesignaleurid: Int?,
     val identitesecrete:Boolean?,
-    val dateincident:String?
+    val dateincident:String?,
+    val lieudanger:String?,
+    var longitudesignaleur:Double?,
+    var latitudesignaleur:Double?
 )

@@ -48,7 +48,6 @@
 
         android:layout_marginTop="16dp"
         android:layout_marginEnd="20dp"
-        android:text="31/02/2022"
         app:layout_constraintEnd_toStartOf="@+id/circle_image"
         app:layout_constraintTop_toTopOf="parent" />
 

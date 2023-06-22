@@ -159,6 +159,7 @@ class SignalementFormInfosFragment : Fragment() {
                 signalementModel.dateincident = date
                 signalementModel.motifid= motifid
                 signalementModel.descriptif = binding.description.text.toString()
+                signalementModel.lieudanger = binding.lieudanger.text.toString()
                 CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
                     val signalement = Signalement(
                         null,
@@ -169,7 +170,10 @@ class SignalementFormInfosFragment : Fragment() {
                         null,
                         3,
                         signalementModel.identitesecrete,
-                        signalementModel.dateincident
+                        signalementModel.dateincident,
+                        signalementModel.lieudanger,
+                        signalementModel.longitudesignaleur,
+                        signalementModel.latitudesignaleur,
                     )
 
                     var enfant = Enfant(
@@ -513,6 +517,9 @@ class SignalementFormInfosFragment : Fragment() {
             adresseCitoyen = signalementTransfertModel.adresseCitoyen,
             telCitoyen = signalementTransfertModel.telCitoyen,
             descriptif = signalementTransfertModel.descriptif,
+            lieudanger = signalementTransfertModel.lieudanger,
+            longitudesignaleur = signalementTransfertModel.longitudesignaleur,
+            latitudesignaleur = signalementTransfertModel.latitudesignaleur,
             statut = if (Upload ==1) "أرسلت في انتظار الرد" else "في انتظار الإرسال"
 
         )

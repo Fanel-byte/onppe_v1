@@ -187,16 +187,44 @@
         app:layout_constraintTop_toTopOf="@+id/date" />
 
     <TextView
+        android:id="@+id/textlieu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/montserrat"
+        android:text="مكان تواجد الطفل أو الأطفال في خطر * "
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/divider2" />
+
+    <EditText
+        android:id="@+id/lieudanger"
+        android:layout_width="0dp"
+        android:layout_height="56.5dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/custom_edittext2"
+
+        android:ems="10"
+        android:inputType="text"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textCursorDrawable="@drawable/custom_cursor"
+        app:layout_constraintEnd_toEndOf="@+id/textlieu"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/textlieu" />
+
+    <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:fontFamily="@font/montserrat"
         android:text="محتوى الإخطار : "
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/divider2" />
+        app:layout_constraintTop_toBottomOf="@+id/lieudanger" />
 
     <EditText
         android:id="@+id/description"
