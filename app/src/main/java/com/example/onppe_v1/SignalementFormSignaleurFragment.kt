@@ -46,27 +46,22 @@ class SignalementFormSignaleurFragment : Fragment() {
     @SuppressLint("MissingPermission")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        /*
-        val dialogBinding2 = layoutInflater.inflate(R.layout.fragment_help_form,null)
-        val myDialog2 = Dialog(requireActivity())
-        myDialog2.setContentView(dialogBinding2)
-        myDialog2.setCancelable(true)
-        myDialog2.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val dialogBinding4 = layoutInflater.inflate(R.layout.fragment_help_form,null)
+        val myDialog4 = Dialog(requireActivity())
+        myDialog4.setContentView(dialogBinding4)
+        myDialog4.setCancelable(true)
+        myDialog4.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         // Récupérer la taille de l'écran
         val displayMetrics2 = DisplayMetrics()
         requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics2)
 
 
-        val dialogBinding = layoutInflater.inflate(R.layout.fragment_popup_window,null)
-        val myDialog = Dialog(requireActivity())
-        myDialog.setContentView(dialogBinding)
-        myDialog.setCancelable(true)
-        myDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        // Récupérer la taille de l'écran
-        val displayMetrics = DisplayMetrics()
-        requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics)
 
-         */
+
+
+
+
         val dialogBinding1 = layoutInflater.inflate(R.layout.fragment_popup_window,null)
         val dialogBinding2 = layoutInflater.inflate(R.layout.popup_window_localisation,null)
         val myDialog = Dialog(requireActivity())
@@ -163,7 +158,7 @@ class SignalementFormSignaleurFragment : Fragment() {
             }
         }
         binding.question.setOnClickListener {
-         //myDialog2.show()
+         myDialog4.show()
         }
     }
     private fun  RemplirChamps(sharedPreferences : SharedPreferences) : Boolean{

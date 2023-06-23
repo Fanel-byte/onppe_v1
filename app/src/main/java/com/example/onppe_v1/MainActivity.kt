@@ -47,6 +47,19 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager. findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         navController = navHostFragment.navController
         //NavigationUI.setupWithNavController(binding.bottomNavigationView,navController)
+        val fragment = intent.getStringExtra("fragment")
+        if (fragment != null) {
+            when (fragment) {
+                "signalement" -> {
+                    navController.navigate(R.id.signalementFragment)
+                    binding.bottomNavigationView.selectedItemId = R.id.signalementFragment
+                }
+                "aide" -> {
+                    navController.navigate(R.id.aideFragment)
+                    binding.bottomNavigationView.selectedItemId = R.id.aideFragment
+                }
+            }
+        }
         setupActionBarWithNavController(navController)
         //cacher le menu phone
         binding.fragmentContainerView.setOnTouchListener { _, _ ->

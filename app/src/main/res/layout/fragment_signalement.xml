@@ -96,7 +96,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserratarabicregular"
                     android:gravity="center_horizontal"
-                    android:text="صورة"
+                    android:text="@string/image"
                     android:textColor="@color/white"
                     android:textSize="15sp"
                     app:layout_constraintBottom_toBottomOf="parent"

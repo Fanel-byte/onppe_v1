@@ -55,9 +55,8 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
-        android:clickable="false"
         android:fontFamily="@font/montserrat"
-        android:linksClickable="true"
+        android:linksClickable="false"
         android:text="@string/longtext"
         android:textColor="@color/black"
         android:textColorLink="#4CAF50"
@@ -67,6 +66,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
+    <TextView
+        android:id="@+id/textViewLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/montserrat"
+        android:text="@string/cliquer"
+        android:textColor="@color/black"
+        android:textColorLink="#4CAF50"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="138dp"

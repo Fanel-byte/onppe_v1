@@ -24,7 +24,7 @@ class FonctionnalitiesActivity : AppCompatActivity() {
         val view = binding.root
         //   hideTitle() // Appel de la méthode pour masquer le titre
         setTheme(R.style.AppTheme_CustomTitle)
-        setCustomTitle("Le nom de l'application ")
+        setCustomTitle(getString(R.string.app_name))
         setContentView(view)
 
         binding.signalement.setOnClickListener {
@@ -44,6 +44,12 @@ class FonctionnalitiesActivity : AppCompatActivity() {
 
             // Aller à MainActivity
             val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("fragment", "signalement")
+            startActivity(intent)
+        }
+        binding.aide.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("fragment", "aide")
             startActivity(intent)
         }
     }
@@ -59,6 +65,7 @@ class FonctionnalitiesActivity : AppCompatActivity() {
     }
     // Language support
     override fun attachBaseContext(newBase: Context) {
+        
         val pref = newBase.getSharedPreferences("langdata", MODE_PRIVATE)
         val language = pref.getString("language","AR")
         //val language = pref.getString("language","FR")

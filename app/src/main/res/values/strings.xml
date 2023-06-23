@@ -102,25 +102,25 @@
     <string name="onppe">L\'Organe Nationale de Protection et de Promotion de l\'Enfance</string>
 -->
     <!-- //fonctionnalities activity -->
-   <string name="choixfonction">Veuillez choisir l\'un des services suivants</string>
-   <string name="signalement">Signalements</string>
-   <string name="conseil">Conseils Généraux</string>
+    <string name="choixfonction">Veuillez choisir l\'un des services suivants</string>
+    <string name="signalement">Signalements</string>
+    <string name="conseil">Conseils Généraux</string>
 
 
-   <!--  //menu-->
-   <string name="menusignaler">Signaler</string>
-   <string name="menuaide">Aide</string>
+    <!--  //menu-->
+    <string name="menusignaler">Signaler</string>
+    <string name="menuaide">Aide</string>
     <!-- //fragment signalement-->
-   <string name="bienvenu">Bienvenue</string>
-   <string name="signaldesc">Signalez tout danger qui touche l\'enfant!</string>
-   <string name="methode">Quelle méthode voulez-vous utiliser ?</string>
-   <string name="formulaire">Remplir un formulaire</string>
-   <string name="image2">Image</string>
-   <string name="video2">Vidéo</string>
-   <string name="audio2">Enregistrement vocal</string>
-   <string name="suivisignal">Suivi signalements</string>
+    <string name="bienvenu">Bienvenue</string>
+    <string name="signaldesc">Signalez tout danger qui touche l\'enfant!</string>
+    <string name="methode">Quelle méthode voulez-vous utiliser ?</string>
+    <string name="formulaire">Remplir un formulaire</string>
+    <string name="image2">Image</string>
+    <string name="video2">Vidéo</string>
+    <string name="audio2">Enregistrement vocal</string>
+    <string name="suivisignal">Suivi signalements</string>
 
-   <!--  //fin formulaire -->
+    <!--  //fin formulaire -->
     <string name="merci">Merci infiniment</string>
     <string name="finform">Votre signalement a été enregistrée avec succès. Merci pour votre aide.</string>
     <string name="finformsanscnx">Votre signalement sera envoyé dès que vous serez en ligne. Nous vous remercions de votre collaboration.</string>
@@ -133,18 +133,18 @@
     <string name="age18">Le signalement est limité aux enfants de moins de 18 ans!</string>
 
     <!-- //Suivi-->
-   <string name="etat">État :</string>
-   <string name="info">Informations sur l\'enfant mis en risque</string>
-   <string name="infosignal">Informations du signalement</string>
-   <string name="nomcomplet">Nom complet :</string>
-   <string name="sexe">Sexe :</string>
-   <string name="age">Age :</string>
-   <string name="etatfamille">Situation familiale des parents :</string>
-   <string name="adresse">Adresse :</string>
-   <string name="wilaya">Wilaya :</string>
-   <string name="motif">Motif de signalement :</string>
-   <string name="date">Date de l\'incident :</string>
-   <string name="contenu">Contenu du signalement :</string>
+    <string name="etat">État :</string>
+    <string name="info">Informations sur l\'enfant mis en risque</string>
+    <string name="infosignal">Informations du signalement</string>
+    <string name="nomcomplet">Nom complet :</string>
+    <string name="sexe">Sexe :</string>
+    <string name="age">Age :</string>
+    <string name="etatfamille">Situation familiale des parents :</string>
+    <string name="adresse">Adresse :</string>
+    <string name="wilaya">Wilaya :</string>
+    <string name="motif">Motif de signalement :</string>
+    <string name="date">Date de l\'incident :</string>
+    <string name="contenu">Contenu du signalement :</string>
     <!-- form signaleur -->
 
     <string name="titre_signaleur">Entrez les informations du signaleur</string>
@@ -179,8 +179,8 @@
     <string name="contenu_descriptif">Description du signalement, avec une brève explication...</string>
     <string name="fichier">Joindre un fichier</string>
     <string name="confirmer">Confirmer le signalement</string>
-   <!-- pop up -->
-
+    <!-- pop up -->
+    <string name="localisation">Pour une meilleure gestion de votre signalement, veuillez activer la fonctionnalité de localisation</string>
 
     <string name="helpmain">Ici, vous pouvez envoyer votre signalement en remplissant uniquement le formulaire ou en le joignant avec une photo, une vidéo ou un enregistrement audio. Vous pouvez également suivre l\'état des signalements que vous avez faites précédemment. Alors, cliquez sur l\'une des options suivantes en fonction de la nature du signalement que vous souhaitez envoyer.</string>
     <string name="helpvoice">Ici, vous pouvez envoyer votre signalement sous la forme d\'un enregistrement audio avec la nécessité de remplir quelques informations supplémentaires dans le formulaire par la suite.</string>
@@ -201,7 +201,7 @@
 
 
 
-   <string name="yourtext">L\'application "Protection de l'enfant" offre un mécanisme facile et flexible pour envoyer des signalements concernant les enfants en danger en Algérie. Il permet aux utilisateurs d\'envoyer des signalements via des photos, des vidéos, des enregistrements audio, des formulaires, et de contacter directement les autorités compétentes.
+    <string name="yourtext">L\'application "Protection de l'enfant" offre un mécanisme facile et flexible pour envoyer des signalements concernant les enfants en danger en Algérie. Il permet aux utilisateurs d\'envoyer des signalements via des photos, des vidéos, des enregistrements audio, des formulaires, et de contacter directement les autorités compétentes.
 
 L\'application fonctionne 24 heures sur 24 et est disponible dans les 58 wilayas d\'Algérie. Les utilisateurs peuvent envoyer des signalements à tout moment, que ce soit le jour ou la nuit, quel que soit leur emplacement géographique.
 
@@ -215,7 +215,8 @@ Cette loi vise à protéger les droits de l\'enfant et à garantir son bien-êtr
 
 La loi s\'appuie également sur d\'autres lois relatives à l\'état civil, aux sanctions, au travail, à la sécurité sociale, aux droits des personnes handicapées et à d\'autres lois connexes. Elle établit également des institutions et des services spécialisés dans la protection et la prise en charge des droits de l\'enfant.
 
-Vous pouvez consulter le texte de la loi et obtenir plus d\'informations sur la protection de l\'enfant en Algérie en cliquant sur le lien suivant : <a href="http://onppe.dz/index.php/ar/2017-01-08-17-41-39/2017-07-02-08-16-21/26-15-12-28-1436-15-2015#slider\">Cliquez ici</a>.</string>
+Vous pouvez consulter le texte de la loi et obtenir plus d\'informations sur la protection de l\'enfant en Algérie en cliquant sur le lien suivant :</string>
+    <string name="cliquer">Cliquez ici</string>
     <string name="textonppe">L\'Organe national de protection et de promotion de l\'enfance a été créé auprès du Premier ministre en vertu de la loi numéro 15/12 en date du 28 Ramadan 1436, correspondant au 15 juillet 2015, relative à la protection de l\'enfance. Il veille à la protection et à la promotion des droits de l\'enfant et jouit de la personnalité morale et de l\'indépendance financière.
 
 Pour la gestion et l\'administration de cet organisme dans l\'ensemble de ses pouvoirs, et pour coordonner les efforts de tous les intervenants dans le domaine de l\'enfance, la loi prévoit la nomination d\'un commissaire national qui le dirige. Il est chargé de plusieurs missions, notamment d\'intervenir pour réduire les atteintes aux droits de l\'enfant, automatiquement ou sur notification présentée par l\'enfant lui-même, son représentant légal ou toute personne physique ou morale.
@@ -227,5 +228,5 @@ La loi prévoit également la mise à disposition de tous les moyens humains et 
     <string name="app">A propos de l\'application </string>
 
     <string name="textonppe2">Vous pouvez consulter des informations sur l\'Organe national de protection et de promotion de l\'enfance</string>
-
+    <string name="plus">Plus</string>
 </resources>

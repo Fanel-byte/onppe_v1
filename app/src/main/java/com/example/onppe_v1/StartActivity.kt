@@ -15,6 +15,9 @@ class StartActivity : AppCompatActivity() {
 
         binding = ActivityStartBinding.inflate(layoutInflater)
         val view = binding.root
+        setTheme(R.style.AppTheme_CustomTitle)
+        setCustomTitle(getString(R.string.app_name))
+        setContentView(view)
         setContentView(view)
 
         val isFirstLaunch = getSharedPreferences("MyPrefs", MODE_PRIVATE)
@@ -41,5 +44,11 @@ class StartActivity : AppCompatActivity() {
             .apply()
 
         finish()
+    }
+    private fun setCustomTitle(title: String) {
+        supportActionBar?.apply {
+            this.title = title
+
+        }
     }
 }

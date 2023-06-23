@@ -148,10 +148,10 @@ class SignalementFormEnfantFragment : Fragment() {
             binding.maried.setTextColor(Color.parseColor("#6B7280"))
             signalementModel.situationparentEnfant="autre"
         }
-       /* binding.next.setOnClickListener { view: View ->
+        binding.next.setOnClickListener { view: View ->
             if ((binding.age.text.toString().isNotEmpty()) && (binding.age.text.toString().toInt() > 17))
             {
-                myDialog.setContentView(dialogBinding2)
+                myDialog.setContentView(dialogBinding3)
                 myDialog.show()
             }
             else {
@@ -170,13 +170,9 @@ class SignalementFormEnfantFragment : Fragment() {
                 }
             }
 
-        }*/
-
-        binding.next.setOnClickListener { view: View ->
-
-            view.findNavController().navigate(R.id.action_signalementFormEnfantFragment_to_signalementFormInfosFragment)
-
         }
+
+
         binding.back.setOnClickListener { view: View ->
             view.findNavController().popBackStack()        }
 

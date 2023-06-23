@@ -161,7 +161,7 @@ class SignalementFormInfosFragment : Fragment() {
 
 
         binding.next.setOnClickListener { view: View ->
-            if (binding.motif.text.toString().isEmpty()) {
+            if ((binding.motif.text.toString().isEmpty())|| (binding.lieudanger.text.toString().isEmpty())) {
                 //affichage du pop up
                 myDialog.show()
             }
