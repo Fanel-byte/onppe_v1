@@ -39,7 +39,9 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import okio.Buffer
 import java.io.InputStream
 import android.provider.OpenableColumns
-
+import androidx.core.content.edit
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 
 
 class SignalementFormInfosFragment : Fragment() {
@@ -49,6 +51,7 @@ class SignalementFormInfosFragment : Fragment() {
     private val PICK_FILE_REQUEST_CODE = 2
     private var preuve = false
     private val RESULT_OK = 1
+    var token:String = ""
 
     // Exception Handler for Coroutines
     val exceptionHandler = CoroutineExceptionHandler {    coroutineContext, throwable ->
@@ -193,11 +196,14 @@ class SignalementFormInfosFragment : Fragment() {
                         signalementModel.adresseEnfant,
                         signalementModel.wilayacodeEnfant
                     )
-
-
                     addEnfant(enfant) { id ->
                         if (id != null) {
                             signalement.enfantid = id
+                            // generate token if it does't exist
+                            val pref = requireActivity().getSharedPreferences("token_db", Context.MODE_PRIVATE)
+                            if (pref.getString("token",null)==null) {
+                                generateToken(deviceId)
+                            }
                             verifieridcitoyen(deviceId)
                             signalement.citoyenid = deviceId
 
@@ -285,6 +291,45 @@ class SignalementFormInfosFragment : Fragment() {
         }
 
     }
+
+    private fun generateToken(deviceId: String) {
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                return@OnCompleteListener
+            }
+            token =  task.result
+            val data = HashMap<String,String>()
+            // Change this to device ID
+            data.put("token",token)
+            data.put("citoyenid",deviceId)
+            addToken(data)
+
+        })
+    }
+
+    private fun addToken(data: HashMap<String, String>) {
+        val  exceptionHandler =   CoroutineExceptionHandler { coroutineContext, throwable ->
+            CoroutineScope(Dispatchers.Main).launch {
+                Toast.makeText(requireContext(), "Exception: ${throwable.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
+        CoroutineScope(Dispatchers.IO+exceptionHandler).launch {
+            val result = RetrofitService.endpoint.addToken(data)
+            withContext(Dispatchers.Main) {
+                if(result.isSuccessful) {
+                    val pref = requireActivity().getSharedPreferences("token_db", Context.MODE_PRIVATE)
+                    pref.edit {
+                        putString("token",token)
+                    }
+                    Toast.makeText(requireContext(),"Token ajouté",Toast.LENGTH_SHORT).show()
+                }
+                else {
+                    Toast.makeText(requireContext(),"22222",Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -403,8 +448,9 @@ class SignalementFormInfosFragment : Fragment() {
             val response = RetrofitService.endpoint.addSignalement(new)
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
-                    instanceDB?.addSignalement(createSignalementTransfert(signalementModel,1))
                     val id = response.body()
+                    signalementModel.signalementId = id
+                    instanceDB?.addSignalement(createSignalementTransfert(signalementModel,1))
                     callback(id)
                 } else {
                     Toast.makeText(requireActivity(), "erreur " + response.code().toString(), Toast.LENGTH_SHORT).show()
@@ -503,8 +549,8 @@ class SignalementFormInfosFragment : Fragment() {
             lieudanger = signalementTransfertModel.lieudanger,
             longitudesignaleur = signalementTransfertModel.longitudesignaleur,
             latitudesignaleur = signalementTransfertModel.latitudesignaleur,
-            statut = if (Upload ==1) "أرسلت في انتظار الرد" else "في انتظار الإرسال"
-
+            statut = if (Upload ==1) "أرسلت في انتظار الرد" else "في انتظار الإرسال",
+            signalementId = signalementTransfertModel.signalementId,
         )
     }
     private fun RemplirChamps(signalementModel : SignalementTransfertModel ){

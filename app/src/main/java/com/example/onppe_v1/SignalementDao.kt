@@ -20,6 +20,9 @@ interface SignalementDao {
     @Update
     fun updateSignalements(team: List<SignalementTransfert>?)
 
+    @Query("SELECT * FROM signalements WHERE signalementId = :id")
+    fun getSignalementById(id: Int): SignalementTransfert
+
     @Update
     fun updateSynchronize(sign: SignalementTransfert)
 }

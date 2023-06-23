@@ -10,7 +10,7 @@ data class Signalement(
     val typesignaleurid: Int?,
     val identitesecrete:Boolean?,
     val dateincident:String?,
-    val lieudanger:String?,
+    val adresse:String?,
     var longitudesignaleur:Double?,
     var latitudesignaleur:Double?,
     val source :String = "تطبيق الهاتف"

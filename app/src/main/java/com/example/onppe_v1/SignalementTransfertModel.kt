@@ -31,4 +31,5 @@ class SignalementTransfertModel:ViewModel() {
     var lieudanger:String?= null
     var longitudesignaleur: Double ?= null
     var latitudesignaleur: Double ?= null
+    var signalementId: Int?=null
 }

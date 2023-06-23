@@ -4,9 +4,12 @@ import android.content.Context
 import android.provider.Settings
 import android.widget.Toast
 import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.edit
 import androidx.navigation.findNavController
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
@@ -14,10 +17,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okhttp3.MultipartBody
+import java.util.HashMap
 
 class SynchroWorker (val context: Context, val params: WorkerParameters): CoroutineWorker(context,params) {
     val sharedPreferences = context.getSharedPreferences("signaleur_infos", Context.MODE_PRIVATE)
     val deviceId =  sharedPreferences.getString("deviceId", "")
+    var token:String = ""
     // Define the exception handler
     private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
         // Handle the exception here, for example, log it or return Result.failure()
@@ -66,12 +71,18 @@ class SynchroWorker (val context: Context, val params: WorkerParameters): Corout
                     addEnfant(enfant) { id ->
                         if (id != null) {
                             signalement.enfantid = id
+                            // generate token if it does't exist
+                            val pref_token = context.getSharedPreferences("token_db", Context.MODE_PRIVATE)
+                            if (pref_token.getString("token",null)==null) {
+                                generateToken(deviceId!!)
+                            }
                             verifieridcitoyen(deviceId!!, sign)
                             signalement.citoyenid = deviceId
                             addSignalement(signalement) { id ->
                                 if (id != null) {
                                     // changer l etat du signalement a envoyer
                                     sign.upload = 1
+                                    sign.signalementId = id
                                     AppDatabase.buildDatabase(context)?.getSignalementDao()?.updateSynchronize(sign)
                                 }
                             }
@@ -144,6 +155,44 @@ class SynchroWorker (val context: Context, val params: WorkerParameters): Corout
                     callback(id)
                 } else {
                     callback(null)
+                }
+            }
+        }
+
+    }
+
+    // Dans le cas ou le token n'est pas enconre genere :
+    private fun generateToken(deviceId: String) {
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                return@OnCompleteListener
+            }
+            token =  task.result
+            val data = HashMap<String,String>()
+            // Change this to device ID
+            data.put("deviceId",deviceId)
+            data.put("token",token)
+            addToken(data)
+
+        })
+    }
+    private fun addToken(data: HashMap<String, String>) {
+        val  exceptionHandler =   CoroutineExceptionHandler { coroutineContext, throwable ->
+            CoroutineScope(Dispatchers.Main).launch {
+            }
+        }
+        CoroutineScope(Dispatchers.IO+exceptionHandler).launch {
+            val result = RetrofitService.endpoint.addToken(data)
+            withContext(Dispatchers.Main) {
+                if(result.isSuccessful) {
+                    val pref = context.getSharedPreferences("token_db", Context.MODE_PRIVATE)
+                    pref.edit {
+                        putString("token",token)
+                    }
+                    Toast.makeText(context,"Token ajouté",Toast.LENGTH_SHORT).show()
+                }
+                else {
+                    Toast.makeText(context,"Une erreur s'est produite",Toast.LENGTH_SHORT).show()
                 }
             }
         }

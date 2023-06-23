@@ -39,6 +39,9 @@ interface Endpoint {
     @POST("preuves/add")
     suspend fun addPreuve(@Part preuve : MultipartBody.Part,@Part signalementid: MultipartBody.Part): Response<Int>
 
+    @FormUrlEncoded
+    @POST("citoyen/addtoken")
+    suspend fun addToken(@FieldMap data:Map<String,String>):Response<String>
 
 
 

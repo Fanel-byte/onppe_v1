@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'com.google.gms.google-services'
 }
 apply plugin: 'kotlin-android'
 
@@ -86,6 +87,8 @@ dependencies {
     //location
     implementation 'com.google.android.gms:play-services-location:18.0.0'
 
+    // FCM : pour la synchronization serveur client
+    implementation 'com.google.firebase:firebase-messaging-ktx:23.0.3'
 
 
 

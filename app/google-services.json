@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "836293287325",
+    "project_id": "projet-enfance",
+    "storage_bucket": "projet-enfance.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:836293287325:android:6d3ad668f61ec8f62a2374",
+        "android_client_info": {
+          "package_name": "com.example.onppe_v1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "836293287325-bec185eqnkgtef532tihu5kt1999vb54.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcBpCpjTogFl1D_45jhdsNB-W1L_NmBWE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "836293287325-bec185eqnkgtef532tihu5kt1999vb54.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

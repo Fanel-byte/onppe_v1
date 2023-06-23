@@ -34,4 +34,5 @@ data class SignalementTransfert(
     var lieudanger:String?,
     var longitudesignaleur: Double ?,
     var latitudesignaleur: Double ?,
-): Serializable
+    var signalementId: Int?,
+    ): Serializable
