@@ -31,4 +31,7 @@ data class SignalementTransfert(
     var telCitoyen:String?,
     var descriptif:String?,
     var statut: String = "في انتظار الإرسال",
+    var lieudanger:String?,
+    var longitudesignaleur: Double ?,
+    var latitudesignaleur: Double ?,
 ): Serializable

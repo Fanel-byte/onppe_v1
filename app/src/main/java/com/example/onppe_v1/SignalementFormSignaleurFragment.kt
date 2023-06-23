@@ -1,10 +1,14 @@
 package com.example.onppe_v1
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.location.Location
+import android.location.LocationManager
+
 import android.os.Bundle
 import android.provider.Settings
 import android.util.DisplayMetrics
@@ -18,12 +22,17 @@ import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.onppe_v1.databinding.FragmentSignalementFormSignaleurBinding
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationServices
 
 
 class SignalementFormSignaleurFragment : Fragment() {
     lateinit var binding: FragmentSignalementFormSignaleurBinding
     private lateinit var signalementModel: SignalementTransfertModel
     private var sexe:String = ""
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -34,8 +43,10 @@ class SignalementFormSignaleurFragment : Fragment() {
         return view
     }
 
+    @SuppressLint("MissingPermission")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        /*
         val dialogBinding2 = layoutInflater.inflate(R.layout.fragment_help_form,null)
         val myDialog2 = Dialog(requireActivity())
         myDialog2.setContentView(dialogBinding2)
@@ -54,6 +65,18 @@ class SignalementFormSignaleurFragment : Fragment() {
         // Récupérer la taille de l'écran
         val displayMetrics = DisplayMetrics()
         requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics)
+
+         */
+        val dialogBinding1 = layoutInflater.inflate(R.layout.fragment_popup_window,null)
+        val dialogBinding2 = layoutInflater.inflate(R.layout.popup_window_localisation,null)
+        val myDialog = Dialog(requireActivity())
+        myDialog.setContentView(dialogBinding1)
+        myDialog.setCancelable(true)
+        myDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        // Récupérer la taille de l'écran
+        val displayMetrics = DisplayMetrics()
+        requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics)
+
         val width = (displayMetrics.widthPixels * 0.75).toInt()
         val height =  WindowManager.LayoutParams.WRAP_CONTENT
 
@@ -65,22 +88,18 @@ class SignalementFormSignaleurFragment : Fragment() {
             editor.putString("deviceId", deviceId)
             editor.apply()
         }
-
         // Définir la taille de la fenêtre du dialog
         myDialog.window?.setLayout(width, height)
         signalementModel = ViewModelProvider(requireActivity()).get(SignalementTransfertModel::class.java)
         val items1 = resources.getStringArray(R.array.gender)
         val adapter = ArrayAdapter(requireActivity(), R.layout.list_item, items1)
         binding.sexe.setAdapter(adapter)
-
         binding.sexe.threshold = Int.MAX_VALUE // Show all items in the dropdown
-
         binding.sexe.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
                 binding.sexe.showDropDown() // Show dropdown when AutoCompleteTextView gains focus
             }
         }
-
         binding.sexe.setOnItemClickListener { parent, view, position, id ->
             if (position == 0) {
                 sexe = "F"
@@ -95,35 +114,58 @@ class SignalementFormSignaleurFragment : Fragment() {
         binding.back.setOnClickListener {
             view.findNavController().popBackStack()        }
 
+        val locationManager = requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
         binding.next.setOnClickListener {
             if ((binding.prenom.text.toString().isEmpty())||(binding.nom.text.toString().isEmpty())||(binding.tel.text.toString().isEmpty())||(binding.sexe.text.toString().isEmpty())||(binding.age.text.toString().isEmpty())||(binding.adresse.text.toString().isEmpty())){
+                myDialog.setContentView(dialogBinding1)
                 myDialog.show()
-            }else{
-                signalementModel.nomCitoyen=binding.nom.text.toString()
-                signalementModel.prenomCitoyen=binding.prenom.text.toString()
-                signalementModel.ageCitoyen = if (binding.age.text.toString().isNotEmpty()) {
-                    binding.age.text.toString().toInt() }
-                else { null }
-                signalementModel.sexeCitoyen=sexe
-                signalementModel.adresseCitoyen=binding.adresse.text.toString()
-                signalementModel.telCitoyen=binding.tel.text.toString()
+            }else {
+                if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                    myDialog.setContentView(dialogBinding2)
+                    myDialog.show()
+                } else {
+                    fusedLocationClient =
+                        LocationServices.getFusedLocationProviderClient(requireActivity())
+                    fusedLocationClient.getCurrentLocation(
+                        LocationRequest.PRIORITY_HIGH_ACCURACY,
+                        null
+                    )
+                        .addOnSuccessListener { location: Location? ->
+                            location?.let {
+                                val latitude = location.latitude
+                                val longitude = location.longitude
+                                signalementModel.latitudesignaleur = latitude
+                                signalementModel.longitudesignaleur = longitude
+                            }
+                        }
 
-                val editor = sharedPreferences.edit()
-                editor.putString("nomCitoyen", signalementModel.nomCitoyen)
-                editor.putString("prenomCitoyen", signalementModel.prenomCitoyen)
-                editor.putString("ageCitoyen", signalementModel.ageCitoyen.toString())
-                editor.putString("adresseCitoyen", signalementModel.adresseCitoyen)
-                editor.putString("telCitoyen", signalementModel.telCitoyen)
-                editor.apply()
-                view.findNavController().navigate(R.id.action_signalementFormSignaleurFragment_to_signalementFormEnfantFragment)
+                    signalementModel.nomCitoyen = binding.nom.text.toString()
+                    signalementModel.prenomCitoyen = binding.prenom.text.toString()
+                    signalementModel.ageCitoyen = if (binding.age.text.toString().isNotEmpty()) {
+                        binding.age.text.toString().toInt()
+                    } else {
+                        null
+                    }
+                    signalementModel.sexeCitoyen = sexe
+                    signalementModel.adresseCitoyen = binding.adresse.text.toString()
+                    signalementModel.telCitoyen = binding.tel.text.toString()
+
+                    val editor = sharedPreferences.edit()
+                    editor.putString("nomCitoyen", signalementModel.nomCitoyen)
+                    editor.putString("prenomCitoyen", signalementModel.prenomCitoyen)
+                    editor.putString("ageCitoyen", signalementModel.ageCitoyen.toString())
+                    editor.putString("adresseCitoyen", signalementModel.adresseCitoyen)
+                    editor.putString("telCitoyen", signalementModel.telCitoyen)
+                    editor.apply()
+                    view.findNavController()
+                        .navigate(R.id.action_signalementFormSignaleurFragment_to_signalementFormEnfantFragment)
+                }
             }
         }
-
-
         binding.question.setOnClickListener {
-         myDialog2.show()        }
+         //myDialog2.show()
+        }
     }
-
     private fun  RemplirChamps(sharedPreferences : SharedPreferences) : Boolean{
         val nomCitoyen = sharedPreferences.getString("nomCitoyen", "")
         if (nomCitoyen == ""){

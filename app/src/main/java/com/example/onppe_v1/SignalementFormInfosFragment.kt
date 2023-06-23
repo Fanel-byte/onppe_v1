@@ -177,7 +177,10 @@ class SignalementFormInfosFragment : Fragment() {
                         null,
                         3,
                         signalementModel.identitesecrete,
-                        signalementModel.dateincident
+                        signalementModel.dateincident,
+                        signalementModel.lieudanger,
+                        signalementModel.longitudesignaleur,
+                        signalementModel.latitudesignaleur,
                     )
 
                     var enfant = Enfant(
@@ -395,7 +398,6 @@ class SignalementFormInfosFragment : Fragment() {
 
         }
     }
-
     private fun addSignalement(new: Signalement,instanceDB: SignalementDao?, callback: (Int?) -> Unit) {
         CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
             val response = RetrofitService.endpoint.addSignalement(new)
@@ -411,10 +413,7 @@ class SignalementFormInfosFragment : Fragment() {
             }
         }
     }
-    private fun addImg(
-        image:  MultipartBody.Part,
-        imageBody: MultipartBody.Part,
-        instanceDB: SignalementDao?) {
+    private fun addImg(image:  MultipartBody.Part, imageBody: MultipartBody.Part, instanceDB: SignalementDao?) {
         CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
             val response =  RetrofitService.endpoint.addImg(image,imageBody)
             withContext(Dispatchers.Main) {
@@ -428,10 +427,7 @@ class SignalementFormInfosFragment : Fragment() {
             }
         }
     }
-    private fun addSon(
-        son:  MultipartBody.Part,
-        sonBody: MultipartBody.Part, instanceDB: SignalementDao?
-    ) {
+    private fun addSon(son:  MultipartBody.Part, sonBody: MultipartBody.Part, instanceDB: SignalementDao?) {
         CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
             val response =  RetrofitService.endpoint.addSon(son,sonBody)
             withContext(Dispatchers.Main) {
@@ -445,7 +441,6 @@ class SignalementFormInfosFragment : Fragment() {
             }
         }
     }
-
     private fun addPreuve(preuve:  MultipartBody.Part, signalementid: MultipartBody.Part , instanceDB: SignalementDao?) {
         CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
             val response =  RetrofitService.endpoint.addPreuve(preuve , signalementid)
@@ -460,11 +455,7 @@ class SignalementFormInfosFragment : Fragment() {
             }
         }
     }
-
-    private fun addVideo(
-        video:  MultipartBody.Part,
-        videoBody: MultipartBody.Part, instanceDB: SignalementDao?
-    ) {
+    private fun addVideo(video:  MultipartBody.Part, videoBody: MultipartBody.Part, instanceDB: SignalementDao?) {
         CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
             val response =  RetrofitService.endpoint.addVideo(video,videoBody)
             withContext(Dispatchers.Main) {
@@ -478,23 +469,11 @@ class SignalementFormInfosFragment : Fragment() {
             }
         }
     }
-    private fun isNetworkAvailable(): Boolean {
-        val connectivityManager =
-            requireContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-
-        val networkCapabilities = connectivityManager.activeNetwork ?: return false
-
-        val activeNetwork = connectivityManager.getNetworkCapabilities(networkCapabilities) ?: return false
-
-        return activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) ||
-                activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)
-    }
     fun partToByteArray(part: MultipartBody.Part?): ByteArray {
         val sink = Buffer()
         part?.body?.writeTo(sink)
         return sink.readByteArray()
     }
-
     // Convertir signalementModel to signalement data class:
     private fun createSignalementTransfert(signalementTransfertModel: SignalementTransfertModel, Upload : Int): SignalementTransfert {
         return SignalementTransfert(
@@ -521,6 +500,9 @@ class SignalementFormInfosFragment : Fragment() {
             adresseCitoyen = signalementTransfertModel.adresseCitoyen,
             telCitoyen = signalementTransfertModel.telCitoyen,
             descriptif = signalementTransfertModel.descriptif,
+            lieudanger = signalementTransfertModel.lieudanger,
+            longitudesignaleur = signalementTransfertModel.longitudesignaleur,
+            latitudesignaleur = signalementTransfertModel.latitudesignaleur,
             statut = if (Upload ==1) "أرسلت في انتظار الرد" else "في انتظار الإرسال"
 
         )

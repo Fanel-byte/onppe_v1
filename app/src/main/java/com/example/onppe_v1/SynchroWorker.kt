@@ -46,7 +46,10 @@ class SynchroWorker (val context: Context, val params: WorkerParameters): Corout
                         null,
                         3,
                         sign.identitesecrete,
-                        sign.dateincident
+                        sign.dateincident,
+                        sign.lieudanger,
+                        sign.longitudesignaleur,
+                        sign.latitudesignaleur
                     )
 
                     var enfant = Enfant(
