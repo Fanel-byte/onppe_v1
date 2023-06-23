@@ -36,6 +36,16 @@ class SignalementFormSignaleurFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val dialogBinding2 = layoutInflater.inflate(R.layout.fragment_help_form,null)
+        val myDialog2 = Dialog(requireActivity())
+        myDialog2.setContentView(dialogBinding2)
+        myDialog2.setCancelable(true)
+        myDialog2.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        // Récupérer la taille de l'écran
+        val displayMetrics2 = DisplayMetrics()
+        requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics2)
+
+
         val dialogBinding = layoutInflater.inflate(R.layout.fragment_popup_window,null)
         val myDialog = Dialog(requireActivity())
         myDialog.setContentView(dialogBinding)
@@ -109,9 +119,9 @@ class SignalementFormSignaleurFragment : Fragment() {
             }
         }
 
-        binding.home.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_signalementFormSignaleurFragment_to_fonctionnalitiesActivity)
-        }
+
+        binding.question.setOnClickListener {
+         myDialog2.show()        }
     }
 
     private fun  RemplirChamps(sharedPreferences : SharedPreferences) : Boolean{

@@ -6,7 +6,7 @@
         android:id="@+id/signalementFragment"
         android:enabled="true"
         android:icon="@drawable/ic_signal_green"
-        android:title="تبليغ"
+        android:title="@string/menusignaler"
         android:fontFamily="@font/montserratarabicregular"
         android:visible="true"
 
@@ -20,7 +20,7 @@
         android:enabled="true"
         android:icon="@drawable/ic_help"
         android:fontFamily="@font/montserratarabicregular"
-        android:title="مساعدة"
+        android:title="@string/menuaide"
 
         android:visible="true" />
 </menu>

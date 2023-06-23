@@ -10,42 +10,15 @@
     <ImageView
         android:id="@+id/imageView50"
         android:layout_width="0dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="12dp"
+        android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
         android:src="@drawable/rectangle_green"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home"
-        app:layout_constraintVertical_bias="0.003"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
-
-    <ImageView
-        android:id="@+id/back"
-        android:layout_width="27dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="20dp"
-        android:src="@drawable/ic_back"
-        app:layout_constraintBottom_toBottomOf="@+id/home"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="@+id/home"
-        tools:ignore="NotSibling" />
-
-    <ImageView
-        android:id="@+id/home"
-        android:layout_width="26dp"
-        android:layout_height="26dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
-        android:src="@drawable/ic_home"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearlayout"
@@ -86,7 +59,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserratarabicregular"
                     android:gravity="center_horizontal"
-                    android:text="ملأ الاستبيان"
+                    android:text="@string/formulaire"
                     android:textColor="@color/white"
                     android:textSize="15sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -169,7 +142,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserratarabicregular"
                     android:gravity="center_horizontal"
-                    android:text="فيديو"
+                    android:text="@string/video2"
                     android:textColor="@color/white"
                     android:textSize="15sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -206,7 +179,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserratarabicregular"
                     android:gravity="center_horizontal"
-                    android:text="تسجيل صوتي"
+                    android:text="@string/audio2"
                     android:textColor="@color/white"
                     android:textSize="15sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -237,14 +210,13 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="25dp"
         android:fontFamily="@font/montserrat_semibold"
-        android:text="مرحبا"
+        android:text="@string/bienvenu"
         android:textColor="#FFFFFF"
         android:textSize="22sp"
-        app:layout_constraintEnd_toEndOf="@+id/back"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/question"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView50" />
 
     <TextView
@@ -253,15 +225,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/montserratarabiclight"
-        android:text="قم بالتبليغ عن اي خطر يمس الطفل!"
+        android:text="@string/signaldesc"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView50"
-        app:layout_constraintEnd_toEndOf="@+id/textView2"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
         android:id="@+id/textView50"
@@ -269,7 +237,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
         android:fontFamily="@font/montserratarabicregular"
-        android:text=" ما هي الطريقة التي تريد استعمالها ؟"
+        android:text="@string/methode"
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -285,7 +253,7 @@
         android:background="@drawable/bouton_orange"
         android:drawableLeft="@drawable/ic_suivi"
         android:fontFamily="@font/montserratsemibold"
-        android:text="متابعة الإخطار"
+        android:text="@string/suivisignal"
         android:textAlignment="center"
         android:textColor="@color/orange"
         android:textSize="14sp"
@@ -299,10 +267,9 @@
         android:layout_width="28dp"
         android:layout_height="30dp"
         android:layout_marginTop="28dp"
+        android:layout_marginEnd="16dp"
         android:src="@drawable/ic_question"
-        app:layout_constraintEnd_toEndOf="@+id/home"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/home"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView50" />
 
 

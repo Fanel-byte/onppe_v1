@@ -1,8 +1,12 @@
 package com.example.onppe_v1
 
 import android.Manifest
+import android.app.Dialog
 import android.content.pm.PackageManager
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -57,6 +61,7 @@ class SignalementSonFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         // Init recorder
+        super.onViewCreated(view, savedInstanceState)
         signalementModel = ViewModelProvider(requireActivity()).get(SignalementTransfertModel::class.java)
         filePath = requireActivity().externalCacheDir?.absolutePath + "/recording.mp3"
         waveRecorder = WaveRecorder(filePath)
@@ -127,7 +132,17 @@ class SignalementSonFragment : Fragment() {
         }
 
 
+        val dialogBinding2 = layoutInflater.inflate(R.layout.fragment_help_voice,null)
+        val myDialog2 = Dialog(requireActivity())
+        myDialog2.setContentView(dialogBinding2)
+        myDialog2.setCancelable(true)
+        myDialog2.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        // Récupérer la taille de l'écran
+        val displayMetrics2 = DisplayMetrics()
+        requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics2)
 
+        binding.question.setOnClickListener {
+            myDialog2.show()        }
 
 
     }

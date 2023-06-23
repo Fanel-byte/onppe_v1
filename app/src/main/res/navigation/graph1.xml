@@ -34,7 +34,17 @@
         android:id="@+id/aideFragment"
         android:name="com.example.onppe_v1.AideFragment"
         android:label="fragment_aide"
-        tools:layout="@layout/fragment_aide" />
+        tools:layout="@layout/fragment_aide" >
+        <action
+            android:id="@+id/action_aideFragment_to_droitsfragment"
+            app:destination="@id/droitsfragment" />
+        <action
+            android:id="@+id/action_aideFragment_to_onppefragment"
+            app:destination="@id/onppefragment" />
+        <action
+            android:id="@+id/action_aideFragment_to_appfragment"
+            app:destination="@id/appfragment" />
+    </fragment>
     <fragment
         android:id="@+id/signalementImageFragment"
         android:name="com.example.onppe_v1.SignalementImageFragment"
@@ -164,16 +174,16 @@
         android:name="com.example.onppe_v1.SignalementFormSignaleurFragment"
         android:label="fragment_signalement_form_signaleur"
         tools:layout="@layout/fragment_signalement_form_signaleur" >
-    <action
-        android:id="@+id/action_signalementFormSignaleurFragment_to_signalementFormEnfantFragment"
-        app:destination="@id/signalementFormEnfantFragment" />
+        <action
+            android:id="@+id/action_signalementFormSignaleurFragment_to_signalementFormEnfantFragment"
+            app:destination="@id/signalementFormEnfantFragment" />
 
-    <action
-        android:id="@+id/action_signalementFormSignaleurFragment_to_signalementFragment"
-        app:destination="@id/signalementFragment" />
-    <action
-        android:id="@+id/action_signalementFormSignaleurFragment_to_fonctionnalitiesActivity"
-        app:destination="@id/fonctionnalitiesActivity" />
+        <action
+            android:id="@+id/action_signalementFormSignaleurFragment_to_signalementFragment"
+            app:destination="@id/signalementFragment" />
+        <action
+            android:id="@+id/action_signalementFormSignaleurFragment_to_fonctionnalitiesActivity"
+            app:destination="@id/fonctionnalitiesActivity" />
     </fragment>
     <fragment
         android:id="@+id/signalementFormEnfantFragment"
@@ -212,6 +222,21 @@
             app:destination="@id/finFormulaireSansCnxFragment" />
     </fragment>
     <fragment
+        android:id="@+id/droitsfragment"
+        android:name="com.example.onppe_v1.DroitsFragment"
+        android:label="fragment_droits"
+        tools:layout="@layout/fragment_droits" />
+    <fragment
+        android:id="@+id/appfragment"
+        android:name="com.example.onppe_v1.AppFragment"
+        android:label="fragment_app"
+        tools:layout="@layout/fragment_app" />
+    <fragment
+        android:id="@+id/onppefragment"
+        android:name="com.example.onppe_v1.OnppeFragment"
+        android:label="fragment_onppe"
+        tools:layout="@layout/fragment_onppe" />
+    <fragment
         android:id="@+id/finFormulaireSansCnxFragment"
         android:name="com.example.onppe_v1.FinFormulaireSansCnxFragment"
         android:label="fragment_fin_formulaire_sans_cnx"
@@ -220,6 +245,4 @@
             android:id="@+id/action_finFormulaireSansCnxFragment_to_suivisignalementfragment"
             app:destination="@id/suivisignalementfragment" />
     </fragment>
-
-
 </navigation>

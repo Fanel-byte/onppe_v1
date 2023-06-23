@@ -1,7 +1,11 @@
 package com.example.onppe_v1
 
 import android.annotation.SuppressLint
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.DisplayMetrics
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -42,17 +46,24 @@ class SuiviSignalementDetailFragment : Fragment() {
                 binding.wilaya1.text = resources.getStringArray(R.array.wilayas).toList()[signalement.wilayacodeEnfant!!]
             binding.age1.text = signalement.ageEnfant.toString()
             binding.nomcomplet.text = signalement.nomEnfant + " " +signalement.prenomEnfant
-            binding.sexe1.text = signalement.sexeEnfant
+            binding.sexe2.text = signalement.sexeEnfant
             binding.situation.text = signalement.situationparentEnfant
             binding.contenu.text = signalement.descriptif
             binding.datesignalement2.text = signalement.dateincident
 
         }
-        binding.home.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_suivisignalementdetailfragment_to_fonctionnalitiesActivity)
-        }
-        binding.back.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_suivisignalementdetailfragment_to_suivisignalementfragment)
-        }
+
+        val dialogBinding2 = layoutInflater.inflate(R.layout.fragment_help_suivi,null)
+        val myDialog2 = Dialog(requireActivity())
+        myDialog2.setContentView(dialogBinding2)
+        myDialog2.setCancelable(true)
+        myDialog2.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        // Récupérer la taille de l'écran
+        val displayMetrics2 = DisplayMetrics()
+        requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics2)
+
+        binding.question.setOnClickListener {
+            myDialog2.show()        }
     }
+
 }

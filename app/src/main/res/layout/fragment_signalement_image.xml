@@ -11,54 +11,30 @@
 
 
     <ImageView
-        android:id="@+id/home"
-        android:layout_width="26dp"
-        android:layout_height="26dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
-        android:src="@drawable/ic_home"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/back"
-        android:layout_width="27dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="20dp"
-        android:src="@drawable/ic_back"
-        app:layout_constraintBottom_toBottomOf="@+id/home"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="@+id/home"
-        tools:ignore="NotSibling,UnknownIdInLayout" />
-
-    <ImageView
         android:id="@+id/imageView50"
         android:layout_width="0dp"
         android:layout_height="150dp"
-        android:layout_marginTop="10dp"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
         android:src="@drawable/rectangle_green"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/montserratsemibold"
-        android:text="هنا"
+        android:text="@string/here"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/back"
-        app:layout_constraintTop_toBottomOf="@+id/back" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView50" />
 
     <TextView
         android:id="@+id/textView5"
@@ -67,19 +43,18 @@
 
         android:layout_marginTop="5dp"
         android:fontFamily="@font/montserratarabiclight"
-        android:text=" يمكنك التبليغ عن الإخطار عن طريق صورة"
+        android:text="@string/imageLabel"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView1"
+        app:layout_constraintStart_toStartOf="@+id/textView1"
         app:layout_constraintTop_toBottomOf="@+id/textView1" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-15dp"
         android:fontFamily="@font/montserratarabicregular"
-        android:text="الصورة"
+        android:text="@string/image"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/imageView50"
@@ -92,7 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/montserratarabicregular"
-        android:text="شرح موجز للصورة  "
+        android:text="@string/imageDesc"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -145,7 +120,7 @@
         android:background="@drawable/custom_edittext"
         android:ems="10"
         android:gravity="start|top"
-        android:hint="اكتب هنا ..."
+        android:hint="@string/write"
         android:inputType="textMultiLine"
         android:paddingLeft="10dp"
         android:paddingTop="10dp"
@@ -172,7 +147,7 @@
         android:drawablePadding="2dp"
         android:fontFamily="@font/montserratsemibold"
         android:paddingRight="4dp"
-        android:text="مزيد من المعلومات"
+        android:text="@string/plusInfos"
         android:textColor="@color/orange"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@+id/Descriptionimage"
@@ -186,9 +161,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
         android:src="@drawable/ic_question"
-        app:layout_constraintEnd_toEndOf="@+id/home"
-        app:layout_constraintStart_toStartOf="@+id/home"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView50" />
 
     <ImageView
@@ -200,18 +175,6 @@
         app:layout_constraintEnd_toEndOf="@+id/ImageView"
         app:layout_constraintStart_toStartOf="@+id/ImageView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <ProgressBar
-        android:id="@+id/progressBar2"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imagegalerie"
-        app:layout_constraintEnd_toStartOf="@+id/imagegalerie"
-        app:layout_constraintHorizontal_bias="0.454"
-        app:layout_constraintStart_toEndOf="@+id/imagecapture"
-        app:layout_constraintTop_toTopOf="@+id/imagegalerie" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

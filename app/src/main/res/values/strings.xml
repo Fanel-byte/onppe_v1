@@ -1,7 +1,21 @@
 <resources>
     <string name="app_name">onppe_v1</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="finform">تم تسجيل إخطارك بنجاح. نشكركم على حسن تعاونكم.</string>
+    <string name="here">Ici</string>
+    <string name="videoLabel">Vous pouvez signaler la notification par vidéo</string>
+    <string name="imageLabel">Vous pouvez signaler la notification par image</string>
+    <string name="video">La Vidéo</string>
+    <string name="image">L\'image</string>
+    <string name="videoDesc">Brève explication de la vidéo</string>
+    <string name="imageDesc">Brève explication de l\'image</string>
+    <string name="write">Écrivez ici ...</string>
+    <string name="plusInfos">Plus d\'informations</string>
+    <string name="send">Envoyer</string>
+    <string name="soundLabel">Vous pouvez signaler la notification audio</string>
+    <string name="audio">Enregistrement Audio</string>
+    <string name="audioDesc">Brève explication de l\'enregistrement</string>
+
+
     <string-array name="motifs">
         <item>فقدان الطفل لوالديه وبقائه دون سند عائلي</item>
         <item>تعريض الطفل للإهمال أو التشرد</item>
@@ -15,64 +29,203 @@
         <item>الاستغلال الجنسي للطفل بمختلف أشكاله</item>
         <item>الاستغلال الاقتصادي للطفل</item>
         <item>وقوع الطفل ضحية نزاعات مسلحة</item>
-        <item>الطفل اللاجئ</item>
     </string-array>
     <string-array name="wilayas">
-        <item>أدرار</item>
-        <item>الشلف</item>
-        <item>الأغواط</item>
-        <item>أم البواقي</item>
-        <item>باتنة</item>
-        <item>بجاية</item>
-        <item>بسكرة</item>
-        <item>بشار</item>
-        <item>البليدة</item>
-        <item>البويرة</item>
-        <item>تمنراست</item>
-        <item>تبسة</item>
-        <item>تلمسان</item>
-        <item>تيارت</item>
-        <item>تيزي وزو</item>
-        <item>الجزائر</item>
-        <item>الجلفة</item>
-        <item>جيجل</item>
-        <item>سطيف</item>
-        <item>سعيدة</item>
-        <item>سكيكدة</item>
-        <item>سيدي بلعباس</item>
-        <item>عنابة</item>
-        <item>قالمة</item>
-        <item>قسنطينة</item>
-        <item>المدية</item>
-        <item>مستغانم</item>
-        <item>المسيلة</item>
-        <item>معسكر</item>
-        <item>ورقلة</item>
-        <item>وهران</item>
-        <item>البيض</item>
-        <item>إليزي</item>
-        <item>برج بوعريريج</item>
-        <item>بومرداس</item>
-        <item>الطارف</item>
-        <item>تندوف</item>
-        <item>تيسمسيلت</item>
-        <item>الوادي</item>
-        <item>خنشلة</item>
-        <item>سوق أهراس</item>
-        <item>تيبازة</item>
-        <item>ميلة</item>
-        <item>عين الدفلى</item>
-        <item>النعامة</item>
-        <item>عين تموشنت</item>
-        <item>غرداية</item>
-        <item>غليزان</item>
+        <item>Adrar</item>
+        <item>Chlef</item>
+        <item>Laghouat</item>
+        <item>Oum El Bouaghi</item>
+        <item>Batna</item>
+        <item>Béjaïa</item>
+        <item>Biskra</item>
+        <item>Béchar</item>
+        <item>Blida</item>
+        <item>Bouïra</item>
+        <item>Tamanrasset</item>
+        <item>Tébessa</item>
+        <item>Tlemcen</item>
+        <item>Tiaret</item>
+        <item>Tizi Ouzou</item>
+        <item>Algiers</item>
+        <item>Djelfa</item>
+        <item>Jijel</item>
+        <item>Sétif</item>
+        <item>Saïda</item>
+        <item>Skikda</item>
+        <item>Sidi Bel Abbès</item>
+        <item>Annaba</item>
+        <item>Guelma</item>
+        <item>Constantine</item>
+        <item>Médéa</item>
+        <item>Mostaganem</item>
+        <item>M\'Sila</item>
+        <item>Mascara</item>
+        <item>Ouargla</item>
+        <item>Oran</item>
+        <item>El Bayadh</item>
+        <item>Illizi</item>
+        <item>Bordj Bou Arréridj</item>
+        <item>Boumerdès</item>
+        <item>El Tarf</item>
+        <item>Tindouf</item>
+        <item>Tissemsilt</item>
+        <item>El Oued</item>
+        <item>Khenchela</item>
+        <item>Souk Ahras</item>
+        <item>Tipaza</item>
+        <item>Mila</item>
+        <item>Aïn Defla</item>
+        <item>Naâma</item>
+        <item>Aïn Témouchent</item>
+        <item>Ghardaïa</item>
+        <item>Relizane</item>
     </string-array>
     <string-array name="gender">
-        <item>أنثى</item>
-        <item>ذكر</item>
+        <item>Féminin</item>
+        <item>Masculin</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="finformsanscnx">سيتم إرسال إخطارك فور اتصالك بشبكة الانترنت.نشكركم على حسن تعاونكم.</string>
+
+    <!--start activity -->
+
+    <string name="textstart">معا لحماية الطفولة</string>
+    <string name="bienvenue">مرحبا بكم</string>
+    <string name="appdesc">هذا التطبيق مخصص للتبليغ عن تعديات على حقوق الأطفال</string>
+    <string name="start">ابدا تجربتك</string>
+    <string name="onppe">الهيئة الوطنية لحماية وترقية الطفولة</string>
+
+    <!-->start activity
+
+    <string name="textstart">Ensemble pour protéger les enfants</string>
+    <string name="bienvenue"> Bienvenue</string>
+    <string name="appdesc">Cette application est destinée à signaler les violations des droits de l\'enfant</string>
+    <string name="start"> Commencez votre expérience</string>
+    <string name="onppe">L\'Organe Nationale de Protection et de Promotion de l\'Enfance</string>
+-->
+    <!-- //fonctionnalities activity -->
+   <string name="choixfonction">Veuillez choisir l\'un des services suivants</string>
+   <string name="signalement">Signalements</string>
+   <string name="conseil">Conseils Généraux</string>
+
+
+   <!--  //menu-->
+   <string name="menusignaler">Signaler</string>
+   <string name="menuaide">Aide</string>
+    <!-- //fragment signalement-->
+   <string name="bienvenu">Bienvenue</string>
+   <string name="signaldesc">Signalez tout danger qui touche l\'enfant!</string>
+   <string name="methode">Quelle méthode voulez-vous utiliser ?</string>
+   <string name="formulaire">Remplir un formulaire</string>
+   <string name="image2">Image</string>
+   <string name="video2">Vidéo</string>
+   <string name="audio2">Enregistrement vocal</string>
+   <string name="suivisignal">Suivi signalements</string>
+
+   <!--  //fin formulaire -->
+    <string name="merci">Merci infiniment</string>
+    <string name="finform">Votre signalement a été enregistrée avec succès. Merci pour votre aide.</string>
+    <string name="finformsanscnx">Votre signalement sera envoyé dès que vous serez en ligne. Nous vous remercions de votre collaboration.</string>
+
+    <!--  //no suivi-->
+    <string name="suivinonsignal">Vous pouvez suivre vos signalements</string>
+    <string name="nonsignal">Vous n\'avez pas de signalements à suivre</string>
+    <string name="champs">Veuillez remplir les champs marqués d\'un *</string>
+    <string name="video30">La vidéo sélectionnée doit être inférieure ou égale à 30 secondes</string>
+    <string name="age18">Le signalement est limité aux enfants de moins de 18 ans!</string>
+
+    <!-- //Suivi-->
+   <string name="etat">État :</string>
+   <string name="info">Informations sur l\'enfant mis en risque</string>
+   <string name="infosignal">Informations du signalement</string>
+   <string name="nomcomplet">Nom complet :</string>
+   <string name="sexe">Sexe :</string>
+   <string name="age">Age :</string>
+   <string name="etatfamille">Situation familiale des parents :</string>
+   <string name="adresse">Adresse :</string>
+   <string name="wilaya">Wilaya :</string>
+   <string name="motif">Motif de signalement :</string>
+   <string name="date">Date de l\'incident :</string>
+   <string name="contenu">Contenu du signalement :</string>
+    <!-- form signaleur -->
+
+    <string name="titre_signaleur">Entrez les informations du signaleur</string>
+    <string name="age_form">Age *</string>
+    <string name="sexe_signaleur">Sexe *</string>
+    <string name="adresse_signaleur">Adresse *</string>
+    <string name="prenom_signaleur">Prénom *</string>
+    <string name="nom_signaleur">Nom *</string>
+    <string name="numtel">Numéro de téléphone *</string>
+    <string name="back">Précédent</string>
+    <string name="next">Suivant</string>
+
+    <!-- form enfant -->
+    <string name="titre_enfant">Identification de l\'enfant en danger</string>
+    <string name="prenom_enfant">Prénom</string>
+    <string name="nom_enfant">Nom</string>
+    <string name="situation_parent">Situation familiale des parents</string>
+    <string name="autre">Autre</string>
+    <string name="veuf">Veuf(ve)</string>
+    <string name="divorces">Divorcés</string>
+    <string name="marier">Mariés</string>
+    <string name="adresse_enfant">Adresse</string>
+    <string name="wilaya_form">Wilaya</string>
+
+    <!--  form info -->
+    <string name="titre_infos">Veuillez entrer les informations du signalement</string>
+    <string name="motifinfo">Motif du signalement *</string>
+    <string name="dateincident">Date de l\'incident</string>
+    <string name="dateinfo">Jour/Mois/Année</string>
+    <string name="lieudanger">Lieu où se trouve l\'enfant en danger *</string>
+    <string name="descriptif">Description du signalement</string>
+    <string name="contenu_descriptif">Description du signalement, avec une brève explication...</string>
+    <string name="fichier">Joindre un fichier</string>
+    <string name="confirmer">Confirmer le signalement</string>
+   <!-- pop up -->
+
+
+    <string name="helpmain">Ici, vous pouvez envoyer votre signalement en remplissant uniquement le formulaire ou en le joignant avec une photo, une vidéo ou un enregistrement audio. Vous pouvez également suivre l\'état des signalements que vous avez faites précédemment. Alors, cliquez sur l\'une des options suivantes en fonction de la nature du signalement que vous souhaitez envoyer.</string>
+    <string name="helpvoice">Ici, vous pouvez envoyer votre signalement sous la forme d\'un enregistrement audio avec la nécessité de remplir quelques informations supplémentaires dans le formulaire par la suite.</string>
+
+
+    <string name="helpform">Afin d\'envoyer votre signalement, veuillez remplir les informations de ce formulaire en toute crédibilité.
+        Si vous ne connaissez l\'age de l\'enfant, veuillez donner un age approximatif.
+        Dans le cas ou vous n\'avez pas Internet au moment de remplir le formulaire, l\'application l\'enverra dès que vous serez connecté à Internet sans qu\'il soit nécessaire de le remplir à nouveau.
+    </string>
+    <string name="helpimage">Ici, vous pouvez envoyer votre signalement sous forme d\'image en la téléchargeant ou en la prenant directement avec la nécessité de remplir le formulaire par la suite.</string>
+
+    <string name="helpsuivi">Ici, vous pouvez suivre les signalements que vous avez faites.Vous recevrez une notification lorsqu\'il y aura un développement dans l\'un d\'entre eux</string>
+    <string name="helpvideo">Ici, vous pouvez envoyer votre signalement sous forme de vidéo en la téléchargeant ou en la capturant directement avec la nécessité de remplir le formulaire par la suite.</string>
+
+
+    <!-- fragment app -->
+    <string name="text_app">Vous pouvez consulter des informations sur notre application.</string>
+
+
+
+   <string name="yourtext">L\'application "Protection de l'enfant" offre un mécanisme facile et flexible pour envoyer des signalements concernant les enfants en danger en Algérie. Il permet aux utilisateurs d\'envoyer des signalements via des photos, des vidéos, des enregistrements audio, des formulaires, et de contacter directement les autorités compétentes.
+
+L\'application fonctionne 24 heures sur 24 et est disponible dans les 58 wilayas d\'Algérie. Les utilisateurs peuvent envoyer des signalements à tout moment, que ce soit le jour ou la nuit, quel que soit leur emplacement géographique.
+
+Lorsque l\'application reçoit les signalements, ils sont directement transmis à l\'Organe Nationale de Protection et de Promotion de l\'Enfance pour évaluation de la situation et prise des mesures nécessaires. Les utilisateurs peuvent également contacter directement les autorités compétentes pour obtenir une assistance immédiate et communiquer avec les autorités de sécurité, judiciaires et les institutions sociales compétentes.
+
+De plus, l\'application propose des formulaires pour renforcer les détails et fournir des informations supplémentaires sur les cas. Cela aide l\'Organe Nationale à prendre des mesures appropriées avec précision et exhaustivité.</string>
+
+    <string name="longtext">La loi numéro 15-12, promulguée le 15 juillet 2015, concerne la protection de l\'enfant en Algérie. Cette loi est fondée sur la Constitution algérienne ainsi que sur un ensemble de conventions et de protocoles internationaux relatifs aux droits de l\'enfant auxquels l\'Algérie a adhéré.
+
+Cette loi vise à protéger les droits de l\'enfant et à garantir son bien-être général. Elle comprend de nombreuses dispositions et mesures visant à protéger l\'enfant dans différents aspects de sa vie, notamment les soins de santé, l\'éducation, la protection contre l\'exploitation, la violence et la discrimination, ainsi que la fourniture d\'un environnement sûr et sain pour l\'enfant.
+
+La loi s\'appuie également sur d\'autres lois relatives à l\'état civil, aux sanctions, au travail, à la sécurité sociale, aux droits des personnes handicapées et à d\'autres lois connexes. Elle établit également des institutions et des services spécialisés dans la protection et la prise en charge des droits de l\'enfant.
+
+Vous pouvez consulter le texte de la loi et obtenir plus d\'informations sur la protection de l\'enfant en Algérie en cliquant sur le lien suivant : <a href="http://onppe.dz/index.php/ar/2017-01-08-17-41-39/2017-07-02-08-16-21/26-15-12-28-1436-15-2015#slider\">Cliquez ici</a>.</string>
+    <string name="textonppe">L\'Organe national de protection et de promotion de l\'enfance a été créé auprès du Premier ministre en vertu de la loi numéro 15/12 en date du 28 Ramadan 1436, correspondant au 15 juillet 2015, relative à la protection de l\'enfance. Il veille à la protection et à la promotion des droits de l\'enfant et jouit de la personnalité morale et de l\'indépendance financière.
+
+Pour la gestion et l\'administration de cet organisme dans l\'ensemble de ses pouvoirs, et pour coordonner les efforts de tous les intervenants dans le domaine de l\'enfance, la loi prévoit la nomination d\'un commissaire national qui le dirige. Il est chargé de plusieurs missions, notamment d\'intervenir pour réduire les atteintes aux droits de l\'enfant, automatiquement ou sur notification présentée par l\'enfant lui-même, son représentant légal ou toute personne physique ou morale.
+
+La loi prévoit également la mise à disposition de tous les moyens humains et matériels nécessaires à l\'organisme pour lui permettre d\'accomplir ses missions de la meilleure manière possible (Article 11 de la loi sur la protection de l\'enfance).</string>
+    <string name="textsupp">Ici  vous pouvez consulter des informations supplémentaires</string>
+    <string name="droits">Droits de l\'enfant</string>
+    <string name="organisme">A propos de l\'organe</string>
+    <string name="app">A propos de l\'application </string>
+
+    <string name="textonppe2">Vous pouvez consulter des informations sur l\'Organe national de protection et de promotion de l\'enfance</string>
 
 </resources>

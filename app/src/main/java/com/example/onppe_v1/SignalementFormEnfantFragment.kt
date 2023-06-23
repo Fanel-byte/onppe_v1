@@ -38,10 +38,20 @@ class SignalementFormEnfantFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val dialogBinding2 = layoutInflater.inflate(R.layout.fragment_help_form,null)
+        val myDialog2 = Dialog(requireActivity())
+        myDialog2.setContentView(dialogBinding2)
+        myDialog2.setCancelable(true)
+        myDialog2.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        // Récupérer la taille de l'écran
+        val displayMetrics2 = DisplayMetrics()
+        requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics2)
+
+
         //pour les champs obligatoires
         val dialogBinding = layoutInflater.inflate(R.layout.fragment_popup_window,null)
         //pour l'age<18ans
-        val dialogBinding2 = layoutInflater.inflate(R.layout.popup_window_age,null)
+        val dialogBinding3 = layoutInflater.inflate(R.layout.popup_window_age,null)
         val myDialog = Dialog(requireActivity())
         myDialog.setContentView(dialogBinding)
         myDialog.setCancelable(true)
@@ -66,6 +76,8 @@ class SignalementFormEnfantFragment : Fragment() {
 
         binding.wilaya.threshold = Int.MAX_VALUE // Show all items in the dropdown
 
+        binding.question3.setOnClickListener {
+            myDialog2.show()        }
         binding.wilaya.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
                 binding.wilaya.showDropDown() // Show dropdown when AutoCompleteTextView gains focus
@@ -167,12 +179,6 @@ class SignalementFormEnfantFragment : Fragment() {
         }
         binding.back.setOnClickListener { view: View ->
             view.findNavController().popBackStack()        }
-        binding.back2.setOnClickListener { view: View ->
-            view.findNavController().popBackStack()        }
-
-        binding.home.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_signalementFormEnfantFragment_to_fonctionnalitiesActivity)
-        }
 
     }
 

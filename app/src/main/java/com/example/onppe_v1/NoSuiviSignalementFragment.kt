@@ -31,12 +31,7 @@ class NoSuiviSignalementFragment : Fragment() {
 
 
 
-        binding.home.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_nosuivisignalementfragment_to_fonctionnalitiesActivity)
-        }
-        binding.back.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_nosuivisignalementfragment_to_suivisignalementfragment)
-        }
+
     }
 
 

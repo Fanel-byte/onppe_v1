@@ -74,6 +74,16 @@ class SignalementFormInfosFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val dialogBinding2 = layoutInflater.inflate(R.layout.fragment_help_form,null)
+        val myDialog2 = Dialog(requireActivity())
+        myDialog2.setContentView(dialogBinding2)
+        myDialog2.setCancelable(true)
+        myDialog2.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        // Récupérer la taille de l'écran
+        val displayMetrics2 = DisplayMetrics()
+        requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics2)
+
+
         val instanceDB = AppDatabase.buildDatabase(requireContext())?.getSignalementDao()
         val deviceId: String = Settings.Secure.getString(requireContext().contentResolver, Settings.Secure.ANDROID_ID)
         val dialogBinding = layoutInflater.inflate(R.layout.fragment_popup_window,null)
@@ -140,12 +150,10 @@ class SignalementFormInfosFragment : Fragment() {
 
         }
 
-
+        binding.question3.setOnClickListener {
+            myDialog2.show()        }
         binding.back2.setOnClickListener { view: View ->
             view.findNavController().popBackStack()
-        }
-        binding.home.setOnClickListener { view: View ->
-            //view.findNavController().navigate(R.id.action_signalementForm1Fragment_to_fonctionnalitiesActivity)
         }
 
 

@@ -13,25 +13,25 @@
         android:id="@+id/imageView16"
         android:layout_width="0dp"
         android:layout_height="150dp"
-        android:layout_marginTop="12dp"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
         android:src="@drawable/rectangle_green"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="28dp"
         android:fontFamily="@font/montserrat_bold"
-        android:text=" هوية الطفل في خطر"
+        android:text="@string/titre_enfant"
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/back2"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView16" />
 
     <ImageView
@@ -39,9 +39,8 @@
         android:layout_width="157.8dp"
         android:layout_height="4dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
         android:src="@drawable/progressbar2"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <ImageView
@@ -49,45 +48,22 @@
         android:layout_width="28dp"
         android:layout_height="30dp"
         android:layout_marginTop="28dp"
+        android:layout_marginEnd="16dp"
         android:src="@drawable/ic_question"
-        app:layout_constraintEnd_toEndOf="@+id/home"
-        app:layout_constraintStart_toStartOf="@+id/home"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView16" />
 
-
-    <ImageView
-        android:id="@+id/back2"
-        android:layout_width="27dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="20dp"
-        android:src="@drawable/ic_back"
-        app:layout_constraintBottom_toBottomOf="@+id/home"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/home"
-        app:layout_constraintTop_toTopOf="@+id/home"
-        tools:ignore="NotSibling" />
-
-    <ImageView
-        android:id="@+id/home"
-        android:layout_width="26dp"
-        android:layout_height="26dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
-        android:src="@drawable/ic_home"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat"
-        android:text="السن * "
+        android:text="@string/age_form"
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/textView6"
+        app:layout_constraintStart_toStartOf="@+id/nom"
         app:layout_constraintTop_toTopOf="@+id/textView7" />
 
     <TextView
@@ -96,10 +72,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/montserrat"
-        android:text="الجنس * "
+        android:text="@string/sexe_signaleur"
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="@+id/prenom"
         app:layout_constraintTop_toBottomOf="@+id/prenom" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -114,8 +90,8 @@
         app:hintAnimationEnabled="false"
         app:hintEnabled="false"
         app:hintTextAppearance="@style/TextAppearance.AppCompat.Small"
-        app:layout_constraintEnd_toEndOf="@+id/textView7"
-        app:layout_constraintStart_toStartOf="@+id/prenom"
+        app:layout_constraintEnd_toEndOf="@+id/prenom"
+        app:layout_constraintStart_toStartOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/textView7">
 
         <AutoCompleteTextView
@@ -134,10 +110,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/montserrat"
-        android:text="الوضعية العائلية للوالدين "
+        android:text="@string/situation_parent"
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView7"
+        app:layout_constraintStart_toStartOf="@+id/sexeenfant"
         app:layout_constraintTop_toBottomOf="@+id/age" />
 
     <TextView
@@ -146,10 +122,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/montserrat"
-        android:text="الولاية"
+        android:text="@string/wilaya_form"
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView11"
+        app:layout_constraintStart_toStartOf="@+id/adresse"
         app:layout_constraintTop_toBottomOf="@+id/adresse" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -161,8 +137,8 @@
         android:hint="الولاية"
         app:hintEnabled="false"
         app:hintTextAppearance="@style/TextAppearance.AppCompat.Body1"
-        app:layout_constraintEnd_toEndOf="@+id/textView10"
-        app:layout_constraintStart_toStartOf="@+id/adresse"
+        app:layout_constraintEnd_toEndOf="@+id/adresse"
+        app:layout_constraintStart_toStartOf="@+id/textView10"
         app:layout_constraintTop_toBottomOf="@+id/textView10">
 
         <AutoCompleteTextView
@@ -177,12 +153,13 @@
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/montserrat"
-        android:text="العنوان"
 
+        android:text="@string/adresse_enfant"
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView9"
+        app:layout_constraintStart_toStartOf="@+id/maried"
         app:layout_constraintTop_toBottomOf="@+id/divorced" />
 
     <Button
@@ -196,10 +173,8 @@
         android:text="أخرى"
         android:textColor="#6B7280"
         app:cornerRadius="6dp"
-        app:layout_constraintEnd_toStartOf="@+id/widower"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintEnd_toEndOf="@+id/age"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
-        app:layout_constraintStart_toStartOf="@+id/age"
         app:layout_constraintTop_toTopOf="@+id/widower"
         app:strokeColor="#D1D5DB"
         app:strokeWidth="1dp" />
@@ -215,9 +190,9 @@
         android:text="أرمل(ة)"
         android:textColor="#6B7280"
         app:cornerRadius="6dp"
-        app:layout_constraintEnd_toStartOf="@+id/divorced"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/other"
+        app:layout_constraintBottom_toBottomOf="@+id/divorced"
+        app:layout_constraintEnd_toStartOf="@+id/other"
+        app:layout_constraintStart_toEndOf="@+id/divorced"
         app:layout_constraintTop_toTopOf="@+id/divorced"
         app:strokeColor="#D1D5DB"
         app:strokeWidth="1dp" />
@@ -233,10 +208,10 @@
         android:text="مطلقان"
         android:textColor="#6B7280"
         app:cornerRadius="6dp"
-        app:layout_constraintEnd_toStartOf="@+id/maried"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/widower"
+        app:layout_constraintBottom_toBottomOf="@+id/maried"
+        app:layout_constraintStart_toEndOf="@+id/maried"
         app:layout_constraintTop_toTopOf="@+id/maried"
+        app:layout_constraintVertical_bias="0.0"
         app:strokeColor="#D1D5DB"
         app:strokeWidth="1dp" />
 
@@ -251,23 +226,20 @@
         android:text="متزوجان"
         android:textColor="#6B7280"
         app:cornerRadius="6dp"
-        app:layout_constraintEnd_toEndOf="@+id/textView2"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/divorced"
+        app:layout_constraintStart_toStartOf="@+id/textView9"
         app:layout_constraintTop_toBottomOf="@+id/textView9"
         app:strokeColor="#D1D5DB"
         app:strokeWidth="1dp" />
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
+        android:layout_marginStart="24dp"
         android:fontFamily="@font/montserrat"
-        android:text="الاسم"
+        android:text="@string/prenom_enfant"
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView16" />
 
     <TextView
@@ -275,12 +247,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat"
-        android:text="اللقب"
+        android:text="@string/nom_enfant"
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView2"
-        app:layout_constraintEnd_toStartOf="@+id/textView2"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toTopOf="@+id/textView2"
         app:layout_constraintVertical_bias="0.0" />
 
@@ -288,59 +260,59 @@
         android:id="@+id/next"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
         android:background="@drawable/back"
         android:checkable="false"
         android:foreground="@drawable/back"
         app:iconTintMode="add"
         app:layout_constraintBottom_toBottomOf="@+id/back"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/back" />
 
     <Button
         android:id="@+id/back"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="40dp"
         android:layout_marginBottom="40dp"
         android:background="@drawable/next"
         android:foreground="@drawable/next"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/wilayas" />
 
     <TextView
         android:id="@+id/back3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
         android:fontFamily="@font/montserrat"
-        android:text="السابق"
+        android:text="@string/back"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/back"
-        app:layout_constraintEnd_toStartOf="@+id/back"
+        app:layout_constraintStart_toEndOf="@+id/back"
         app:layout_constraintTop_toTopOf="@+id/back" />
 
     <TextView
         android:id="@+id/next2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:fontFamily="@font/montserrat"
-        android:text="التالي"
+        android:text="@string/next"
         android:textColor="#59C55E"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/next"
-        app:layout_constraintStart_toEndOf="@+id/next"
+        app:layout_constraintEnd_toStartOf="@+id/next"
         app:layout_constraintTop_toTopOf="@+id/next" />
 
     <EditText
         android:id="@+id/prenom"
         android:layout_width="0dp"
         android:layout_height="56.5dp"
-        android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
         android:background="@drawable/custom_edittext2"
         android:ems="10"
         android:inputType="textPersonName"
@@ -349,26 +321,26 @@
         android:textCursorDrawable="@drawable/custom_cursor"
         android:textDirection="rtl"
         app:hintEnabled="false"
-        app:layout_constraintEnd_toEndOf="@+id/textView2"
-        app:layout_constraintStart_toEndOf="@+id/nom"
+        app:layout_constraintEnd_toStartOf="@+id/nom"
+        app:layout_constraintStart_toStartOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
         android:id="@+id/nom"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="24dp"
-        android:background="@drawable/custom_edittext2"
+        android:layout_marginEnd="24dp"
 
+        android:background="@drawable/custom_edittext2"
         android:ems="10"
         android:inputType="textPersonName"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:textCursorDrawable="@drawable/custom_cursor"
         app:layout_constraintBottom_toBottomOf="@+id/prenom"
-        app:layout_constraintEnd_toEndOf="@+id/textView6"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView6"
         app:layout_constraintTop_toTopOf="@+id/prenom"
         app:layout_constraintVertical_bias="0.0" />
 
@@ -384,9 +356,9 @@
         android:textCursorDrawable="@drawable/custom_cursor"
         android:textDirection="rtl"
         app:layout_constraintBottom_toBottomOf="@+id/sexeenfant"
-        app:layout_constraintEnd_toEndOf="@+id/textView6"
+        app:layout_constraintEnd_toEndOf="@+id/nom"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/nom"
+        app:layout_constraintStart_toStartOf="@+id/textView8"
         app:layout_constraintTop_toTopOf="@+id/sexeenfant" />
 
     <EditText
@@ -395,15 +367,14 @@
         android:layout_height="56.5dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/custom_edittext2"
-        android:ems="10"
 
+        android:ems="10"
         android:inputType="text"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:textCursorDrawable="@drawable/custom_cursor"
-        app:layout_constraintEnd_toEndOf="@+id/textView11"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/age"
+        app:layout_constraintEnd_toEndOf="@+id/other"
+        app:layout_constraintStart_toStartOf="@+id/textView11"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

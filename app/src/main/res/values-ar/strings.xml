@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string name="app_name">onppe_v1</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="here">هنا</string>
+    <string name="videoLabel">يمكنك التبليغ عن الإخطار عن طريق فيديو</string>
+    <string name="video">الفيديو</string>
+    <string name="image">الصورة</string>
+    <string name="imageDesc">شرح موجز للصورة</string>
+
+    <string name="videoDesc">شرح موجز للفيديو</string>
+    <string name="write">اكتب هنا …</string>
+    <string name="plusInfos">مزيد من المعلومات</string>
+    <string name="send">إرسال</string>
+    <string name="soundLabel">يمكنك التبليغ عن الإخطار عن طريق تسجيل صوتي</string>
+    <string name="imageLabel">يمكنك التبليغ عن الإخطار عن طريق صورة</string>
+    <string name="audio">التسجيل الصوتي</string>
+    <string name="audioDesc">شرح موجز للتسجيل الصوتي</string>
+
+    <string name="finformsanscnx">سيتم إرسال إخطارك فور اتصالك بشبكة الانترنت.نشكركم على حسن تعاونكم.</string>
+
+    <string-array name="motifs">
+        <item>فقدان الطفل لوالديه وبقائه دون سند عائلي</item>
+        <item>تعريض الطفل للإهمال أو التشرد</item>
+        <item>المساس بحقه في التعليم</item>
+        <item>التسول بالطفل أو تعريضه للتسول</item>
+        <item>عجز من يقوم برعاية الطفل عن التحكم في تصرفاته</item>
+        <item>التقصير البين والمتواصل في التربية والرعاية</item>
+        <item>سوء معاملة الطفل</item>
+        <item>الطفل ضحية جريمة من ممثله الشرعي</item>
+        <item>الطفل ضحية جريمة من أي شخص آخر</item>
+        <item>الاستغلال الجنسي للطفل بمختلف أشكاله</item>
+        <item>الاستغلال الاقتصادي للطفل</item>
+        <item>وقوع الطفل ضحية نزاعات مسلحة</item>
+    </string-array>
+    <string-array name="wilayas">
+        <item>أدرار</item>
+        <item>الشلف</item>
+        <item>الأغواط</item>
+        <item>أم البواقي</item>
+        <item>باتنة</item>
+        <item>بجاية</item>
+        <item>بسكرة</item>
+        <item>بشار</item>
+        <item>البليدة</item>
+        <item>البويرة</item>
+        <item>تمنراست</item>
+        <item>تبسة</item>
+        <item>تلمسان</item>
+        <item>تيارت</item>
+        <item>تيزي وزو</item>
+        <item>الجزائر</item>
+        <item>الجلفة</item>
+        <item>جيجل</item>
+        <item>سطيف</item>
+        <item>سعيدة</item>
+        <item>سكيكدة</item>
+        <item>سيدي بلعباس</item>
+        <item>عنابة</item>
+        <item>قالمة</item>
+        <item>قسنطينة</item>
+        <item>المدية</item>
+        <item>مستغانم</item>
+        <item>المسيلة</item>
+        <item>معسكر</item>
+        <item>ورقلة</item>
+        <item>وهران</item>
+        <item>البيض</item>
+        <item>إليزي</item>
+        <item>برج بوعريريج</item>
+        <item>بومرداس</item>
+        <item>الطارف</item>
+        <item>تندوف</item>
+        <item>تيسمسيلت</item>
+        <item>الوادي</item>
+        <item>خنشلة</item>
+        <item>سوق أهراس</item>
+        <item>تيبازة</item>
+        <item>ميلة</item>
+        <item>عين الدفلى</item>
+        <item>النعامة</item>
+        <item>عين تموشنت</item>
+        <item>غرداية</item>
+        <item>غليزان</item>
+    </string-array>
+    <string-array name="gender">
+        <item>أنثى</item>
+        <item>ذكر</item>
+    </string-array>
+
+    <!--start activity -->
+
+    <string name="textstart">معا لحماية الطفولة</string>
+    <string name="bienvenue">مرحبا بكم</string>
+    <string name="appdesc">هذا التطبيق مخصص للتبليغ عن تعديات على حقوق الأطفال</string>
+    <string name="start">ابدا تجربتك</string>
+    <string name="onppe">الهيئة الوطنية لحماية وترقية الطفولة</string>
+
+    <!--fonctionnalities activity -->
+    <string name="choixfonction">يرجى اختيار إحدى الخدمات الآتية</string>
+    <string name="signalement">الإخطارات</string>
+    <string name="conseil">نصائح عامة</string>
+
+    <!--menu-->
+    <string name="menusignaler">تبليغ</string>
+    <string name="menuaide">مساعدة</string>
+
+    <!-- //fragment signalement -->
+    <string name="bienvenu">مرحبا</string>
+    <string name="signaldesc">قم بالتبليغ عن اي خطر يمس الطفل!</string>
+    <string name="methode">ما هي الطريقة التي تريد استعمالها ؟</string>
+    <string name="formulaire">ملأ الاستبيان</string>
+    <string name="image2">صورة</string>
+    <string name="video2">فيديو</string>
+    <string name="audio2">تسجيل صوتي</string>
+    <string name="suivisignal">متابعة الإخطار</string>
+
+    <!--fin formulaire-->
+    <string name="merci">شكرا جزيلا</string>
+    <string name="finform">تم تسجيل إخطارك بنجاح. نشكركم على حسن تعاونكم.</string>
+
+    <!--no suivi -->
+    <string name="suivinonsignal">يمكنك متابعة الإخطارات التي قمت بها</string>
+    <string name="nonsignal">ليس لديك إخطارات لمتابعتها</string>
+    <string name="champs">يرجى ملء الخانات التي تحمل علامة *</string>
+    <string name="video30">يجب أن يكون الفيديو المحدد أقل من أو يساوي 30 ثانية</string>
+    <string name="age18">الإخطار محدود بالأطفال أقل من 18 سنة !</string>
+
+    <!-- Suivi -->
+    <string name="etat">الحالة :</string>
+    <string name="info">معلومات الطفل في خطر</string>
+    <string name="infosignal">معلومات الإخطار</string>
+    <string name="nomcomplet">الإسم الكامل :</string>
+    <string name="sexe">الجنس :</string>
+    <string name="age">السن :</string>
+    <string name="etatfamille">الوضعية العائلية للوالدين :</string>
+    <string name="adresse">العنوان :</string>
+    <string name="wilaya">الولاية :</string>
+    <string name="motif">سبب الإخطار :</string>
+    <string name="date">تاريخ الحادثة :</string>
+    <string name="contenu">محتوى الإخطار :</string>
+<!-- form signaleur -->
+
+    <string name="titre_signaleur">أدخل معلومات القائم بالاخطار</string>
+    <string name="age_form">السن *</string>
+    <string name="sexe_signaleur">الجنس *</string>
+    <string name="adresse_signaleur">العنوان *</string>
+    <string name="prenom_signaleur">الاسم *</string>
+    <string name="nom_signaleur">اللقب *</string>
+    <string name="numtel">رقم الهاتف *</string>
+    <string name="back">السابق</string>
+    <string name="next">التالي</string>
+    <!-- form enfant -->
+    <string name="titre_enfant">هوية الطفل في خطر</string>
+    <string name="prenom_enfant">الاسم</string>
+    <string name="nom_enfant">اللقب</string>
+    <string name="situation_parent">الوضعية العائلية للوالدين</string>
+    <string name="autre">أخرى</string>
+    <string name="veuf">أرمل(ة)</string>
+    <string name="divorces">مطلقان</string>
+    <string name="marier">متزوجان</string>
+    <string name="adresse_enfant">العنوان</string>
+    <string name="wilaya_form">الولاية</string>
+    <!--  form info -->
+    <string name="titre_infos">يرجى تحديد معلومات الإخطار</string>
+    <string name="motifinfo">سبب الإخطار *</string>
+    <string name="dateincident">تاريخ الحادثة :</string>
+    <string name="dateinfo">يوم / شهر / سنة</string>
+    <string name="lieudanger">مكان تواجد الطفل في خطر *</string>
+    <string name="descriptif">محتوى الإخطار :</string>
+    <string name="contenu_descriptif">...محتوى الإخطار، مع شرح موجز</string>
+    <string name="fichier">إرفاق ملف</string>
+    <string name="confirmer">تأكيد الإخطار</string>
+    <!--  pop up -->
+    <string name="helpmain">هنا يمكنك إرسال إخطارك عن طريق ملئ الإستبيان فقط أو إرفاقه بصورة، فيديو أو تسجيل صوتي. كما يمكنك متابعة حالة الإخطارات التي قمت بها مسبقا. لذا، إضغط على إحدى الخيارات التالية وفقًا لطبيعة الإخطار الذي ترغب في إرساله.</string>
+    <string name="helpvoice">هنا يمكنك القيام بإرسال إخطارك على شكل تسجيل صوتي مع الحاجة إلى ملئ بعض المعلومات الإضافية في الإستبيان بعد ذلك.</string>
+    <string name="helpvideo">هنا يمكنك القيام بإرسال إخطارك على شكل فيديو عن طريق تحميله أو إلتقاطه مباشرة مع الحاجة إلى ملئ الإستبيان بعد ذلك.</string>
+    <string name="helpform">من أجل إرسال إخطارك، يرجى ملئ المعلومات المتواجدة في هذا الإستبيان بكل مصداقية، في حال عدم معرفتكم بسن الطفل في خطر، يرجى إعطاء سن تقريبي.
+في حال عدم توفر الأنترنت لديكم عند ملئ الاستبيان، سوف يقوم التطبيق بإرساله فور اتصالكم بالإنترنت دون الحاجة لملئه من جديد.</string>
+    <string name="helpimage">هنا يمكنك القيام بإرسال إخطارك على شكل صورة عن طريق تحميلها أو إلتقاطها مباشرة مع الحاجة إلى ملئ الإستبيان بعد ذلك.</string>
+
+    <string name="helpsuivi">هنا يمكنك متابعة الإخطارات التي قمت بها. سوف تتلقى إشعار عند حدوث أي تطور في أحدها.</string>"
+
+    <!-- fragment app -->
+    <string name="text_app">يمكنك الإطلاع على معلومات حول تطبيقنا</string>
+
+
+    <string name="longtext">القانون رقم 15-12 الصادر في 15 يوليو 2015 يتعلق بحماية الطفل في الجزائر. يستند القانون إلى الدستور الجزائري ومجموعة من الاتفاقيات والبروتوكولات الدولية المتعلقة بحقوق الطفل التي وافقت عليها الجزائر.\n\nالقانون يهدف إلى حماية حقوق الطفل وضمان رعايته ورفاهيته العامة. يتضمن القانون العديد من الأحكام والتدابير التي تهدف إلى حماية الطفل في مختلف جوانب حياته، بما في ذلك الرعاية الصحية، والتعليم، والحماية من الاستغلال والعنف والتمييز، وتوفير بيئة آمنة وصحية للطفل.\n\nيستند القانون أيضًا إلى قوانين أخرى تتعلق بالحالة المدنية والعقوبات والعمل والتأمينات الاجتماعية وحقوق الأشخاص ذوي الإعاقة وغيرها من القوانين ذات الصلة. يتضمن القانون أيضًا تأسيس مؤسسات ومصالح مختصة بحماية حقوق الطفل ورعايته.\n\nيمكن الاطلاع على نص القانون والحصول على المزيد من المعلومات حول حماية الطفل في الجزائر من خلال الرابط التالي: <a href="http://onppe.dz/index.php/ar/2017-01-08-17-41-39/2017-07-02-08-16-21/26-15-12-28-1436-15-2015#slider\">إضغط هنا</a>.</string>
+    <string name="textonppe">أُنشئت الهيئة الوطنية لحماية وترقية الطفولة الموضوعة لدى السيد الوزير الأول، بموجب القانون رقم15/12 المؤرخ في 28 رمضان عام 1436 الموافق 15 يوليو 2015، المتعلق بحماية الطفل، وهي تسهر على حماية وترقية حقوق الأطفال، كما تتمتع بالشخصية المعنوية والاستقلال المالي.
+ولتسيير وإدارة هذه الهيئة في جل الصلاحيات المخول لها، وتنسيق جهود كافة المتدخلين في مجال الطفولة، نص القانون على تعيين مفوض وطني يرأسها ، أُسندت له مهام متعددة لاسيما التدخل من أجل الحد من المساس بحقوق الطفل، وذلك تلقائيا أو بموجب إخطار يقدمه الطفل أو ممثله الشرعي أو كل شخص طبيعي أو معنوي كما نص القانون على وضع تحت تصرف الهيئة كل الوسائل البشرية والمادية لتمكينها من تأدية مهامها على أحسن وجه (المادة 11 من قانون حماية الطفل).</string>
+
+    <string name="yourtext">تطبيق "حماية الطفل" يوفر آلية سهلة ومرنة لإرسال الإخطارات حول الأطفال في خطر بالجزائر. يتيح للمستخدمين إرسال الإخطارات عبر الصور، الفيديو، التسجيل الصوتي، الاستبيانات، والاتصال المباشر بالمصالح المعنية.
+
+يعمل التطبيق على مدار الساعة (24/7)، ومتاح لجميع ولايات الجزائر الـ58. يمكن للمستخدمين إرسال الإخطارات في أي وقت، سواء في النهار أو الليل، بغض النظر عن موقعهم الجغرافي.
+
+عند استلام التطبيق للإخطارات، يوجهها مباشرةً إلى الهيئة الوطنية لحماية وترقية الطفولة لتقييم الحالة واتخاذ الإجراءات اللازمة. يمكن للمستخدمين أيضًا الاتصال المباشر بالمصالح المعنية للحصول على مساعدة فورية والتواصل مع الجهات الأمنية والقضائية والمؤسسات الاجتماعية المختصة.
+
+بالإضافة إلى ذلك، يوفر التطبيق استبيانات لتعزيز التفاصيل وتقديم معلومات إضافية عن الحالات. هذا يساعد الهيئة الوطنية على اتخاذ الإجراءات المناسبة بدقة وشمولية.</string>
+
+    <string name="textsupp"> هنا يمكنك الإطلاع على معلومات إضافية</string>
+    <string name="droits">حقوق الطفل</string>
+
+    <string name="organisme">حول الهيئة</string>
+    <string name="app">حول التطبيق</string>
+    <string name="textonppe2">يمكنك الإطلاع على معلومات حول الهيئة الوطنية لحماية وترقية الطفولة</string>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</resources>

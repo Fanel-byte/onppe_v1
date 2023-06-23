@@ -1,6 +1,10 @@
 package com.example.onppe_v1
 
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.DisplayMetrics
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -42,12 +46,17 @@ class SignalementFragment : Fragment() {
         binding.suivi.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_signalementFragment_to_suivisignalementfragment)
         }
-        binding.home.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_signalementFragment_to_fonctionnalitiesActivity)
-        }
-        binding.back.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_signalementFragment_to_fonctionnalitiesActivity)
-        }
+        val dialogBinding2 = layoutInflater.inflate(R.layout.fragment_popup_help_main,null)
+        val myDialog2 = Dialog(requireActivity())
+        myDialog2.setContentView(dialogBinding2)
+        myDialog2.setCancelable(true)
+        myDialog2.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        // Récupérer la taille de l'écran
+        val displayMetrics2 = DisplayMetrics()
+        requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics2)
+
+        binding.question.setOnClickListener {
+            myDialog2.show()        }
 
     }
 

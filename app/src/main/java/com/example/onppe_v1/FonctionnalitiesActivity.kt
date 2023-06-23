@@ -1,5 +1,6 @@
 package com.example.onppe_v1
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,7 @@ import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
 import com.example.onppe_v1.databinding.ActivityFonctionnalitiesBinding
 import com.example.onppe_v1.databinding.ActivityStartBinding
+import java.util.*
 
 class FonctionnalitiesActivity : AppCompatActivity() {
     lateinit var binding: ActivityFonctionnalitiesBinding
@@ -54,5 +56,16 @@ class FonctionnalitiesActivity : AppCompatActivity() {
             this.title = title
 
         }
+    }
+    // Language support
+    override fun attachBaseContext(newBase: Context) {
+        val pref = newBase.getSharedPreferences("langdata", MODE_PRIVATE)
+        val language = pref.getString("language","AR")
+        //val language = pref.getString("language","FR")
+        val country = pref.getString("country","DZ")
+        //val country = pref.getString("country","FR")
+        val localeToSwitch = Locale(language,country)
+        val localeUpdatedContext = ContextUtils.updateLocale(newBase, localeToSwitch)
+        super.attachBaseContext(localeUpdatedContext)
     }
 }
