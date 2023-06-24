@@ -189,10 +189,10 @@ class SynchroWorker (val context: Context, val params: WorkerParameters): Corout
                     pref.edit {
                         putString("token",token)
                     }
-                    Toast.makeText(context,"Token ajouté",Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(context,"Token ajouté",Toast.LENGTH_SHORT).show()
                 }
                 else {
-                    Toast.makeText(context,"Une erreur s'est produite",Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(context,"Une erreur s'est produite",Toast.LENGTH_SHORT).show()
                 }
             }
         }

@@ -7,13 +7,14 @@ import android.os.Bundle
 import android.view.Menu
 import com.example.onppe_v1.databinding.ActivityStartBinding
 import android.content.SharedPreferences
+import android.content.pm.ActivityInfo
 
 class StartActivity : AppCompatActivity() {
     lateinit var binding: ActivityStartBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         binding = ActivityStartBinding.inflate(layoutInflater)
         val view = binding.root
         setTheme(R.style.AppTheme_CustomTitle)

@@ -165,6 +165,7 @@ class SignalementFormInfosFragment : Fragment() {
                 signalementModel.dateincident = date
                 signalementModel.motifid= motifid
                 signalementModel.descriptif = binding.description.text.toString()
+                binding.progressBar.visibility = View.VISIBLE
                 CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
                     val signalement = Signalement(
                         null,
@@ -216,6 +217,7 @@ class SignalementFormInfosFragment : Fragment() {
                                             }
                                         }
                                         else {
+                                            binding.progressBar.visibility = View.INVISIBLE
                                             view.findNavController().navigate(R.id.action_signalementFormInfosFragment_to_finFormulaireFragment)
                                         }
                                     }
@@ -305,7 +307,7 @@ class SignalementFormInfosFragment : Fragment() {
     private fun addToken(data: HashMap<String, String>) {
         val  exceptionHandler =   CoroutineExceptionHandler { coroutineContext, throwable ->
             CoroutineScope(Dispatchers.Main).launch {
-                Toast.makeText(requireContext(), "Exception: ${throwable.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.erreurMsg), Toast.LENGTH_SHORT).show()
             }
         }
         CoroutineScope(Dispatchers.IO+exceptionHandler).launch {
@@ -316,10 +318,6 @@ class SignalementFormInfosFragment : Fragment() {
                     pref.edit {
                         putString("token",token)
                     }
-                    Toast.makeText(requireContext(),"Token ajouté",Toast.LENGTH_SHORT).show()
-                }
-                else {
-                    Toast.makeText(requireContext(),"22222",Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -412,8 +410,7 @@ class SignalementFormInfosFragment : Fragment() {
                     }
                 }
                 else {
-                    Toast.makeText(requireActivity(), "une erreur", Toast.LENGTH_SHORT)
-                        .show()
+                    Toast.makeText(requireActivity(), getString(R.string.erreurMsg), Toast.LENGTH_SHORT).show()
                 }
             }
 
@@ -427,11 +424,7 @@ class SignalementFormInfosFragment : Fragment() {
                 if (response.isSuccessful) {
                 }
                 else {
-                    Toast.makeText(
-                        requireActivity(),
-                        "erreur " + response.code().toString(),
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Toast.makeText(requireActivity(), getString(R.string.erreurMsg), Toast.LENGTH_SHORT).show()
 
                 }
             }
@@ -448,7 +441,7 @@ class SignalementFormInfosFragment : Fragment() {
                     instanceDB?.addSignalement(createSignalementTransfert(signalementModel,1))
                     callback(id)
                 } else {
-                    Toast.makeText(requireActivity(), "erreur " + response.code().toString(), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireActivity(), getString(R.string.erreurMsg), Toast.LENGTH_SHORT).show()
                     callback(null)
                 }
             }
@@ -463,7 +456,7 @@ class SignalementFormInfosFragment : Fragment() {
                     findNavController().navigate(R.id.action_signalementFormInfosFragment_to_finFormulaireFragment)
                 }
                 else {
-                    Toast.makeText(requireActivity(),"Une erreur s'est produite",Toast.LENGTH_SHORT).show()
+                   Toast.makeText(requireActivity(),getString(R.string.erreurMsg),Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -477,7 +470,7 @@ class SignalementFormInfosFragment : Fragment() {
                     findNavController().navigate(R.id.action_signalementFormInfosFragment_to_finFormulaireFragment)
                 }
                 else {
-                    Toast.makeText(requireActivity(),"Une erreur s'est produite",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireActivity(),getString(R.string.erreurMsg),Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -491,7 +484,7 @@ class SignalementFormInfosFragment : Fragment() {
                     findNavController().navigate(R.id.action_signalementFormInfosFragment_to_finFormulaireFragment)
                 }
                 else {
-                    Toast.makeText(requireActivity(),"Une erreur s'est produite",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireActivity(),getString(R.string.erreurMsg),Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -505,7 +498,7 @@ class SignalementFormInfosFragment : Fragment() {
                     findNavController().navigate(R.id.action_signalementFormInfosFragment_to_finFormulaireFragment)
                 }
                 else {
-                    Toast.makeText(requireActivity(),"Une erreur s'est produite",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireActivity(),getString(R.string.erreurMsg),Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -519,7 +512,7 @@ class SignalementFormInfosFragment : Fragment() {
     private fun createSignalementTransfert(signalementTransfertModel: SignalementTransfertModel, Upload : Int): SignalementTransfert {
         return SignalementTransfert(
             upload = Upload,
-            videoImageSon = partToByteArray(signalementTransfertModel.videoImageSon),
+            //videoImageSon = partToByteArray(signalementTransfertModel.videoImageSon),
             DescriptifvideoImageSon = signalementTransfertModel.DescriptifvideoImageSon,
             typepreuve = signalementTransfertModel.typepreuve,
             id = signalementTransfertModel.id,

@@ -19,6 +19,7 @@ import java.util.*
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.IntentFilter
+import android.content.pm.ActivityInfo
 import android.net.ConnectivityManager
 import android.view.Menu
 import android.view.MenuInflater
@@ -37,6 +38,7 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         binding = ActivityMainBinding.inflate(layoutInflater)
         var click = 1
         val view = binding.root

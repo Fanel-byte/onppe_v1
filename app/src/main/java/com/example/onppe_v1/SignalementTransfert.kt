@@ -9,7 +9,7 @@ data class SignalementTransfert(
     @PrimaryKey(autoGenerate = true)
     var id: Int?,
     var upload: Int,
-    val videoImageSon: ByteArray,
+    //val videoImageSon: ByteArray,
     val DescriptifvideoImageSon:String?,
     val typepreuve:String?,
     var motifid:Int?,
@@ -30,7 +30,7 @@ data class SignalementTransfert(
     var adresseCitoyen:String?,
     var telCitoyen:String?,
     var descriptif:String?,
-    var statut: String = "في انتظار الإرسال",
+    var statut: String = "أرسلت في انتظار الرد",
     var lieudanger:String?,
     var longitudesignaleur: Double ?,
     var latitudesignaleur: Double ?,

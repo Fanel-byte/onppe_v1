@@ -2,8 +2,8 @@
     <string name="app_name">طفولة</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="here">Ici</string>
-    <string name="videoLabel">Vous pouvez signaler le signalement par vidéo</string>
-    <string name="imageLabel">Vous pouvez signaler le signalement par image</string>
+    <string name="videoLabel">Vous pouvez signaler avec vidéo</string>
+    <string name="imageLabel">Vous pouvez signaler par image</string>
     <string name="video">La Vidéo</string>
     <string name="image">L\'image</string>
     <string name="videoDesc">Brève explication de la vidéo</string>
@@ -117,7 +117,7 @@
     <string name="formulaire">Remplir un formulaire</string>
     <string name="image2">Image</string>
     <string name="video2">Vidéo</string>
-    <string name="audio2">Enregistrement vocal</string>
+    <string name="audio2">Vocal</string>
     <string name="suivisignal">Suivi signalements</string>
 
     <!--  //fin formulaire -->
@@ -178,11 +178,11 @@
     <string name="descriptif">Description du signalement</string>
     <string name="contenu_descriptif">Description du signalement, avec une brève explication...</string>
     <string name="fichier">Joindre un fichier</string>
-    <string name="confirmer">Confirmer le signalement</string>
+    <string name="confirmer">Envoyer</string>
     <!-- pop up -->
     <string name="localisation">Pour une meilleure gestion de votre signalement, veuillez activer la fonctionnalité de localisation</string>
 
-    <string name="helpmain">Ici, vous pouvez envoyer votre signalement en remplissant le formulaire ou en le joignant avec une photo, une vidéo ou un vocal.\nVous pouvez également suivre l\'état des signalements.</string>
+    <string name="helpmain">Ici, vous pouvez envoyer votre signalement en remplissant le formulaire ou en le joignant avec une photo, une vidéo ou un vocal.\nVous pouvez également suivre l\'état des signalements.l\'ONPPE s\'engage à conserver les informations personnelles du notifiant et à ne les partager avec personne.</string>
     <string name="helpvoice">Ici, vous pouvez envoyer votre signalement sous la forme d\'un enregistrement audio avec la nécessité de remplir quelques informations supplémentaires dans le formulaire par la suite.</string>
 
 
@@ -241,6 +241,7 @@
     <string name="numero">Le numéro doit être composé de 10 chiffres</string>
     <string name="inserer_video">Veuillez d\'abord insérer une vidéo</string>
     <string name="inserer_vocal">Veuillez d\'abord insérer un vocal</string>
+    <string name="erreurMsg">Une erreur s\'est produite</string>
 
 
 </resources>

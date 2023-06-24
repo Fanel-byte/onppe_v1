@@ -2,6 +2,7 @@ package com.example.onppe_v1
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -20,7 +21,7 @@ class FonctionnalitiesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         binding = ActivityFonctionnalitiesBinding.inflate(layoutInflater)
         val view = binding.root
         setTheme(R.style.AppTheme_CustomTitle)

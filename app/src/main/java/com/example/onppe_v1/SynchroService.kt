@@ -28,7 +28,7 @@ class SynchroService() : FirebaseMessagingService(){
 
                 // send notification
                 //sendNotification(this,"Mise à jour","Update signalement" + "nv id:"+id  )
-                sendNotification(this,"Mise à jour","sign" + (sign?.signalementId ?: 0) + "/nv id:"+id   )
+                sendNotification(this,"Mise à jour Signalement"+ (sign?.signalementId ?: 0),"Nouvelle etat :" + statut )
 
             }
         }
