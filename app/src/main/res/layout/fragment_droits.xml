@@ -11,7 +11,7 @@
     <ImageView
         android:id="@+id/imageView50"
         android:layout_width="0dp"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
         android:src="@drawable/rectangle_green"
@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="25dp"
         android:fontFamily="@font/montserratsemibold"
         android:text="@string/here"
         android:textColor="#FFFFFF"
@@ -36,14 +36,15 @@
 
     <TextView
         android:id="@+id/textView5"
-        android:layout_width="356dp"
-        android:layout_height="27dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
 
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/montserratarabiclight"
-        android:text="يمكنك الإطلاع على حقوق الطفل   "
+        android:text="@string/droit_desc"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView1"
         app:layout_constraintTop_toBottomOf="@+id/textView1" />
 
@@ -58,18 +59,19 @@
         android:fontFamily="@font/montserrat"
         android:linksClickable="false"
         android:text="@string/longtext"
+        android:textAlignment="textStart"
         android:textColor="@color/black"
         android:textColorLink="#4CAF50"
         android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
     <TextView
         android:id="@+id/textViewLink"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="20dp"
         android:fontFamily="@font/montserrat"

@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -39,13 +40,22 @@ class SuiviSignalementFragment : Fragment() {
         val instanceDB = AppDatabase.buildDatabase(requireContext())?.getSignalementDao()
         signalementsModel = ViewModelProvider(requireActivity()).get(SignalementsModel::class.java)
         //GetSignalements()
-
-        // Get from SQL LITE and add it in signalementsModel
         signalementsModel.signalements = instanceDB!!.getSignalement()
-        binding.recyclerView.layoutManager = LinearLayoutManager(requireActivity() , RecyclerView.VERTICAL,false)
-        binding.recyclerView.adapter = SuiviSignalementAdapter(requireActivity(), signalementsModel.signalements)
-        val itemDecor = DividerItemDecoration(requireActivity(),1)
-        binding.recyclerView.addItemDecoration(itemDecor)
+
+        if (signalementsModel.signalements.isNotEmpty()) {
+            // La liste des signalements n'est pas vide
+
+            binding.recyclerView.layoutManager =
+                LinearLayoutManager(requireActivity(), RecyclerView.VERTICAL, false)
+            binding.recyclerView.adapter =
+                SuiviSignalementAdapter(requireActivity(), signalementsModel.signalements)
+            val itemDecor = DividerItemDecoration(requireActivity(), 1)
+            binding.recyclerView.addItemDecoration(itemDecor)
+        } else {
+            // La liste des signalements est vide
+            view.findNavController().navigate(R.id.action_mainFragment_to_nosuiviFragment)
+        }
+
         val dialogBinding2 = layoutInflater.inflate(R.layout.fragment_help_suivi,null)
         val myDialog2 = Dialog(requireActivity())
         myDialog2.setContentView(dialogBinding2)
@@ -54,7 +64,10 @@ class SuiviSignalementFragment : Fragment() {
         // Récupérer la taille de l'écran
         val displayMetrics2 = DisplayMetrics()
         requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics2)
-
+        val width = (displayMetrics2.widthPixels * 0.75).toInt()
+        val height =  WindowManager.LayoutParams.WRAP_CONTENT
+        // Définir la taille de la fenêtre du dialog
+        myDialog2.window?.setLayout(width, height)
         binding.question.setOnClickListener {
             myDialog2.show()        }
         /*

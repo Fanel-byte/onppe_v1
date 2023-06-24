@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
@@ -154,7 +155,11 @@ class SignalementImageFragment : Fragment() {
         // Récupérer la taille de l'écran
         val displayMetrics2 = DisplayMetrics()
         requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics2)
+        val width = (displayMetrics2.widthPixels * 0.75).toInt()
+        val height =  WindowManager.LayoutParams.WRAP_CONTENT
 
+        // Définir la taille de la fenêtre du dialog
+        myDialog2.window?.setLayout(width, height)
         binding.question.setOnClickListener {
             myDialog2.show()        }
         // by clicking this button we get the image from the camera
@@ -178,7 +183,7 @@ class SignalementImageFragment : Fragment() {
             signalementModel.DescriptifvideoImageSon = binding.Descriptionimage.text.toString()
             signalementModel.typepreuve = "image"
             if (signalementModel.videoImageSon == null){
-                Toast.makeText(requireActivity(), "الرجاء إدخال صورة أولا", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireActivity(), getString(R.string.inserer_image), Toast.LENGTH_SHORT).show()
             }
             else {
                 view.findNavController().navigate(R.id.action_signalementImageFragment_to_signalementFormSignaleurFragment)
@@ -198,7 +203,7 @@ class SignalementImageFragment : Fragment() {
     // Request permission
     private fun checkPermission() {
         val perms = arrayOf(Manifest.permission.CAMERA)
-        ActivityCompat.requestPermissions(requireActivity(),perms, requestCode)
+        requestPermissions(perms, requestCode)
     }
 
     override fun onRequestPermissionsResult(permsRequestCode: Int, permissions: Array<String>, grantResults: IntArray) {

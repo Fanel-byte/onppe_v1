@@ -37,9 +37,11 @@
             android:id="@+id/mot1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="-10dp"
             android:fontFamily="@font/montserratarabicregular"
             android:text="@string/choixfonction"
+            android:textAlignment="center"
+            android:textAllCaps="false"
             android:textColor="#000000"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -49,18 +51,20 @@
 
         <Button
             android:id="@+id/signalement"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/bouton"
             android:drawableRight="@drawable/ic_signal_white"
+            android:fontFamily="@font/montserrat"
             android:text="@string/signalement"
-            android:textSize="18sp"
+            android:textAllCaps="false"
+            android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/aide"
             app:layout_constraintHorizontal_bias="0.496"
-            app:layout_constraintStart_toStartOf="parent"
 
+            app:layout_constraintStart_toStartOf="@+id/aide"
             app:layout_constraintTop_toBottomOf="@+id/mot1"
             tools:ignore="MissingConstraints" />
 
@@ -72,15 +76,34 @@
             android:layout_marginTop="35dp"
             android:background="@drawable/bouton"
             android:drawableRight="@drawable/ic_help_white"
+            android:fontFamily="@font/montserrat"
             android:text="@string/conseil"
-            android:textSize="18sp"
+            android:textAllCaps="false"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.503"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/signalement"
             tools:ignore="MissingConstraints" />
 
+
+        <Button
+            android:id="@+id/langue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:background="@drawable/bouton"
+            android:drawableRight="@drawable/langue"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/select_language"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/aide"
+            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintStart_toStartOf="@+id/aide"
+            app:layout_constraintTop_toBottomOf="@+id/aide"
+            tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/back3"
@@ -101,12 +124,11 @@
             android:id="@+id/imageView3"
             android:layout_width="41dp"
             android:layout_height="47dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="45dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/aide"
+            app:layout_constraintTop_toBottomOf="@+id/langue"
             app:srcCompat="@drawable/logo" />
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

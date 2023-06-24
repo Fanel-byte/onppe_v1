@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">onppe_v1</string>
+    <string name="app_name">طفولة</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="here">Ici</string>
-    <string name="videoLabel">Vous pouvez signaler la notification par vidéo</string>
-    <string name="imageLabel">Vous pouvez signaler la notification par image</string>
+    <string name="videoLabel">Vous pouvez signaler le signalement par vidéo</string>
+    <string name="imageLabel">Vous pouvez signaler le signalement par image</string>
     <string name="video">La Vidéo</string>
     <string name="image">L\'image</string>
     <string name="videoDesc">Brève explication de la vidéo</string>
@@ -11,7 +11,7 @@
     <string name="write">Écrivez ici ...</string>
     <string name="plusInfos">Plus d\'informations</string>
     <string name="send">Envoyer</string>
-    <string name="soundLabel">Vous pouvez signaler la notification audio</string>
+    <string name="soundLabel">Vous pouvez signaler le signalement audio</string>
     <string name="audio">Enregistrement Audio</string>
     <string name="audioDesc">Brève explication de l\'enregistrement</string>
 
@@ -104,7 +104,7 @@
     <!-- //fonctionnalities activity -->
     <string name="choixfonction">Veuillez choisir l\'un des services suivants</string>
     <string name="signalement">Signalements</string>
-    <string name="conseil">Conseils Généraux</string>
+    <string name="conseil">Informations Générales</string>
 
 
     <!--  //menu-->
@@ -147,7 +147,7 @@
     <string name="contenu">Contenu du signalement :</string>
     <!-- form signaleur -->
 
-    <string name="titre_signaleur">Entrez les informations du signaleur</string>
+    <string name="titre_signaleur">Entrez vos informations</string>
     <string name="age_form">Age *</string>
     <string name="sexe_signaleur">Sexe *</string>
     <string name="adresse_signaleur">Adresse *</string>
@@ -182,14 +182,14 @@
     <!-- pop up -->
     <string name="localisation">Pour une meilleure gestion de votre signalement, veuillez activer la fonctionnalité de localisation</string>
 
-    <string name="helpmain">Ici, vous pouvez envoyer votre signalement en remplissant uniquement le formulaire ou en le joignant avec une photo, une vidéo ou un enregistrement audio. Vous pouvez également suivre l\'état des signalements que vous avez faites précédemment. Alors, cliquez sur l\'une des options suivantes en fonction de la nature du signalement que vous souhaitez envoyer.</string>
+    <string name="helpmain">Ici, vous pouvez envoyer votre signalement en remplissant le formulaire ou en le joignant avec une photo, une vidéo ou un vocal.\nVous pouvez également suivre l\'état des signalements.</string>
     <string name="helpvoice">Ici, vous pouvez envoyer votre signalement sous la forme d\'un enregistrement audio avec la nécessité de remplir quelques informations supplémentaires dans le formulaire par la suite.</string>
 
 
     <string name="helpform">Afin d\'envoyer votre signalement, veuillez remplir les informations de ce formulaire en toute crédibilité.
         Si vous ne connaissez l\'age de l\'enfant, veuillez donner un age approximatif.
-        Dans le cas ou vous n\'avez pas Internet au moment de remplir le formulaire, l\'application l\'enverra dès que vous serez connecté à Internet sans qu\'il soit nécessaire de le remplir à nouveau.
-    </string>
+        Dans le cas ou vous n\'avez pas Internet, l\'application l\'enverra dès que vous serez connecté.</string>
+
     <string name="helpimage">Ici, vous pouvez envoyer votre signalement sous forme d\'image en la téléchargeant ou en la prenant directement avec la nécessité de remplir le formulaire par la suite.</string>
 
     <string name="helpsuivi">Ici, vous pouvez suivre les signalements que vous avez faites.Vous recevrez une notification lorsqu\'il y aura un développement dans l\'un d\'entre eux</string>
@@ -201,27 +201,31 @@
 
 
 
-    <string name="yourtext">L\'application "Protection de l'enfant" offre un mécanisme facile et flexible pour envoyer des signalements concernant les enfants en danger en Algérie. Il permet aux utilisateurs d\'envoyer des signalements via des photos, des vidéos, des enregistrements audio, des formulaires, et de contacter directement les autorités compétentes.
+    <string name="yourtext">    L\'application "Enfance" offre un mécanisme facile et flexible pour envoyer des signalements concernant les enfants en danger en Algérie.\n\n  Elle permet aux utilisateurs d\'envoyer des signalements via des photos, des vidéos, des enregistrements audio, des formulaires, et de contacter directement les autorités compétentes.\n\n   L\'application fonctionne 24 heures sur 24 et est disponible dans les 58 wilayas d\'Algérie.\n\n    Les utilisateurs peuvent envoyer des signalements à tout moment, que ce soit le jour ou la nuit, quel que soit leur emplacement géographique.\n\n   Lorsque l\'application reçoit les signalements, ils sont directement transmis à l\'Organe Nationale de Protection et de Promotion de l\'Enfance pour évaluation de la situation et prise des mesures nécessaires.\n\n   Les utilisateurs peuvent également contacter directement les autorités compétentes pour obtenir une assistance immédiate et communiquer avec les autorités de sécurité, judiciaires et les institutions sociales compétentes.\n\n  De plus, l\'application propose des formulaires pour renforcer les détails et fournir des informations supplémentaires sur les cas. Cela aide l\'Organe Nationale à prendre des mesures appropriées avec précision et exhaustivité.</string>
 
-L\'application fonctionne 24 heures sur 24 et est disponible dans les 58 wilayas d\'Algérie. Les utilisateurs peuvent envoyer des signalements à tout moment, que ce soit le jour ou la nuit, quel que soit leur emplacement géographique.
+    <string name="longtext">
+        \n\nLa loi numéro 15-12, promulguée le 15 juillet 2015, concerne la protection de l\'enfant en Algérie.
 
-Lorsque l\'application reçoit les signalements, ils sont directement transmis à l\'Organe Nationale de Protection et de Promotion de l\'Enfance pour évaluation de la situation et prise des mesures nécessaires. Les utilisateurs peuvent également contacter directement les autorités compétentes pour obtenir une assistance immédiate et communiquer avec les autorités de sécurité, judiciaires et les institutions sociales compétentes.
+        \n\nCette loi est fondée sur la Constitution algérienne ainsi que sur un ensemble de conventions et de protocoles internationaux relatifs aux droits de l\'enfant auxquels l\'Algérie a adhéré.
 
-De plus, l\'application propose des formulaires pour renforcer les détails et fournir des informations supplémentaires sur les cas. Cela aide l\'Organe Nationale à prendre des mesures appropriées avec précision et exhaustivité.</string>
+        \n\nCette loi vise à protéger les droits de l\'enfant et à garantir son bien-être général.
 
-    <string name="longtext">La loi numéro 15-12, promulguée le 15 juillet 2015, concerne la protection de l\'enfant en Algérie. Cette loi est fondée sur la Constitution algérienne ainsi que sur un ensemble de conventions et de protocoles internationaux relatifs aux droits de l\'enfant auxquels l\'Algérie a adhéré.
+        \n\nElle comprend de nombreuses dispositions et mesures visant à protéger l\'enfant dans différents aspects de sa vie, notamment les soins de santé, l\'éducation, la protection contre l\'exploitation, la violence et la discrimination, ainsi que la fourniture d\'un environnement sûr et sain pour l\'enfant.
 
-Cette loi vise à protéger les droits de l\'enfant et à garantir son bien-être général. Elle comprend de nombreuses dispositions et mesures visant à protéger l\'enfant dans différents aspects de sa vie, notamment les soins de santé, l\'éducation, la protection contre l\'exploitation, la violence et la discrimination, ainsi que la fourniture d\'un environnement sûr et sain pour l\'enfant.
+        \n\nLa loi s\'appuie également sur d\'autres lois relatives à l\'état civil, aux sanctions, au travail, à la sécurité sociale, aux droits des personnes handicapées et à d\'autres lois connexes. Elle établit également des institutions et des services spécialisés dans la protection et la prise en charge des droits de l\'enfant.
 
-La loi s\'appuie également sur d\'autres lois relatives à l\'état civil, aux sanctions, au travail, à la sécurité sociale, aux droits des personnes handicapées et à d\'autres lois connexes. Elle établit également des institutions et des services spécialisés dans la protection et la prise en charge des droits de l\'enfant.
-
-Vous pouvez consulter le texte de la loi et obtenir plus d\'informations sur la protection de l\'enfant en Algérie en cliquant sur le lien suivant :</string>
+        \n\nVous pouvez consulter le texte de la loi et obtenir plus d\'informations sur la protection de l\'enfant en Algérie en cliquant sur le lien suivant :</string>
     <string name="cliquer">Cliquez ici</string>
-    <string name="textonppe">L\'Organe national de protection et de promotion de l\'enfance a été créé auprès du Premier ministre en vertu de la loi numéro 15/12 en date du 28 Ramadan 1436, correspondant au 15 juillet 2015, relative à la protection de l\'enfance. Il veille à la protection et à la promotion des droits de l\'enfant et jouit de la personnalité morale et de l\'indépendance financière.
+    <string name="textonppe">
+        \n\nL\'Organe national de protection et de promotion de l\'enfance a été créé auprès du Premier ministre en vertu de la loi numéro 15/12 en date du 28 Ramadan 1436, correspondant au 15 juillet 2015, relative à la protection de l\'enfance.
 
-Pour la gestion et l\'administration de cet organisme dans l\'ensemble de ses pouvoirs, et pour coordonner les efforts de tous les intervenants dans le domaine de l\'enfance, la loi prévoit la nomination d\'un commissaire national qui le dirige. Il est chargé de plusieurs missions, notamment d\'intervenir pour réduire les atteintes aux droits de l\'enfant, automatiquement ou sur notification présentée par l\'enfant lui-même, son représentant légal ou toute personne physique ou morale.
+        \n\nIl veille à la protection et à la promotion des droits de l\'enfant et jouit de la personnalité morale et de l\'indépendance financière.
 
-La loi prévoit également la mise à disposition de tous les moyens humains et matériels nécessaires à l\'organisme pour lui permettre d\'accomplir ses missions de la meilleure manière possible (Article 11 de la loi sur la protection de l\'enfance).</string>
+        \n\nPour la gestion et l\'administration de cet organisme dans l\'ensemble de ses pouvoirs, et pour coordonner les efforts de tous les intervenants dans le domaine de l\'enfance, la loi prévoit la nomination d\'un commissaire national qui le dirige.
+
+        \n\nIl est chargé de plusieurs missions, notamment d\'intervenir pour réduire les atteintes aux droits de l\'enfant, automatiquement ou sur notification présentée par l\'enfant lui-même, son représentant légal ou toute personne physique ou morale.
+
+        \n\nLa loi prévoit également la mise à disposition de tous les moyens humains et matériels nécessaires à l\'organisme pour lui permettre d\'accomplir ses missions de la meilleure manière possible (Article 11 de la loi sur la protection de l\'enfance).</string>
     <string name="textsupp">Ici  vous pouvez consulter des informations supplémentaires</string>
     <string name="droits">Droits de l\'enfant</string>
     <string name="organisme">A propos de l\'organe</string>
@@ -229,4 +233,14 @@ La loi prévoit également la mise à disposition de tous les moyens humains et 
 
     <string name="textonppe2">Vous pouvez consulter des informations sur l\'Organe national de protection et de promotion de l\'enfance</string>
     <string name="plus">Plus</string>
+    <string name="select_language">Choisir la Langue</string>
+    <string name="arabe">Arabe</string>
+    <string name="francais">Français</string>
+    <string name="inserer_image">Veuillez d\'abord insérer une photo</string>
+    <string name="droit_desc">Vous pouvez lire les droits de l\'enfant</string>
+    <string name="numero">Le numéro doit être composé de 10 chiffres</string>
+    <string name="inserer_video">Veuillez d\'abord insérer une vidéo</string>
+    <string name="inserer_vocal">Veuillez d\'abord insérer un vocal</string>
+
+
 </resources>

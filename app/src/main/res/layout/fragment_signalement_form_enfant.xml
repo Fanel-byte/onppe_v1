@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,7 +11,7 @@
     <ImageView
         android:id="@+id/imageView16"
         android:layout_width="0dp"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
         android:src="@drawable/rectangle_green"
@@ -23,36 +22,32 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
-        android:fontFamily="@font/montserrat_bold"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="5dp"
+        android:fontFamily="@font/montserrat_semibold"
         android:text="@string/titre_enfant"
+        android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/question3"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView16" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="157.8dp"
-        android:layout_height="4dp"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/progressbar2"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <ImageView
         android:id="@+id/question3"
         android:layout_width="28dp"
         android:layout_height="30dp"
-        android:layout_marginTop="28dp"
         android:layout_marginEnd="16dp"
         android:src="@drawable/ic_question"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView16" />
-
+        app:layout_constraintTop_toTopOf="@+id/textView"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView8"
@@ -60,6 +55,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat"
         android:text="@string/age_form"
+        android:textAllCaps="false"
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/textView6"
@@ -73,6 +69,7 @@
         android:layout_marginTop="10dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/sexe_signaleur"
+        android:textAllCaps="false"
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/prenom"
@@ -111,6 +108,7 @@
         android:layout_marginTop="10dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/situation_parent"
+        android:textAllCaps="false"
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/sexeenfant"
@@ -123,6 +121,7 @@
         android:layout_marginTop="10dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/wilaya_form"
+        android:textAllCaps="false"
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/adresse"
@@ -153,83 +152,102 @@
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         android:layout_marginTop="10dp"
         android:fontFamily="@font/montserrat"
 
         android:text="@string/adresse_enfant"
+        android:textAllCaps="false"
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/maried"
+        app:layout_constraintStart_toStartOf="@+id/other"
         app:layout_constraintTop_toBottomOf="@+id/divorced" />
 
     <Button
         android:id="@+id/other"
-        android:layout_width="82dp"
-        android:layout_height="51dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="4dp"
         android:layout_weight="1"
         android:backgroundTint="@color/white"
         android:elevation="0dp"
         android:ellipsize="none"
-        android:text="أخرى"
+        android:text="@string/autre"
+        android:textAllCaps="false"
         android:textColor="#6B7280"
+        android:textSize="12sp"
         app:cornerRadius="6dp"
-        app:layout_constraintEnd_toEndOf="@+id/age"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintBottom_toBottomOf="@+id/widower"
+        app:layout_constraintEnd_toStartOf="@+id/widower"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/textView9"
         app:layout_constraintTop_toTopOf="@+id/widower"
         app:strokeColor="#D1D5DB"
         app:strokeWidth="1dp" />
 
     <Button
         android:id="@+id/widower"
-        android:layout_width="82dp"
-        android:layout_height="51dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="4dp"
         android:layout_weight="1"
         android:backgroundTint="@color/white"
         android:elevation="0dp"
         android:ellipsize="none"
-        android:text="أرمل(ة)"
+        android:text="@string/veuf"
+        android:textAllCaps="false"
         android:textColor="#6B7280"
+        android:textSize="12sp"
         app:cornerRadius="6dp"
         app:layout_constraintBottom_toBottomOf="@+id/divorced"
-        app:layout_constraintEnd_toStartOf="@+id/other"
-        app:layout_constraintStart_toEndOf="@+id/divorced"
+        app:layout_constraintEnd_toStartOf="@+id/divorced"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/other"
         app:layout_constraintTop_toTopOf="@+id/divorced"
         app:strokeColor="#D1D5DB"
         app:strokeWidth="1dp" />
 
     <Button
         android:id="@+id/divorced"
-        android:layout_width="82dp"
-        android:layout_height="51dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="4dp"
         android:layout_weight="1"
         android:backgroundTint="@color/white"
         android:elevation="0dp"
         android:ellipsize="none"
-        android:text="مطلقان"
+        android:text="@string/divorces"
+        android:textAllCaps="false"
         android:textColor="#6B7280"
+        android:textSize="12sp"
         app:cornerRadius="6dp"
         app:layout_constraintBottom_toBottomOf="@+id/maried"
-        app:layout_constraintStart_toEndOf="@+id/maried"
+        app:layout_constraintEnd_toStartOf="@+id/maried"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/widower"
         app:layout_constraintTop_toTopOf="@+id/maried"
-        app:layout_constraintVertical_bias="0.0"
         app:strokeColor="#D1D5DB"
         app:strokeWidth="1dp" />
 
     <Button
         android:id="@+id/maried"
-        android:layout_width="82dp"
-        android:layout_height="51dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:layout_weight="1"
         android:backgroundTint="@color/white"
         android:elevation="0dp"
         android:ellipsize="none"
-        android:text="متزوجان"
+        android:text="@string/marier"
+        android:textAllCaps="false"
         android:textColor="#6B7280"
+        android:textSize="12sp"
         app:cornerRadius="6dp"
-        app:layout_constraintStart_toStartOf="@+id/textView9"
+        app:layout_constraintEnd_toEndOf="@+id/age"
         app:layout_constraintTop_toBottomOf="@+id/textView9"
         app:strokeColor="#D1D5DB"
         app:strokeWidth="1dp" />
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -237,6 +255,7 @@
         android:layout_marginStart="24dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/prenom_enfant"
+        android:textAllCaps="false"
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -248,6 +267,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat"
         android:text="@string/nom_enfant"
+        android:textAllCaps="false"
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView2"
@@ -256,56 +276,36 @@
         app:layout_constraintTop_toTopOf="@+id/textView2"
         app:layout_constraintVertical_bias="0.0" />
 
-    <Button
-        android:id="@+id/next"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="40dp"
-        android:background="@drawable/back"
-        android:checkable="false"
-        android:foreground="@drawable/back"
-        app:iconTintMode="add"
-        app:layout_constraintBottom_toBottomOf="@+id/back"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/back" />
-
-    <Button
-        android:id="@+id/back"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="40dp"
-        android:background="@drawable/next"
-        android:foreground="@drawable/next"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/wilayas" />
-
     <TextView
         android:id="@+id/back3"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/back"
+        android:textAllCaps="false"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/back"
-        app:layout_constraintStart_toEndOf="@+id/back"
-        app:layout_constraintTop_toTopOf="@+id/back" />
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/next2"
+        app:layout_constraintStart_toStartOf="@+id/wilayas"
+        app:layout_constraintTop_toBottomOf="@+id/wilayas" />
 
     <TextView
         android:id="@+id/next2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/next"
+        android:textAllCaps="false"
         android:textColor="#59C55E"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/next"
-        app:layout_constraintEnd_toStartOf="@+id/next"
-        app:layout_constraintTop_toTopOf="@+id/next" />
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/back3"
+        app:layout_constraintEnd_toEndOf="@+id/wilayas"
+        app:layout_constraintTop_toTopOf="@+id/back3" />
 
     <EditText
         android:id="@+id/prenom"
@@ -373,8 +373,37 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:textCursorDrawable="@drawable/custom_cursor"
-        app:layout_constraintEnd_toEndOf="@+id/other"
+        app:layout_constraintEnd_toEndOf="@+id/maried"
         app:layout_constraintStart_toStartOf="@+id/textView11"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+    <ImageView
+        android:id="@+id/imageView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/progres_orange"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <ImageView
+        android:id="@+id/imageView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:src="@drawable/progres_orange"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView13"
+        app:layout_constraintStart_toEndOf="@+id/imageView13"
+        app:layout_constraintTop_toTopOf="@+id/imageView13" />
+
+    <ImageView
+        android:id="@+id/imageView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:src="@drawable/progress_white"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView17"
+        app:layout_constraintStart_toEndOf="@+id/imageView17"
+        app:layout_constraintTop_toTopOf="@+id/imageView17" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

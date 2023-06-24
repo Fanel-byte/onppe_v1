@@ -14,44 +14,51 @@
     <ImageView
         android:id="@+id/imageView50"
         android:layout_width="0dp"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
         android:src="@drawable/rectangle_green"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView1"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="5dp"
         android:fontFamily="@font/montserratsemibold"
         android:text="@string/here"
+        android:textAllCaps="false"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/question"
+        app:layout_constraintHorizontal_bias="0.027"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView50" />
 
     <TextView
         android:id="@+id/textView5"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
 
-        android:layout_marginTop="5dp"
         android:fontFamily="@font/montserratarabiclight"
         android:text="@string/videoLabel"
+        android:textAllCaps="false"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/question"
         app:layout_constraintStart_toStartOf="@+id/textView1"
         app:layout_constraintTop_toBottomOf="@+id/textView1" />
 
     <TextView
         android:id="@+id/textView"
+        android:textAllCaps="false"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserratarabicregular"
@@ -71,6 +78,7 @@
         android:fontFamily="@font/montserratarabicregular"
         android:text="@string/videoDesc"
         android:textColor="#000000"
+        android:textAllCaps="false"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -129,6 +137,7 @@
         android:ems="10"
         android:gravity="start|top"
         android:hint="@string/write"
+        android:textAllCaps="false"
         android:inputType="textMultiLine"
         android:paddingLeft="10dp"
         android:paddingTop="10dp"
@@ -157,6 +166,7 @@
         android:text="@string/plusInfos"
         android:textColor="@color/orange"
         android:textSize="12sp"
+        android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="@+id/Descriptionvideo"
         app:layout_constraintStart_toStartOf="@+id/Descriptionvideo"
         app:layout_constraintTop_toBottomOf="@+id/Descriptionvideo"
@@ -166,11 +176,11 @@
         android:id="@+id/question"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
         android:src="@drawable/ic_question"
+        app:layout_constraintBottom_toBottomOf="@+id/textView1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView50" />
+        app:layout_constraintTop_toTopOf="@+id/textView1" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

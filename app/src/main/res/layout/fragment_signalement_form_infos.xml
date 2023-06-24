@@ -7,40 +7,24 @@
     android:layout_height="match_parent"
     tools:context=".SignalementFormInfosFragment">
 
-    <Button
-        android:id="@+id/next"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/back"
-        android:checkable="false"
-        android:foreground="@drawable/back"
-        app:iconTintMode="add"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addpreuve"
-        tools:ignore="SpeakableTextPresentCheck" />
-
 
     <TextView
         android:id="@+id/next2"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="2dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/confirmer"
         android:textColor="#59C55E"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/next"
-        app:layout_constraintEnd_toStartOf="@+id/next"
-        app:layout_constraintTop_toTopOf="@+id/next" />
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/description"
+        app:layout_constraintTop_toTopOf="@+id/back3" />
 
     <ImageView
         android:id="@+id/imageView12"
         android:layout_width="0dp"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
         android:src="@drawable/rectangle_green"
@@ -53,9 +37,10 @@
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="20dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/motifinfo"
+        android:textAllCaps="false"
         android:textColor="#000000"
         android:textSize="16dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,22 +50,26 @@
         android:id="@+id/question3"
         android:layout_width="28dp"
         android:layout_height="30dp"
-        android:layout_marginTop="28dp"
         android:layout_marginEnd="16dp"
         android:src="@drawable/ic_question"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView12" />
+        app:layout_constraintTop_toTopOf="@+id/textView" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
-        android:fontFamily="@font/montserrat_bold"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="5dp"
+        android:fontFamily="@font/montserrat_semibold"
         android:text="@string/titre_infos"
+        android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/question3"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView12" />
 
@@ -124,6 +113,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/montserrat"
+        android:textAllCaps="false"
         android:text="@string/dateincident"
         android:textColor="#000000"
         android:textSize="16sp"
@@ -137,6 +127,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
         android:text="@string/dateinfo"
+        android:textAllCaps="false"
         android:textColor="#817B75"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/agenda"
@@ -168,6 +159,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/lieudanger"
+        android:textAllCaps="false"
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/divider2"
@@ -199,6 +191,7 @@
         android:text="@string/descriptif"
         android:textColor="#000000"
         android:textSize="16sp"
+        android:textAllCaps="false"
         app:layout_constraintStart_toStartOf="@+id/lieudanger"
         app:layout_constraintTop_toBottomOf="@+id/lieudanger" />
 
@@ -212,8 +205,9 @@
         android:gravity="start|top"
         android:hint="@string/contenu_descriptif"
         android:inputType="textMultiLine"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textAllCaps="false"
         android:textCursorDrawable="@drawable/custom_cursor"
         app:layout_constraintEnd_toEndOf="@+id/lieudanger"
         app:layout_constraintHorizontal_bias="0.632"
@@ -222,14 +216,15 @@
 
     <Button
         android:id="@+id/addpreuve"
-        android:layout_width="141dp"
-        android:layout_height="55dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:drawableRight="@drawable/ic_add"
         android:fontFamily="@font/montserrat_semibold"
         android:text="@string/fichier"
+        android:textAllCaps="false"
         android:textColor="#F28123"
-        android:textSize="16sp"
+        android:textSize="14sp"
         app:backgroundTint="#FFFFFF"
         app:cornerRadius="10dp"
         app:layout_constraintStart_toStartOf="@+id/description"
@@ -237,37 +232,29 @@
         app:strokeColor="#F28123"
         app:strokeWidth="2dp" />
 
-    <Button
-        android:id="@+id/back2"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="40dp"
-        android:background="@drawable/next"
-        android:foreground="@drawable/next"
-        app:layout_constraintBottom_toBottomOf="@+id/next"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/next" />
-
     <TextView
         android:id="@+id/back3"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/back"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/next2"
-        app:layout_constraintStart_toEndOf="@+id/back2"
-        app:layout_constraintTop_toTopOf="@+id/next2" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/next2"
+        app:layout_constraintStart_toStartOf="@+id/addpreuve"
+        app:layout_constraintTop_toBottomOf="@+id/addpreuve" />
 
     <TextView
         android:id="@+id/fileName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="25dp"
         android:text=""
         app:layout_constraintBottom_toBottomOf="@+id/addpreuve"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/description"
         app:layout_constraintStart_toEndOf="@+id/addpreuve"
         app:layout_constraintTop_toTopOf="@+id/addpreuve" />
 

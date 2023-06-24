@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.onppe_v1.databinding.FragmentSuiviSignalementDetailBinding
@@ -61,7 +62,11 @@ class SuiviSignalementDetailFragment : Fragment() {
         // Récupérer la taille de l'écran
         val displayMetrics2 = DisplayMetrics()
         requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics2)
-
+        requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics2)
+        val width = (displayMetrics2.widthPixels * 0.75).toInt()
+        val height =  WindowManager.LayoutParams.WRAP_CONTENT
+        // Définir la taille de la fenêtre du dialog
+        myDialog2.window?.setLayout(width, height)
         binding.question.setOnClickListener {
             myDialog2.show()        }
     }

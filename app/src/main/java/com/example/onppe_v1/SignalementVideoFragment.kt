@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
@@ -67,6 +68,7 @@ class SignalementVideoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val dialogBinding = layoutInflater.inflate(R.layout.fragment_popup_window_video,null)
+        val dialogBinding2 = layoutInflater.inflate(R.layout.fragment_help_video,null)
         val myDialog = Dialog(requireActivity())
         myDialog.setContentView(dialogBinding)
         myDialog.setCancelable(true)
@@ -74,6 +76,12 @@ class SignalementVideoFragment : Fragment() {
         // Récupérer la taille de l'écran
         val displayMetrics = DisplayMetrics()
         requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics)
+
+        val width = (displayMetrics.widthPixels * 0.75).toInt()
+        val height =  WindowManager.LayoutParams.WRAP_CONTENT
+
+        // Définir la taille de la fenêtre du dialog
+        myDialog.window?.setLayout(width, height)
         signalementModel = ViewModelProvider(requireActivity()).get(SignalementTransfertModel::class.java)
         video=binding.videoView
         btn_Capture_video = binding.videocapture
@@ -146,22 +154,15 @@ class SignalementVideoFragment : Fragment() {
             signalementModel.videoImageSon = video_body
             signalementModel.typepreuve = "video"
             if (video_body==null){
-                Toast.makeText(requireActivity(), "الرجاء تحميل الفيديو أولا", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireActivity(), getString(R.string.inserer_video), Toast.LENGTH_SHORT).show()
             }else {
                 view.findNavController().navigate(R.id.action_signalementVideoFragment_to_signalementFormSignaleurFragment)
             }
         }
-        val dialogBinding2 = layoutInflater.inflate(R.layout.fragment_help_video,null)
-        val myDialog2 = Dialog(requireActivity())
-        myDialog2.setContentView(dialogBinding2)
-        myDialog2.setCancelable(true)
-        myDialog2.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        // Récupérer la taille de l'écran
-        val displayMetrics2 = DisplayMetrics()
-        requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics2)
 
         binding.question.setOnClickListener {
-            myDialog2.show()        }
+            myDialog.setContentView(dialogBinding2)
+            myDialog.show()        }
 
     }
 

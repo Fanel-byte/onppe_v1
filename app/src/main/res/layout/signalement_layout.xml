@@ -12,7 +12,7 @@
         android:id="@+id/details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:textAllCaps="false"
         android:layout_marginEnd="10dp"
         android:text="@string/plus"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -45,7 +45,7 @@
         android:id="@+id/datesignalement"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:textAllCaps="false"
         android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
         android:text="31/02/2022"
@@ -58,6 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="@string/etat"
+        android:textAllCaps="false"
         app:layout_constraintStart_toStartOf="@+id/datesignalement"
         app:layout_constraintTop_toBottomOf="@+id/datesignalement" />
 

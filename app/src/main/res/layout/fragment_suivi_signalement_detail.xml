@@ -5,15 +5,16 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignalementForm5Fragment">
+    tools:context=".SuiviSignalementFragment">
 
     <ImageView
         android:id="@+id/imageView50"
         android:layout_width="0dp"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
         android:src="@drawable/rectangle_green"
+        android:textAllCaps="false"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,42 +24,46 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/montserratarabicregular"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="5dp"
+        android:fontFamily="@font/montserratsemibold"
         android:text="@string/here"
+        android:textAllCaps="false"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/question"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView50" />
 
     <TextView
         android:id="@+id/textView40"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/montserratarabiclight"
         android:text="@string/suivinonsignal"
+        android:textAllCaps="false"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView50"
+        app:layout_constraintEnd_toEndOf="@+id/question"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.0" />
-
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <ImageView
         android:id="@+id/question"
         android:layout_width="28dp"
         android:layout_height="30dp"
-        android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
         android:src="@drawable/ic_question"
+        app:layout_constraintBottom_toBottomOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView50" />
-
+        app:layout_constraintTop_toTopOf="@+id/textView2"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView16"
@@ -71,19 +76,23 @@
         android:textColor="@color/black"
         android:textSize="16dp"
         app:layout_constraintStart_toStartOf="parent"
+        android:textAllCaps="false"
         app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
     <TextView
         android:id="@+id/reason"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
 
         android:layout_marginStart="20dp"
+        android:layout_marginEnd="16dp"
         android:fontFamily="@font/montserrat"
         android:text="سبب الإخطار"
+        android:textAllCaps="false"
         android:textColor="#6B7280"
         android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView16"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView16"
         app:layout_constraintTop_toTopOf="@+id/textView16" />
 
@@ -96,31 +105,38 @@
         android:text="@string/date"
         android:textColor="@color/black"
         android:textSize="16dp"
+        android:textAllCaps="false"
         app:layout_constraintStart_toStartOf="@+id/textView16"
         app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
     <TextView
         android:id="@+id/nomcomplet"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
+        android:layout_marginEnd="16dp"
         android:fontFamily="@font/montserrat"
         android:text="الإسم الكامل هنا"
+        android:textAllCaps="false"
         android:textColor="#6B7280"
         android:textSize="16dp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView21"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView21" />
 
     <TextView
         android:id="@+id/datesignalement2"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
+        android:layout_marginEnd="16dp"
         android:fontFamily="@font/montserrat"
         android:text="31/12/2022"
+        android:textAllCaps="false"
         android:textColor="#6B7280"
         android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView19"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView19"
         app:layout_constraintTop_toTopOf="@+id/textView19" />
 
@@ -133,6 +149,7 @@
         android:fontFamily="@font/montserrat"
         android:text="@string/nomcomplet"
         android:textColor="@color/black"
+        android:textAllCaps="false"
         android:textSize="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView17" />
@@ -145,19 +162,23 @@
         android:fontFamily="@font/montserrat"
         android:text="@string/age"
         android:textColor="@color/black"
+        android:textAllCaps="false"
         android:textSize="16dp"
         app:layout_constraintStart_toStartOf="@+id/textView24"
         app:layout_constraintTop_toBottomOf="@+id/textView24" />
 
     <TextView
         android:id="@+id/age1"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
+        android:layout_marginEnd="16dp"
         android:fontFamily="@font/montserrat"
         android:text="السن"
+        android:textAllCaps="false"
         android:textColor="#6B7280"
         app:layout_constraintBottom_toBottomOf="@+id/textView23"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView23"
         app:layout_constraintTop_toTopOf="@+id/textView23" />
 
@@ -170,29 +191,36 @@
         android:text="@string/sexe"
         android:textColor="@color/black"
         android:textSize="16dp"
+        android:textAllCaps="false"
         app:layout_constraintStart_toStartOf="@+id/textView21"
         app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
     <TextView
         android:id="@+id/sexe2"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
+        android:layout_marginEnd="16dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/sexe"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="@+id/textView24"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView24"
         app:layout_constraintTop_toTopOf="@+id/textView24" />
 
     <TextView
         android:id="@+id/situation"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
+        android:layout_marginEnd="16dp"
         android:fontFamily="@font/montserrat"
         android:text="وضعية الوالدين"
+        android:textAllCaps="false"
         android:textColor="#6B7280"
         app:layout_constraintBottom_toBottomOf="@+id/textView28"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView28"
         app:layout_constraintTop_toTopOf="@+id/textView28" />
 
@@ -205,6 +233,7 @@
         android:text="@string/etatfamille"
         android:textColor="@color/black"
         android:textSize="16dp"
+        android:textAllCaps="false"
         app:layout_constraintStart_toStartOf="@+id/textView23"
         app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
@@ -216,19 +245,23 @@
         android:fontFamily="@font/montserrat"
         android:text="@string/adresse"
         android:textColor="@color/black"
+        android:textAllCaps="false"
         android:textSize="16dp"
         app:layout_constraintStart_toStartOf="@+id/textView28"
         app:layout_constraintTop_toBottomOf="@+id/textView28" />
 
     <TextView
         android:id="@+id/adresse1"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
+        android:layout_marginEnd="16dp"
         android:fontFamily="@font/montserrat"
         android:text="العنوان"
+        android:textAllCaps="false"
         android:textColor="#6B7280"
         app:layout_constraintBottom_toBottomOf="@+id/textView30"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView30"
         app:layout_constraintTop_toTopOf="@+id/textView30" />
 
@@ -241,6 +274,7 @@
         android:text="@string/wilaya"
         android:textColor="@color/black"
         android:textSize="16dp"
+        android:textAllCaps="false"
         app:layout_constraintStart_toStartOf="@+id/textView30"
         app:layout_constraintTop_toBottomOf="@+id/textView30" />
 
@@ -253,17 +287,21 @@
         android:text="@string/contenu"
         android:textColor="@color/black"
         android:textSize="16dp"
+        android:textAllCaps="false"
         app:layout_constraintStart_toStartOf="@+id/textView19"
         app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
     <TextView
         android:id="@+id/contenu"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
+        android:layout_marginEnd="16dp"
         android:fontFamily="@font/montserrat"
         android:text="محتوى الإخطار"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="@+id/textView36"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView36"
         app:layout_constraintTop_toTopOf="@+id/textView36" />
 
@@ -272,12 +310,12 @@
         android:id="@+id/textView17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/info"
         android:textAlignment="center"
+        android:textAllCaps="false"
         android:textColor="#F28123"
-        android:textSize="22dp"
+        android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -292,8 +330,9 @@
         android:fontFamily="@font/montserrat"
         android:text="@string/infosignal"
         android:textAlignment="center"
+        android:textAllCaps="false"
         android:textColor="#F97316"
-        android:textSize="22dp"
+        android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -301,14 +340,17 @@
 
     <TextView
         android:id="@+id/wilaya1"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
+        android:layout_marginEnd="16dp"
         android:fontFamily="@font/montserrat"
         android:text="الولاية"
+        android:textAllCaps="false"
         android:textColor="#6B7280"
         android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView32"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView32"
         app:layout_constraintTop_toTopOf="@+id/textView32" />
 

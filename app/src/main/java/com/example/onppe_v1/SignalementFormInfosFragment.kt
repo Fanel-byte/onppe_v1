@@ -77,19 +77,13 @@ class SignalementFormInfosFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val dialogBinding2 = layoutInflater.inflate(R.layout.fragment_help_form,null)
-        val myDialog2 = Dialog(requireActivity())
-        myDialog2.setContentView(dialogBinding2)
-        myDialog2.setCancelable(true)
-        myDialog2.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        // Récupérer la taille de l'écran
-        val displayMetrics2 = DisplayMetrics()
-        requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics2)
+
 
 
         val instanceDB = AppDatabase.buildDatabase(requireContext())?.getSignalementDao()
         val deviceId: String = Settings.Secure.getString(requireContext().contentResolver, Settings.Secure.ANDROID_ID)
         val dialogBinding = layoutInflater.inflate(R.layout.fragment_popup_window,null)
+        val dialogBinding2 = layoutInflater.inflate(R.layout.fragment_help_form,null)
         val myDialog = Dialog(requireActivity())
         myDialog.setContentView(dialogBinding)
         myDialog.setCancelable(true)
@@ -154,13 +148,14 @@ class SignalementFormInfosFragment : Fragment() {
         }
 
         binding.question3.setOnClickListener {
-            myDialog2.show()        }
-        binding.back2.setOnClickListener { view: View ->
+            myDialog.setContentView(dialogBinding2)
+            myDialog.show()        }
+        binding.back3.setOnClickListener { view: View ->
             view.findNavController().popBackStack()
         }
 
 
-        binding.next.setOnClickListener { view: View ->
+        binding.next2.setOnClickListener { view: View ->
             if ((binding.motif.text.toString().isEmpty())|| (binding.lieudanger.text.toString().isEmpty())) {
                 //affichage du pop up
                 myDialog.show()

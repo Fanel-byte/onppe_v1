@@ -10,6 +10,7 @@ import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -124,7 +125,7 @@ class SignalementSonFragment : Fragment() {
             signalementModel.videoImageSon = son_body
             signalementModel.typepreuve = "son"
             if (son_body == null){
-                Toast.makeText(requireActivity(), "الرجاء ادخال تسجيل صوتي أولا", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireActivity(), R.string.inserer_vocal, Toast.LENGTH_SHORT).show()
             }
             else {
                 view.findNavController().navigate(R.id.action_signalementSonFragment_to_signalementFormSignaleurFragment)
@@ -140,7 +141,11 @@ class SignalementSonFragment : Fragment() {
         // Récupérer la taille de l'écran
         val displayMetrics2 = DisplayMetrics()
         requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics2)
+        val width = (displayMetrics2.widthPixels * 0.75).toInt()
+        val height =  WindowManager.LayoutParams.WRAP_CONTENT
 
+        // Définir la taille de la fenêtre du dialog
+        myDialog2.window?.setLayout(width, height)
         binding.question.setOnClickListener {
             myDialog2.show()        }
 

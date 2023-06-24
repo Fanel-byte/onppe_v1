@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.fragment.app.FragmentFactory
 import androidx.navigation.findNavController
 import com.example.onppe_v1.databinding.FragmentSignalementBinding
@@ -46,17 +47,22 @@ class SignalementFragment : Fragment() {
         binding.suivi.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_signalementFragment_to_suivisignalementfragment)
         }
-        val dialogBinding2 = layoutInflater.inflate(R.layout.fragment_popup_help_main,null)
-        val myDialog2 = Dialog(requireActivity())
-        myDialog2.setContentView(dialogBinding2)
-        myDialog2.setCancelable(true)
-        myDialog2.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        val dialogBinding = layoutInflater.inflate(R.layout.fragment_popup_help_main,null)
+        val myDialog = Dialog(requireActivity())
+        myDialog.setContentView(dialogBinding)
+        myDialog.setCancelable(true)
+        myDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         // Récupérer la taille de l'écran
-        val displayMetrics2 = DisplayMetrics()
-        requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics2)
+        val displayMetrics = DisplayMetrics()
+        requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics)
+        val width = (displayMetrics.widthPixels * 0.75).toInt()
+        val height =  WindowManager.LayoutParams.WRAP_CONTENT
+
+        // Définir la taille de la fenêtre du dialog
+        myDialog.window?.setLayout(width, height)
 
         binding.question.setOnClickListener {
-            myDialog2.show()        }
+            myDialog.show()        }
 
     }
 

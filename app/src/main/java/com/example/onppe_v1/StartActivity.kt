@@ -1,5 +1,6 @@
 package com.example.onppe_v1
 
+
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -16,7 +17,7 @@ class StartActivity : AppCompatActivity() {
         binding = ActivityStartBinding.inflate(layoutInflater)
         val view = binding.root
         setTheme(R.style.AppTheme_CustomTitle)
-        setCustomTitle(getString(R.string.app_name))
+        setCustomTitle("")
         setContentView(view)
         setContentView(view)
 

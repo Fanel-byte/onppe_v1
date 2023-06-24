@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import androidx.work.Constraints
 import androidx.work.ExistingWorkPolicy
 import androidx.work.NetworkType
@@ -22,35 +23,56 @@ class FonctionnalitiesActivity : AppCompatActivity() {
 
         binding = ActivityFonctionnalitiesBinding.inflate(layoutInflater)
         val view = binding.root
-        //   hideTitle() // Appel de la méthode pour masquer le titre
         setTheme(R.style.AppTheme_CustomTitle)
-        setCustomTitle(getString(R.string.app_name))
+        setCustomTitle("")
         setContentView(view)
 
         binding.signalement.setOnClickListener {
-            // instancier la synchronisation
             val constraints = Constraints.Builder()
                 .setRequiredNetworkType(NetworkType.CONNECTED)
                 .build()
 
-            // Planification du service
             val req = OneTimeWorkRequest.Builder(SynchroWorker::class.java)
                 .setConstraints(constraints)
                 .build()
 
-            // Lancement du service
             val workManager = WorkManager.getInstance(this)
             workManager.enqueueUniqueWork("work", ExistingWorkPolicy.KEEP, req)
 
-            // Aller à MainActivity
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("fragment", "signalement")
             startActivity(intent)
         }
+
         binding.aide.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("fragment", "aide")
             startActivity(intent)
+        }
+
+        binding.langue.setOnClickListener {
+            val languages = arrayOf(getString(R.string.arabe), getString(R.string.francais)) // Langues disponibles
+            val dialog = AlertDialog.Builder(this)
+                .setTitle(R.string.select_language)
+                .setItems(languages) { _, which ->
+                    val selectedLanguage = languages[which]
+                    val pref = getSharedPreferences("langdata", MODE_PRIVATE)
+                    val editor = pref.edit()
+                    if( selectedLanguage==languages[0]) {
+                        editor.putString("language", "AR")
+                        editor.apply()
+                    }
+                   else {
+                        editor.putString("language", "FR")
+                        editor.apply()
+                    }
+                    // Mettre à jour la langue immédiatement
+                    val newLocale = Locale(selectedLanguage, pref.getString("country", "DZ"))
+                    val updatedContext = ContextUtils.updateLocale(this, newLocale)
+                    recreate() // Redémarrer l'activité pour appliquer la nouvelle langue
+                }
+                .create()
+            dialog.show()
         }
     }
 
@@ -65,14 +87,19 @@ class FonctionnalitiesActivity : AppCompatActivity() {
     }
     // Language support
     override fun attachBaseContext(newBase: Context) {
-        
         val pref = newBase.getSharedPreferences("langdata", MODE_PRIVATE)
-        val language = pref.getString("language","AR")
-        //val language = pref.getString("language","FR")
-        val country = pref.getString("country","DZ")
-        //val country = pref.getString("country","FR")
-        val localeToSwitch = Locale(language,country)
+        val language = pref.getString("language", "AR")
+        val country = pref.getString("country", "DZ")
+        val localeToSwitch = Locale(language, country)
         val localeUpdatedContext = ContextUtils.updateLocale(newBase, localeToSwitch)
         super.attachBaseContext(localeUpdatedContext)
     }
+    object ContextUtils {
+        fun updateLocale(context: Context, locale: Locale): Context {
+            val config = context.resources.configuration
+            config.setLocale(locale)
+            return context.createConfigurationContext(config)
+        }
+    }
+
 }
