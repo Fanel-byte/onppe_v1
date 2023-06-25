@@ -162,6 +162,9 @@
         <action
             android:id="@+id/action_nosuivisignalementfragment_to_fonctionnalitiesActivity"
             app:destination="@id/fonctionnalitiesActivity" />
+        <action
+            android:id="@+id/action_nosuivisignalementfragment_to_signalementFragment"
+            app:destination="@id/signalementFragment" />
     </fragment>
 
     <activity
