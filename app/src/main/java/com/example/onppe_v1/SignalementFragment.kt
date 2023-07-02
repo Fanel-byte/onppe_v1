@@ -1,6 +1,7 @@
 package com.example.onppe_v1
 
 import android.app.Dialog
+import android.content.pm.ActivityInfo
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -21,6 +22,8 @@ class SignalementFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+        var requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
         binding = FragmentSignalementBinding.inflate(inflater, container, false)
         val view = binding.root
         return view

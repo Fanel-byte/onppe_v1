@@ -6,6 +6,9 @@ import android.content.pm.ActivityInfo
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
 import androidx.work.Constraints
 import androidx.work.ExistingWorkPolicy
@@ -51,30 +54,6 @@ class FonctionnalitiesActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.langue.setOnClickListener {
-            val languages = arrayOf(getString(R.string.arabe), getString(R.string.francais)) // Langues disponibles
-            val dialog = AlertDialog.Builder(this)
-                .setTitle(R.string.select_language)
-                .setItems(languages) { _, which ->
-                    val selectedLanguage = languages[which]
-                    val pref = getSharedPreferences("langdata", MODE_PRIVATE)
-                    val editor = pref.edit()
-                    if( selectedLanguage==languages[0]) {
-                        editor.putString("language", "AR")
-                        editor.apply()
-                    }
-                   else {
-                        editor.putString("language", "FR")
-                        editor.apply()
-                    }
-                    // Mettre à jour la langue immédiatement
-                    val newLocale = Locale(selectedLanguage, pref.getString("country", "DZ"))
-                    val updatedContext = ContextUtils.updateLocale(this, newLocale)
-                    recreate() // Redémarrer l'activité pour appliquer la nouvelle langue
-                }
-                .create()
-            dialog.show()
-        }
     }
 
     private fun hideTitle() {
@@ -101,6 +80,43 @@ class FonctionnalitiesActivity : AppCompatActivity() {
             config.setLocale(locale)
             return context.createConfigurationContext(config)
         }
+    }
+
+    // Overflow Menu
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.overflow_menu2, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu_language -> {
+                val languages = arrayOf(getString(R.string.arabe), getString(R.string.francais)) // Langues disponibles
+                val dialog = AlertDialog.Builder(this)
+                    .setTitle(R.string.select_language)
+                    .setItems(languages) { _, which ->
+                        val selectedLanguage = languages[which]
+                        val pref = getSharedPreferences("langdata", MODE_PRIVATE)
+                        val editor = pref.edit()
+                        if (selectedLanguage == languages[0]) {
+                            editor.putString("language", "AR")
+                            editor.apply()
+                        } else {
+                            editor.putString("language", "FR")
+                            editor.apply()
+                        }
+
+                        // Redémarrer l'activité pour appliquer la nouvelle langue
+                        val intent = intent
+                        finish()
+                        startActivity(intent)
+                    }
+                    .create()
+                dialog.show()
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 }

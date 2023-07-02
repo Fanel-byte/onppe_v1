@@ -233,7 +233,7 @@
 
     <string name="textonppe2">Vous pouvez consulter des informations sur l\'Organe national de protection et de promotion de l\'enfance</string>
     <string name="plus">Plus</string>
-    <string name="select_language">Choisir la Langue</string>
+    <string name="select_language">Choisir la langue</string>
     <string name="arabe">Arabe</string>
     <string name="francais">Français</string>
     <string name="inserer_image">Veuillez d\'abord insérer une photo</string>
@@ -242,6 +242,6 @@
     <string name="inserer_video">Veuillez d\'abord insérer une vidéo</string>
     <string name="inserer_vocal">Veuillez d\'abord insérer un vocal</string>
     <string name="erreurMsg">Une erreur s\'est produite</string>
-
+    <string name="limite">( Ne depassez pas 30 secondes )</string>
 
 </resources>

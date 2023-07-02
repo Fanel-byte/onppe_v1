@@ -29,6 +29,9 @@
         <action
             android:id="@+id/action_signalementFragment_to_fonctionnalitiesActivity"
             app:destination="@id/fonctionnalitiesActivity" />
+        <action
+            android:id="@+id/action_signalementFragment_to_nosuivisignalementfragment2"
+            app:destination="@id/nosuivisignalementfragment" />
     </fragment>
     <fragment
         android:id="@+id/aideFragment"
@@ -164,6 +167,9 @@
             app:destination="@id/fonctionnalitiesActivity" />
         <action
             android:id="@+id/action_nosuivisignalementfragment_to_signalementFragment"
+            app:destination="@id/signalementFragment" />
+        <action
+            android:id="@+id/action_nosuivisignalementfragment_to_signalementFragment2"
             app:destination="@id/signalementFragment" />
     </fragment>
 

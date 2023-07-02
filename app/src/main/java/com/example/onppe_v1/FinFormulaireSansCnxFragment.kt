@@ -30,6 +30,12 @@ class FinFormulaireSansCnxFragment : Fragment() {
         binding.suivi.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_finFormulaireSansCnxFragment_to_suivisignalementfragment)
         }
+        //Pour ne pas avoir le bouton retour
+        (requireActivity() as AppCompatActivity?)?.supportActionBar!!.setDisplayHomeAsUpEnabled (false)
+        //Pour ne pas avoir de retour
+        (requireActivity() as AppCompatActivity).apply {
+            onBackPressedDispatcher.addCallback(viewLifecycleOwner) {}
+        }
     }
 
 

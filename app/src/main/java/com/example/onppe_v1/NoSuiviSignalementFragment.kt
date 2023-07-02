@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.onppe_v1.databinding.FragmentNoSuiviSignalementBinding
@@ -48,7 +49,8 @@ class NoSuiviSignalementFragment : Fragment() {
         binding.question.setOnClickListener {
             myDialog2.show()        }
 
-
+        //Pour ne pas avoir le bouton retour
+        (requireActivity() as AppCompatActivity?)?.supportActionBar!!.setDisplayHomeAsUpEnabled (false)
 
     }
 
